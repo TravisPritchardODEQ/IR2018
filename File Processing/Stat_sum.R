@@ -16,6 +16,7 @@ library(lubridate)
 
 
 
+# Setup -------------------------------------------------------------------
 
 # clean out exisiting environment
 # helps to avoid overwriting
@@ -45,6 +46,9 @@ unique_characteritics <- unique(Results_import$Characteristic.Name)
 #create list for getting data out of loop
 sumstatlist <- list()
 
+
+
+# For loop for summary statistics -----------------------------------------
 
 
 # Loop goes through each characteristc and generates summary stats
@@ -176,6 +180,11 @@ for (i in 1:length(unique_characteritics)){
    
     }
   
+
+
+# Finalizing --------------------------------------------------------------
+
+
 sumstat <- bind_rows(sumstatlist)
 
 
@@ -268,4 +277,12 @@ AQWMS_sum_stat <- sumstat_long %>%
 
 # Export to same place as the originial file
 write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
+
+
+
+# To Do -------------------------------------------------------------------
+
+# Figure out what DO summary stats we need
+# Deal with DOsat
+# What about non-Do and temp data?
 
