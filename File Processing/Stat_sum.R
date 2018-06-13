@@ -285,4 +285,6 @@ write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.c
 # Figure out what DO summary stats we need
 # Deal with DOsat
 # What about non-Do and temp data?
+# Add in deployment statistics file
+     # Do the audits signify the start/end time, or do the results?
 
