@@ -9,23 +9,25 @@ library(lubridate)
 
 # this code takes the 3rd party call for data continuous datasets and generates
 # Summary statistics. Output is a file to load into AWQMS
+# Much of the code was taken from Steve Hanson's volunteer data processing scripts
 
 
 
 
-#clean out exisiting environment
-#helps to avoid overwriting
+# clean out exisiting environment
+# helps to avoid overwriting
 rm(list = ls())
 
-#Choose submitted file
+# Choose submitted file to generate stats on 
 filepath <- file.choose()
 
 
+# read results tab of submitted file
 Results_import <- read_excel(filepath, sheet = "Results")
 colnames(Results_import) <- make.names(names(Results_import), unique=TRUE)
 
 
-#convert F to C, filter out rejected data, and create datetime column
+# convert F to C, filter out rejected data, and create datetime column
 results_data <- Results_import %>%
   mutate(r = ifelse(Result.Unit == "deg F", round((Result.Value - 32)*(5/9),2), Result.Value),
          r_units = ifelse(Result.Unit == "deg F", "deg C", Result.Unit )) %>%
@@ -34,18 +36,25 @@ results_data <- Results_import %>%
          datetime = ymd_hms(paste(Activity.Start.Date, time_char)))
 
 
+# get unique list of characteristics to run for loop through
 unique_characteritics <- unique(Results_import$Characteristic.Name)
 
 #create list for getting data out of loop
 sumstatlist <- list()
 
 
+
+# Loop goes through each characteristc and generates summary stats
+# After loop, data gets pushed inot single table
 for (i in 1:length(unique_characteritics)){
   
+  # Characteristic for this loop iteration
   char <- unique_characteritics[i]
   
+  # Filter so table only contains single characteristic
   results_data_char <- results_data %>%
     filter(Characteristic.Name == char) %>%
+    # generare unique hour field for hourly values and stats
     mutate(hr =  format(datetime, "%Y-%j-%H"))
   
   # Simplify to hourly values and Stats
@@ -182,14 +191,19 @@ sumstat_long <- sumstat %>%
 Audit_import <- read_excel(filepath, sheet = "Audit_Data")
 colnames(Audit_import) <- make.names(names(Audit_import), unique=TRUE)
 
+# get rid of ectra blankfields
 Audits <- Audit_import %>%
   filter(!is.na(Project.ID))
 
+# table of methods unique to project, location, equipment, char, and method
 Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
 
+# Join method to sumstat table
 sumstat_long <- sumstat_long %>%
   left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name", "Equipment" = "Equipment.ID..") )
 
+
+# Create fields needed tfor AWQMS and format to match Steve's AWQMS mport sheets
 AQWMS_sum_stat <- sumstat_long %>%
   mutate(RsltTimeBasis = ifelse(StatisticalBasis == "ma", "7 Day", "1 Day" ),
          ActivityType = "FMC",
@@ -248,5 +262,6 @@ AQWMS_sum_stat <- sumstat_long %>%
 
 
 
+# Export to same place as the originial file
 write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
 
