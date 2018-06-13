@@ -7,9 +7,12 @@ library(lubridate)
 #6/13/2018
 
 
-# this code takes the 3rd party call for data continuous datasets and generates
-# Summary statistics. Output is a file to load into AWQMS
+# this code takes the submitted 3rd party call for data continuous datasets and generates
+# Summary statistics for loading into AWQMS. Output is a file to load into AWQMS
 # Much of the code was taken from Steve Hanson's volunteer data processing scripts
+
+
+# To run, source the file and select the submitted file to be processed
 
 
 
