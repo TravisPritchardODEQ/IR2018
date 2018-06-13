@@ -226,7 +226,8 @@ AQWMS_sum_stat <- sumstat_long %>%
          ActStartTimeZone = Activity.Start.End.Time.Zone,
          ActEndTimeZone = Activity.Start.End.Time.Zone,
          AnaStartTimeZone = Activity.Start.End.Time.Zone,
-         AnaEndTimeZone = Activity.Start.End.Time.Zone
+         AnaEndTimeZone = Activity.Start.End.Time.Zone,
+         StatisticalBasis = ifelse(StatisticalBasis == "ma", "7DMADMax", StatisticalBasis )
          ) %>%
   select(charID,
          Result,
