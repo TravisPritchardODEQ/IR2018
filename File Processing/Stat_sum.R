@@ -50,7 +50,7 @@ for (i in 1:length(unique_characteritics)){
   
   # Simplify to hourly values and Stats
   hrsumna <- results_data_char %>%
-    group_by(Monitoring.Location.ID, Equipment.ID.., hr, r_units) %>%
+    group_by(Monitoring.Location.ID, Equipment.ID.., hr, r_units, Activity.Start.End.Time.Zone) %>%
     summarise(date = mean(Activity.Start.Date),
               hrDTmin = min(datetime),
               hrDTmax = max(datetime),
@@ -78,7 +78,7 @@ for (i in 1:length(unique_characteritics)){
 
   # Summarise to daily statistics
    daydat <- hrdat %>%
-    group_by(Monitoring.Location.ID, Equipment.ID.., date, r_units) %>%
+    group_by(Monitoring.Location.ID, Equipment.ID.., date, r_units, Activity.Start.End.Time.Zone) %>%
     summarise(  dDTmin = min(hrDTmin),
                 dDTmax = max(hrDTmax),
                 hrNday = length(hrN), 
@@ -129,8 +129,8 @@ for (i in 1:length(unique_characteritics)){
        if (j < 30) {
          daydat$ma[j]<- as.numeric(NA)
        } else if (j >29 && (daydat$dDTmax[j] - daydat$dDTmin[j-29])<= 30.03) { # needs to be after the 30th day and should only span 30 days, the .03 accounts for time changes in fall .
-         daydat$anaStart[j] <- daydat$dDTmin[j-29] # careful that the local time zone doesn't mess this up
-         daydat$anaEnd[j] <- daydat$dDTmax[j] # careful that the timeshift doesn't mess this up
+         daydat$anaStart[j] <- as.character(daydat$dDTmin[j-29]) # careful that the local time zone doesn't mess this up
+         daydat$anaEnd[j] <- as.character(daydat$dDTmax[j]) # careful that the timeshift doesn't mess this up
          ifelse(sum(is.na(daydat$r4ma[(j-29):j])) > 3, NA, # if more than 3 missing days than no calculation
                 daydat$ma[j] <- mean(daydat$r4ma[(j-29):j], na.rm = TRUE))
        }
@@ -145,8 +145,8 @@ for (i in 1:length(unique_characteritics)){
        if (j < 7) {
          daydat$ma[j]<- as.numeric(NA)
        } else if (j > 6 && (daydat$dDTmax[j] - daydat$dDTmin[j-6]) <= 7.03) { # needs to be after the 6th day and should only span 7 days, the .03 accounts for time changes in fall .
-         daydat$anaStart[j] <- daydat$dDTmin[j-6] # careful that the default time zone doesn't mess this up
-         daydat$anaEnd[j] <- daydat$dDTmax[j] # careful that the the default time zone doesn't mess this up
+         daydat$anaStart[j] <- as.character(daydat$dDTmin[j-6]) # careful that the default time zone doesn't mess this up
+         daydat$anaEnd[j] <- as.character(daydat$dDTmax[j]) # careful that the the default time zone doesn't mess this up
          ifelse(sum(is.na(daydat$r4ma[(j-6):j])) > 1, NA, # if more than on missing day then no calculation
                 daydat$ma[j] <- mean(daydat$r4ma[(j-6):j], na.rm = TRUE))
        }
@@ -172,7 +172,78 @@ sumstat <- bind_rows(sumstatlist)
 sumstat_long <- sumstat %>%
   gather('dyMean', 'dyMin', 'dyMax', 'dyMedian', 'ma',  key = "StatisticalBasis", value = "Result") %>%
   arrange(Monitoring.Location.ID, date) %>%
-  filter(!is.na(Result))
+  filter(!is.na(Result)) %>%
+  select(-Equipment.ID...y) %>%
+  rename(Equipment = Equipment.ID...x)
   
+
+#read audit data
+
+Audit_import <- read_excel(filepath, sheet = "Audit_Data")
+colnames(Audit_import) <- make.names(names(Audit_import), unique=TRUE)
+
+Audits <- Audit_import %>%
+  filter(!is.na(Project.ID))
+
+Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
+
+sumstat_long <- sumstat_long %>%
+  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name", "Equipment" = "Equipment.ID..") )
+
+AQWMS_sum_stat <- sumstat_long %>%
+  mutate(RsltTimeBasis = ifelse(StatisticalBasis == "ma", "7 Day", "1 Day" ),
+         ActivityType = "FMC",
+         SmplColMthd = "ContinuousPrb",
+         SmplColEquip = "Probe/Sensor",
+         SmplDepth = "",
+         SmplDepthUnit = "",
+         SmplColEquipComment = "",
+         Samplers = "",
+         Project = Project.ID,
+         AnaStartDate = ifelse(StatisticalBasis == "ma", format(anaStart, "%Y-%m-%d"), format(date, "%Y-%m-%d")),
+         AnaStartTime = ifelse(StatisticalBasis == "ma", format(anaStart, "%H:%M:%S"), format(date, "%H:%M:%S")),
+         AnaEndDate = ifelse(StatisticalBasis == "ma", format(anaEnd, "%Y-%m-%d"),format(dDTmax, "%Y-%m-%d")),
+         AnaEndTime = ifelse(StatisticalBasis == "ma", format(anaEnd, "%H:%M:%S"),  format(dDTmax, "%H:%M:%S")),
+         ActStartDate = format(dDTmin, "%Y-%m-%d"),
+         ActStartTime = format(dDTmin, "%H:%M:%S"),
+         ActEndDate = format(dDTmax, "%Y-%m-%d"),
+         ActEndTime = format(dDTmax, "%H:%M:%S"),
+         RsltType = "Calculated",
+         ActStartTimeZone = Activity.Start.End.Time.Zone,
+         ActEndTimeZone = Activity.Start.End.Time.Zone,
+         AnaStartTimeZone = Activity.Start.End.Time.Zone,
+         AnaEndTimeZone = Activity.Start.End.Time.Zone
+         ) %>%
+  select(charID,
+         Result,
+         r_units,
+         Result.Analytical.Method.ID,
+         RsltType,
+         ResultStatusID,
+         StatisticalBasis,
+         RsltTimeBasis,
+         cmnt,
+         ActivityType,
+         Monitoring.Location.ID,
+         SmplColMthd,
+         SmplColEquip,
+         SmplDepth,
+         SmplDepthUnit,
+         SmplColEquipComment,
+         Samplers,
+         Equipment,
+         Project,
+         ActStartDate,
+         ActStartTime,
+         ActStartTimeZone,
+         ActEndDate,
+         ActEndTime,
+         ActEndTimeZone,
+         AnaStartDate,
+         AnaStartTime,
+         AnaStartTimeZone,
+         AnaEndDate,
+         AnaEndTime,
+         AnaEndTimeZone)
 
 
