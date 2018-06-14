@@ -278,11 +278,24 @@ write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.c
 
 
 
+
+# Deployment info ---------------------------------------------------------
+
+deployments <- Results_import %>%
+  mutate(time_char = strftime(Activity.Start.Time, format = "%H:%M:%S", tz = 'UTC'),
+         datetime = ymd_hms(paste(Activity.Start.Date, time_char))) %>%
+  group_by(Monitoring.Location.ID, Equipment.ID.., ) %>%
+  summarise(startdate = min(datetime),
+            enddate = max(datetime),
+            TZ = first(Activity.Start.End.Time.Zone))
+
+write_csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"))
+
+
+
 # To Do -------------------------------------------------------------------
 
 # Figure out what DO summary stats we need
 # Deal with DOsat
 # What about non-Do and temp data?
-# Add in deployment statistics file
-     # Do the audits signify the start/end time, or do the results?
 
