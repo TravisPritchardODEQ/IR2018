@@ -244,7 +244,7 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
 # Monitoring station information ------------------------------------------
 
 #read in county query
-county_query <- read_csv("./Data Sources/county_query.csv", col_types = c(col_character())) %>%
+county_query <- read_csv("./Data Sources/county_codes.csv", col_types = c(col_character())) %>%
   mutate(county_cd = as.character(county_cd)) %>%
   select(county_cd, county_nm)
 
