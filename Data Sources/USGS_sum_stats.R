@@ -12,7 +12,7 @@ rm(list=ls())
 # it's handy to have it already done
 # When we load into AWQWMS, we should delete these lines and run
 # It fresh
-load("Data Sources/.RData")
+load("Data Sources/NWISsumstats.Rdata")
 
 
 # NWIS codes: https://nwis.waterdata.usgs.gov/usa/nwis/pmcodes/help?codes_help
