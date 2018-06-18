@@ -61,6 +61,7 @@ nwis.sum.stats.temp <- renameNWISColumns(nwis.sum.stats.temp)
 # lag uses 6 because the 7 day moving average is inclusive of the date
 # If 1 day is missing from period, do not caluclate average
 temp4ma <- nwis.sum.stats.temp %>%
+  arrange(site_no, Date) %>%
   group_by(site_no) %>%
   mutate(startdate = lag(Date, 6, order_by = Date),
          # flag out which result gets a moving average calculated
@@ -99,7 +100,7 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          SmplColMthd = "ContinuousPrb",
          SmplColEquip = "Probe/Sensor",
          SmplDepth = "",
-         SmplDepthUnit = "m",
+         SmplDepthUnit = "",
          SmplColEquipComment = "",
          Samplers = "",
          SmplEquipID = site_no,
@@ -152,8 +153,9 @@ nwis.sum.stats.DO <- readNWISdv(siteNumbers = USGS_stations,
 nwis.sum.stats.DO <- renameNWISColumns(nwis.sum.stats.DO)
 
 
-# Calculate moving averages. If 1 day is missing from period, do not caluclate average
+# Calculate moving averages. If 1 or more daya are missing from period, do not caluclate average
 DO4ma <- nwis.sum.stats.DO %>%
+  arrange(site_no, Date) %>%
   group_by(site_no) %>%
   mutate(startdate7 = lag(Date, 6, order_by = Date),
          # flag out which result gets a moving average calculated
@@ -196,7 +198,7 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             SmplColMthd = "ContinuousPrb",
             SmplColEquip = "Probe/Sensor",
             SmplDepth = "",
-            SmplDepthUnit = "m",
+            SmplDepthUnit = "",
             SmplColEquipComment = "",
             Samplers = "",
             SmplEquipID = site_no,
@@ -213,7 +215,8 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             AnaEndDate = Date,
             AnaEndTime = "0:00",
             AnaEndTimeZone = "PST",
-            ActComment = "" )
+            ActComment = "" ) %>%
+  arrange(SiteID, ActStartDate)
 
 
 #write_csv(nwis.sum.stats.DO.gather, "nwis_DO_sum_stats_long.csv")
