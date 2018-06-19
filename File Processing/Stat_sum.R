@@ -6,6 +6,8 @@ library(lubridate)
 #This is a current work in progess
 #6/13/2018
 
+#Do summary statistics need to be cleaned up
+
 
 # this code takes the submitted 3rd party call for data continuous datasets and generates
 # Summary statistics for loading into AWQMS. Output is a file to load into AWQMS
