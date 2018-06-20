@@ -290,7 +290,8 @@ graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )
   facet_grid(Characteristic.Name ~ ., scales = 'free') +
   theme_bw() +
   xlab("Monitoring Location") +
-  ylab("Result")
+  ylab("Result") + 
+  theme(strip.background = element_blank())
   
 
 ggsave(paste0(tools::file_path_sans_ext(filepath),"-Graph.png"), plot = graph)
