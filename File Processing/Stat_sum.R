@@ -3,6 +3,7 @@ library(readxl)
 library(lubridate)
 
 
+
 #This is a current work in progess
 #6/13/2018
 
@@ -278,6 +279,21 @@ AQWMS_sum_stat <- sumstat_long %>%
 # Export to same place as the originial file
 write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
 
+
+
+# Graphing ----------------------------------------------------------------
+
+
+graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )+
+  geom_boxplot(fill = "gray83", width = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.1, color = "steelblue4") +
+  facet_grid(. ~Characteristic.Name) +
+  theme_bw() +
+  xlab("Monitoring Location") +
+  ylab("Result")
+  
+
+ggsave(paste0(tools::file_path_sans_ext(filepath),"-Graph.png"), plot = graph)
 
 
 
