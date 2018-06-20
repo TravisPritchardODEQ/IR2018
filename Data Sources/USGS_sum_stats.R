@@ -24,7 +24,7 @@ sites <- whatNWISsites(stateCD = "or",
 
 USGS_stations <- sites$site_no
 start.date = "2008-01-01"
-end.date = "2018-12-31"
+end.date = "2018-06-29"
 statcds = c("00001", "00002", "00003", "00008")
 # 00001 = max, 00002 = min, 00003 = mean, 00008 = median
 pCodes = c("00010", "00400", "00300", "00301")
