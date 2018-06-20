@@ -285,9 +285,9 @@ write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.c
 
 
 graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )+
-  geom_boxplot(fill = "gray83", width = 0.5) +
+  geom_boxplot(fill = "gray83") +
   geom_jitter(width = 0.2, alpha = 0.1, color = "steelblue4") +
-  facet_grid(. ~Characteristic.Name) +
+  facet_grid(Characteristic.Name ~ ., scales = 'free') +
   theme_bw() +
   xlab("Monitoring Location") +
   ylab("Result")
