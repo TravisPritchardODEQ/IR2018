@@ -1,6 +1,7 @@
 library(tidyverse)
 library(readxl)
 library(lubridate)
+library(openxlsx)
 
 
 
@@ -311,6 +312,25 @@ deployments <- Results_import %>%
 write_csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"))
 
 
+
+# Audit info --------------------------------------------------------------
+
+
+# matches Dan Brown's import configuration
+# If template has Result.Qualifier as column, use that value, if not use blank. 
+Audit_info <- Audits %>%
+  mutate(Result.Qualifier = ifelse("Result.Qualifier" %in% colnames(Audits), Result.Qualifier, "" ),
+         Activity.Start.Time = as.character(strftime(Activity.Start.Time, format = "%H:%M:%S", tz = "UTC")),
+         Activity.End.Time = as.character(strftime(Activity.End.Time, format = "%H:%M:%S", tz = "UTC")) ) %>%
+  select(Project.ID, Monitoring.Location.ID, Activity.Start.Date,
+         Activity.Start.Time, Activity.End.Date, Activity.End.Time,
+         Activity.Start.End.Time.Zone, Activity.Type, 
+         Activity.ID..Column.Locked., Equipment.ID.., Sample.Collection.Method,
+         Characteristic.Name, Result.Value, Result.Unit, Result.Analytical.Method.ID,
+         Result.Analytical.Method.Context, Result.Value.Type, Result.Status.ID,
+         Result.Qualifier, Result.Comment)
+
+write.xlsx(Audit_info, file = paste0(tools::file_path_sans_ext(filepath),"-Audits.xlsx") )
 
 # To Do -------------------------------------------------------------------
 
