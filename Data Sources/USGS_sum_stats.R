@@ -12,7 +12,7 @@ rm(list=ls())
 # it's handy to have it already done
 # When we load into AWQWMS, we should delete these lines and run
 # It fresh
-load("Data Sources/NWISsumstats.Rdata")
+#load("Data Sources/NWISsumstats.Rdata")
 
 
 # NWIS codes: https://nwis.waterdata.usgs.gov/usa/nwis/pmcodes/help?codes_help
@@ -297,8 +297,9 @@ nwis.sites.AWQMS <- nwissites %>%
 nwis.sites.AWQMS[is.na(nwis.sites.AWQMS)] <- ""            
             
             
-
-
+write.csv(nwis.sites.AWQMS, "Data Sources/NWIS_Monitoring_Locations.csv", row.names = FALSE)
+write.csv(nwis.sum.stats.DO.AWQMS, "Data Sources/NWIS_Do_sum_stat_AWQMS.csv", row.names = FALSE)
+write.csv(nwis.sum.stats.temp.AWQMS, "Data Sources/NWIS_Temp_sum_stat_AWQMS.csv", row.names = FALSE)
 
 # Write csvs --------------------------------------------------------------
 
