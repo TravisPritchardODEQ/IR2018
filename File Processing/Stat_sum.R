@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(lubridate)
 library(openxlsx)
-
+library(zoo)
 
 
 #This is a current work in progess
@@ -140,45 +140,97 @@ for (i in 1:length(unique_characteritics)){
    daydat$anaStart <- as.POSIXct(NA)# Add analysis start and end dates
    daydat$anaEnd <- as.POSIXct(NA)
   
-    ##  DISSOLVED OXYGEN 
-   ############ This is where we would generate stats for DO sat
+   
+   
+   #  ##  DISSOLVED OXYGEN 
+   # douuble cjec this fits with methodology
    if (results_data_char$Characteristic.Name[1]  %in% c('DO','adjDO','DOs', "Dissolved oxygen (DO)")) {
-     # remove data with bad dDQL's and get daily minimum value
-     daydat$r4ma <- ifelse(daydat$ResultStatusID == 'Rejected' | is.na(daydat$ResultStatusID), NA, daydat$dyMin ) 
-     for (j in 1:length(daydat$date)) {
-       if (j < 30) {
-         daydat$ma[j]<- as.numeric(NA)
-       } else if (j >29 && (daydat$dDTmax[j] - daydat$dDTmin[j-29])<= 30.03) { # needs to be after the 30th day and should only span 30 days, the .03 accounts for time changes in fall .
-         daydat$anaStart[j] <- as.character(daydat$dDTmin[j-29]) # careful that the local time zone doesn't mess this up
-         daydat$anaEnd[j] <- as.character(daydat$dDTmax[j]) # careful that the timeshift doesn't mess this up
-         ifelse(sum(is.na(daydat$r4ma[(j-29):j])) > 3, NA, # if more than 3 missing days than no calculation
-                daydat$ma[j] <- mean(daydat$r4ma[(j-29):j], na.rm = TRUE))
-       }
+     
+     sumstats <- daydat %>%
+       arrange(Monitoring.Location.ID, date) %>%
+       group_by(Monitoring.Location.ID) %>%
+       mutate(startdate7 = lag(date, 6, order_by = date),
+              # flag out which result gets a moving average calculated
+              calc7ma = ifelse(startdate7 == (as.Date(date) - 6), 1, 0 ),
+              startdate30 = lag(date, 29, order_by = date),
+              calc30ma = ifelse(startdate30 == (as.Date(date) - 29), 1, 0 )) %>%
+       mutate(ma.mean7 = ifelse(calc7ma == 1, round(rollmean(x = dyMean, 7, align = "right", fill = NA),1) , NA ),
+              ma.mean30 = ifelse(calc30ma == 1, round(rollmean(x = dyMean, 30, align = "right", fill = NA),1) , NA ),
+              ma.min7 = ifelse(calc7ma == 1, round(rollmean(x = dyMin, 7, align = "right", fill = NA),1) , NA )) %>%
+       gather(dyMax, dyMean, dyMin, ma.mean7, ma.mean30,ma.min7, key = "stat", value = "result", na.rm = TRUE) %>%
+       mutate(anaStart = ifelse(stat == "ma.mean7" | stat == "ma.min7", format(startdate7, "%Y-%m-%d %H:%M:%S"),
+                                ifelse(stat == "ma.mean30", format(startdate30, "%Y-%m-%d %H:%M:%S"), format(dDTmin, "%Y-%m-%d %H:%M:%S"))),
+              anaEnd = format(dDTmax, "%Y-%m-%d %H:%M:%S")) %>%
+       select(-startdate7, -calc7ma, -startdate30, -calc30ma )
+     
+     
      }
+   
+   
+   #  ##  DISSOLVED OXYGEN 
+   # ############ This is where we would generate stats for DO sat
+   # if (results_data_char$Characteristic.Name[1]  %in% c('DO','adjDO','DOs', "Dissolved oxygen (DO)")) {
+   #   # remove data with bad dDQL's and get daily minimum value
+   #   daydat$r4ma <- ifelse(daydat$ResultStatusID == 'Rejected' | is.na(daydat$ResultStatusID), NA, daydat$dyMin ) 
+   #   for (j in 1:length(daydat$date)) {
+   #     if (j < 30) {
+   #       daydat$ma[j]<- as.numeric(NA)
+   #     } else if (j >29 && (daydat$dDTmax[j] - daydat$dDTmin[j-29])<= 30.03) { # needs to be after the 30th day and should only span 30 days, the .03 accounts for time changes in fall .
+   #       daydat$anaStart[j] <- as.character(daydat$dDTmin[j-29]) # careful that the local time zone doesn't mess this up
+   #       daydat$anaEnd[j] <- as.character(daydat$dDTmax[j]) # careful that the timeshift doesn't mess this up
+   #       ifelse(sum(is.na(daydat$r4ma[(j-29):j])) > 3, NA, # if more than 3 missing days than no calculation
+   #              daydat$ma[j] <- mean(daydat$r4ma[(j-29):j], na.rm = TRUE))
+   #     }
+   #   }
+   # }
+   # 
+   ##  TEMPERATURE
+   
+   if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
+   
+     sumstats <- daydat %>%
+     arrange(Monitoring.Location.ID, date) %>%
+     group_by(Monitoring.Location.ID) %>%
+     mutate(startdate7 = lag(date, 6, order_by = date),
+            # flag out which result gets a moving average calculated
+            calc7ma = ifelse(startdate7 == (as.Date(date) - 6), 1, 0 ))%>%
+     mutate(ma.max7 = ifelse(calc7ma == 1, round(rollmean(x = dyMax, 7, align = "right", fill = NA),1) , NA )) %>%
+     gather(dyMax, dyMean, dyMin, ma.max7 , key = "stat", value = "result", na.rm = TRUE) %>%
+     mutate(anaStart = ifelse(stat == "ma.max7", format(startdate7, "%Y-%m-%d %H:%M:%S"), format(dDTmin, "%Y-%m-%d %H:%M:%S")),
+            anaEnd = ifelse(stat == "ma.max7",  format(dDTmax, "%Y-%m-%d %H:%M:%S"), format(dDTmax, "%Y-%m-%d %H:%M:%S"))) %>%
+     select(-startdate7, -calc7ma)
+ 
    }
    
-   ##  TEMPERATURE
-   if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
-     # remove data with bad dDQL's and get daily minimum value
-     daydat$r4ma <- ifelse(daydat$ResultStatusID == 'Rejected' | is.na(daydat$ResultStatusID), NA, daydat$dyMax ) 
-     for (j in 1:length(daydat$date)) {
-       if (j < 7) {
-         daydat$ma[j]<- as.numeric(NA)
-       } else if (j > 6 && (daydat$dDTmax[j] - daydat$dDTmin[j-6]) <= 7.03) { # needs to be after the 6th day and should only span 7 days, the .03 accounts for time changes in fall .
-         daydat$anaStart[j] <- as.character(daydat$dDTmin[j-6]) # careful that the default time zone doesn't mess this up
-         daydat$anaEnd[j] <- as.character(daydat$dDTmax[j]) # careful that the the default time zone doesn't mess this up
-         ifelse(sum(is.na(daydat$r4ma[(j-6):j])) > 1, NA, # if more than on missing day then no calculation
-                daydat$ma[j] <- mean(daydat$r4ma[(j-6):j], na.rm = TRUE))
-       }
-     }
-   }
+   
+   
+   
+   # if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
+   #   # remove data with bad dDQL's and get daily minimum value
+   #   daydat$r4ma <- ifelse(daydat$ResultStatusID == 'Rejected' | is.na(daydat$ResultStatusID), NA, daydat$dyMax ) 
+   #   for (j in 1:length(daydat$date)) {
+   #     if (j < 7) {
+   #       daydat$ma[j]<- as.numeric(NA)
+   #     } else if (j > 6 && (daydat$dDTmax[j] - daydat$dDTmin[j-6]) <= 7.03) { # needs to be after the 6th day and should only span 7 days, the .03 accounts for time changes in fall .
+   #       daydat$anaStart[j] <- as.character(daydat$dDTmin[j-6]) # careful that the default time zone doesn't mess this up
+   #       daydat$anaEnd[j] <- as.character(daydat$dDTmax[j]) # careful that the the default time zone doesn't mess this up
+   #       ifelse(sum(is.na(daydat$r4ma[(j-6):j])) > 1, NA, # if more than on missing day then no calculation
+   #              daydat$ma[j] <- mean(daydat$r4ma[(j-6):j], na.rm = TRUE))
+   #     }
+   #   }
+   # 
+   #   sumstats <- daydat %>%
+   #     rename("7DMADMax" = ma) %>%
+   #     gather('dyMean', 'dyMin', 'dyMax', 'dyMedian', '7DMADMax',  key = "StatisticalBasis", value = "Result")
+   #   
+   #   }
    
    
    # Add deployment metadata
-   daydat <- daydat %>%
+   sumstats <- sumstats %>%
      mutate(charID = char) 
    
-   sumstatlist[[i]] <- daydat   
+   sumstatlist[[i]] <- sumstats   
  
    
    
@@ -194,7 +246,6 @@ sumstat <- bind_rows(sumstatlist)
 
 #gather wide file to long format
 sumstat_long <- sumstat %>%
-  gather('dyMean', 'dyMin', 'dyMax', 'dyMedian', 'ma',  key = "StatisticalBasis", value = "Result") %>%
   arrange(Monitoring.Location.ID, date) %>%
   filter(!is.na(Result)) %>%
   select(-Equipment.ID...y) %>%
@@ -219,7 +270,8 @@ sumstat_long <- sumstat_long %>%
 
 # Create fields needed tfor AWQMS and format to match Steve's AWQMS mport sheets
 AQWMS_sum_stat <- sumstat_long %>%
-  mutate(RsltTimeBasis = ifelse(StatisticalBasis == "ma", "7 Day", "1 Day" ),
+  mutate(RsltTimeBasis = ifelse(StatisticalBasis == "7DMADMax" | StatisticalBasis == "ma.mean7" | StatisticalBasis == "ma.min7", "7 Day", 
+                                ifelse(StatisticalBasis == "ma.mean30", "30 Day", "1 Day" )),
          ActivityType = "FMC",
          SmplColMthd = "ContinuousPrb",
          SmplColEquip = "Probe/Sensor",
@@ -337,4 +389,6 @@ write.xlsx(Audit_info, file = paste0(tools::file_path_sans_ext(filepath),"-Audit
 # Figure out what DO summary stats we need
 # Deal with DOsat
 # What about non-Do and temp data?
+# DO sum stats to fit with standards methodology - double check
+# fix the AWQMS import
 
