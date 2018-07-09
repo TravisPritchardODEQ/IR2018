@@ -7,12 +7,10 @@ library(zoo)
 # Warning - This cannot be undone
 rm(list=ls())
 
-# Load Environment as run on 6/15/2018 in the morning.
-# This is here beacuse the datapulls take so long to run and 
-# it's handy to have it already done
-# When we load into AWQWMS, we should delete these lines and run
-# It fresh
-#load("Data Sources/NWISsumstats.Rdata")
+
+# Load in Temp, Do, and monitoring location dataframes for
+# 1/1/2008 - 6/29/2018
+load("Data Sources/NWIS_data.RData")
 
 
 # NWIS codes: https://nwis.waterdata.usgs.gov/usa/nwis/pmcodes/help?codes_help
@@ -297,9 +295,11 @@ nwis.sites.AWQMS <- nwissites %>%
 nwis.sites.AWQMS[is.na(nwis.sites.AWQMS)] <- ""            
             
             
-write.csv(nwis.sites.AWQMS, "Data Sources/NWIS_Monitoring_Locations.csv", row.names = FALSE)
-write.csv(nwis.sum.stats.DO.AWQMS, "Data Sources/NWIS_Do_sum_stat_AWQMS.csv", row.names = FALSE)
-write.csv(nwis.sum.stats.temp.AWQMS, "Data Sources/NWIS_Temp_sum_stat_AWQMS.csv", row.names = FALSE)
+# write.csv(nwis.sites.AWQMS, "Data Sources/NWIS_Monitoring_Locations.csv", row.names = FALSE)
+# write.csv(nwis.sum.stats.DO.AWQMS, "Data Sources/NWIS_Do_sum_stat_AWQMS.csv", row.names = FALSE)
+# write.csv(nwis.sum.stats.temp.AWQMS, "Data Sources/NWIS_Temp_sum_stat_AWQMS.csv", row.names = FALSE)
+
+save(nwis.sites.AWQMS, nwis.sum.stats.DO.AWQMS, nwis.sum.stats.temp.AWQMS, file = "Data Sources/NWIS_data.RData")
 
 # Write csvs --------------------------------------------------------------
 
