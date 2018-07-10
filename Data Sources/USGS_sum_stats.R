@@ -8,6 +8,7 @@ library(zoo)
 rm(list=ls())
 
 
+
 # Load in Temp, Do, and monitoring location dataframes for
 # 1/1/2008 - 6/29/2018
 load("Data Sources/NWIS_data.RData")
@@ -103,17 +104,17 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          Samplers = "",
          SmplEquipID = site_no,
          Project = "USGS-OR",
-         ActStartDate = Date,
+         ActStartDate = ifelse(StatisticalBasis == "7DMADMax", startdate, Date ),
          ActStartTime = "0:00",
          ActEndDate = Date,
          ActEndTime = "0:00",
          ActEndTimeZone = "PST",
-         AnaStartDate = ifelse(StatisticalBasis == "7DMADMax", startdate, ActStartDate ),
-         AnaStartTime = "0:00",
-         AnaStartTimeZone = "PST",
-         AnaEndDate = Date,
-         AnaEndTime = "0:00",
-         AnaEndTimeZone = "PST",
+         AnaStartDate = "",
+         AnaStartTime = "",
+         AnaStartTimeZone = "",
+         AnaEndDate = "",
+         AnaEndTime = "",
+         AnaEndTimeZone = "",
          ActComment = "" )
 
 
@@ -201,18 +202,18 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             Samplers = "",
             SmplEquipID = site_no,
             Project = "USGS-OR",
-            ActStartDate = Date,
+            ActStartDate = ifelse(StatisticalBasis == "7DMADMax" |StatisticalBasis == "7DMADMin" , startdate7, 
+                                  ifelse(StatisticalBasis == "30DMADMean", startdate30, Date )),
             ActStartTime = "0:00",
             ActEndDate = Date,
             ActEndTime = "0:00",
             ActEndTimeZone = "PST",
-            AnaStartDate = ifelse(StatisticalBasis == "7DMADMax" |StatisticalBasis == "7DMADMin" , startdate7, 
-                                  ifelse(StatisticalBasis == "30DMADMean", startdate30, ActStartDate )),
-            AnaStartTime = "0:00",
-            AnaStartTimeZone = "PST",
-            AnaEndDate = Date,
-            AnaEndTime = "0:00",
-            AnaEndTimeZone = "PST",
+            AnaStartDate = "",
+            AnaStartTime = "",
+            AnaStartTimeZone = "",
+            AnaEndDate = "",
+            AnaEndTime = "",
+            AnaEndTimeZone = "",
             ActComment = "" ) %>%
   arrange(SiteID, ActStartDate)
 
@@ -301,11 +302,38 @@ nwis.sites.AWQMS[is.na(nwis.sites.AWQMS)] <- ""
 
 save(nwis.sites.AWQMS, nwis.sum.stats.DO.AWQMS, nwis.sum.stats.temp.AWQMS, file = "Data Sources/NWIS_data.RData")
 
+
+
+
+
 # Write csvs --------------------------------------------------------------
 
 
-# write_csv(nwis.sum.stats, "nwis_sum_stats_R.csv")
-# write_csv(nwis_sites, "nwis_sum_stat_sites_R.csv")
+
+Data_Split <- function(df) {
+  
+  chunk <- 500000
+  
+  n <- nrow(df)
+  r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
+  d <- split(df,r)
+  
+  for(i in 1:length(d)){
+    
+    shortdf <- as.data.frame(d[i])
+    names(shortdf) <- names(df)
+    write.csv(shortdf, file=paste0("Data Sources/",deparse(substitute(df)), "-", i, ".csv"),
+              row.names = FALSE)
+    
+  }
+  
+}
+
+Data_Split(nwis.sites.AWQMS)
+Data_Split(nwis.sum.stats.DO.AWQMS)
+Data_Split(nwis.sum.stats.temp.AWQMS)
+
+
 
 
 # Cont DO data ------------------------------------------------------------
