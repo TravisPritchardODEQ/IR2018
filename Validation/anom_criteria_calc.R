@@ -1,9 +1,9 @@
 library(tidyverse)
-library(readit)
+library(readxl)
 
 
 #read data into R
-OWQI_data <- readit("A:/Integrated_Report/R/DATAVALIDATION/OWQI_DATA_1980to2017.xlsx")
+OWQI_data <- read.xlsx("Validation/OWQI_DATA_1980to2017.xlsx")
 
 #create anom_crit table
 anom_crit <- OWQI_data %>%
@@ -22,4 +22,4 @@ anom_crit <- OWQI_data %>%
   mutate(char = ifelse(char == "d_o", "do", ifelse(char == "do_sat", "dos", char )))
 
 #save table to be loaded into R later
-save(anom_crit, file = "A:/Integrated_Report/R/DATAVALIDATION/anom_crit.Rdata" )
+save(anom_crit, file = "Validation/anom_crit.Rdata" )
