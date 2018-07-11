@@ -14,3 +14,9 @@ Results_import <- sqlFetch(IR.sql, "resultsrawWATER")
 
 
 odbcClose(IR.sql)
+
+# Set factors to characters
+Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
+
+bacteria <- Results_import %>%
+  filter(ChrName == "Escherichia coli" |ChrName == "Enterococcus")
