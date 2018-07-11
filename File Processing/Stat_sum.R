@@ -179,19 +179,168 @@ for (i in 1:length(unique_characteritics)){
 
 sumstat <- bind_rows(sumstatlist)
 
+#Gather summary statistics from wide format into long format
+#rename summary statistcs to match AWQMS Import COnfiguration
+sumstat_long <- sumstat %>%
+  rename("Daily Maximum" = dyMax,
+         "Daily Minimum" = dyMin,
+         "Daily Mean"    = dyMean,
+         "7DMADMin"      = ma.min7,
+         "7DMADMean"     = ma.mean7,
+         "7DMADMax"      = ma.max7,
+         "30DMADMean"    = ma.mean30) %>%
+  gather(
+    "Daily Maximum",
+    "Daily Minimum",
+    "Daily Mean",
+    "7DMADMin",
+    "7DMADMean",
+    "7DMADMax",
+    "30DMADMean",
+    key = "StatisticalBasis",
+    value = "Result",
+    na.rm = TRUE
+  ) %>% 
+  arrange(Monitoring.Location.ID, date) %>%
+  rename(Equipment = Equipment.ID..)
+
+
+# Read Audit Data ---------------------------------------------------------
+
+Audit_import <- read_excel(filepath, sheet = "Audit_Data")
+colnames(Audit_import) <- make.names(names(Audit_import), unique=TRUE)
+
+# get rid of extra blankfields
+Audits <- Audit_import %>%
+  filter(!is.na(Project.ID))
+
+# table of methods unique to project, location, equipment, char, and method
+Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
 
 
 
+# Reformat Audit info
+# matches Dan Brown's import configuration
+# If template has Result.Qualifier as column, use that value, if not use blank. 
+Audit_info <- Audits %>%
+  mutate(Result.Qualifier = ifelse("Result.Qualifier" %in% colnames(Audits), Result.Qualifier, "" ),
+         Activity.Start.Time = as.character(strftime(Activity.Start.Time, format = "%H:%M:%S", tz = "UTC")),
+         Activity.End.Time = as.character(strftime(Activity.End.Time, format = "%H:%M:%S", tz = "UTC")) ) %>%
+  select(Project.ID, Monitoring.Location.ID, Activity.Start.Date,
+         Activity.Start.Time, Activity.End.Date, Activity.End.Time,
+         Activity.Start.End.Time.Zone, Activity.Type, 
+         Activity.ID..Column.Locked., Equipment.ID.., Sample.Collection.Method,
+         Characteristic.Name, Result.Value, Result.Unit, Result.Analytical.Method.ID,
+         Result.Analytical.Method.Context, Result.Value.Type, Result.Status.ID,
+         Result.Qualifier, Result.Comment)
+
+#Write excel file for AWQMS import
+write.xlsx(Audit_info, file = paste0(tools::file_path_sans_ext(filepath),"-Audits.xlsx") )
 
 
 
+# AWQMS summary stats -----------------------------------------------------
+
+
+# Join method to sumstat table
+sumstat_long <- sumstat_long %>%
+  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name", "Equipment" = "Equipment.ID..") )
+
+AQWMS_sum_stat <- sumstat_long %>%
+  mutate(RsltTimeBasis = ifelse(StatisticalBasis == "7DMADMin" |
+                                  StatisticalBasis == "7DMADMean" |
+                                  StatisticalBasis == "7DMADMax", "7 Day", 
+                                ifelse(StatisticalBasis == "30DMADMean", "30 Day", "1 Day" )),
+         ActivityType = "FMC",
+         SmplColMthd = "ContinuousPrb",
+         SmplColEquip = "Probe/Sensor",
+         SmplDepth = "",
+         SmplDepthUnit = "",
+         SmplColEquipComment = "",
+         Samplers = "",
+         Project = Project.ID,
+         AnaStartDate = "",
+         AnaStartTime = "",
+         AnaEndDate = "",
+         AnaEndTime = "",
+         ActStartDate = ifelse(RsltTimeBasis == "7 Day" , format(as.Date(date) - 6,"%Y-%m-%d" ), 
+                               ifelse(RsltTimeBasis == "30 Day", format(as.Date(date) - 29, "%Y-%m-%d"), format(date, "%Y-%m-%d" ))), 
+         ActStartTime = ifelse(RsltTimeBasis == "7 Day" , format(as.Date(date) - 6,"%H:%M:%S" ), 
+                               ifelse(RsltTimeBasis == "30 Day", format(as.Date(date) - 29, "%H:%M:%S"), format(date, "%H:%M:%S" ))),
+         ActEndDate = format(dDTmax, "%Y-%m-%d"),
+         ActEndTime = format(dDTmax, "%H:%M:%S"),
+         RsltType = "Calculated",
+         ActStartTimeZone = Activity.Start.End.Time.Zone,
+         ActEndTimeZone = Activity.Start.End.Time.Zone,
+         AnaStartTimeZone = "",
+         AnaEndTimeZone = ""
+    ) %>%
+  select(charID,
+         Result,
+         r_units,
+         Result.Analytical.Method.ID,
+         RsltType,
+         ResultStatusID,
+         StatisticalBasis,
+         RsltTimeBasis,
+         cmnt,
+         ActivityType,
+         Monitoring.Location.ID,
+         SmplColMthd,
+         SmplColEquip,
+         SmplDepth,
+         SmplDepthUnit,
+         SmplColEquipComment,
+         Samplers,
+         Equipment,
+         Project,
+         ActStartDate,
+         ActStartTime,
+         ActStartTimeZone,
+         ActEndDate,
+         ActEndTime,
+         ActEndTimeZone,
+         AnaStartDate,
+         AnaStartTime,
+         AnaStartTimeZone,
+         AnaEndDate,
+         AnaEndTime,
+         AnaEndTimeZone)
+
+
+# Export to same place as the originial file
+write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
 
 
 
+# Graphing ----------------------------------------------------------------
+
+
+graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )+
+  geom_boxplot(fill = "gray83") +
+  geom_jitter(width = 0.2, alpha = 0.1, color = "steelblue4") +
+  facet_grid(Characteristic.Name ~ ., scales = 'free') +
+  theme_bw() +
+  xlab("Monitoring Location") +
+  ylab("Result") + 
+  theme(strip.background = element_blank())
+
+
+ggsave(paste0(tools::file_path_sans_ext(filepath),"-Graph.png"), plot = graph)
 
 
 
+# Deployment info ---------------------------------------------------------
 
+deployments <- Results_import %>%
+  mutate(time_char = strftime(Activity.Start.Time, format = "%H:%M:%S", tz = 'UTC'),
+         datetime = ymd_hms(paste(Activity.Start.Date, time_char))) %>%
+  group_by(Monitoring.Location.ID, Equipment.ID.., ) %>%
+  summarise(startdate = min(datetime),
+            enddate = max(datetime),
+            TZ = first(Activity.Start.End.Time.Zone))
+
+write_csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"))
 
 
 
