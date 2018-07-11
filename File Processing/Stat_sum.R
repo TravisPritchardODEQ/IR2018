@@ -357,7 +357,7 @@ deployments <- Results_import %>%
             enddate = max(datetime),
             TZ = first(Activity.Start.End.Time.Zone))
 
-write_csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"))
+write.csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"), row.names = FALSE)
 
 
 
