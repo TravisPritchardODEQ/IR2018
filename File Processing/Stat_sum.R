@@ -91,6 +91,8 @@ for (i in 1:length(unique_characteritics)){
            ma.mean30 = as.numeric(""),
            ma.max7 = as.numeric(""))
   
+  
+  #Deal with DO Results
   if (results_data_char$Characteristic.Name[1]  %in% c('DO','adjDO','DOs', "Dissolved oxygen (DO)")) {
     
     #monitoring location loop
@@ -98,12 +100,17 @@ for (i in 1:length(unique_characteritics)){
       
       station <- unique(daydat$Monitoring.Location.ID)[j]
       
+      #Filter dataset to only look at 1 monitoring location at a time
       daydat_station <- daydat %>%
         filter(Monitoring.Location.ID == station) %>%
         mutate(startdate7 = as.Date(date) - 6,
                startdate30 = as.Date(date) -30)
       
-     #7 day loop
+     # 7 day loop
+      # Loops throough each row in the monitoring location dataset
+      # And pulls out records that are within the preceding 7 day window
+      # If there are at least 6 values, then calculate 7 day min and mean
+      # Assigns data back to daydat_station
        for(k in 1:nrow(daydat_station)){
         
          start7 <- daydat_station$startdate7[k]
@@ -125,6 +132,10 @@ for (i in 1:length(unique_characteritics)){
       } #end of 7day loop
       
     # 30 day loop
+      # Loops throough each row in the monitoring location dataset
+      # And pulls out records that are within the preceding 30 day window
+      # If there are at least 29 values, then calculate 30 day mean
+      # Assigns data back to daydat_station
       for(l in 1:nrow(daydat_station)){
         
         
@@ -142,11 +153,12 @@ for (i in 1:length(unique_characteritics)){
    
       } #end of 30day loop
       
-    
+    # Assign dataset filtered to 1 monitoring location to a list for combining outside of for loop
       monloc_do_list[[j]] <- daydat_station
       
     } # end of monitoring location for loop
   
+    # Combine list to single dataframe
     sum_stats <- bind_rows(monloc_do_list)    
     
     } # end of DO if statement
@@ -156,6 +168,8 @@ for (i in 1:length(unique_characteritics)){
   
   if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
     
+    # Temperature is much easier to calculate, since it needs a complete 7 day record to calculate the 7day moving average
+    # This can happen with a simple grouping
     sum_stats <- daydat %>%
       arrange(Monitoring.Location.ID, date) %>%
       group_by(Monitoring.Location.ID) %>%
@@ -168,15 +182,18 @@ for (i in 1:length(unique_characteritics)){
   } #end of temp if statement
  
   
+  #Assign the char ID to the dataset
   sum_stats <- sum_stats %>%
     mutate(charID = char) 
   
+  #Set to list for getting out of for loop
   sumstatlist[[i]] <-  sum_stats
   
   } # end of characteristics for loop
 
 
 
+# Bind list to dataframe
 sumstat <- bind_rows(sumstatlist)
 
 #Gather summary statistics from wide format into long format
