@@ -1,6 +1,7 @@
 library(dataRetrieval)
 library(tidyverse)
 library(zoo)
+library(openxlsx)
 
 
 # Remove exisiting Environment
@@ -83,6 +84,7 @@ nwis.sum.stats.temp.gather <- temp4ma %>%
 nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
   ungroup() %>%
   transmute(CharID = "TEMP",
+         Result = result,  
          Unit = "deg C",
          Method = "THM01",
          RsltType = "Calculated",
@@ -104,8 +106,9 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          Samplers = "",
          SmplEquipID = site_no,
          Project = "USGS-OR",
-         ActStartDate = ifelse(StatisticalBasis == "7DMADMax", startdate, Date ),
+         ActStartDate = ifelse(StatisticalBasis == "7DMADMax", format(startdate,"%Y-%m-%d") , format(Date, "%Y-%m-%d") ),
          ActStartTime = "0:00",
+         ActStartTimeZone = "PST",
          ActEndDate = Date,
          ActEndTime = "0:00",
          ActEndTimeZone = "PST",
@@ -177,6 +180,7 @@ nwis.sum.stats.DO.gather <- DO4ma %>%
 nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
   ungroup() %>%
   transmute(CharID = "DO",
+            Result = result,
             Unit = "mg/L",
             Method = "LUMIN",
             RsltType = "Calculated",
@@ -202,9 +206,10 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             Samplers = "",
             SmplEquipID = site_no,
             Project = "USGS-OR",
-            ActStartDate = ifelse(StatisticalBasis == "7DMADMax" |StatisticalBasis == "7DMADMin" , startdate7, 
-                                  ifelse(StatisticalBasis == "30DMADMean", startdate30, Date )),
+            ActStartDate = ifelse(StatisticalBasis == "7DMADMax" |StatisticalBasis == "7DMADMin" , format(startdate7, "%Y-%m-%d"), 
+                                  ifelse(StatisticalBasis == "30DMADMean", format(startdate30,"%Y-%m-%d") , format(Date, "%Y-%m-%d"))),
             ActStartTime = "0:00",
+            ActStartTimeZone = "PST",
             ActEndDate = Date,
             ActEndTime = "0:00",
             ActEndTimeZone = "PST",
@@ -322,8 +327,7 @@ Data_Split <- function(df) {
     
     shortdf <- as.data.frame(d[i])
     names(shortdf) <- names(df)
-    write.csv(shortdf, file=paste0("Data Sources/",deparse(substitute(df)), "-", i, ".csv"),
-              row.names = FALSE)
+    write.csv(shortdf, file=paste0("A:/Integrated_Report/DataSources/USGS_NWIS/",deparse(substitute(df)), "-", i, ".csv"))
     
   }
   
