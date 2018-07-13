@@ -105,7 +105,7 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          SmplColEquipComment = "",
          Samplers = "",
          SmplEquipID = "Continuous Probe",
-         Project = "USGS-OR",
+         Project = "Stat Summary",
          ActStartDate = Date,
          ActStartTime = "0:00",
          ActStartTimeZone = "PST",
@@ -205,7 +205,7 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             SmplColEquipComment = "",
             Samplers = "",
             SmplEquipID = "Continuous Probe",
-            Project = "USGS-OR",
+            Project = "Stat Summary",
             ActStartDate = Date,
             ActStartTime = "0:00",
             ActStartTimeZone = "PST",
@@ -305,7 +305,7 @@ nwis.sites.AWQMS[is.na(nwis.sites.AWQMS)] <- ""
 # write.csv(nwis.sum.stats.temp.AWQMS, "Data Sources/NWIS_Temp_sum_stat_AWQMS.csv", row.names = FALSE)
 
 save(nwis.sites.AWQMS, nwis.sum.stats.DO.AWQMS, nwis.sum.stats.temp.AWQMS, file = "Data Sources/NWIS_data.RData")
-
+save.image(file= "Data Sources/NWIS_environment.RData")
 
 
 
