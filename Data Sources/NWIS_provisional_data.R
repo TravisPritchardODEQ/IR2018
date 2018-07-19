@@ -17,8 +17,8 @@ provisional_temp_import <- nwis.sum.stats.temp %>%
 provisional_DO_import <- nwis.sum.stats.DO %>%
   filter(startsWith(DO_Max_cd, "P"))
 
-write.csv(provisional_temp_import, "Data Sources/NWIS_provisional_data_temp.csv")
-write.csv(provisional_DO_import, "Data Sources/NWIS_provisional_data_DO.csv")
+write.csv(provisional_temp_import, "Data Sources/NWIS_provisional_data_temp.csv", na = "")
+write.csv(provisional_DO_import, "Data Sources/NWIS_provisional_data_DO.csv", na = "")
 
 
 # Show AWQMS provisional grades -------------------------------------------
