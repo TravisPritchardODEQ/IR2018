@@ -119,7 +119,9 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          AnaEndDate = "",
          AnaEndTime = "",
          AnaEndTimeZone = "",
-         ActComment = "" )
+         ActComment = "",
+         ActivityID = paste0(SiteID, ":", gsub("-","",ActStartDate), ":", ActivityType)
+         )
 
 
 # NWIS pH -----------------------------------------------------------------
@@ -219,7 +221,8 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             AnaEndDate = "",
             AnaEndTime = "",
             AnaEndTimeZone = "",
-            ActComment = "" ) %>%
+            ActComment = "",
+            ActivityID = paste0(SiteID, ":", gsub("-","",ActStartDate), ":", ActivityType)) %>%
   arrange(SiteID, ActStartDate)
 
 
@@ -319,6 +322,7 @@ save.image(file= "Data Sources/NWIS_environment.RData")
 
 Data_Split <- function(df) {
   
+  # Max row size of file 
   chunk <- 500000
   
   n <- nrow(df)
