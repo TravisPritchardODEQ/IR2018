@@ -124,9 +124,7 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          ) %>%
   filter(Qualcd != 'P Eqp',
          Qualcd != 'P Dis',
-         Qualcd != 'P Ssn',
-         Qualcd != 'A e',
-         Qualcd != 'P e')
+         Qualcd != 'P Ssn')
 
 
 # NWIS pH -----------------------------------------------------------------
@@ -231,9 +229,7 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
   arrange(SiteID, ActStartDate)%>%
   filter(Qualcd != 'P Eqp',
          Qualcd != 'P Dis',
-         Qualcd != 'P Ssn',
-         Qualcd != 'A e',
-         Qualcd != 'P e')
+         Qualcd != 'P Ssn')
 
 
 
