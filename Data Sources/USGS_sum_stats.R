@@ -121,7 +121,10 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          AnaEndTimeZone = "",
          ActComment = "",
          ActivityID = paste0(SiteID, ":", gsub("-","",ActStartDate), ":", ActivityType)
-         )
+         ) %>%
+  filter(Qualcd != 'P Eqp',
+         Qualcd != 'P Dis',
+         Qualcd != 'P Ssn')
 
 
 # NWIS pH -----------------------------------------------------------------
@@ -223,7 +226,11 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
             AnaEndTimeZone = "",
             ActComment = "",
             ActivityID = paste0(SiteID, ":", gsub("-","",ActStartDate), ":", ActivityType)) %>%
-  arrange(SiteID, ActStartDate)
+  arrange(SiteID, ActStartDate)%>%
+  filter(Qualcd != 'P Eqp',
+         Qualcd != 'P Dis',
+         Qualcd != 'P Ssn')
+
 
 
 #write_csv(nwis.sum.stats.DO.gather, "nwis_DO_sum_stats_long.csv")
