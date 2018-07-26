@@ -1,0 +1,11 @@
+Package: IRlibrary
+Title: IR 2018 library of functions
+Version: 0.0.0.9000
+Authors@R: person("Travis", "Pritchard", email = "first.last@example.com", role = c("aut", "cre"))
+Description: Functions to be used in the 2018 Integrated Report Analysis
+Depends: R (>= 3.4.3)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports: tidyverse
+RoxygenNote: 6.0.1.9000
