@@ -1,6 +1,7 @@
 require(rgdal)
 require(RODBC)
 library(tidyverse)
+library(IRlibrary)
 
 #disable scientific notation 
 options(scipen = 999)
@@ -22,11 +23,15 @@ odbcClose(IR.sql)
 # Set factors to characters
 Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
 
-# Perform censored data modifications
-Results_censored <- Results_import %>%
+
+# Get all the standard to be used when dealing with the censored
+Results_crit <- Results_import %>%
   # Get lowest criteria value to set censored results
-  mutate(lowest_crit = pmin(SS_Crit, Geomean_Crit, Perc_Crit, na.rm = TRUE)) %>%
-  
+  mutate(lowest_crit = pmin(SS_Crit, Geomean_Crit, Perc_Crit, na.rm = TRUE))
+
+
+Results_censored <- Censored_data(Results_crit, crit = `lowest_crit` )
+
 
 #create lists to get data out of for loops
 geomeanlist = list()
