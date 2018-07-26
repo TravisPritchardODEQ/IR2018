@@ -11,6 +11,8 @@
 #' @param res column in dataframe with the result to be compared against. Defaults to Result4IR
 #' @param resqual column in dataframe for the qualifier. Defaults to ResultOp4IR
 #' @param crit column in dataframe with criteria value. Defaults to crit
+#' @export
+#' 
 
    Censored_data <- function(df, res= `Result4IR`, resqual = `ResultOp4IR`, crit = `crit`) {
     res =  enquo(res)
