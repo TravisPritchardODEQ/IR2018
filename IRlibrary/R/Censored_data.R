@@ -23,9 +23,9 @@
      # Perform censored data modifications
       Results_censored <- df %>%
       # Get lowest criteria value to set censored results
-      mutate( Result_cen = ifelse(UQ(resqual) == "=", UQ(res),
-                                 ifelse(UQ(resqual) == ">", UQ(res), 
-                                        ifelse(UQ(resqual) == "<", ifelse(UQ(res) > UQ(crit), 0.5 * UQ(crit) , 0.5 * UQ(res) ), "ER" ))))
+      mutate( Result_cen = ifelse(UQ(resqual) == "=", as.numeric(UQ(res)),
+                                 ifelse(UQ(resqual) == ">", as.numeric(UQ(res)), 
+                                        ifelse(UQ(resqual) == "<", ifelse(UQ(res) > as.numeric(UQ(crit)), 0.5 * as.numeric(UQ(crit)) , 0.5 * as.numeric(UQ(res)) ), "ER" ))))
   
       return(Results_censored)
       
