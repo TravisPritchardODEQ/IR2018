@@ -8,7 +8,7 @@ options(scipen = 999)
 
 
 
-Coastal_Contact_rec <- function(){
+Coastal_Contact_rec <- function(df){
   
   print("Begin coastal contact rec analysis")
   
@@ -21,7 +21,7 @@ Coastal_Contact_rec <- function(){
   
   # Get filter down to data needed only for coastal contact rec data
   # Bacteria code #2 and Entero 
-  Coastal <- Results_censored %>%
+  Coastal <- df %>%
     filter(BacteriaCo == 2,
            ChrName == "Enterococcus") %>%
     #add blank columns to be filled in during analysis phase

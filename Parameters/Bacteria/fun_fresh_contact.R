@@ -5,14 +5,14 @@ require(IRlibrary)
 
 
 
-Fresh_Contact_rec <- function(){
+Fresh_Contact_rec <- function(df){
   print("Begin fresh contact rec analysis")
   
   #create lists to get data out of for loops
   geomeanlist = list()
   
   
-  fresh_contact <- Results_censored %>%
+  fresh_contact <- df %>%
     mutate(geomean = "",
            count_period = "",
            less_5 = "")
