@@ -8,7 +8,8 @@ pH_assessment <- function(df) {
     summarise(num_Samples = n(),
               num_violation = sum(pH_violation),
               pH_Min = min(pH_Min),
-              pHMax = max(pH_Max)) %>%
+              pHMax = max(pH_Max),
+              pH_code = first(pH_code)) %>%
     mutate(Cat5 = ifelse(num_Samples > 5 & num_violation/num_Samples > 0.10 & num_violation >= 2, 1, 0),
            Cat3 = ifelse((num_Samples < 5 & num_violation < 2) | 
                            ((num_Samples >= 5 & num_Samples <= 9) & num_violation == 1),1,0),
