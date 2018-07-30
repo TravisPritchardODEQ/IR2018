@@ -9,6 +9,10 @@ Bacteria_data <- function() {
   # import bacteria data
   IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
   
+  
+  
+  # Get data from IR database where wqstd_code = 1 and ResStatusName = Final
+  # Join with Crit_Bact to get bacteria Criteria
   Results_import <-
     sqlQuery(
       IR.sql,
