@@ -49,18 +49,18 @@ Fresh_Contact_rec <- function(){
       enddate <- singlestation$ActStartD[j]
       
       #create table for only samples in that window
-      fresh_90_period <- singlestation %>%
+      geomean_period <- singlestation %>%
         filter(ActStartD <= enddate & ActStartD >= geomean_date )
       
       #number of samples in geomean period
-      count_period = nrow(fresh_90_period)
+      count_period = nrow(geomean_period)
       
       #get geomeans if number of samples in that window is 5 or greater
-     singlestation[j,"geomean"] <- ifelse(nrow(fresh_90_period) >= 5, geo_mean(fresh_90_period$Result_cen), NA)
+     singlestation[j,"geomean"] <- ifelse(nrow(geomean_period) >= 5, geo_mean(geomean_period$Result_cen), NA)
      #get count of 90 day period
      singlestation[j,"count_period"] <- count_period
      # flag if less than 5 in 90 day window
-     singlestation[j,"less_5"] <- ifelse(nrow(fresh_90_period) < 5, 1, 0)
+     singlestation[j,"less_5"] <- ifelse(nrow(geomean_period) < 5, 1, 0)
      
     }
     geomeanlist[[i]] <- singlestation

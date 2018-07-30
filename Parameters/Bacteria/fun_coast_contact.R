@@ -66,25 +66,25 @@ Coastal_Contact_rec <- function(){
       enddate <- Coastal_singlestation$ActStartD[j]
       
       #create table for only samples in that window
-      fresh_90_period <- Coastal_singlestation %>%
+      geomean_period <- Coastal_singlestation %>%
         filter(ActStartD <= enddate & ActStartD >= geomean_date )
       
-      count_period = nrow(fresh_90_period)
+      count_period = nrow(geomean_period)
       
       #get geomeans if number of samples in that window is 5 or greater
-      Coastal_singlestation[j,"geomean"] <- ifelse(nrow(fresh_90_period) >= 5, geo_mean(fresh_90_period$Result_cen), NA)
+      Coastal_singlestation[j,"geomean"] <- ifelse(nrow(geomean_period) >= 5, geo_mean(geomean_period$Result_cen), NA)
       #get count of 90 day period
       Coastal_singlestation[j,"count_period"] <- count_period
       # get number that are above 130 criterion 
-      Coastal_singlestation[j,"n_above_crit"] <- sum(fresh_90_period$Result_cen > 130) 
+      Coastal_singlestation[j,"n_above_crit"] <- sum(geomean_period$Result_cen > 130) 
       # get percent that are above criteria if more than 10 samples in 90 day period
       Coastal_singlestation[j,"perc_above_crit_10"] <- ifelse(count_period >= 10, n_above_crit/count_period, NA)
       # get lowest value in 90 day window if 5-9 samples in 90 day window
-      Coastal_singlestation[j,"perc_above_crit_5"]  <- ifelse(count_period < 10 & count_period >= 5, max(fresh_90_period$Result_cen), NA )
+      Coastal_singlestation[j,"perc_above_crit_5"]  <- ifelse(count_period < 10 & count_period >= 5, max(geomean_period$Result_cen), NA )
       # flag if less than 5 in 90 day window
-      Coastal_singlestation[j,"less_5"] <- ifelse(nrow(fresh_90_period) < 5, 1, 0)
+      Coastal_singlestation[j,"less_5"] <- ifelse(nrow(geomean_period) < 5, 1, 0)
       #Max Value
-      Coastal_singlestation[j,"Max_value"] <- max(fresh_90_period$Result_cen)
+      Coastal_singlestation[j,"Max_value"] <- max(geomean_period$Result_cen)
       
       
     }
