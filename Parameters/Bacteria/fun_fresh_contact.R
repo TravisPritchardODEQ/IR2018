@@ -13,6 +13,8 @@ Fresh_Contact_rec <- function(df){
   
   
   fresh_contact <- df %>%
+    filter(BacteriaCo == 1,
+           ChrName == "Escherichia coli") %>%
     mutate(geomean = "",
            count_period = "",
            less_5 = "")
@@ -80,8 +82,11 @@ Fresh_Contact_rec <- function(df){
     summarise(Max_Geomean = ifelse(!all(is.na(geomean)),max(geomean, na.rm = TRUE),NA),
               max.value = ifelse(!all(is.na(Result_cen)),max(Result_cen, na.rm = TRUE),NA),
               num.samples = n(),
-              num.above.std = sum(Result_cen > 406)) %>%
-    mutate(Cat5 = ifelse((!is.na(Max_Geomean) &  Max_Geomean > 126) |
+              num.above.std = sum(Result_cen > SS_Crit),
+              SS_Crit = max(SS_Crit),
+              Geomean_Crit = max(Geomean_Crit),
+              Perc_Crit = max(Perc_Crit)) %>%
+    mutate(Cat5 = ifelse((!is.na(Max_Geomean) &  Max_Geomean > Geomean_Crit) |
                            (num.samples >=5 & num.above.std >= 1) |
                            (num.above.std > 2 ), 1, 0),
            Cat3 = ifelse(Cat5 == 0 & is.na(Max_Geomean) & num.above.std == 0 , 1, 0),

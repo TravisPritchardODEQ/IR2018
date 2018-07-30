@@ -119,26 +119,29 @@ Coastal_Contact_rec <- function(df){
               #Used to determine if a 90 day geomean is even possible for cat 3 or cat 3b
               perc.insuff = sum(less_5)/n(),
               #Maximum value of AU group. Used for 3 or 3b
-              max.value  = max(Result_cen)) %>%
+              max.value  = max(Result_cen),
+              SS_Crit = max(SS_Crit),
+              Geomean_Crit = max(Geomean_Crit),
+              Perc_Crit = max(Perc_Crit)) %>%
           # Cat 5 is max geomean is > 35 or no geomean group has more than 10% samples above perc crit 
-     mutate(Cat5 = ifelse((!is.na(Max_Geomean) & Max_Geomean > 35) | 
+     mutate(Cat5 = ifelse((!is.na(Max_Geomean) & Max_Geomean > Geomean_Crit) | 
                            (!is.na(max.perc_above_crit_10) & max.perc_above_crit_10 > 0.10) | 
-                           (!is.na(max.perc_above_crit_5) & max.perc_above_crit_5 > 130), 1, 0),
+                           (!is.na(max.perc_above_crit_5) & max.perc_above_crit_5 > Perc_Crit), 1, 0),
           #Cat 3 if not cat 5 AND not enough sanples to calculte a geomean AND max value in dataset is less than 130
-           Cat3 = ifelse(Cat5 !=1 & perc.insuff == 1 & max.value < 130, 1, 0),
+           Cat3 = ifelse(Cat5 !=1 & perc.insuff == 1 & max.value < Perc_Crit, 1, 0),
           #Cat 3b if not cat 5 AND not enough sanples to calculte a geomean AND max value in dataset is greater than 130
-           Cat3B = ifelse(Cat5 !=1 & perc.insuff == 1 & max.value > 130, 1, 0),
+           Cat3B = ifelse(Cat5 !=1 & perc.insuff == 1 & max.value > Perc_Crit, 1, 0),
           #Cat 2 if able to calculte a geomean and max geomean is less than 35 and  max.perc_above_crit_10 < 0.10) 
           #OR  able to calculte a geomean and max geomean is less than 35 and max.perc_above_crit_5 < 130
            Cat2 = ifelse((
              !is.na(Max_Geomean) &
-               Max_Geomean <= 35 &
+               Max_Geomean <= Geomean_Crit &
                perc.insuff < 1 & 
                !is.na(max.perc_above_crit_10) & max.perc_above_crit_10 < 0.10) |
                (!is.na(Max_Geomean) &
-                  Max_Geomean <= 35 &
+                  Max_Geomean <= Geomean_Crit &
                   perc.insuff < 1 &
-                  !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < 130),1,0)
+                  !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < Perc_Crit),1,0)
     )
   
   print("Finish coastal contact rec analysis")
