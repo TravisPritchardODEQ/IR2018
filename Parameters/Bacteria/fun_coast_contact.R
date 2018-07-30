@@ -11,7 +11,8 @@ options(scipen = 999)
 Coastal_Contact_rec <- function(){
   print("Begin coastal contact rec analysis")
   print("Fetch data from IR database")
-  #connect to IR database view as a general user 
+  #connect to IR database view as a general user
+  # import bacteria data
   IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
   
   Results_import <-
@@ -30,13 +31,15 @@ Coastal_Contact_rec <- function(){
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
   
   
-  # Get all the standard to be used when dealing with the censored
+  # Get all the standards to be used when dealing with the censored data
   Results_crit <- Results_import %>%
     # Get lowest criteria value to set censored results
     mutate(lowest_crit = pmin(SS_Crit, Geomean_Crit, Perc_Crit, na.rm = TRUE))
   
   
   print("Modify censored data")
+  
+  #run the censored data function to set censored data. This will use the lowest crit value from above
   Results_censored <- Censored_data(Results_crit, crit = `lowest_crit` ) %>%
     mutate(Result_cen = as.numeric(Result_cen)) %>%
     filter(!is.na(Result_cen))
@@ -49,9 +52,12 @@ Coastal_Contact_rec <- function(){
   
   # Water Contact Recreation - Coastal -----------------------------------
   
+  # Get filter down to data needed only for coastal contact rec data
+  # Bacteria code #2 and Entero 
   Coastal <- Results_censored %>%
     filter(BacteriaCo == 2,
            ChrName == "Enterococcus") %>%
+    #add blank columns to be filled in during analysis phase
     mutate(geomean = "",
            count_period = "",
            n_above_crit = "",
@@ -70,7 +76,7 @@ Coastal_Contact_rec <- function(){
   # 90 day window and calculates the geomettric mean. It then assigns the geomeans into the single location table
   # created in the first loop, if there are more than 5 sampling dates in that window. 
   # The end of the first loop puts the single location table into a list which is used to bring
-  # the data out of the for loop by binding it together after the loop into table "ecoli_geomean"
+  # the data out of the for loop by binding it together after the loop into table "Coastal_singlestation"
   
   print("Begin analysis")
   
@@ -122,6 +128,7 @@ Coastal_Contact_rec <- function(){
   
   close(pb)
   
+  #Bind list to dataframe and ensure numbers are numeric
   Coastal_analysis <- bind_rows(geomeanlist) %>%
     mutate(geomean = as.numeric(geomean),
            count_period = as.numeric(count_period),
@@ -132,18 +139,30 @@ Coastal_Contact_rec <- function(){
   
   
   
+  # do the conparisons listed in methodology
   Coastal_AU_summary <-  Coastal_analysis %>%
     group_by(AU_ID) %>%
+    # list out the maxium geometric mean per AU
     summarise(Max_Geomean = ifelse(!all(is.na(geomean)),max(geomean, na.rm = TRUE),NA),
+              # maximum percentage of results within geomean groups with more 10 samples that are above criteria 
               max.perc_above_crit_10 =  ifelse(!all(is.na(perc_above_crit_10)),max(perc_above_crit_10, na.rm = TRUE),NA),
+              # maximum percentage of results within geomean groups with more 5 samples that are above criteria 
               max.perc_above_crit_5 = ifelse(!all(is.na(perc_above_crit_5)),max(perc_above_crit_5, na.rm= TRUE),NA),
+              # percent of samples that do not have 5 or more samples in each 90 day period. 
+              #Used to determine if a 90 day geomean is even possible for cat 3 or cat 3b
               perc.insuff = sum(less_5)/n(),
+              #Maximum value of AU group. Used for 3 or 3b
               max.value  = max(Result_cen)) %>%
-    mutate(Cat5 = ifelse((!is.na(Max_Geomean) & Max_Geomean > 35) | 
+          # Cat 5 is max geomean is > 35 or no geomean group has more than 10% samples above perc crit 
+     mutate(Cat5 = ifelse((!is.na(Max_Geomean) & Max_Geomean > 35) | 
                            (!is.na(max.perc_above_crit_10) & max.perc_above_crit_10 > 0.10) | 
                            (!is.na(max.perc_above_crit_5) & max.perc_above_crit_5 > 130), 1, 0),
+          #Cat 3 if not cat 5 AND not enough sanples to calculte a geomean AND max value in dataset is less than 130
            Cat3 = ifelse(Cat5 !=1 & perc.insuff == 1 & max.value < 130, 1, 0),
+          #Cat 3b if not cat 5 AND not enough sanples to calculte a geomean AND max value in dataset is greater than 130
            Cat3B = ifelse(Cat5 !=1 & perc.insuff == 1 & max.value > 130, 1, 0),
+          #Cat 2 if able to calculte a geomean and max geomean is less than 35 and  max.perc_above_crit_10 < 0.10) 
+          #OR  able to calculte a geomean and max geomean is less than 35 and max.perc_above_crit_5 < 130
            Cat2 = ifelse((
              !is.na(Max_Geomean) &
                Max_Geomean <= 35 &
@@ -152,7 +171,7 @@ Coastal_Contact_rec <- function(){
                (!is.na(Max_Geomean) &
                   Max_Geomean <= 35 &
                   perc.insuff < 1 &
-                  !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < 130),1,0)
+                  !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < 130),1,"ERROR")
     )
   
   print("Finish coastal contact rec analysis")
