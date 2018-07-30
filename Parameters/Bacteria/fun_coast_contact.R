@@ -9,6 +9,8 @@ options(scipen = 999)
 
 
 Coastal_Contact_rec <- function(){
+  print("Begin coastal contact rec analysis")
+  print("Fetch data from IR database")
   #connect to IR database view as a general user 
   IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
   
@@ -22,6 +24,8 @@ Coastal_Contact_rec <- function(){
   
   odbcClose(IR.sql)
   
+  print(paste("Fetched", nrow(Results_import), "results from", length(unique(Results_import$STATION_KEY)), "monitoring locations" ))
+  
   # Set factors to characters
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
   
@@ -32,6 +36,7 @@ Coastal_Contact_rec <- function(){
     mutate(lowest_crit = pmin(SS_Crit, Geomean_Crit, Perc_Crit, na.rm = TRUE))
   
   
+  print("Modify censored data")
   Results_censored <- Censored_data(Results_crit, crit = `lowest_crit` ) %>%
     mutate(Result_cen = as.numeric(Result_cen)) %>%
     filter(!is.na(Result_cen))
@@ -67,8 +72,12 @@ Coastal_Contact_rec <- function(){
   # The end of the first loop puts the single location table into a list which is used to bring
   # the data out of the for loop by binding it together after the loop into table "ecoli_geomean"
   
+  print("Begin analysis")
+  
+  pb <- txtProgressBar(0, length(unique(Coastal$AU_ID)), style = 3)
+  
   for(i in 1:length(unique(Coastal$AU_ID))){
-    
+    setTxtProgressBar(pb, i)
     station <- unique(Coastal$AU_ID)[i]
     
     # Filter table down to single station
@@ -111,6 +120,8 @@ Coastal_Contact_rec <- function(){
     
   }
   
+  close(pb)
+  
   Coastal_analysis <- bind_rows(geomeanlist) %>%
     mutate(geomean = as.numeric(geomean),
            count_period = as.numeric(count_period),
@@ -144,5 +155,6 @@ Coastal_Contact_rec <- function(){
                   !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < 130),1,0)
     )
   
+  print("Finish coastal contact rec analysis")
   return(Coastal_AU_summary)
 }
