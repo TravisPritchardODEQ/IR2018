@@ -1,5 +1,5 @@
 # 2018 Oregon Integrated report assessments
-# Make sure IRlibrary is installed on maching
+# Make sure IRlibrary is installed on machine
 # To install, run 00_library_install.R script.
 
 
@@ -8,3 +8,4 @@ source('Parameters/Bacteria/Bacteria.R')
 
 #Run pH assessment
 source('Parameters/pH/pH.R')
+
