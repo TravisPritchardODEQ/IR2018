@@ -20,3 +20,7 @@ pH_assessment <- function(df) {
   return(pH_summary)
 }
 
+
+#To do 
+# Evenditly the 10% exceedence will be using the binomial method. This will need to be updated when that is written up
+
