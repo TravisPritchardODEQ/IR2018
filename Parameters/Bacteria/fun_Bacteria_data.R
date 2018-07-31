@@ -1,13 +1,13 @@
 
 
-Bacteria_data <- function() {
+Bacteria_data <- function(database) {
   
   
 
   print("Fetch data from IR database")
   #connect to IR database view as a general user
   # import bacteria data
-  IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
+  IR.sql <-  odbcConnectAccess2007(database, case="nochange")
   
   
   
@@ -39,8 +39,14 @@ Bacteria_data <- function() {
   
   #run the censored data function to set censored data. This will use the lowest crit value from above
   Results_censored <- Censored_data(Results_crit, crit = `lowest_crit` ) %>%
-    mutate(Result_cen = as.numeric(Result_cen)) %>%
+    mutate(Result_cen = as.numeric(Result_cen))
+  
+  print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
+  
+  Results_censored <- Results_censored %>%
     filter(!is.na(Result_cen))
+  
+  print("Data fetch and censored data modifications complete")
 
 return(Results_censored)
   

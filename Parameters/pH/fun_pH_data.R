@@ -6,11 +6,11 @@ library(IRlibrary)
 
 
 
-pH_data <- function() {
+pH_data <- function(database) {
   print("Fetch data from IR database")
   #connect to IR database view as a general user
   # import bacteria data
-  IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
+  IR.sql <-  odbcConnectAccess2007(database, case="nochange")
   
   
   
@@ -43,6 +43,7 @@ pH_data <- function() {
   Results_censored <- Results_censored%>%
     filter(!is.na(Result_cen))
   
+  print("Data fetch and censored data modifications complete")
   
   return(Results_censored)
 }
