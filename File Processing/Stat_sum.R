@@ -181,6 +181,13 @@ for (i in 1:length(unique_characteritics)){
     
   } #end of temp if statement
  
+ 
+   ## Other - just set sum_stats to daydat, since no moving averages need to be generated. 
+  if (!(results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water', 'temperature, water','DO','adjDO','DOs', "Dissolved oxygen (DO)"  ))) {
+    
+    sum_stats <- daydat
+    
+  } #end of not DO or temp statement
   
   #Assign the char ID to the dataset
   sum_stats <- sum_stats %>%
@@ -288,7 +295,8 @@ AQWMS_sum_stat <- sumstat_long %>%
          ActStartTimeZone = Activity.Start.End.Time.Zone,
          ActEndTimeZone = Activity.Start.End.Time.Zone,
          AnaStartTimeZone = "",
-         AnaEndTimeZone = ""
+         AnaEndTimeZone = "",
+         Result = round(Result, digits = 2)
     ) %>%
   select(charID,
          Result,
