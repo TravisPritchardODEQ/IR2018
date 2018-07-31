@@ -4,11 +4,11 @@ source("Parameters/Bacteria/fun_fresh_contact.R")
 
 
 # Bring data into analysis
-Results_censored <- Bacteria_data("A:/Integrated_Report/IR_Database/IR_2018.accdb")
+Results_censored_bacteria <- Bacteria_data("A:/Integrated_Report/IR_Database/IR_2018.accdb")
 
 # Water Contact Recreation - Freshwater
-fresh_contact_rec <- Fresh_Contact_rec(Results_censored)
+Bacteria_fresh_contact_rec <- Fresh_Contact_rec(Results_censored_bacteria)
 
 # Water Contact recreation - Coastal Water 
-Coast_contact_rec <- Coastal_Contact_rec(Results_censored)
+Bacteria_Coast_contact_rec <- Coastal_Contact_rec(Results_censored_bacteria)
 

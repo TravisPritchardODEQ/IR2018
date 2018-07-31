@@ -13,8 +13,8 @@ Fresh_Contact_rec <- function(df){
   
   
   fresh_contact <- df %>%
-    filter(BacteriaCo == 1,
-           ChrName == "Escherichia coli") %>%
+    #filter(BacteriaCo == 1,
+          # ChrName == "Escherichia coli") %>%
     mutate(geomean = "",
            count_period = "",
            less_5 = "")

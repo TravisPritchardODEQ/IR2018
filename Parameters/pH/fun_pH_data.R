@@ -7,7 +7,7 @@ library(IRlibrary)
 
 
 pH_data <- function(database) {
-  print("Fetch data from IR database")
+  print("Fetch pH data from IR database")
   #connect to IR database view as a general user
   # import bacteria data
   IR.sql <-  odbcConnectAccess2007(database, case="nochange")
