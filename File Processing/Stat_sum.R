@@ -12,6 +12,8 @@ library(zoo)
 # helps to avoid overwriting
 rm(list = ls())
 
+options(scipen=999)
+
 # Choose submitted file to generate stats on 
 filepath <- file.choose()
 
@@ -32,6 +34,7 @@ results_data <- Results_import %>%
 
 # get unique list of characteristics to run for loop through
 unique_characteritics <- unique(Results_import$Characteristic.Name)
+
 
 #create list for getting data out of loop
 monloc_do_list <- list()
@@ -259,7 +262,7 @@ Audit_info <- Audits %>%
          Result.Qualifier, Result.Comment)
 
 #Write excel file for AWQMS import
-write.xlsx(Audit_info, file = paste0(tools::file_path_sans_ext(filepath),"-Audits.xlsx") )
+#write.xlsx(Audit_info, file = paste0(tools::file_path_sans_ext(filepath),"-Audits.xlsx") )
 
 
 
@@ -360,8 +363,8 @@ deployments <- Results_import %>%
          datetime = ymd_hms(paste(Activity.Start.Date, time_char))) %>%
   group_by(Monitoring.Location.ID, Equipment.ID.., ) %>%
   summarise(startdate = min(datetime),
-            enddate = max(datetime),
-            TZ = first(Activity.Start.End.Time.Zone))
+            enddate = max(datetime) + minutes(5),
+            TZ = first(Activity.Start.End.Time.Zone)) 
 
 write.csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"), row.names = FALSE)
 
