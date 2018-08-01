@@ -342,7 +342,7 @@ AQWMS_sum_stat <- sumstat_long %>%
 
 
 # Export to same place as the originial file
-write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
+write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
 
 
 
