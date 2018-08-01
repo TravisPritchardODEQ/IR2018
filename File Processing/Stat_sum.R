@@ -17,9 +17,10 @@ options(scipen=999)
 # Choose submitted file to generate stats on 
 filepath <- file.choose()
 
+results_col_types <- c('text', 'date', 'date', 'text', 'text', 'text', 'numeric', 'text', 'text')
 
 # read results tab of submitted file
-Results_import <- read_excel(filepath, sheet = "Results")
+Results_import <- read_excel(filepath, sheet = "Results", col_types = results_col_types)
 colnames(Results_import) <- make.names(names(Results_import), unique=TRUE)
 
 
@@ -234,7 +235,12 @@ sumstat_long <- sumstat %>%
 
 # Read Audit Data ---------------------------------------------------------
 
-Audit_import <- read_excel(filepath, sheet = "Audit_Data")
+Audit_import <- read_excel(filepath, sheet = "Audit_Data", col_types = c("guess",
+                           "guess", "guess", "guess", "guess", "date", "guess", 
+                           'date',"guess", "guess", "guess", "guess", "guess", 
+                           "guess", "guess", "guess", "guess", "guess", "guess", 
+                           "guess", "guess" ))
+
 colnames(Audit_import) <- make.names(names(Audit_import), unique=TRUE)
 
 # get rid of extra blankfields
@@ -271,6 +277,7 @@ Audit_info <- Audits %>%
 
 # Join method to sumstat table
 sumstat_long <- sumstat_long %>%
+  mutate(Equipment = as.character(Equipment)) %>%
   left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name", "Equipment" = "Equipment.ID..") )
 
 AQWMS_sum_stat <- sumstat_long %>%
