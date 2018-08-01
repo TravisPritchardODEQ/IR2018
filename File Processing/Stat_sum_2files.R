@@ -12,17 +12,28 @@ rm(list = ls())
 
 options(scipen=999)
 
+results_col_types <- c('text', 'date', 'date', 'text', 'text', 'text', 'numeric', 'text', 'text')
+
 
 File1 <- file.choose()
 File2 <- file.choose()
 
 
 
-import1 <- read_excel(File1, sheet = "Results")
-import2 <- read_excel(File2, sheet = "Results")
+import1 <- read_excel(File1, sheet = "Results", col_types = results_col_types)
+import2 <- read_excel(File2, sheet = "Results", col_types = results_col_types)
 
-audit_import1 <- read_excel(File1, sheet = "Audit_Data")
-audit_import2 <- read_excel(File2, sheet = "Audit_Data")
+audit_import1 <- read_excel(File1, sheet = "Audit_Data", col_types = c("guess",
+                                                                       "guess", "guess", "guess", "guess", "date", "guess", 
+                                                                       'date',"guess", "guess", "guess", "guess", "guess", 
+                                                                       "guess", "guess", "guess", "guess", "guess", "guess", 
+                                                                       "guess", "guess" ))
+
+audit_import2 <- read_excel(File2, sheet = "Audit_Data", col_types = c("guess",
+                                                                       "guess", "guess", "guess", "guess", "date", "guess", 
+                                                                       'date',"guess", "guess", "guess", "guess", "guess", 
+                                                                       "guess", "guess", "guess", "guess", "guess", "guess", 
+                                                                       "guess", "guess" ))
 
 
 
