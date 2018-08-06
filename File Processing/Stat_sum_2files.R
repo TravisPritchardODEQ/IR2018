@@ -257,6 +257,7 @@ sumstat_long <- sumstat %>%
 # Read Audit Data ---------------------------------------------------------
 
 
+
 # get rid of extra blankfields
 Audits <- Audit_import %>%
   filter(!is.na(Project.ID))
@@ -291,7 +292,8 @@ Audit_info <- Audits %>%
 
 # Join method to sumstat table
 sumstat_long <- sumstat_long %>%
-  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name", "Equipment" = "Equipment.ID..") )
+  mutate(Equipment = as.character(Equipment)) %>%
+  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
 
 AQWMS_sum_stat <- sumstat_long %>%
   mutate(RsltTimeBasis = ifelse(StatisticalBasis == "7DMADMin" |
@@ -355,7 +357,7 @@ AQWMS_sum_stat <- sumstat_long %>%
 
 
 # Export to same place as the originial file
-write_csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
+write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
 
 
 
@@ -386,7 +388,7 @@ deployments <- Results_import %>%
             enddate = max(datetime) + minutes(5),
             TZ = first(Activity.Start.End.Time.Zone)) 
 
-write.csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"), row.names = FALSE)
+#write.csv(deployments, paste0(tools::file_path_sans_ext(filepath),"-deployments.csv"), row.names = FALSE)
 
 
 
