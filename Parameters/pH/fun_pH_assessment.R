@@ -4,12 +4,17 @@ library(IRlibrary)
 
 pH_assessment <- function(df) {
   pH_summary <- df %>%
-    mutate(pH_violation = ifelse(Result_cen < pH_Min | Result_cen > pH_Max, 1, 0 )) %>%
+    mutate(pH_violation = ifelse(Result_cen < pH_Min | Result_cen > pH_Max, 1, 0 ),
+           pH_violation_high = ifelse(Result_cen > pH_Max, 1, 0 ),
+           pH_violation_low = ifelse(Result_cen < pH_Min, 1, 0 ),
+           ) %>%
     group_by(AU_ID) %>%
     summarise(num_Samples = n(),
               num_violation = sum(pH_violation),
-              pH_Min = min(pH_Min),
-              pHMax = max(pH_Max),
+              num_violation_high = sum(pH_violation_high),
+              num_violation_low = sum(pH_violation_low),
+              pH_low_crit = min(pH_Min),
+              pH_high_crit = max(pH_Max),
               pH_code = first(pH_code)) %>%
     mutate(k = excursions_conv(num_Samples),
            Cat5 = ifelse(num_violation >= k , 1, 0),
