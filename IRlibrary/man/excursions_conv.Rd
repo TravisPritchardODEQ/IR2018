@@ -4,7 +4,7 @@
 \alias{excursions_conv}
 \title{excursions_conv}
 \usage{
-excursions_conv(num)
+excursions_conv(n)
 }
 \arguments{
 \item{n}{number of results}

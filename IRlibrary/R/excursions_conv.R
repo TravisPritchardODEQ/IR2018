@@ -7,9 +7,9 @@
 #' excursions_conv()
 
 
-excursions_conv <- function(num){
+excursions_conv <- function(n){
   
- x = ifelse(num <= 18, 2, qbinom(0.90, num, 0.10, lower.tail = TRUE)+1 )
+ x = ifelse(num <= 18, 2, qbinom(0.90, n, 0.10, lower.tail = TRUE)+1 )
 return(x)
   }
 
