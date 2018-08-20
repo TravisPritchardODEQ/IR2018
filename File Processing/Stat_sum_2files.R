@@ -148,8 +148,8 @@ for (i in 1:length(unique_characteritics)){
         ma.mean7 <- ifelse(length(unique(station_7day$date)) >= 6, mean(station_7day$dyMean), NA )
         ma.min7 <- ifelse(length(unique(station_7day$date)) >= 6, min(station_7day$dyMean), NA )
         
-        daydat_station[k,"ma.mean7"] <- ma.mean7
-        daydat_station[k, "ma.min7"] <- ma.min7
+        daydat_station[k,"ma.mean7"] <- ifelse(j >=7, ma.mean7, NA)
+        daydat_station[k, "ma.min7"] <- ifelse(j >=7, ma.min7, NA)
         
         
         
@@ -174,7 +174,7 @@ for (i in 1:length(unique_characteritics)){
         ma.mean30 <- ifelse(length(unique(station_30day$date)) >= 29, mean(station_30day$dyMean), NA )
         
         
-        daydat_station[l,"ma.mean30"] <- ma.mean30
+        daydat_station[l,"ma.mean30"] <- ifelse(l >= 30, ma.mean30, NA)
         
       } #end of 30day loop
       
@@ -357,7 +357,7 @@ AQWMS_sum_stat <- sumstat_long %>%
 
 
 # Export to same place as the originial file
-write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
+write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(file1),"-statsum.csv"))
 
 
 
@@ -374,7 +374,7 @@ graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )
   theme(strip.background = element_blank())
 
 
-ggsave(paste0(tools::file_path_sans_ext(filepath),"-Graph.png"), plot = graph)
+ggsave(paste0(tools::file_path_sans_ext(file1),"-Graph.png"), plot = graph)
 
 
 
