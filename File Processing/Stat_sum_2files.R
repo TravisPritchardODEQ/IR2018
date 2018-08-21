@@ -69,6 +69,8 @@ sumstatlist <- list()
 # After loop, data gets pushed inot single table
 for (i in 1:length(unique_characteritics)){
   
+  print(paste("Begin",  unique_characteritics[i], "- characteristic", i, "of", length(unique_characteritics)))
+  
   # Characteristic for this loop iteration
   char <- unique_characteritics[i]
   
@@ -118,10 +120,11 @@ for (i in 1:length(unique_characteritics)){
   
   
   #Deal with DO Results
-  if (results_data_char$Characteristic.Name[1]  %in% c('DO','adjDO','DOs', "Dissolved oxygen (DO)")) {
+  if (results_data_char$Characteristic.Name[1] == "Dissolved oxygen (DO)") {
     
     #monitoring location loop
     for(j in 1:length(unique(daydat$Monitoring.Location.ID))){
+      print(paste("Station", j, "of", length(unique(daydat$Monitoring.Location.ID))))
       
       station <- unique(daydat$Monitoring.Location.ID)[j]
       
@@ -136,6 +139,9 @@ for (i in 1:length(unique_characteritics)){
       # And pulls out records that are within the preceding 7 day window
       # If there are at least 6 values, then calculate 7 day min and mean
       # Assigns data back to daydat_station
+      print("Begin 7 day moving averages")
+      pb <- txtProgressBar(min = 0, max = nrow(daydat_station), style = 3)
+      
       for(k in 1:nrow(daydat_station)){
         
         start7 <- daydat_station$startdate7[k]
@@ -152,15 +158,17 @@ for (i in 1:length(unique_characteritics)){
         daydat_station[k, "ma.min7"] <- ifelse(j >=7, ma.min7, NA)
         
         
-        
+        setTxtProgressBar(pb, k)
         
       } #end of 7day loop
-      
+      close(pb)
       # 30 day loop
       # Loops throough each row in the monitoring location dataset
       # And pulls out records that are within the preceding 30 day window
       # If there are at least 29 values, then calculate 30 day mean
       # Assigns data back to daydat_station
+      print("Begin 30 day moving averages" )
+      pb2 <- txtProgressBar(min = 0, max = nrow(daydat_station), style = 3)
       for(l in 1:nrow(daydat_station)){
         
         
@@ -174,12 +182,15 @@ for (i in 1:length(unique_characteritics)){
         ma.mean30 <- ifelse(length(unique(station_30day$date)) >= 29, mean(station_30day$dyMean), NA )
         
         
-        daydat_station[l,"ma.mean30"] <- ifelse(l >= 30, ma.mean30, NA)
-        
+        daydat_station[l,"ma.mean30"] <-ma.mean30
+        setTxtProgressBar(pb2, l)
       } #end of 30day loop
       
+      close(pb2)
       # Assign dataset filtered to 1 monitoring location to a list for combining outside of for loop
       monloc_do_list[[j]] <- daydat_station
+      
+      
       
     } # end of monitoring location for loop
     
@@ -191,7 +202,7 @@ for (i in 1:length(unique_characteritics)){
   
   ##  TEMPERATURE
   
-  if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
+  if (results_data_char$Characteristic.Name[1] == 'Temperature, water' ) {
     
     # Temperature is much easier to calculate, since it needs a complete 7 day record to calculate the 7day moving average
     # This can happen with a simple grouping
@@ -208,7 +219,7 @@ for (i in 1:length(unique_characteritics)){
   
   
   ## Other - just set sum_stats to daydat, since no moving averages need to be generated. 
-  if (!(results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water', 'temperature, water','DO','adjDO','DOs', "Dissolved oxygen (DO)"  ))) {
+  if (results_data_char$Characteristic.Name[1] != 'Temperature, water' & results_data_char$Characteristic.Name[1] != "Dissolved oxygen (DO)"  ) {
     
     sum_stats <- daydat
     
@@ -220,6 +231,7 @@ for (i in 1:length(unique_characteritics)){
   
   #Set to list for getting out of for loop
   sumstatlist[[i]] <-  sum_stats
+  
   
 } # end of characteristics for loop
 
@@ -270,17 +282,17 @@ Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipm
 # Reformat Audit info
 # matches Dan Brown's import configuration
 # If template has Result.Qualifier as column, use that value, if not use blank. 
-Audit_info <- Audits %>%
-  mutate(Result.Qualifier = ifelse("Result.Qualifier" %in% colnames(Audits), Result.Qualifier, "" ),
-         Activity.Start.Time = as.character(strftime(Activity.Start.Time, format = "%H:%M:%S", tz = "UTC")),
-         Activity.End.Time = as.character(strftime(Activity.End.Time, format = "%H:%M:%S", tz = "UTC")) ) %>%
-  select(Project.ID, Monitoring.Location.ID, Activity.Start.Date,
-         Activity.Start.Time, Activity.End.Date, Activity.End.Time,
-         Activity.Start.End.Time.Zone, Activity.Type, 
-         Activity.ID..Column.Locked., Equipment.ID.., Sample.Collection.Method,
-         Characteristic.Name, Result.Value, Result.Unit, Result.Analytical.Method.ID,
-         Result.Analytical.Method.Context, Result.Value.Type, Result.Status.ID,
-         Result.Qualifier, Result.Comment)
+# Audit_info <- Audits %>%
+#   mutate(Result.Qualifier = ifelse("Result.Qualifier" %in% colnames(Audits), Result.Qualifier, "" ),
+#          Activity.Start.Time = as.character(strftime(Activity.Start.Time, format = "%H:%M:%S", tz = "UTC")),
+#          Activity.End.Time = as.character(strftime(Activity.End.Time, format = "%H:%M:%S", tz = "UTC")) ) %>%
+#   select(Project.ID, Monitoring.Location.ID, Activity.Start.Date,
+#          Activity.Start.Time, Activity.End.Date, Activity.End.Time,
+#          Activity.Start.End.Time.Zone, Activity.Type, 
+#          Activity.ID..Column.Locked., Equipment.ID.., Sample.Collection.Method,
+#          Characteristic.Name, Result.Value, Result.Unit, Result.Analytical.Method.ID,
+#          Result.Analytical.Method.Context, Result.Value.Type, Result.Status.ID,
+#          Result.Qualifier, Result.Comment)
 
 #Write excel file for AWQMS import
 #write.xlsx(Audit_info, file = paste0(tools::file_path_sans_ext(filepath),"-Audits.xlsx") )
@@ -291,9 +303,9 @@ Audit_info <- Audits %>%
 
 
 # Join method to sumstat table
-sumstat_long <- sumstat_long %>%
-  mutate(Equipment = as.character(Equipment)) %>%
-  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
+# sumstat_long <- sumstat_long %>%
+#   mutate(Equipment = as.character(Equipment)) %>%
+#   left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
 
 AQWMS_sum_stat <- sumstat_long %>%
   mutate(RsltTimeBasis = ifelse(StatisticalBasis == "7DMADMin" |
@@ -301,13 +313,18 @@ AQWMS_sum_stat <- sumstat_long %>%
                                   StatisticalBasis == "7DMADMax", "7 Day", 
                                 ifelse(StatisticalBasis == "30DMADMean", "30 Day", "1 Day" )),
          ActivityType = "FMC",
+         Result.Analytical.Method.ID = ifelse(charID == "Conductivity", "120.1", 
+                                              ifelse(charID == "Dissolved oxygen (DO)", "NFM 6.2.1-LUM", 
+                                                     ifelse(charID == "pH","150.1", 
+                                                            ifelse(charID == "Temperature, water", "170.1", 
+                                                                   ifelse(charID == "Turbidity", "180.1", "error" ))))),
          SmplColMthd = "ContinuousPrb",
          SmplColEquip = "Probe/Sensor",
          SmplDepth = "",
          SmplDepthUnit = "",
          SmplColEquipComment = "",
          Samplers = "",
-         Project = Project.ID,
+         # Project = Project.ID,
          AnaStartDate = "",
          AnaStartTime = "",
          AnaEndDate = "",
@@ -341,7 +358,7 @@ AQWMS_sum_stat <- sumstat_long %>%
          SmplColEquipComment,
          Samplers,
          Equipment,
-         Project,
+         #Project,
          ActStartDate,
          ActStartTime,
          ActStartTimeZone,
@@ -356,8 +373,9 @@ AQWMS_sum_stat <- sumstat_long %>%
          AnaEndTimeZone)
 
 
+
 # Export to same place as the originial file
-write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(file1),"-statsum.csv"))
+write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(File1),"-statsum.csv"))
 
 
 
@@ -374,7 +392,7 @@ graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )
   theme(strip.background = element_blank())
 
 
-ggsave(paste0(tools::file_path_sans_ext(file1),"-Graph.png"), plot = graph)
+ggsave(paste0(tools::file_path_sans_ext(File1),"-Graph.png"), plot = graph)
 
 
 
