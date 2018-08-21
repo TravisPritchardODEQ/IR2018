@@ -97,7 +97,7 @@ for (i in 1:length(unique_characteritics)){
   
   
   #Deal with DO Results
-  if (results_data_char$Characteristic.Name[1] == "Dissolved oxygen (DO)") {
+  if (results_data_char$Characteristic.Name[1]  %in% c('DO','adjDO','DOs', "Dissolved oxygen (DO)")) {
     
     #monitoring location loop
     for(j in 1:length(unique(daydat$Monitoring.Location.ID))){
@@ -170,7 +170,7 @@ for (i in 1:length(unique_characteritics)){
   
   ##  TEMPERATURE
   
-  if (results_data_char$Characteristic.Name[1] == 'Temperature, water' ) {
+  if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
     
     # Temperature is much easier to calculate, since it needs a complete 7 day record to calculate the 7day moving average
     # This can happen with a simple grouping
@@ -187,7 +187,7 @@ for (i in 1:length(unique_characteritics)){
  
  
    ## Other - just set sum_stats to daydat, since no moving averages need to be generated. 
-  if (results_data_char$Characteristic.Name[1] != 'Temperature, water' | results_data_char$Characteristic.Name[1] != "Dissolved oxygen (DO)"  ) {
+  if (!(results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water', 'temperature, water','DO','adjDO','DOs', "Dissolved oxygen (DO)"  ))) {
     
     sum_stats <- daydat
     
@@ -276,9 +276,9 @@ Audit_info <- Audits %>%
 
 
 # Join method to sumstat table
-# sumstat_long <- sumstat_long %>%
-#   mutate(Equipment = as.character(Equipment)) %>%
-#   left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
+sumstat_long <- sumstat_long %>%
+  mutate(Equipment = as.character(Equipment)) %>%
+  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
 
 AQWMS_sum_stat <- sumstat_long %>%
   mutate(RsltTimeBasis = ifelse(StatisticalBasis == "7DMADMin" |
@@ -286,18 +286,13 @@ AQWMS_sum_stat <- sumstat_long %>%
                                   StatisticalBasis == "7DMADMax", "7 Day", 
                                 ifelse(StatisticalBasis == "30DMADMean", "30 Day", "1 Day" )),
          ActivityType = "FMC",
-         Result.Analytical.Method.ID = ifelse(charID == "Conductivity", "120.1", 
-                                              ifelse(charID == "Dissolved oxygen (DO)", "NFM 6.2.1-LUM", 
-                                                     ifelse(charID == "pH","150.1", 
-                                                            ifelse(charID == "Temperature, water", "170.1", 
-                                                                  ifelse(charID == "Turbidity", "180.1", "error" ))))),
          SmplColMthd = "ContinuousPrb",
          SmplColEquip = "Probe/Sensor",
          SmplDepth = "",
          SmplDepthUnit = "",
          SmplColEquipComment = "",
          Samplers = "",
-        # Project = Project.ID,
+         Project = Project.ID,
          AnaStartDate = "",
          AnaStartTime = "",
          AnaEndDate = "",
@@ -331,7 +326,7 @@ AQWMS_sum_stat <- sumstat_long %>%
          SmplColEquipComment,
          Samplers,
          Equipment,
-         #Project,
+         Project,
          ActStartDate,
          ActStartTime,
          ActStartTimeZone,
