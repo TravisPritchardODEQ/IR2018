@@ -179,7 +179,7 @@ for (i in 1:length(unique_characteritics)){
   
   ##  TEMPERATURE
   
-  if (results_data_char$Characteristic.Name[1] %in% c('TEMP','adjTEMP', 'Temperature, water' )) {
+  if (results_data_char$Characteristic.Name[1] == 'Temperature, water' ) {
     
     # Temperature is much easier to calculate, since it needs a complete 7 day record to calculate the 7day moving average
     # This can happen with a simple grouping
@@ -286,23 +286,27 @@ Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipm
 
 
 # Join method to sumstat table
-sumstat_long <- sumstat_long %>%
-  mutate(Equipment = as.character(Equipment)) %>%
-  left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
-
+# sumstat_long <- sumstat_long %>%
+#   mutate(Equipment = as.character(Equipment)) %>%
+#   left_join(Audits_unique, by = c("Monitoring.Location.ID", "charID" = "Characteristic.Name") )
 AQWMS_sum_stat <- sumstat_long %>%
   mutate(RsltTimeBasis = ifelse(StatisticalBasis == "7DMADMin" |
                                   StatisticalBasis == "7DMADMean" |
                                   StatisticalBasis == "7DMADMax", "7 Day", 
                                 ifelse(StatisticalBasis == "30DMADMean", "30 Day", "1 Day" )),
          ActivityType = "FMC",
+         Result.Analytical.Method.ID = ifelse(charID == "Conductivity", "120.1", 
+                                              ifelse(charID == "Dissolved oxygen (DO)", "NFM 6.2.1-LUM", 
+                                                     ifelse(charID == "pH","150.1", 
+                                                            ifelse(charID == "Temperature, water", "170.1", 
+                                                                   ifelse(charID == "Turbidity", "180.1", "error" ))))),
          SmplColMthd = "ContinuousPrb",
          SmplColEquip = "Probe/Sensor",
          SmplDepth = "",
          SmplDepthUnit = "",
          SmplColEquipComment = "",
          Samplers = "",
-         Project = Project.ID,
+         # Project = Project.ID,
          AnaStartDate = "",
          AnaStartTime = "",
          AnaEndDate = "",
@@ -317,7 +321,7 @@ AQWMS_sum_stat <- sumstat_long %>%
          AnaStartTimeZone = "",
          AnaEndTimeZone = "",
          Result = round(Result, digits = 2)
-    ) %>%
+  ) %>%
   select(charID,
          Result,
          r_units,
@@ -336,7 +340,7 @@ AQWMS_sum_stat <- sumstat_long %>%
          SmplColEquipComment,
          Samplers,
          Equipment,
-         Project,
+         #Project,
          ActStartDate,
          ActStartTime,
          ActStartTimeZone,
@@ -350,9 +354,8 @@ AQWMS_sum_stat <- sumstat_long %>%
          AnaEndTime,
          AnaEndTimeZone)
 
-
 # Export to same place as the originial file
-write.csv(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum.csv"))
+openxlsx::write.xlsx(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-statsum2.xlsx"))
 
 
 
