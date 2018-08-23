@@ -23,17 +23,17 @@ File2 <- file.choose()
 import1 <- read_excel(File1, sheet = "Results", col_types = results_col_types)
 import2 <- read_excel(File2, sheet = "Results", col_types = results_col_types)
 
-audit_import1 <- read_excel(File1, sheet = "Audit_Data", col_types = c("guess",
-                                                                       "guess", "guess", "guess", "guess", "date", "guess", 
-                                                                       'date',"guess", "guess", "guess", "guess", "guess", 
-                                                                       "guess", "guess", "guess", "guess", "guess", "guess", 
-                                                                       "guess", "guess" ))
-
-audit_import2 <- read_excel(File2, sheet = "Audit_Data", col_types = c("guess",
-                                                                       "guess", "guess", "guess", "guess", "date", "guess", 
-                                                                       'date',"guess", "guess", "guess", "guess", "guess", 
-                                                                       "guess", "guess", "guess", "guess", "guess", "guess", 
-                                                                       "guess", "guess" ))
+# audit_import1 <- read_excel(File1, sheet = "Audit_Data", col_types = c("guess",
+#                                                                        "guess", "guess", "guess", "guess", "date", "guess", 
+#                                                                        'date',"guess", "guess", "guess", "guess", "guess", 
+#                                                                        "guess", "guess", "guess", "guess", "guess", "guess", 
+#                                                                        "guess", "guess" ))
+# 
+# audit_import2 <- read_excel(File2, sheet = "Audit_Data", col_types = c("guess",
+#                                                                        "guess", "guess", "guess", "guess", "date", "guess", 
+#                                                                        'date',"guess", "guess", "guess", "guess", "guess", 
+#                                                                        "guess", "guess", "guess", "guess", "guess", "guess", 
+#                                                                        "guess", "guess" ))
 
 
 
@@ -51,7 +51,9 @@ results_data <- Results_import %>%
          r_units = ifelse(Result.Unit == "deg F", "deg C", Result.Unit )) %>%
   filter(Result.Status.ID != "Rejected") %>%
   mutate(time_char = strftime(Activity.Start.Time, format = "%H:%M:%S", tz = 'UTC'),
-         datetime = ymd_hms(paste(Activity.Start.Date, time_char)))
+         datetime = ymd_hms(paste(as.Date(Activity.Start.Date), time_char)),
+         Activity.Start.Date = as.Date(Activity.Start.Date))
+
 
 
 # get unique list of characteristics to run for loop through
@@ -276,14 +278,14 @@ sumstat_long <- sumstat %>%
 # Read Audit Data ---------------------------------------------------------
 
 
-
-# get rid of extra blankfields
-Audits <- Audit_import %>%
-  filter(!is.na(Project.ID))
-
-# table of methods unique to project, location, equipment, char, and method
-Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
-
+# 
+# # get rid of extra blankfields
+# Audits <- Audit_import %>%
+#   filter(!is.na(Project.ID))
+# 
+# # table of methods unique to project, location, equipment, char, and method
+# Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
+# 
 
 
 # Reformat Audit info
@@ -406,7 +408,7 @@ ggsave(paste0(tools::file_path_sans_ext(File1),"-Graph.png"), plot = graph)
 
 deployments <- Results_import %>%
   mutate(time_char = strftime(Activity.Start.Time, format = "%H:%M:%S", tz = 'UTC'),
-         datetime = ymd_hms(paste(Activity.Start.Date, time_char))) %>%
+         datetime = ymd_hms(paste(as.Date(Activity.Start.Date), time_char))) %>%
   group_by(Monitoring.Location.ID, Equipment.ID.., ) %>%
   summarise(startdate = min(datetime),
             enddate = max(datetime) + minutes(5),

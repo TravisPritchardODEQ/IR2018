@@ -30,7 +30,8 @@ results_data <- Results_import %>%
          r_units = ifelse(Result.Unit == "deg F", "deg C", Result.Unit )) %>%
   filter(Result.Status.ID != "Rejected") %>%
   mutate(time_char = strftime(Activity.Start.Time, format = "%H:%M:%S", tz = 'UTC'),
-         datetime = ymd_hms(paste(Activity.Start.Date, time_char)))
+         datetime = ymd_hms(paste(as.Date(Activity.Start.Date), time_char)),
+         Activity.Start.Date = as.Date(Activity.Start.Date))
 
 
 # get unique list of characteristics to run for loop through
@@ -250,25 +251,25 @@ sumstat_long <- sumstat %>%
 
 
 # Read Audit Data ---------------------------------------------------------
-
-Audit_import <- read_excel(filepath, sheet = "Audit_Data", col_types = c("guess",
-                           "guess", "guess", "guess", "guess", "date", "guess", 
-                           'date',"guess", "guess", "guess", "guess", "guess", 
-                           "guess", "guess", "guess", "guess", "guess", "guess", 
-                           "guess", "guess" ))
-
-colnames(Audit_import) <- make.names(names(Audit_import), unique=TRUE)
-
-# get rid of extra blankfields
-Audits <- Audit_import %>%
-  filter(!is.na(Project.ID))
-
-# table of methods unique to project, location, equipment, char, and method
-Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
-
-
-
-# Reformat Audit info
+# 
+# Audit_import <- read_excel(filepath, sheet = "Audit_Data", col_types = c("guess",
+#                            "guess", "guess", "guess", "guess", "date", "guess", 
+#                            'date',"guess", "guess", "guess", "guess", "guess", 
+#                            "guess", "guess", "guess", "guess", "guess", "guess", 
+#                            "guess", "guess" ))
+# 
+# colnames(Audit_import) <- make.names(names(Audit_import), unique=TRUE)
+# 
+# # get rid of extra blankfields
+# Audits <- Audit_import %>%
+#   filter(!is.na(Project.ID))
+# 
+# # table of methods unique to project, location, equipment, char, and method
+# Audits_unique <- unique(Audits[c("Project.ID", "Monitoring.Location.ID", "Equipment.ID..", "Characteristic.Name", "Result.Analytical.Method.ID")])
+# 
+# 
+# 
+# # Reformat Audit info
 # matches Dan Brown's import configuration
 # If template has Result.Qualifier as column, use that value, if not use blank. 
 # Audit_info <- Audits %>%
@@ -386,7 +387,7 @@ ggsave(paste0(tools::file_path_sans_ext(filepath),"-Graph.png"), plot = graph)
 
 deployments <- Results_import %>%
   mutate(time_char = strftime(Activity.Start.Time, format = "%H:%M:%S", tz = 'UTC'),
-         datetime = ymd_hms(paste(Activity.Start.Date, time_char))) %>%
+         datetime = ymd_hms(paste(as.Date(Activity.Start.Date), time_char))) %>%
   group_by(Monitoring.Location.ID, Equipment.ID.., ) %>%
   summarise(startdate = min(datetime),
             enddate = max(datetime) + minutes(5),
