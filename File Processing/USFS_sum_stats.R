@@ -186,3 +186,6 @@ AQWMS_sum_stat <- sumstat_long %>%
          AnaEndTime,
          AnaEndTimeZone)
 
+
+# Export to same place as the originial file
+openxlsx::write.xlsx(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-sumstat.xlsx"))
