@@ -188,4 +188,4 @@ AQWMS_sum_stat <- sumstat_long %>%
 
 
 # Export to same place as the originial file
-openxlsx::write.xlsx(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(filepath),"-sumstat.xlsx"))
+openxlsx::write.xlsx(AQWMS_sum_stat, paste0(tools::file_path_sans_ext(database),"-sumstat.xlsx"))
