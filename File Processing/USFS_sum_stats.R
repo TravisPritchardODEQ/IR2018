@@ -85,10 +85,16 @@ sum_stats <- daydat %>%
   arrange(NAME, date) %>%
   group_by(NAME) %>%
   mutate(startdate7 = lag(date, 6, order_by = date),
+         macmt = paste(lag(ResultStatusID, 6),
+                       lag(ResultStatusID, 5),
+                       lag(ResultStatusID, 4),
+                       lag(ResultStatusID, 3),
+                       lag(ResultStatusID, 2),
+                       lag(ResultStatusID, 1)),
          # flag out which result gets a moving average calculated
-         calc7ma = ifelse(startdate7 == (as.Date(date) - 6), 1, 0 ))%>%
-  mutate(ma.max7 = ifelse(calc7ma == 1, round(rollmean(x = dyMax, 7, align = "right", fill = NA),2) , NA )) %>%
-  select(-startdate7, -calc7ma )
+         calc7ma = ifelse(startdate7 == (as.Date(date) - 6) & (!grepl("Rejected",macmt )), 1, 0 ))%>%
+  mutate(ma.max7 = ifelse(calc7ma == 1 ,round(rollmean(x = dyMax, 7, align = "right", fill = NA),2) , NA )) %>%
+  select(-startdate7, -calc7ma, -macmt )
 
 
 
