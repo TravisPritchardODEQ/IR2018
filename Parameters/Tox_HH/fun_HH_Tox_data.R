@@ -1,4 +1,5 @@
-
+require(rgdal)
+require(RODBC)
 
 HH_tox_data <- function(database) {
   
@@ -7,7 +8,7 @@ HH_tox_data <- function(database) {
   print("Fetch HH Tox data from IR database")
   #connect to IR database view as a general user
   # import bacteria data
-  IR.sql <-  odbcConnectAccess2007(database, case="nochange")
+  IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
   
   
   
