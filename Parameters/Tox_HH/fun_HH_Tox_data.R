@@ -8,7 +8,7 @@ HH_tox_data <- function(database) {
   print("Fetch HH Tox data from IR database")
   #connect to IR database view as a general user
   # import bacteria data
-  IR.sql <-  odbcConnectAccess2007("A:/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
+  IR.sql <-  odbcConnectAccess2007("//deqlab1/Assessment/Integrated_Report/IR_Database/IR_2018.accdb", case="nochange")
   
   
   
@@ -17,10 +17,9 @@ HH_tox_data <- function(database) {
   Results_import <-
     sqlQuery(
       IR.sql,
-      "SELECT InputRaw.STATION_KEY, InputRaw.MonLoc_Name, InputRaw.HUC8, InputRaw.Elev, InputRaw.AU_ID, InputRaw.WaterTypeC, InputRaw.WaterBodyC, InputRaw.ben_use_co, InputRaw.wqstd_code, InputRaw.Pollu_ID, InputRaw.[Pollutant_DEQ WQS], InputRaw.MLocID, InputRaw.MTypeName, InputRaw.ActID, InputRaw.ActTypeName, InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ActStartD, InputRaw.ActStartT, InputRaw.ActDepth, InputRaw.ActDepthUnit, InputRaw.ResultDepth, InputRaw.ResultDepthUnit, InputRaw.SampleFractName, InputRaw.ChrUID, InputRaw.ChrName, InputRaw.MethodSpecName, InputRaw.ResStatusName, InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.MDL, InputRaw.MDLunit, InputRaw.MRL, InputRaw.MRLUnit, InputRaw.DL4IR, InputRaw.ResultDetCondName, InputRaw.ResultBasesName, InputRaw.ResultTBaseName, InputRaw.ResultComment, InputRaw.ResultlabComment, InputRaw.ResultMeasQualID, InputRaw.ResultMeasQualDesc, InputRaw.res_statistic_n_value, InputRaw.act_sam_compnt_name, InputRaw.stant_name, Pollutant_Type.AL_Sum_Metab, Crit_ToxHH.WaterOrganism, Crit_ToxHH.Organism, Crit_ToxHH.Organism_SW
-FROM (InputRaw INNER JOIN Pollutant_Type ON (InputRaw.wqstd_code = Pollutant_Type.wqstd_code) AND (InputRaw.Pollu_ID = Pollutant_Type.Pollu_ID)) INNER JOIN Crit_ToxHH ON InputRaw.Pollu_ID = Crit_ToxHH.Pollu_ID
-      WHERE (((InputRaw.wqstd_code)=16));
-      ")
+      'SELECT InputRaw.STATION_KEY, InputRaw.MonLoc_Name, InputRaw.HUC8, InputRaw.Elev, InputRaw.AU_ID, InputRaw.WaterTypeC, InputRaw.WaterBodyC, InputRaw.ben_use_co, InputRaw.wqstd_code, InputRaw.Pollu_ID, InputRaw.[Pollutant_DEQ WQS], InputRaw.MLocID, InputRaw.MTypeName, InputRaw.ActID, InputRaw.ActTypeName, InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ActStartD, InputRaw.ActStartT, InputRaw.ActDepth, InputRaw.ActDepthUnit, InputRaw.ResultDepth, InputRaw.ResultDepthUnit, InputRaw.SampleFractName, InputRaw.ChrUID, InputRaw.ChrName, InputRaw.MethodSpecName, InputRaw.ResStatusName, InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.MDL, InputRaw.MDLunit, InputRaw.MRL, InputRaw.MRLUnit, InputRaw.DL4IR, InputRaw.ResultDetCondName, InputRaw.ResultBasesName, InputRaw.ResultTBaseName, InputRaw.ResultComment, InputRaw.ResultlabComment, InputRaw.ResultMeasQualID, InputRaw.ResultMeasQualDesc, InputRaw.res_statistic_n_value, InputRaw.act_sam_compnt_name, InputRaw.stant_name, Pollutant_Type.AL_Sum_Metab, Crit_ToxHH.WaterOrganism, Crit_ToxHH.Organism, Crit_ToxHH.Organism_SW
+FROM (InputRaw INNER JOIN Pollutant_Type ON (InputRaw.Pollu_ID = Pollutant_Type.Pollu_ID) AND (InputRaw.wqstd_code = Pollutant_Type.wqstd_code)) INNER JOIN Crit_ToxHH ON InputRaw.Pollu_ID = Crit_ToxHH.Pollu_ID
+      WHERE (((InputRaw.wqstd_code)=16) AND ((InputRaw.ResStatusName)="final"));')
   
   
   odbcClose(IR.sql)
