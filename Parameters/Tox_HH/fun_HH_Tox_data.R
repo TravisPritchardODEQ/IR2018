@@ -13,7 +13,7 @@ HH_tox_data <- function(database) {
   
   
   # Get data from IR database where wqst = 16 and ResStatusName = Final
-  # Join with Crit_Bact to get bacteria Criteria
+  # Join with Crit_ToxHH to get ToxHH Criteria
   Results_import <-
     sqlQuery(
       IR.sql,
