@@ -331,30 +331,48 @@ save.image(file= "Data Sources/NWIS_environment.RData")
 
 
 
-Data_Split <- function(df) {
+# Data_Split <- function(df) {
+#   
+#   # Max row size of file 
+#   chunk <- 500000
+#   
+#   n <- nrow(df)
+#   r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
+#   d <- split(df,r)
+#   
+#   for(i in 1:length(d)){
+#     
+#     shortdf <- as.data.frame(d[i])
+#     names(shortdf) <- names(df)
+#     write.csv(shortdf, file=paste0("A:/Integrated_Report/DataSources/USGS_NWIS/",deparse(substitute(df)), "-", i, ".csv"))
+#     
+#   }
+#   
+# }
+# 
+# Data_Split(nwis.sites.AWQMS)
+# Data_Split(nwis.sum.stats.DO.AWQMS)
+# Data_Split(nwis.sum.stats.temp.AWQMS)
+
+
+tempsplit <- split(nwis.sum.stats.temp.AWQMS, nwis.sum.stats.temp.AWQMS$SiteID)
+length(tempsplit)
+datasplit <- list()
+
+for (i in 1:length(tempsplit)){
+  datasplit[[i]] <- bind_rows(tempsplit[[i]])
   
-  # Max row size of file 
-  chunk <- 500000
-  
-  n <- nrow(df)
-  r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
-  d <- split(df,r)
-  
-  for(i in 1:length(d)){
-    
-    shortdf <- as.data.frame(d[i])
-    names(shortdf) <- names(df)
-    write.csv(shortdf, file=paste0("A:/Integrated_Report/DataSources/USGS_NWIS/",deparse(substitute(df)), "-", i, ".csv"))
-    
+  if (nrow(bind_rows(datasplit)) > 50000) {
+    write.csv(bind_rows(datasplit), paste0("Data Sources/AWQMS data/nwis.temp.AWQMS-", i, ".csv"))
+    datasplit <- NULL          
   }
-  
+  nrow(bind_rows(datasplit))
 }
 
-Data_Split(nwis.sites.AWQMS)
-Data_Split(nwis.sum.stats.DO.AWQMS)
-Data_Split(nwis.sum.stats.temp.AWQMS)
 
-
+write.csv(nwis.sites.AWQMS, "Data Sources/AWQMS data/nwis.sites.AWQMS.csv")
+write.csv(nwis.sum.stats.DO.AWQMS, "Data Sources/AWQMS data/nwis.sites.AWQMS.csv")
+write.csv(nwis.sum.stats.temp.AWQMS)
 
 
 # Cont DO data ------------------------------------------------------------
