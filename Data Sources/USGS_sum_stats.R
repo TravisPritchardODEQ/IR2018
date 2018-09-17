@@ -14,7 +14,7 @@ rm(list=ls())
 
 # Load in Temp, Do, and monitoring location dataframes for
 # 1/1/2008 - 6/29/2018
-#load("Data Sources/NWIS_data.RData")
+load("Data Sources/NWIS_data.RData")
 
 
 # NWIS codes: https://nwis.waterdata.usgs.gov/usa/nwis/pmcodes/help?codes_help
@@ -360,9 +360,9 @@ save.image(file= "Data Sources/NWIS_environment.RData")
 
 
 
-Data_Split_AWQMS(nwis.sum.stats.temp.AWQMS, split_on = "SiteID", size = 100000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
-Data_Split_AWQMS(nwis.sum.stats.DO.AWQMS, split_on = "SiteID", size = 100000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
-Data_Split_AWQMS(nwis.sites.AWQMS, split_on = "Stationkey", size = 100000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+Data_Split_AWQMS(nwis.sum.stats.temp.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+Data_Split_AWQMS(nwis.sum.stats.DO.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+Data_Split_AWQMS(nwis.sites.AWQMS, split_on = "Stationkey", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
 
 
 
