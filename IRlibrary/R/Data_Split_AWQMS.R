@@ -10,11 +10,12 @@
 #'
 
 
-)
+
 
 Data_Split_AWQMS <- function(df, split_on, size, filepath) {
   
   require(openxlsx)
+  
   tempsplit <- split(df, df[[split_on]])
   length(tempsplit)
   datasplit <- list()
