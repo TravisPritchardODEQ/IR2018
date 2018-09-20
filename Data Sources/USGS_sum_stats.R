@@ -2,6 +2,7 @@ library(dataRetrieval)
 library(tidyverse)
 library(zoo)
 library(openxlsx)
+library(IRlibrary)
 
 
 
@@ -128,6 +129,8 @@ nwis.sum.stats.temp.AWQMS <- nwis.sum.stats.temp.gather %>%
          Qualcd != 'A e',
          Qualcd != 'P e')
 
+class(nwis.sum.stats.temp.AWQMS$SiteID) <- c("NULL", "number")
+
 
 # NWIS pH -----------------------------------------------------------------
 # Commenting out due to not using contiuous pH for assessment
@@ -235,6 +238,8 @@ nwis.sum.stats.DO.AWQMS <- nwis.sum.stats.DO.gather %>%
          Qualcd != 'A e',
          Qualcd != 'P e')
 
+class(nwis.sum.stats.DO.AWQMS$SiteID) <- c("NULL", "number")
+
 
 
 #write_csv(nwis.sum.stats.DO.gather, "nwis_DO_sum_stats_long.csv")
@@ -291,7 +296,6 @@ nwis.sites.AWQMS <- nwissites %>%
             TribalLand = "",
             TribalName = "",
             CreateDate = "",
-            MonLocEstablishDat = "",
             T_R_S = "",
             Lat = dec_lat_va,
             Long = dec_long_va,
@@ -331,28 +335,34 @@ save.image(file= "Data Sources/NWIS_environment.RData")
 
 
 
-Data_Split <- function(df) {
-  
-  # Max row size of file 
-  chunk <- 500000
-  
-  n <- nrow(df)
-  r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
-  d <- split(df,r)
-  
-  for(i in 1:length(d)){
-    
-    shortdf <- as.data.frame(d[i])
-    names(shortdf) <- names(df)
-    write.csv(shortdf, file=paste0("A:/Integrated_Report/DataSources/USGS_NWIS/",deparse(substitute(df)), "-", i, ".csv"))
-    
-  }
-  
-}
+# Data_Split <- function(df) {
+#   
+#   # Max row size of file 
+#   chunk <- 500000
+#   
+#   n <- nrow(df)
+#   r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
+#   d <- split(df,r)
+#   
+#   for(i in 1:length(d)){
+#     
+#     shortdf <- as.data.frame(d[i])
+#     names(shortdf) <- names(df)
+#     write.csv(shortdf, file=paste0("A:/Integrated_Report/DataSources/USGS_NWIS/",deparse(substitute(df)), "-", i, ".csv"))
+#     
+#   }
+#   
+# }
+# 
+# Data_Split(nwis.sites.AWQMS)
+# Data_Split(nwis.sum.stats.DO.AWQMS)
+# Data_Split(nwis.sum.stats.temp.AWQMS)
 
-Data_Split(nwis.sites.AWQMS)
-Data_Split(nwis.sum.stats.DO.AWQMS)
-Data_Split(nwis.sum.stats.temp.AWQMS)
+
+
+Data_Split_AWQMS(nwis.sum.stats.temp.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+Data_Split_AWQMS(nwis.sum.stats.DO.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+Data_Split_AWQMS(nwis.sites.AWQMS, split_on = "Stationkey", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
 
 
 
