@@ -19,9 +19,10 @@ pH_data <- function(database) {
   Results_import <-
     sqlQuery(
       IR.sql,
-     "SELECT InputRaw.STATION_KEY, InputRaw.MonLoc_Name, InputRaw.HUC8, InputRaw.Elev, InputRaw.AU_ID, InputRaw.FishCode, InputRaw.SpawnCode, InputRaw.WaterTypeC, InputRaw.WaterBodyC, InputRaw.BacteriaCo, InputRaw.DO_code, InputRaw.ben_use_co, InputRaw.pH_code, InputRaw.HUC4_name, InputRaw.wqstd_code, InputRaw.Pollu_ID, InputRaw.[Pollutant_DEQ WQS], InputRaw.OrgUID, InputRaw.OrgID, InputRaw.OrgName, InputRaw.MLocUID, InputRaw.MLocID, InputRaw.MLocName, InputRaw.MTypeUID, InputRaw.MTypeName, InputRaw.ActUID, InputRaw.ActID, InputRaw.ActTypeName, InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ActStartD, InputRaw.ActStartT, InputRaw.ActDepth, InputRaw.ActDepthUnit, InputRaw.ResultDepth, InputRaw.ResultDepthUnit, InputRaw.SampleFractName, InputRaw.ChrUID, InputRaw.ChrName, InputRaw.MethodSpecName, InputRaw.ResStatusName, InputRaw.ResultUID, InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitUID, InputRaw.ResultUnitName, InputRaw.MDL, InputRaw.MDLunit, InputRaw.MRL, InputRaw.MRLUnit, InputRaw.DL4IR, InputRaw.ResultDetCondName, InputRaw.ResultBasesName, InputRaw.ResultTBaseName, InputRaw.AnalMethodName, InputRaw.ResultComment, InputRaw.ResultlabComment, InputRaw.ResultMeasQualID, InputRaw.ResultMeasQualDesc, InputRaw.res_statistic_n_value, InputRaw.act_sam_compnt_name, InputRaw.stant_name, InputRaw.res_wqx_submit_date, Crit_pH.pH_Min, Crit_pH.pH_Max
-  FROM Crit_pH INNER JOIN InputRaw ON Crit_pH.pH_code = InputRaw.pH_code
-     WHERE (((InputRaw.ChrName)='pH'));")
+     "SELECT InputRaw.OrgID, InputRaw.MLocID, InputRaw.AU_ID, InputRaw.HUC4_Name, InputRaw.MonLocType, InputRaw.TribalLand, InputRaw.wqstd_code, InputRaw.BacteriaCo, InputRaw.Pollu_ID, InputRaw.ChrName, InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.SampleFractName, InputRaw.ResStatusName, InputRaw.[Pollutant_DEQ WQS], InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.ResultComment, InputRaw.ResultlabComment, InputRaw.ResultMeasQualDesc, Crit_pH.pH_Min, Crit_pH.pH_Max
+FROM Crit_pH INNER JOIN InputRaw ON Crit_pH.pH_code = InputRaw.pH_code
+WHERE (((InputRaw.wqstd_code)=10) AND ((InputRaw.ResStatusName)='Final'));
+")
   
   
   odbcClose(IR.sql)
