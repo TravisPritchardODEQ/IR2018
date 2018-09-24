@@ -7,7 +7,7 @@
 #' and the parameter classification e.g. Bacteria, pH. etc.
 #' @param Results_import dataframe for the imported results
 #' @param anom_crit dataframe for the ambient program criteria
-#' @param parameter parameter classification used for naming omva;id data file
+#' @param parameter parameter classification used for naming invalid data file
 #' @export 
  
 

@@ -11,7 +11,7 @@ IR_Validation(Results_import, anom_crit, parameter)
 
 \item{anom_crit}{dataframe for the ambient program criteria}
 
-\item{parameter}{parameter classification used for naming omva;id data file}
+\item{parameter}{parameter classification used for naming invalid data file}
 }
 \description{
 This function performs the IR data validation process. Results are compared to oregon ambient
