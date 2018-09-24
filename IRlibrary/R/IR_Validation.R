@@ -29,6 +29,11 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
    invalid_data <- Res_validation %>%
      filter(validation == "Invalid") 
    
+   
+   if (nrow(invalid_data) == 0) {
+     print("No Invalid Data")
+   }
+   
    write.xlsx(invalid_data, paste0("Parameters/Invalid_data/", parameter, ".xlsx"))
    
    Valid_AUs <- Res_validation %>%
