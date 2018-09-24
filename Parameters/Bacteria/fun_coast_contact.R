@@ -33,6 +33,11 @@ Coastal_Contact_rec <- function(df){
            less_5 = "",
            Max_value = "")
   
+  
+  if(length(unique(Coastal$AU_ID)) == 0) {
+    stop("No Enterococcus Data")
+  } 
+  
   # Geometric mean calculations --------------------------------------------
   
   

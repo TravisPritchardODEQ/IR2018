@@ -9,6 +9,10 @@ Shell_Harvest <- function(df) {
     #       ChrName == "Fecal Coliform") %>%
     mutate(perc_exceed = ifelse(Result_cen < Perc_Crit, 1, 0))
   
+  if(nrow(shell_harvest) == 0) {
+    stop("No available data")
+  }
+  
   shell_harvest_analysis <- shell_harvest %>%
     group_by(AU_ID) %>%
     summarise(num_samples = n(),
