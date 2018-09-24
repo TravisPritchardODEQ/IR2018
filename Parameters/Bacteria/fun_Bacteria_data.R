@@ -43,6 +43,7 @@ FROM Crit_Bact INNER JOIN InputRaw ON Crit_Bact.BacteriaCode = InputRaw.Bacteria
   
   Results_valid <- IR_Validation(Results_import, anom_crit, "Bacteria")
   
+  rm(anom_crit)
   
   # Get all the standards to be used when dealing with the censored data
   Results_crit <- Results_valid %>%
