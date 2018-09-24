@@ -3,6 +3,7 @@
 export(Censored_data)
 export(Data_Split)
 export(Data_Split_AWQMS)
+export(IR_Validation)
 export(excursions_conv)
 export(excursions_tox)
 export(geo_mean)
