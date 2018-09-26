@@ -26,15 +26,21 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
     ungroup() %>%
     mutate(perc_valid = Au_valid_count/AU_total_count)
    
-   invalid_data <- Res_validation %>%
+
+  invalid_data <- Res_validation %>%
      filter(validation == "Invalid") 
+
+  invalid_AUs <- unique(invalid_data$AU_ID)
+  
+  data2review <- Res_validation %>%
+    filter(AU_ID %in% invalid_AUs)
+     
    
-   
-   if (nrow(invalid_data) == 0) {
+   if (nrow(data2review) == 0) {
      print("No Invalid Data")
    }
    
-   write.xlsx(invalid_data, paste0("Parameters/Invalid_data/", parameter, ".xlsx"))
+   write.xlsx(data2review, paste0("Parameters/Invalid_data/", parameter, ".xlsx"))
    
    Valid_AUs <- Res_validation %>%
      filter(perc_valid == 1) 
