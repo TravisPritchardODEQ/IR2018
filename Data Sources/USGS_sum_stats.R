@@ -358,12 +358,20 @@ save.image(file= "Data Sources/NWIS_environment.RData")
 # Data_Split(nwis.sum.stats.DO.AWQMS)
 # Data_Split(nwis.sum.stats.temp.AWQMS)
 
+puttogether <- bind_rows(nwis.sum.stats.temp.AWQMS,nwis.sum.stats.DO.AWQMS ) 
+
+Dosites <- unique(nwis.sum.stats.DO.AWQMS$SiteID)
+
+Doandtemp <- puttogether %>%
+  filter(SiteID %in% Dosites)
+
+Data_Split_AWQMS(Doandtemp, split_on = "SiteID", size = 100000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
 
 
 Data_Split_AWQMS(nwis.sum.stats.temp.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
-Data_Split_AWQMS(nwis.sum.stats.DO.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
-Data_Split_AWQMS(nwis.sites.AWQMS, split_on = "Stationkey", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
-
+# Data_Split_AWQMS(nwis.sum.stats.DO.AWQMS, split_on = "SiteID", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+# Data_Split_AWQMS(nwis.sites.AWQMS, split_on = "Stationkey", size = 50000, filepath = "A:/Integrated_Report/DataSources/USGS_NWIS/")
+# 
 
 
 
