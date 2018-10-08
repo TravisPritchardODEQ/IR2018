@@ -20,10 +20,9 @@ Temp_data <- function(database) {
   Results_import <-
     sqlQuery(
       IR.sql,
-      "SELECT InputRaw.OrgID, InputRaw.MLocID, InputRaw.AU_ID, InputRaw.FishCode, InputRaw.SpawnCode, InputRaw.WaterTypeC, InputRaw.WaterBodyC, InputRaw.ben_use_co, InputRaw.HUC4_Name, InputRaw.MonLocType, InputRaw.wqstd_code, InputRaw.Pollu_ID, InputRaw.ChrName, InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ActStartD, InputRaw.ActStartT, InputRaw.ResStatusName, InputRaw.ResultBasesName, InputRaw.ResultTBaseName, InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.ResultComment, InputRaw.ResultMeasQualDesc, LU_FishUse.FishUse_code, Crit_Temp.Temp_C, LU_Spawn.SpawnStart, LU_Spawn.SpawnEnd
+      "SELECT InputRaw.OrgID, InputRaw.MLocID, InputRaw.AU_ID, InputRaw.FishCode, InputRaw.SpawnCode, InputRaw.WaterTypeCode, InputRaw.WaterBodyCode, InputRaw.ben_use_code, InputRaw.HUC4_Name, InputRaw.MonLocType, InputRaw.wqstd_code, InputRaw.Pollu_ID, InputRaw.ChrName, InputRaw.[Pollutant_DEQ WQS], InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ResStatusName, InputRaw.ResultBasesName, InputRaw.ResultTBaseName, InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.ResultComment, InputRaw.ResultMeasQualDesc, LU_FishUse.FishUse_code, Crit_Temp.Temp_C, LU_Spawn.Spawn_dates
 FROM ((InputRaw INNER JOIN LU_Spawn ON InputRaw.SpawnCode = LU_Spawn.DO_SpawnCode) INNER JOIN LU_FishUse ON InputRaw.FishCode = LU_FishUse.FishUse_code) INNER JOIN Crit_Temp ON LU_FishUse.FishUse_code = Crit_Temp.FishUse_code
-      WHERE (((InputRaw.wqstd_code)=12) AND ((InputRaw.ResStatusName)='Final') AND ((InputRaw.ResultBasesName)='7DADM'));
-      ")
+WHERE (((InputRaw.wqstd_code)=12) AND ((InputRaw.ResStatusName)='Final'));")
 
   
   
@@ -33,6 +32,21 @@ FROM ((InputRaw INNER JOIN LU_Spawn ON InputRaw.SpawnCode = LU_Spawn.DO_SpawnCod
   
   # Set factors to characters
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
+  
+  
+
+# Data validation ---------------------------------------------------------
+
+  print("Validating Data")
+  
+  # Load validation table
+  load("Validation/anom_crit.Rdata")
+  
+  Results_valid <- IR_Validation(Results_import, anom_crit, "Temperature")
+  
+
+# Censored data ------------------------------------------------------------
+
   
   
   print("Modify censored data")
