@@ -12,18 +12,12 @@ Temp_data <- function(database) {
   print("Fetch Temperature data from IR database")
   #connect to IR database view as a general user
   # import Temperature data
-  IR.sql <-  odbcConnectAccess2007(database, case="nochange")
+  IR.sql <-   odbcConnect('IR 2018')
   
   
   # Get data from IR database where wqstd_code = 12, ResStatusName = Final, 
   # Join with Crit_Temp to get temperature Criteria and spawn ?
-  Results_import <-
-    sqlQuery(
-      IR.sql,
-      "SELECT InputRaw.OrgID, InputRaw.MLocID, InputRaw.AU_ID, InputRaw.FishCode, InputRaw.SpawnCode, InputRaw.WaterTypeCode, InputRaw.WaterBodyCode, InputRaw.ben_use_code, InputRaw.HUC4_Name, InputRaw.MonLocType, InputRaw.wqstd_code, InputRaw.Pollu_ID, InputRaw.ChrName, InputRaw.[Pollutant_DEQ WQS], InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ResStatusName, InputRaw.ResultBasesName, InputRaw.ResultTBaseName, InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.ResultComment, InputRaw.ResultMeasQualDesc, LU_FishUse.FishUse_code, Crit_Temp.Temp_C, LU_Spawn.Spawn_dates
-FROM ((InputRaw INNER JOIN LU_Spawn ON InputRaw.SpawnCode = LU_Spawn.DO_SpawnCode) INNER JOIN LU_FishUse ON InputRaw.FishCode = LU_FishUse.FishUse_code) INNER JOIN Crit_Temp ON LU_FishUse.FishUse_code = Crit_Temp.FishUse_code
-WHERE (((InputRaw.wqstd_code)=12) AND ((InputRaw.ResStatusName)='Final'));")
-
+  Results_import <-    sqlFetch(IR.sql, "dbo.VW_Temperature") 
   
   
   odbcClose(IR.sql)
