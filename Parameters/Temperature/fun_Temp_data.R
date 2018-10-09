@@ -12,7 +12,7 @@ Temp_data <- function(database) {
   print("Fetch Temperature data from IR database")
   #connect to IR database view as a general user
   # import Temperature data
-  IR.sql <-   odbcConnect('IR 2018')
+  IR.sql <-   odbcConnect(database)
   
   
   # Get data from IR database where wqstd_code = 12, ResStatusName = Final, 
@@ -21,6 +21,8 @@ Temp_data <- function(database) {
   
   
   odbcClose(IR.sql)
+  
+
   
   print(paste("Fetched", nrow(Results_import), "results from", length(unique(Results_import$MLocID)), "monitoring locations" ))
   
