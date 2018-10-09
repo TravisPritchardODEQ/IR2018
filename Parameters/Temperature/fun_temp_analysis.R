@@ -3,150 +3,47 @@ library(lubridate)
 
 
 
+# Create dataframe out of data returned from temp data script
+
+
 temp_analysis <- Results_censored_temp %>%
-  mutate(Crit_period_start = mdy(paste0("7/1/",year(ActStartD))),
+  mutate(# Add columns for Critcal period start and end date
+         Crit_period_start = mdy(paste0("7/1/",year(ActStartD))),
          Cirt_period_end = mdy(paste0("9/30/",year(ActStartD))),
+         # Append spawn start and end dates with year
          Start_spawn = ifelse(!is.na(SpawnStart), paste0(SpawnStart,"/",year(ActStartD)), NA ) ,
          End_spawn = ifelse(!is.na(SpawnEnd), paste0(SpawnEnd,"/",year(ActStartD)), NA ),
+         # Make spwnmn start and end date date format
          Start_spawn = mdy(Start_spawn),
          End_spawn = mdy(End_spawn),
+         # If Spawn dates span a calendar year, account for year change in spawn end date
          End_spawn = if_else(End_spawn < Start_spawn, End_spawn + years(1), End_spawn ),
          ActStartD = ymd(ActStartD), 
+         # Flag for results in critical period
          In_crit_period = ifelse(between(ActStartD,Crit_period_start, Cirt_period_end), 1, 0 ),
+         # PRint if result is in spawn or out of spawn
          Spawn_type = ifelse((ActStartD >= Start_spawn & ActStartD <= End_spawn & !is.na(Start_spawn)),  "Spawn", "Not_Spawn"),
+         # Flag if result violates stanard,  use 13 for during spawn dates, else use criteria
          Violation = ifelse(Spawn_type == "Spawn" & Result_cen > 13, 1,
                             ifelse(Spawn_type == "Not_Spawn" & Result_cen > Temp_Criteria, 1, 0)),
+         # Flag for is violation was in spawn period
          Spawn_Violation = ifelse(Spawn_type == "Spawn" & Violation == 1, 1, 0 )
          ) %>%
-  filter(AU_ID == "OR_WS_170702010206_05_102026") %>%
-  arrange(ActStartD)
+   arrange(ActStartD, ActStartD)
+
+#write.csv(temp_analysis, "Parameters/Temperature/Temperature data used in assessment.csv")
 
 
-
-#Need to finish critical period checker. How do we bring this in?
-Crit_periods <- temp_analysis %>%
-  mutate(year = year(ActStartD)) %>%
-  group_by(AU_ID, year, Spawn_type) %>%
-  summarise(crit_period_counts = sum(In_crit_period)) 
-  
-
-# # Break data into three year chunks to flag out definite category  --------
-# 
-# # period 1 - 1/1/2008 - 12/31/2010
-# 
-# period1 <- temp_analysis %>%
-#   filter(ActStartD >= mdy("1/1/2008") & ActStartD < mdy("1/1/2011")) %>%
-#   group_by(AU_ID) %>%
-#   summarise(per1.sumviolation = sum(Violation) ,
-#          per1.MLoc_count = n_distinct(MLocID))
-# 
-# # period 2 - 1/1/2011 - 12/31/13
-# period2 <- temp_analysis %>%
-#   filter(ActStartD >= mdy("1/1/2011") & ActStartD < mdy("1/1/2014")) %>%
-#   group_by(AU_ID) %>%
-#   summarise(per2.sumviolation = sum(Violation) ,
-#          per2.MLoc_count = n_distinct(MLocID)) 
-# 
-# #period 3 - 1/1/2014 - 12/31/2016
-# period3 <- temp_analysis %>%
-#   filter(ActStartD >= mdy("1/1/2014") & ActStartD < mdy("1/1/2016")) %>%
-#   group_by(AU_ID) %>%
-#   summarise(per3.sumviolation = sum(Violation) ,
-#             per3.MLoc_count = n_distinct(MLocID)) 
-# 
-# 
-# #period 4 - 1/1/2017 - 1/1/2018
-# period4 <- temp_analysis %>%
-#   filter(ActStartD >= mdy("1/1/2016") & ActStartD < mdy("1/1/2018")) %>%
-#   group_by(AU_ID) %>%
-#   summarise(per4.sumviolation = sum(Violation) ,
-#             per4.MLoc_count = n_distinct(MLocID)) 
-# 
-# #period 5 - 1/1/2018 - 7/1/2018
-# period5 <- temp_analysis %>%
-#   filter(ActStartD >= mdy("1/1/2018") & ActStartD < mdy("7/1/2018")) %>%
-#   group_by(AU_ID) %>%
-#   summarise(per5.sumviolation = sum(Violation) ,
-#             per5.MLoc_count = n_distinct(MLocID)) 
-# 
-# 
-# 
-# # join all the time periods together
-# # definite cat 5's are sites with 2 or more violations in calendar year
-# # Need to review for site that do not have 2 or more in calendar year, but 
-# # may have 2 or more in rolling year
-# # Sites flagged as More Review will need more review, obviously
-# temp_summary <- Results_censored_temp %>%
-#   left_join(period1, by = "AU_ID") %>%
-#   left_join(period2, by = "AU_ID") %>%
-#   left_join(period3, by = "AU_ID") %>%
-#   left_join(period4, by = "AU_ID") %>%
-#   left_join(period5, by = "AU_ID") %>%
-#   mutate(Category = ifelse(per1.sumviolation >= 2 & !is.na(per1.sumviolation) |
-#                               per2.sumviolation >= 2 & !is.na(per2.sumviolation) |
-#                               per3.sumviolation >= 2 & !is.na(per3.sumviolation) |
-#                               per4.sumviolation >= 2 & !is.na(per4.sumviolation) |
-#                               per5.sumviolation >= 2 & !is.na(per5.sumviolation),  "Cat5", 
-#                               "More_Review" ))
-# 
-# #Create table of definite Category 5's
-# temp_cat5 <- temp_summary %>%
-#   group_by(AU_ID) %>%
-#   summarise(IR_Cat = first(Category)) %>%
-#   filter(IR_Cat == "Cat5")
-# 
-# 
-# 
-# ReviewAUs <- temp_summary %>%
-#   filter(Category == "More_Review")
-# 
-# # These will need more review
-# Review <- temp_analysis %>%
-#   filter(AU_ID %in% unique(ReviewAUs$AU_ID))
-# 
-# 
-# Au_review_list <- list()
-# 
-# for (i in 1:length(unique(Review$AU_ID))){
-#   
-#   AU_4review <- unique(Review$AU_ID)[i]
-#   
-#   Review_AU <- Review %>%
-#     filter(AU_ID == AU_4review) 
-#   
-#   for(j in 1:nrow(Review_AU)){
-#     
-#     start3yr <- Review_AU$ActStartD[j] - years(3)
-#     end3yr <- Review_AU$ActStartD[j]
-#     
-#     period3yr <- Review_AU %>%
-#       filter(ActStartD >= start3yr & ActStartD <= end3yr)
-#     
-#     num_violations = sum(period3yr$Violation)
-#     Review_AU[j,"Violations_3yr"] <- num_violations
-#     
-#   }
-#   
-#   Au_review_list[[i]] <- Review_AU
-#   
-# }
-# 
-# reviewed_data <- bind_rows(Au_review_list) %>%
-#   group_by(AU_ID) %>%
-#   summarise(maxviolation = max(Violations_3yr))
-# 
-# 
-
-
-#experimental
-
+# Create list for getting data out of loop
 Au_review_list <- list()
 
 
+# Create progress bar, since Travis loves progress bars
 pb <- txtProgressBar(min = 0, max = length(unique(temp_analysis$AU_ID)), style = 3)
 
 for (i in 1:length(unique(temp_analysis$AU_ID))){
   
+  # Create dataframe (Review_AU) containing only 1 AU
   AU_4review <- unique(temp_analysis$AU_ID)[i]
   
   print(paste("Beginning AU:", AU_4review, "-", i, "of", length(unique(temp_analysis$AU_ID)) ))
@@ -155,7 +52,22 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
     filter(AU_ID == AU_4review) 
   
   pb <- txtProgressBar(min = 0, max = nrow(Review_AU), style = 3)
+  
+  # The for loop below looks at earch result, one at a time and creates a dataframe
+  # for each result containing all the results for the preceeding 3 years. 
+  # For example, if the result is for 1/1/2017, it will be a dataframe of
+  # all results for that AU between 1/1/2014 - 1/1/2017
+  # It then creates 4 new columns that are created in the Review_AU dataframe:
+  #     Violations_3yr is the number of violations in that 3 year period
+  #     Violations_in_Spawning is the number of violations in that 3 year period
+  #           that are during spawning periods - DISCONTINUED
+  #     Samples_in_crit_period are the number of samples in that 3 year period
+  #          that are during the critical period
+  #     samples_in_spawn_period are the number of samples in that 3 year period
+  #          that are during the spawn period
+  
   for(j in 1:nrow(Review_AU)){
+    
     
     start3yr <- Review_AU$ActStartD[j] - years(3)
     end3yr <- Review_AU$ActStartD[j]
@@ -166,11 +78,11 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
     num_violations = sum(period3yr$Violation)
     samples_crit_period <- sum(period3yr$In_crit_period)
     samples_spawn <- nrow(subset(period3yr, Spawn_type == "Spawn"))
-    spawn_violations <- sum(period3yr$Spawn_type == "Spawn" & period3yr$Violation == 1)
+   # spawn_violations <- sum(period3yr$Spawn_type == "Spawn" & period3yr$Violation == 1)
     
     
     Review_AU[j,"Violations_3yr"] <- num_violations
-    Review_AU[j,"Violations_in_Spawning"] <- spawn_violations
+    #Review_AU[j,"Violations_in_Spawning"] <- spawn_violations
     Review_AU[j,"Samples_in_crit_period"] <- samples_crit_period
     Review_AU[j,"samples_in_spawn_period"] <- samples_spawn
     
@@ -178,6 +90,8 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
     
   }
   
+  # Review_AU gets moved to this list so we can get data out of the loop
+  # each element in the list will be the data for each AU
   Au_review_list[[i]] <- Review_AU
  
   close(pb)
@@ -185,38 +99,41 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
 
 
 
+# get the data out of the list and create a dataframe
 reviewed_data <- bind_rows(Au_review_list) %>%
   arrange(AU_ID, ActStartD)
-# 
-# Temp_IR_categories <- reviewed_data %>%
-#   group_by(AU_ID) %>%
-#   mutate(total_violations = sum(Violation),
-#          Spawn_Violation_count = sum(Spawn_Violation) ) %>%
-#   arrange(ActStartD) %>%
-#   filter(Violations_3yr %in% range(Violations_3yr))
-#   slice(which.max(Violations_3yr)) %>%
-#   mutate(IR_category = ifelse(Violations_3yr >= 2, "Cat5", 
-#                               ifelse(Violations_3yr < 2 & 
-#                                        Samples_in_crit_period == 0 &
-#                                        samples_in_spawn_period == 0, "Cat3", 
-#                                      ifelse(Violations_3yr == 1, "Cat3B", 
-#                                             "Cat2")))) %>%
-#   select(AU_ID,IR_category, total_violations, Spawn_Violation_count)
-# # 
-#   
+
+#Remove the list from the environment, to free up memory
+rm(Au_review_list)
+
   
-  
-  Temp_IR_categories <- reviewed_data %>%
+# This is the where the IR categories get assigned
+Temp_IR_categories <- reviewed_data %>%
     group_by(AU_ID) %>%
+    # Sum the total violations and spawning violations by AU
+    # So we have a record of total violations over the assessment period
     mutate(total_violations = sum(Violation),
            Spawn_Violation_count = sum(Spawn_Violation) ) %>%
     arrange(ActStartD) %>%
+    # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
+    # number of violations in a 3 year period (Violations_3yr)
     filter(Violations_3yr %in% range(Violations_3yr)) %>%
+    # Create summary of the data needed to make IR categorization determinations. 
+    # basically this is so we can see if there are any 3 year periods with 2 or more
+    # violations, and see if we have at any point in the assessmnet window any results 
+    # in the critical period or the spawn period. We also get the total violations, and 
+    # total spawn violations.
     summarise(max_violations_3yr = max(Violations_3yr),
-              total_violations = max(total_violations),
-              total_Spawn_Violation_count = max(Spawn_Violation_count),
+              total_violations = first(total_violations),
+              total_Spawn_Violation_count = first(Spawn_Violation_count),
               max_3yr_results_in_crit_period = max(Samples_in_crit_period),
               max_3yr_results_in_spawn_period = max(samples_in_spawn_period)) %>%
+    # Assign to IR categories. 
+    #      If there is any 3 year rolling period with 2 or more violations - Cat 5
+    #      If all the 3 rolling year periods have less than 2 violations, and there are never any results
+    #           in the critical periods or spawn periods - Cat 3
+    #      If the three year period with the maximum number of violations has example 1 violation, than Cat3B
+    #      Otherwise Category 2
     mutate(IR_category = ifelse(max_violations_3yr >= 2, "Cat5", 
                                 ifelse(max_violations_3yr < 2 & 
                                          max_3yr_results_in_crit_period == 0 &
@@ -225,31 +142,4 @@ reviewed_data <- bind_rows(Au_review_list) %>%
                                               "Cat2")))) %>%
     select(AU_ID,IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
            max_3yr_results_in_spawn_period)
-  # 
-  
-  
-# 
-# temp_category3b <- reviewed_data %>%
-#   filter(Samples_in_crit_period == 0 & samples_in_spawn_period == 0) %>%
-#   distinct(AU_ID) %>%
-#   mutate(IR_category = "Cat3b")
-# 
-# temp_assessment_data <- reviewed_data %>%
-#   filter(Samples_in_crit_period != 0 | samples_in_spawn_period != 0)  %>%
-#   #group_by(AU_ID) %>%
-#   #summarise(max_violation_3yr = max(Violations_3yr)) %>%
-#   filter(AU_ID == 'OR_WS_170702040304_05_102199')
-# 
-# 
-# temp_assessment_data <- reviewed_data %>%
-#   filter(!(AU_ID %in% temp_category3b$AU_ID)) %>%
-#   group_by(AU_ID) %>%
-#   summarise(max_violation_3yr = max(Violations_3yr))
-# 
-# 
-# temp_category3b <- reviewed_data %>%
-#   filter(Samples_in_crit_period == 0 & samples_in_spawn_period == 0) %>%
-#   distinct(AU_ID) %>%
-#   mutate(IR_category = "Cat3b")
-# 
-# unique(temp_category3b$AU_ID)
+ 
