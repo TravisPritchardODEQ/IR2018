@@ -212,20 +212,19 @@ reviewed_data <- bind_rows(Au_review_list) %>%
            Spawn_Violation_count = sum(Spawn_Violation) ) %>%
     arrange(ActStartD) %>%
     filter(Violations_3yr %in% range(Violations_3yr)) %>%
-    summarise(Violations_3yr = max(Violations_3yr),
+    summarise(max_violations_3yr = max(Violations_3yr),
               total_violations = max(total_violations),
-              Spawn_Violation_count = max(Spawn_Violation_count),
-              max_3yr_Samples_in_crit_period = max(Samples_in_crit_period),
-              max_3yr_samples_in_spawn_period = max(samples_in_spawn_period)) %>%
-    mutate(IR_category = ifelse(Violations_3yr >= 2, "Cat5", 
-                                ifelse(Violations_3yr < 2 & 
-                                         max_3yr_Samples_in_crit_period == 0 &
-                                         max_3yr_samples_in_spawn_period == 0, "Cat3", 
-                                       ifelse(Violations_3yr == 1, "Cat3B", 
+              total_Spawn_Violation_count = max(Spawn_Violation_count),
+              max_3yr_results_in_crit_period = max(Samples_in_crit_period),
+              max_3yr_results_in_spawn_period = max(samples_in_spawn_period)) %>%
+    mutate(IR_category = ifelse(max_violations_3yr >= 2, "Cat5", 
+                                ifelse(max_violations_3yr < 2 & 
+                                         max_3yr_results_in_crit_period == 0 &
+                                         max_3yr_results_in_spawn_period == 0, "Cat3", 
+                                       ifelse(max_violations_3yr == 1, "Cat3B", 
                                               "Cat2")))) %>%
-    select(AU_ID,IR_category, total_violations, Spawn_Violation_count, max_3yr_Samples_in_crit_period,
-           max_3yr_samples_in_spawn_period)
-  # 
+    select(AU_ID,IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
+           max_3yr_results_in_spawn_period)
   # 
   
   
