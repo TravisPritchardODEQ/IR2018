@@ -4,9 +4,9 @@ library(lubridate)
 
 
 # Create dataframe out of data returned from temp data script
+temp_asessment <- function(df){
 
-
-temp_analysis <- Results_censored_temp %>%
+temp_analysis <- df %>%
   mutate(# Add columns for Critcal period start and end date
          Crit_period_start = mdy(paste0("7/1/",year(ActStartD))),
          Cirt_period_end = mdy(paste0("9/30/",year(ActStartD))),
@@ -31,6 +31,7 @@ temp_analysis <- Results_censored_temp %>%
          ) %>%
    arrange(ActStartD, ActStartD)
 
+print("Writing data table for review as 'Parameters/Temperature/Temperature data used in assessment.csv'")
 #write.csv(temp_analysis, "Parameters/Temperature/Temperature data used in assessment.csv")
 
 
@@ -143,4 +144,9 @@ Temp_IR_categories <- reviewed_data %>%
                                               "Cat2")))) %>%
     select(AU_ID,IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
            max_3yr_results_in_spawn_period)
- 
+
+print("Categorization Complete")
+
+
+return(Temp_IR_categories)
+}
