@@ -20,7 +20,7 @@ temp_analysis <- Results_censored_temp %>%
          End_spawn = if_else(End_spawn < Start_spawn, End_spawn + years(1), End_spawn ),
          ActStartD = ymd(ActStartD), 
          # Flag for results in critical period
-         In_crit_period = ifelse(between(ActStartD,Crit_period_start, Cirt_period_end), 1, 0 ),
+         In_crit_period = ifelse(ActStartD >=Crit_period_start & ActStartD <= Cirt_period_end, 1, 0 ),
          # PRint if result is in spawn or out of spawn
          Spawn_type = ifelse((ActStartD >= Start_spawn & ActStartD <= End_spawn & !is.na(Start_spawn)),  "Spawn", "Not_Spawn"),
          # Flag if result violates stanard,  use 13 for during spawn dates, else use criteria
@@ -46,7 +46,7 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
   # Create dataframe (Review_AU) containing only 1 AU
   AU_4review <- unique(temp_analysis$AU_ID)[i]
   
-  print(paste("Beginning AU:", AU_4review, "-", i, "of", length(unique(temp_analysis$AU_ID)) ))
+  print(paste("Assesing AU:", AU_4review, "-", i, "of", length(unique(temp_analysis$AU_ID)) ))
   
   Review_AU <- temp_analysis %>%
     filter(AU_ID == AU_4review) 
@@ -59,7 +59,7 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
   # all results for that AU between 1/1/2014 - 1/1/2017
   # It then creates 4 new columns that are created in the Review_AU dataframe:
   #     Violations_3yr is the number of violations in that 3 year period
-  #     Violations_in_Spawning is the number of violations in that 3 year period
+  #     DISCONTINUED - Violations_in_Spawning is the number of violations in that 3 year period
   #           that are during spawning periods - DISCONTINUED
   #     Samples_in_crit_period are the number of samples in that 3 year period
   #          that are during the critical period
@@ -95,9 +95,10 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
   Au_review_list[[i]] <- Review_AU
  
   close(pb)
+  
 }
 
-
+print("Assessment Complete. Beginning Categorization")
 
 # get the data out of the list and create a dataframe
 reviewed_data <- bind_rows(Au_review_list) %>%
