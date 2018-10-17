@@ -130,7 +130,7 @@ for (i in 1:length(unique_characteritics)){
            filter(hrNday >= 22) 
          
          ma.mean7 <- ifelse(length(unique(station_7day$date)) >= 6, mean(station_7day$dyMean), NA )
-         ma.min7 <- ifelse(length(unique(station_7day$date)) >= 6, min(station_7day$dyMean), NA )
+         ma.min7 <- ifelse(length(unique(station_7day$date)) >= 6, mean(station_7day$dyMin), NA )
          
          daydat_station[k,"ma.mean7"] <- ifelse(k >=7, ma.mean7, NA)
          daydat_station[k, "ma.min7"] <- ifelse(k >=7, ma.min7, NA)
