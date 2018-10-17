@@ -29,7 +29,7 @@ data_import <- read.csv(filepath, stringsAsFactors = FALSE) %>%
   select(StationCode, DateTimeStamp, Temp, F_Temp, DO_Pct, F_DO_Pct, DO_mgl, F_DO_mgl ) %>%
   mutate(DateTimeStamp = mdy_hm(DateTimeStamp))
 
-tz(data_import$DateTimeStamp) <- "America/Los_Angeles"
+#tz(data_import$DateTimeStamp) <- "America/Los_Angeles"
         
 
 
