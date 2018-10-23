@@ -21,9 +21,9 @@ temp_analysis <- df %>%
          ActStartD = ymd(ActStartD), 
          # Flag for results in critical period
          In_crit_period = ifelse(ActStartD >=Crit_period_start & ActStartD <= Cirt_period_end, 1, 0 ),
-         # PRint if result is in spawn or out of spawn
+         # Print if result is in spawn or out of spawn
          Spawn_type = ifelse((ActStartD >= Start_spawn & ActStartD <= End_spawn & !is.na(Start_spawn)),  "Spawn", "Not_Spawn"),
-         # Flag if result violates stanard,  use 13 for during spawn dates, else use criteria
+         # Flag if result violates standard,  use 13 for during spawn dates, else use criteria
          Violation = ifelse(Spawn_type == "Spawn" & Result_cen > 13, 1,
                             ifelse(Spawn_type == "Not_Spawn" & Result_cen > Temp_Criteria, 1, 0)),
          # Flag for is violation was in spawn period
@@ -32,16 +32,19 @@ temp_analysis <- df %>%
    arrange(ActStartD, ActStartD)
 
 print("Writing data table for review as 'Parameters/Temperature/Temperature data used in assessment.csv'")
-#write.csv(temp_analysis, "Parameters/Temperature/Temperature data used in assessment.csv")
+#write.csv(temp_analysis, "Parameters/Temperature/Temperature_IR_data.csv")
 
 
 # Create list for getting data out of loop
 Au_review_list <- list()
 
 
-# Create progress bar, since Travis loves progress bars
-pb <- txtProgressBar(min = 0, max = length(unique(temp_analysis$AU_ID)), style = 3)
+# Assess by AU ------------------------------------------------------------
 
+
+
+
+# Consider 1 AU at a time
 for (i in 1:length(unique(temp_analysis$AU_ID))){
   
   # Create dataframe (Review_AU) containing only 1 AU
@@ -49,8 +52,10 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
   
   print(paste("Assesing AU:", AU_4review, "-", i, "of", length(unique(temp_analysis$AU_ID)) ))
   
+  # Filter to get a dataframe of only the AU currently being assessed
   Review_AU <- temp_analysis %>%
     filter(AU_ID == AU_4review) 
+  
   
   pb <- txtProgressBar(min = 0, max = nrow(Review_AU), style = 3)
   
