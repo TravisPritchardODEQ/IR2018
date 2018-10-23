@@ -36,14 +36,16 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
     filter(AU_ID %in% invalid_AUs)
      
    
-   if (nrow(data2review) == 0) {
+   if (nrow(invalid_data) == 0) {
      print("No Invalid Data")
+   } else {
+     print(paste("Removing", length(invalid_AUs), "AUs for conatining invalid data"))
    }
    
    write.xlsx(data2review, paste0("Parameters/Invalid_data/Invalid-", parameter, ".xlsx"))
    
    Valid_AUs <- Res_validation %>%
-     filter(perc_valid == 1) 
+     filter(!(AU_ID %in% invalid_AUs)) 
   
   return(Valid_AUs)
 }
