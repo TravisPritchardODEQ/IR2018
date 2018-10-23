@@ -19,7 +19,7 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
    
   Res_validation <- Results_import %>%
     left_join(anom_crit, by = c("ChrName" = "char")) %>%
-    mutate(validation = ifelse(Result4IR < per99 |Result4IR > per1 | is.na(per99) , "Valid", "Invalid")) %>%
+    mutate(validation = ifelse((Result4IR < per99 & Result4IR > per1) | is.na(per99) , "Valid", "Invalid")) %>%
     group_by(AU_ID) %>%
     mutate(Au_valid_count = sum(validation == "Valid"),
            AU_total_count = n() ) %>%
