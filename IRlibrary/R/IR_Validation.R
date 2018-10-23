@@ -40,7 +40,7 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
      print("No Invalid Data")
    }
    
-   write.xlsx(data2review, paste0("Parameters/Invalid_data/", parameter, ".xlsx"))
+   write.xlsx(data2review, paste0("Parameters/Invalid_data/Invalid-", parameter, ".xlsx"))
    
    Valid_AUs <- Res_validation %>%
      filter(perc_valid == 1) 
