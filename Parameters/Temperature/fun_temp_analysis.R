@@ -31,8 +31,9 @@ temp_analysis <- df %>%
          ) %>%
    arrange(ActStartD, ActStartD)
 
-print("Writing data table for review as 'Parameters/Temperature/Temperature data used in assessment.csv'")
-#write.csv(temp_analysis, "Parameters/Temperature/Temperature_IR_data.csv")
+print("Writing data table for review as 'Parameters/Temperature/Temperature_IR_data.csv")
+
+write.csv(temp_analysis, "Parameters/Temperature/Temperature_IR_data.csv")
 
 
 # Create list for getting data out of loop
@@ -123,7 +124,9 @@ Temp_IR_categories <- reviewed_data %>%
            Spawn_Violation_count = sum(Spawn_Violation) ) %>%
     arrange(ActStartD) %>%
     # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
-    # number of violations in a 3 year period (Violations_3yr)
+    # number of violations in a 3 year period (Violations_3yr). Since we are looking at cat5
+    # being 2 in 3 years, if we filter down to 3 year period with the max violations, we
+    # can see if the AU shoudl be listed. 
     filter(Violations_3yr %in% range(Violations_3yr)) %>%
     # Create summary of the data needed to make IR categorization determinations. 
     # basically this is so we can see if there are any 3 year periods with 2 or more
