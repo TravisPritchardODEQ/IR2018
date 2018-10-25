@@ -121,7 +121,7 @@ Temp_IR_categories <- reviewed_data %>%
     # Sum the total violations and spawning violations by AU
     # So we have a record of total violations over the assessment period
     mutate(total_violations = sum(Violation),
-           Spawn_Violation_count = sum(Spawn_Violation) ) %>%
+           Spawn_Violation_count = sum(Spawn_Violation)) %>%
     arrange(ActStartD) %>%
     # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
     # number of violations in a 3 year period (Violations_3yr). Since we are looking at cat5
@@ -133,7 +133,10 @@ Temp_IR_categories <- reviewed_data %>%
     # violations, and see if we have at any point in the assessmnet window any results 
     # in the critical period or the spawn period. We also get the total violations, and 
     # total spawn violations.
-    summarise(max_violations_3yr = max(Violations_3yr),
+    summarise(OWRD_Basin = first(OWRD_Basin), 
+              data_period_start = min(ActStartD),
+              data_period_end = max(ActStartD),
+              max_violations_3yr = max(Violations_3yr),
               total_violations = first(total_violations),
               total_Spawn_Violation_count = first(Spawn_Violation_count),
               max_3yr_results_in_crit_period = max(Samples_in_crit_period),
@@ -150,7 +153,7 @@ Temp_IR_categories <- reviewed_data %>%
                                          max_3yr_results_in_spawn_period == 0, "Cat3", 
                                        ifelse(max_violations_3yr == 1, "Cat3B", 
                                               "Cat2")))) %>%
-    select(AU_ID,IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
+    select(AU_ID, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
            max_3yr_results_in_spawn_period)
 
 print("Categorization Complete")
