@@ -49,7 +49,7 @@ Temp_data <- function(database) {
   print("Modify censored data")
   
   #run the censored data function to set censored data. This will use the lowest crit value from above 
-  Results_censored <- Censored_data(Results_import, crit = `Temp_C` ) %>%
+  Results_censored <- Censored_data(Results_valid, crit = `Temp_C` ) %>%
     mutate(Result_cen = as.numeric(Result_cen))
   
   print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
