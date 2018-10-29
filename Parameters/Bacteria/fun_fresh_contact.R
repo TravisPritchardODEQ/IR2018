@@ -76,6 +76,32 @@ Fresh_Contact_rec <- function(df){
            count_period = as.numeric(count_period),
            less_5 = as.numeric(less_5))
   
+ 
+
+# Data review -------------------------------------------------------------
+
+  
+   # Get list of unique basins in dataset. Used for generating data for review
+  basins <- unique(fresh_analysis$OWRD_Basin) 
+  
+  
+  # Loop through data, and filter by OWRD basin, write csv file of all data in that basin
+  for(i in 1:length(basins)){
+    
+    Basin <- basins[i]
+    
+    bacteria_fresh_contact_analysis_by_basin <-  fresh_analysis %>%
+      filter(OWRD_Basin == Basin)
+    
+    write.csv(bacteria_fresh_contact_analysis_by_basin, paste0("Parameters/Bacteria/Data Review/Fresh_Contact_IR_data_",Basin,".csv"))
+    
+  }
+  
+
+
+# Categorization ----------------------------------------------------------
+
+    
   fresh_contact_summary <- fresh_analysis %>%
     group_by(AU_ID) %>%
     # list out the maxium geometric mean per AU
