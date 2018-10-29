@@ -9,20 +9,13 @@ require(IRlibrary)
   print("Fetch bacteria data from IR database")
   #connect to IR database view as a general user
   # import bacteria data
-  IR.sql <-  odbcConnectAccess2007(database, case="nochange")
+  
+  IR.sql <-   odbcConnect(database)
   
   
-  
-  # Get data from IR database where wqstd_code = 1 and ResStatusName = Final
-  # Join with Crit_Bact to get bacteria Criteria
-  Results_import <-
-    sqlQuery(
-      IR.sql,
-      " SELECT InputRaw.OrgID, InputRaw.MLocID, InputRaw.AU_ID, InputRaw.HUC4_Name, InputRaw.MonLocType, InputRaw.TribalLand, InputRaw.wqstd_code, InputRaw.BacteriaCo, InputRaw.Pollu_ID, InputRaw.ChrName, InputRaw.ActMediaName, InputRaw.ActMediaSubName, InputRaw.ActStartD, InputRaw.ActStartT, InputRaw.ActDepth, InputRaw.SampleFractName, InputRaw.ResStatusName, InputRaw.[Pollutant_DEQ WQS], InputRaw.Result, InputRaw.Result4IR, InputRaw.ResultOp4IR, InputRaw.ResultUnitName, InputRaw.ResultComment, InputRaw.ResultlabComment, InputRaw.ResultMeasQualDesc, Crit_Bact.SS_Crit, Crit_Bact.Geomean_Crit, Crit_Bact.Perc_Crit
-FROM Crit_Bact INNER JOIN InputRaw ON Crit_Bact.BacteriaCode = InputRaw.BacteriaCo
-      WHERE (((InputRaw.wqstd_code)=1) AND ((InputRaw.ResStatusName)='Final'));
-      
-      ")
+  # Get data from IR database where wqstd_code = 12, ResStatusName = Final, 
+  # Join with Crit_Temp to get temperature Criteria and spawn ?
+  Results_import <-    sqlFetch(IR.sql, "dbo.VW_Bacteria") 
   
   
   odbcClose(IR.sql)

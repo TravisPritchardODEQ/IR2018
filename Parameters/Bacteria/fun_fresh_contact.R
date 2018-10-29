@@ -13,8 +13,8 @@ Fresh_Contact_rec <- function(df){
   
   
   fresh_contact <- df %>%
-    #filter(BacteriaCo == 1,
-          # ChrName == "Escherichia coli") %>%
+    filter(BacteriaCode == 2,
+           ChrName == "Escherichia coli") %>%
     mutate(geomean = "",
            count_period = "",
            less_5 = "")
@@ -86,13 +86,14 @@ Fresh_Contact_rec <- function(df){
               SS_Crit = max(SS_Crit),
               Geomean_Crit = max(Geomean_Crit),
               Perc_Crit = max(Perc_Crit)) %>%
-    mutate(Cat5 = ifelse((!is.na(Max_Geomean) &  Max_Geomean > Geomean_Crit) |
-                           (num.samples >=5 & num.above.std >= 1) |
-                           (num.above.std > 2 ), 1, 0),
-           Cat3 = ifelse(Cat5 == 0 & is.na(Max_Geomean) & num.above.std == 0 , 1, 0),
-           Cat3B = ifelse(Cat5 == 0 & is.na(Max_Geomean) & num.above.std == 1 , 1, 0),
-           Cat2 = ifelse(!is.na(Max_Geomean) & Max_Geomean < 126 & num.above.std == 0, 1, 0 )
-           )
+    mutate(IR_category = if_else(is.na(Max_Geomean) & num.above.std == 0, "Cat3", 
+                                if_else(is.na(Max_Geomean) & num.above.std == 1, "Cat3B", 
+                                       if_else((!is.na(Max_Geomean) &  Max_Geomean > Geomean_Crit) |
+                                                (num.samples >=5 & num.above.std >= 1) |
+                                                (num.above.std > 2 ), "Cat5", 
+                                              if_else(!is.na(Max_Geomean) & Max_Geomean < 126 & num.above.std == 0, "Cat2", "ERROR" ))))
+             )
+  
                          
   print("Finish freshwater contact rec analysis") 
   return(fresh_contact_summary)
