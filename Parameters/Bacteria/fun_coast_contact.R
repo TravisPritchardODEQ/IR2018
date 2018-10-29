@@ -110,6 +110,25 @@ Coastal_Contact_rec <- function(df){
            less_5 = as.numeric(less_5))
   
   
+  # Data review -------------------------------------------------------------
+  
+  
+  # Get list of unique basins in dataset. Used for generating data for review
+  basins <- unique(Coastal_analysis$OWRD_Basin) 
+  
+  
+  # Loop through data, and filter by OWRD basin, write csv file of all data in that basin
+  for(i in 1:length(basins)){
+    
+    Basin <- basins[i]
+    
+    bacteria_coast_analysis_by_basin <-  Coastal_analysis %>%
+      filter(OWRD_Basin == Basin)
+    
+    write.csv(bacteria_coast_analysis_by_basin, paste0("Parameters/Bacteria/Data Review/Coast_Contact_IR_data_",Basin,".csv"))
+    
+  }  
+  
   
   # do the conparisons listed in methodology
   Coastal_AU_summary <-  Coastal_analysis %>%
