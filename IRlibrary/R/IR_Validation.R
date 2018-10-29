@@ -45,7 +45,8 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
    write.xlsx(data2review, paste0("Parameters/Invalid_data/Invalid-", parameter, ".xlsx"))
    
    Valid_AUs <- Res_validation %>%
-     filter(!(AU_ID %in% invalid_AUs)) 
+     filter(!(AU_ID %in% invalid_AUs)) %>%
+     select(-Au_valid_count, -AU_total_count, -perc_valid)
   
   return(Valid_AUs)
 }
