@@ -3,10 +3,10 @@ require(RODBC)
 library(tidyverse)
 library(IRlibrary)
 
-#Still need to figure out censored data piece
 
 
-Temp_data <- function(database) {
+
+chla_data <- function(database) {
   print("Fetch Chl data from IR database")
   #connect to IR database view as a general user
   # import Temperature data
