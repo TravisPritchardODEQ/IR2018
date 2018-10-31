@@ -25,29 +25,20 @@ chla_mo_avg <- chla_data %>%
 # Figure out where we have 3 consecutive monthly averages -----------------
 
 
-library(data.table)
-chla_data_table <-  data.table(chla_mo_avg) 
-
-# re order
-chla_data_table <- setkey(chla_data_table[order(monthfromstart)], AU_ID)
-
-# compute diffs
-chla_data_table[, diffs := c(0, diff(monthfromstart)), by=AU_ID]
-
-
-## We will use cumsum.  Anything greater than 1, should be reset to 0
-chla_data_table[diffs > 1, diffs := 9999]
-
-
-# Reset as dataframe
-chla_data_table <- as.data.frame(chla_data_table)
+chla_consec_mon <- chla_mo_avg %>%
+  group_by(AU_ID, Chla_Criteria) %>%
+  arrange(AU_ID, monthfromstart, Chla_Criteria) %>%
+  #calculate difference in months from previous result
+  mutate(diffs = c(0, diff(monthfromstart)))#%>%
+  #mutate(diffs = ifelse(diffs > 1, 9999, 1 ))
 
 
 
 
-chla_avgs <- chla_data_table %>%
-  mutate(consecutive3 = ifelse((lag(diffs , 2) != 9999) & (lag(diffs , 1) != 9999)  & diffs!= 9999, 1, 0 ) ) %>%
-  group_by(AU_ID) %>%
+
+chla_avgs <- chla_consec_mon %>%
+  mutate(consecutive3 = ifelse((lag(diffs , 1) == 1)  & diffs == 1, 1, 0 ) ) %>%
+  group_by(AU_ID, Chla_Criteria) %>%
   mutate(avg.3.mo = ifelse(consecutive3 == 1, rollmean(monthaverage,
                                                        3,
                                                        align = 'right',
@@ -56,7 +47,8 @@ chla_avgs <- chla_data_table %>%
 
 chla_data_analysis <-  chla_data %>%
   left_join(chla_avgs, by = c("AU_ID", "monthfromstart", "Chla_Criteria", "OWRD_Basin", "ChrName")) %>%
-  select(-diffs, -consecutive3)
+  select(-diffs, -consecutive3) %>%
+  arrange(AU_ID, monthfromstart)
 
 
 
