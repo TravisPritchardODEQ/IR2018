@@ -34,8 +34,8 @@ HH_tox_data <- function(database) {
   # if the ben-use code includes public or private water supply, select WaterOrganism
   # if ben-use does not include  public or private water supply, but does have fishing,  select Organism
   # if the characteristic has a salt water specific criteria, and the Water body code inidates salt water, 
-  # and there is no drkinging water, select Organism_SW 
-  Results_import_with_crit <-  Results_import %>%
+  # and there is no drinking water, select Organism_SW 
+  Results_import_crit <-  Results_import %>%
     mutate(crit = ifelse(ben_use_code %in% c('2','4','5','10','11','12', '16', '88'), WaterOrganism, 
                          ifelse(ben_use_code %in% c('1','3','6','7','8','9','13', '14', '15'), Organism, NA )),
            crit = ifelse(WaterBodyCode %in% c('1','3','4') & 
@@ -47,7 +47,7 @@ HH_tox_data <- function(database) {
   print("Modify censored data")
   
   #run the censored data function to set censored data. This will use the lowest crit value from above
-  Results_censored <- Censored_data(Results_import_with_crit, crit = `crit` ) %>%
+  Results_censored <- Censored_data(Results_import_crit, crit = `crit` ) %>%
     mutate(Result_cen = as.numeric(Result_cen))
   
   print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
