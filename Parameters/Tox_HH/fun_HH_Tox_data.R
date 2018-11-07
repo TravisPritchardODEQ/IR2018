@@ -55,6 +55,12 @@ HH_tox_data <- function(database) {
   Results_censored <- Results_censored %>%
     filter(!is.na(Result_cen))
   
+  print(paste("Removing", sum(is.na(Results_censored$crit)), "Results with no criteria"))
+  
+  Results_censored <- Results_censored %>%
+    filter(!is.na(crit))
+  
+  
   print("Data fetch and censored data modifications complete")
 
 return(Results_censored)
