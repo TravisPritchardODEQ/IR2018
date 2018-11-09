@@ -84,6 +84,11 @@ write.csv(air_temp_90_percentile,"//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAsses
 data_explore <- oregon_temp_data %>%
   filter(NAME == "BANDON 2 NNE, OR US")
 
+
+air_temp_90 <- air_temp_90_percentile %>%
+  select(STATION, per90)
+
+
 data_explore <- oregon_temp_data %>%
   mutate(DATE = mdy(DATE),
          YEAR = year(DATE),
@@ -96,10 +101,33 @@ data_explore <- oregon_temp_data %>%
   mutate(startdate7 = lag(DATE, 6, order_by = DATE),
          calc7ma = ifelse(startdate7 == (as.Date(DATE) - 6), 1, 0 )) %>%
   mutate(ma.max7 = ifelse(calc7ma == 1 ,round(rollmean(x = TMAX, 7, align = "right", fill = NA),0) , NA )) %>%
-  filter(STATION == 'USC00350471')
+  gather(key = "Type", value = "Value", TMAX, ma.max7) %>%
+  left_join(air_temp_90, by = "STATION")
+ 
+  
 
-ggplot()+
-  geom_density(data = data_explore, aes(x = TMAX,), fill = "goldenrod",alpha = 0.7) +
-  geom_density(data = data_explore, aes(x= ma.max7,), fill = "steelblue", alpha = 0.7)+
-  geom_vline(xintercept = 74)+
-  coord_flip()
+for(i in 1:length(unique(data_explore$STATION))){
+  
+  stat <- unique(data_explore$STATION)[i]
+  nm <- unique(data_explore$NAME)[i]
+  
+  data_graph <- data_explore %>%
+    filter(STATION == stat)
+  
+  per <- data_graph$per90[1]
+  
+  g <- ggplot()+
+    geom_density(data = data_graph, aes(x = Value, fill = Type), alpha = 0.7) +
+    geom_vline(xintercept = per)+
+    xlab("Temperature")+
+    theme_bw()+
+    scale_fill_discrete(labels = c("7DADmax", "Daily Max")) +
+    scale_fill_manual(values = c("#E69F00", "#999999"))+
+    ggtitle(paste(stat, " - ", nm), subtitle = ("Air Temp" ))
+  
+  
+  ggsave(paste0("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air Temperature/graphs/",stat,".png"), g, device = "png")
+  
+}    
+
+
