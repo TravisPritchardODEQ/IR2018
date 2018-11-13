@@ -10,6 +10,8 @@ filepath <- "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air T
 # Only include .csv files
 in_fnames <- list.files(filepath, full.names = TRUE)
 in_fnames <- in_fnames[grep(".csv", in_fnames)]
+in_fnames <- in_fnames[!grepl("90", in_fnames)]
+in_fnames <- in_fnames[!grepl("yearly", in_fnames)]
 
 # Create list to get data out of loop
 data_list <- list()
@@ -59,7 +61,7 @@ air_temp_calcs <- oregon_temp_data %>%
   group_by(STATION) %>%
   mutate(num.years = n())
 
-write.csv(air_temp_calcs,"//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air Temperature/yearly_max_7dmax.csv" )
+#write.csv(air_temp_calcs,"//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air Temperature/yearly_max_7dmax.csv" )
 
 air_temp_90_percentile <- air_temp_calcs %>%
   group_by(STATION) %>%
@@ -74,7 +76,7 @@ air_temp_90_percentile <- air_temp_calcs %>%
             ) 
 
 
-write.csv(air_temp_90_percentile,"//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air Temperature/90thpercentilevalues.csv", row.names = FALSE )
+#write.csv(air_temp_90_percentile,"//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air Temperature/90thpercentilevalues.csv", row.names = FALSE )
 
 
 
@@ -116,13 +118,21 @@ for(i in 1:length(unique(data_explore$STATION))){
   
   per <- data_graph$per90[1]
   
+  yr.max.ma.max7 <- air_temp_calcs %>%
+    filter(STATION == stat) %>%
+    select(STATION, YEAR, max.ma.max7)
+  
+  
   g <- ggplot()+
     geom_density(data = data_graph, aes(x = Value, fill = Type), alpha = 0.7) +
+    geom_point(data = yr.max.ma.max7, aes(x = max.ma.max7, y = 0, size = ""), alpha = 0.8, color = "steelblue4") +
     geom_vline(xintercept = per)+
     xlab("Temperature")+
     theme_bw()+
-    scale_fill_discrete(labels = c("7DADmax", "Daily Max")) +
-    scale_fill_manual(values = c("#E69F00", "#999999"))+
+    #scale_fill_discrete(labels = c("7 Day Avg Max", "Daily Max")) +
+    scale_fill_manual(labels = c("7 Day Avg Max", "Daily Max"), values = c("#E69F00", "#999999"), guide= guide_legend(override.aes = list(shape = NA))) +
+    guides(size=guide_legend(title="Yearly maximum 7 day average", order = 2),
+           fill = guide_legend(title="Temperature Metric", order = 1)) +
     ggtitle(paste(stat, " - ", nm), subtitle = ("Air Temp" ))
   
   
