@@ -128,12 +128,13 @@ for(i in 1:length(unique(data_explore$STATION))){
     geom_point(data = yr.max.ma.max7, aes(x = max.ma.max7, y = 0, size = ""), alpha = 0.8, color = "steelblue4") +
     geom_vline(xintercept = per)+
     xlab("Temperature")+
-    theme_bw()+
+    theme_classic()+
     #scale_fill_discrete(labels = c("7 Day Avg Max", "Daily Max")) +
     scale_fill_manual(labels = c("7 Day Avg Max", "Daily Max"), values = c("#E69F00", "#999999"), guide= guide_legend(override.aes = list(shape = NA))) +
     guides(size=guide_legend(title="Yearly maximum 7 day average", order = 2),
            fill = guide_legend(title="Temperature Metric", order = 1)) +
-    ggtitle(paste(stat, " - ", nm), subtitle = ("Air Temp" ))
+    ggtitle(paste(stat, " - ", nm), subtitle = ("Air Temp" )) +
+    theme(legend.title = element_text(size=8))
   
   
   ggsave(paste0("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Data Call/Air Temperature/graphs/",stat,".png"), g, device = "png")
