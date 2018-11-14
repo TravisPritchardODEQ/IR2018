@@ -14,16 +14,14 @@ tox_HH_categories <- tox_HH_assesment %>%
   group_by(AU_ID, Pollutant, SampleFractName,Crit_Fraction) %>%
   summarise(crit = max(crit),
             num_samples = n(),
-            num_violation = sum(violation),
+            num_violations = sum(violation),
             geomean = geo_mean(Result_cen)) %>%
   ungroup() %>%
   group_by(AU_ID, Pollutant) %>%
   mutate(num_fraction_types =  n(),
-         critical_num = excursions_conv(num_samples),
-         IR_category = ifelse(num_violation >= critical_num, "Cat5 (Binomial)", 
-                              ifelse(num_samples >= 3 & geomean >= crit, "Cat5 (Geomean)", 
-                                     ifelse(num_samples < 3 & num_violation >= 1, "Cat3B", 
-                                            ifelse(num_samples < 3 & num_violation == 0, "Cat3", "Cat2" ))))) %>%
+         IR_category = ifelse(num_samples >= 3 & geomean >= crit, "Cat5", 
+                                     ifelse(num_samples < 3 & num_violations >= 1, "Cat3B", 
+                                            ifelse(num_samples < 3 & num_violations == 0, "Cat3", "Cat2" )))) %>%
   arrange(AU_ID, Pollutant)
  
 #write tablehere
