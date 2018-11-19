@@ -37,6 +37,7 @@ chla_consec_mon <- chla_mo_avg %>%
 
 
 chla_avgs <- chla_consec_mon %>%
+  # flag if there are two consecutive diffs = 1, which indicates 3 consecutive months
   mutate(consecutive3 = ifelse((lag(diffs , 1) == 1)  & diffs == 1, 1, 0 ) ) %>%
   group_by(AU_ID, Chla_Criteria) %>%
   mutate(avg.3.mo = ifelse(consecutive3 == 1, rollmean(monthaverage,
