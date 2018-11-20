@@ -1,9 +1,9 @@
 library(lubridate)
 
-#fun_Tox_HH_analysis <- function(df){} 
+fun_Tox_HH_analysis <- function(df){ 
 
 
-tox_HH_assesment <- Results_censored_tox_HH %>%
+tox_HH_assesment <- df %>%
   mutate(violation = ifelse(Result_cen > crit, 1, 0 )) 
 
 
@@ -25,7 +25,7 @@ tox_HH_categories <- tox_HH_assesment %>%
   arrange(AU_ID, Pollutant)
  
 #write tablehere
-
+}
 
 # To do - 
 #Figure out fractions piece
