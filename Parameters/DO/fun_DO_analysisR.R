@@ -95,6 +95,8 @@ instant_data_categories <- instant_data_analysis %>%
                                                 ifelse(num_critical_samples >= 10 &
                                                          num_below_crit <= critical_excursions, "Cat 2", "ERROR" ))))))
 
+
+# Data to be used to check percent saturation
 inst_perc_sat_check <- instant_data_analysis %>%
   filter(AU_ID %in% unique(subset(instant_data_categories, category == "Check percent Sat" )$AU_ID) ) 
   
