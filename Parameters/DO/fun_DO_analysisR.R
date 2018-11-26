@@ -28,7 +28,9 @@ results_cont_summary <- Results_spawndates %>%
          !is.na(AU_ID))
 
 
-# initial contiuous criteria analysis
+
+# Continuous criteria analysis --------------------------------------------
+
 # filter down to AUs that are to be evaluated with cont metrics
 # Filter down to only 30-D, 7-Mi, and daily minimums
 # Flag various violations
@@ -62,8 +64,37 @@ continuous_data_categories <- continuous_data_analysis %>%
 
 
 # Data to be used to check percent saturation
-perc_sat_check <- continuous_data_analysis %>%
+cont_perc_sat_check <- continuous_data_analysis %>%
   filter(AU_ID %in% unique(subset(continuous_data_categories, category == "Check percent Sat" )$AU_ID) )
   
   
+
+# Insantaneous metrics ----------------------------------------------------
+
+instant_data_analysis <- Results_spawndates %>%
+  filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
+  filter(ResultBasesName %in% c("Minimum", NA)) %>%
+  mutate(Violation_crit = ifelse(Result4IR < crit_30D, 1, 0 ))
+
+instant_data_categories <- instant_data_analysis %>%
+  group_by(AU_ID, DO_Class) %>%
+  summarise(num_samples = n(),
+            num_critical_samples = sum(is.crit),
+            num_below_crit = sum(Violation_crit)) %>%
+  mutate(critical_excursions = excursions_conv(num_samples)) %>%
+  mutate(category = ifelse(num_critical_samples < 10 & 
+                             num_below_crit > 0, "Cat 3B", 
+                           ifelse(num_critical_samples < 10 & 
+                                    num_below_crit == 0, "Cat 3", 
+                                  ifelse(num_critical_samples >= 10 &
+                                           num_below_crit > critical_excursions &
+                                           DO_Class != "Cold Water", "Cat 5", 
+                                         ifelse(num_critical_samples >= 10 &
+                                                   num_below_crit > critical_excursions &
+                                                   DO_Class == "Cold Water", "Check percent Sat",
+                                                ifelse(num_critical_samples >= 10 &
+                                                         num_below_crit <= critical_excursions, "Cat 2", "ERROR" ))))))
+
+inst_perc_sat_check <- instant_data_analysis %>%
+  filter(AU_ID %in% unique(subset(instant_data_categories, category == "Check percent Sat" )$AU_ID) ) 
   
