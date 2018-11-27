@@ -1,3 +1,7 @@
+
+DO_spawning_analysis <- function(df){
+
+
 library(lubridate)
 library(odbc)
 library(glue)
@@ -15,7 +19,7 @@ library(zoo)
 
 # add spawn start and end dates as dates, include indicator if actdate is within spawn
 # add critical period start and end dates, include indicator is actdate is within critperiod
-Results_spawndates <- Results_censored_DO %>%
+Results_spawndates <- df %>%
   mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(ActStartD) ), SpawnStart ),
          SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(ActStartD)), SpawnEnd ),
          SpawnStart = mdy(SpawnStart),
@@ -109,13 +113,14 @@ cont_spawn_Do_analysis <- spawn_DO_data %>%
   mutate(Violation = ifelse(Do_7D < 11.0 &
                               dosat_mean7 < 95.0, 1, 0 ))
 
-#write table here
+write.csv(cont_spawn_Do_analysis, file = "Parameters/DO/Data Review/Spawning_Continuous_data_analysis.csv", row.names = FALSE)
 
 cont_spawn_DO_categories <- cont_spawn_Do_analysis %>%
   group_by(AU_ID) %>%
   summarise(num_valid_samples = sum(!is.na(Violation)),
             num_violations = sum(Violation, na.rm = TRUE),
-            category = ifelse(num_violations >= 2, "Cat 5", "Cat 2" ))
+            category = ifelse(num_violations >= 2, "Cat 5", "Cat 2" )) %>%
+  mutate(type = "Spawning continuous")
 
 #write table here
 
@@ -174,6 +179,8 @@ instant_DO_sat <- instant_perc_sat_DO %>%
 instant_DO_sat_analysis <- instant_DO_sat %>%
   mutate(Violation = ifelse(DO_res < 11.0 & DO_sat < 95.0, 1, 0 ))
 
+write.csv(instant_DO_sat_analysis, file = "Parameters/DO/Data Review/Spawning_instantaneous_data_analysis.csv", row.names = FALSE)
+
 instant_DO_sat_categories <- instant_DO_sat_analysis %>%
   group_by(AU_ID) %>%
   summarise(num_samples = n(),
@@ -185,7 +192,13 @@ instant_DO_sat_categories <- instant_DO_sat_analysis %>%
                                     num_Violations > 0, "Cat 3B", 
                                   ifelse(num_samples > 10 & num_Violations > critical_excursions, "Cat 5", 
                                          ifelse(num_samples > 10 & num_Violations <= critical_excursions, "Cat 2", 
-                                                "ERROR")))))
+                                                "ERROR"))))) %>%
+  mutate(type = "Spawning instant")
+
+# Write table here
 
 
+return(list(cont_spawn_DO_categories,instant_DO_sat_categories ))
+
+}
 
