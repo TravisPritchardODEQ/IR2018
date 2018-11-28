@@ -1,12 +1,12 @@
 ### Assess biocriteria using % taxa loss from the PREDATOR model 
 
+BioCriteria_Assement <- function(df){
 
-biodata <- biodata %>% 
-  filter(Qualifier == "DQL=A") %>%
-  filter(ID == "% Taxa Loss")
+bio_A <- df %>% 
+  filter(Qualifier == "DQL=A")
 
-MWCF_AU_sum = biodata %>%
-  filter(Eco2 == "MWCF") %>%
+MWCF_AU_sum = bio_A %>%
+  filter(EcoRegion2 == "MARINE WEST COAST FOREST") %>%
   group_by(AU_ID) %>%
   summarise(num_Samples = n(),
             n_over20PTL = sum(Score >= 20),
@@ -18,8 +18,8 @@ MWCF_AU_sum = biodata %>%
                                 ifelse(n_9to14PTL >= 1,"Cat3C",
                                        ifelse(n_less8PTL >= 1,"Cat2","")))))
 
-WC_AU_sum = biodata %>%
-  filter(Eco2 == "WC"|Eco2 == "COLD DESERTS") %>%
+WC_AU_sum = bio_A %>%
+  filter(EcoRegion2 == "WESTERN CORDILLERA"|EcoRegion2 == "COLD DESERTS") %>%
   group_by(AU_ID) %>%
   summarise(num_Samples = n(),
             n_over27PTL = sum(Score >= 27),
@@ -31,7 +31,11 @@ WC_AU_sum = biodata %>%
                                 ifelse(n_8to21PTL >=1,"Cat3C",
                                        ifelse(n_less7PTL >=1,"Cat2","")))))
 
-biodata 
+bio_E <- df %>% 
+  filter(Qualifier == "DQL=E") %>%
+  group_by(AU_ID) %>%
+  summarise(num_Samples = n()) %>%
+  mutate(IR_Cat = "Cat3B")     }  
 
 
 
