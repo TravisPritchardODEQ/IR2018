@@ -31,6 +31,8 @@ WC_AU_sum = biodata %>%
                                 ifelse(n_8to21PTL >=1,"Cat3C",
                                        ifelse(n_less7PTL >=1,"Cat2","")))))
 
+biodata 
+
 
 
 
