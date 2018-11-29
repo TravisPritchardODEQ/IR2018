@@ -1,9 +1,17 @@
 
 DO_year_round_analysis <- function(df){
+  
+  library(lubridate)
+  library(odbc)
+  library(glue)
+  library(DBI)
+  library(zoo)
+  library(IRlibrary)
+  
 
-library(lubridate)
+print("Beginning year round analysis")
 
-
+print("Beginning continuous analysis")
 
 # Year round --------------------------------------------------------------
 
@@ -32,7 +40,12 @@ results_cont_summary <- Results_spawndates %>%
 
 
 
-# Continuous criteria analysis --------------------------------------------
+# Initial Continuous criteria analysis --------------------------------------------
+
+# This initial analysis is used to see where we need to calculate DO Sat 
+# Calculating the 30DADMean DO SAt is computationally expensive
+# so we only calculate it at locations where it woudl influnce the
+# IR category
 
 # filter down to AUs that are to be evaluated with cont metrics
 # Filter down to only 30-D, 7-Mi, and daily minimums
@@ -45,7 +58,9 @@ continuous_data_analysis <- Results_spawndates %>%
                                    ifelse(ResultBasesName == "Minimum" & Result4IR < crit_Min, 1, 0 )))) 
 
 
-
+# Run through initial categorization
+# This all gets redone in the end
+# Where percent saturation would make a difference, set category as "Check percent Sat"
 continuous_data_categories <- continuous_data_analysis %>%
   group_by(AU_ID, DO_Class) %>%
   summarise(Total_violations = sum(Violation),
@@ -68,17 +83,20 @@ continuous_data_categories <- continuous_data_analysis %>%
                                                   Sum_abs_min_violations < 2, "Cat 2", "Error" )))))
 
 
-# Data to be used to check percent saturation
+# Datatable of results that need percent saturation
 cont_perc_sat_check <- continuous_data_analysis %>%
   filter(AU_ID %in% unique(subset(continuous_data_categories, category == "Check percent Sat" )$AU_ID) )
 
+# List of monitoring locations that need OD sat 
+# This list is used for the sql query that follows
 continuous_mon_locs <- unique(cont_perc_sat_check$MLocID)
 
 
 # Get data from database --------------------------------------------------
 
+print("querying the IR database to get data for DO sat calculations ")
 
-# Get DO and temp data from IR_database to calculate percent sat --------
+# Get DO IR_database to calculate percent sat --------
 
 Doqry <- "SELECT * 
 FROM            VW_DO
@@ -90,6 +108,8 @@ Doqry <- glue::glue_sql(Doqry, .con = con)
 
 perc_sat_DO <- DBI::dbGetQuery(con, Doqry)
 
+#Get temperature data from database
+
 tempqry <- "SELECT * 
 FROM            VW_Temp_4_DO
 WHERE        (ResultBasesName = 'Mean') AND MLocID in ({continuous_mon_locs*})"
@@ -98,17 +118,21 @@ tempqry <- glue::glue_sql(tempqry, .con = con)
 
 perc_sat_temp <-  DBI::dbGetQuery(con, tempqry)
 
+# Disconnect from database
 DBI::dbDisconnect(con)
 
+print("Finished database query")
 
 
 # Join --------------------------------------------------------------------
 
-
+# Pare down table to be used in join
 perc_sat_temp_join <- perc_sat_temp %>%
   select(MLocID, Result4IR, ActStartD, ActStartT, ResultBasesName) %>%
   rename(Temp_res = Result4IR)
 
+# Rename the result to DO_res and join with the temperature
+# Calculate DOsat
 DO_sat <- perc_sat_DO %>%
   rename(DO_res =  Result4IR) %>%
   left_join(perc_sat_temp_join, by = c('MLocID', 'ActStartD', 'ActStartT', 'ResultBasesName')) %>%
@@ -117,15 +141,19 @@ DO_sat <- perc_sat_DO %>%
 
 # calculate 30-D averages
 
-#Set loop for each monitoring location
 
-#prep list
+
+#Create list that will be used to get data out of the loop
 monloc_do_list <- list()
+
+#Set loop for each monitoring location
+print("Beginning DO sat Calculations")
 
 for(i in 1:length(unique(DO_sat$MLocID))){
   
   print(paste("Station", i, "of", length(unique(DO_sat$MLocID))))
   
+  #Name of station be be used in this loop iteration
   station = unique(DO_sat$MLocID)[i]
   
   #Filter dataset to only look at 1 monitoring location at a time
@@ -134,21 +162,32 @@ for(i in 1:length(unique(DO_sat$MLocID))){
     mutate(startdate30 = as.Date(ActStartD) -30) %>%
     arrange(ActStartD)
   
- # Begin 30-d moving averages
+ # Begin 30-d moving averages loop
    print("Begin 30 day moving averages" )
   pb <- txtProgressBar(min = 0, max = nrow(daydat_station), style = 3)
+  
   for(l in 1:nrow(daydat_station)){
     
-    
+    #Beginning of 30 day window
     start30 <- daydat_station$startdate30[l]
+    # End of 30 day window
     end30 <- daydat_station$ActStartD[l] 
     
+    
+    # For each row in table, crate a new datatable for taht row plus all
+    # Results that are in the 30 day window
     station_30day <- daydat_station %>%
       filter(ActStartD <= end30 & ActStartD >= start30) 
     
+    
+    # If there are at least 29 values in the 30 day window
+    # Calculate the average DO-Sat
+    # Otherwise use NA
     ma.mean30 <- ifelse(length(unique(station_30day$ActStartD)) >= 29, mean(station_30day$DO_sat), NA )
     
     
+    # Pass the 30-d DO Sat vaule back into the single monitoring location table
+    # the l >+ 30 prevents the 29th day being used. 
     daydat_station[l,"ma.DOS.mean30"] <- ifelse(l >= 30, round(ma.mean30, 2), NA)
     setTxtProgressBar(pb, l)
   } #end of 30day loop
@@ -158,6 +197,7 @@ for(i in 1:length(unique(DO_sat$MLocID))){
   
 }
 
+print("Finished DO Sat Calculations")
   
 # Bind rows to get DO_sat averages
 
@@ -165,23 +205,36 @@ DO_sat_avgs <-  bind_rows(monloc_do_list)
 
 
 # Join DOsat to 30_D metrics -----------------------------------------------
+
+# Add ResultBasesName to the DO Sat table
+# Create Date field to be used for the join
+# The Activity start dates were slighly different causing problems
+# (1/1/1900 vs 1/1/1900 00:00)
 DO_sat_join <- DO_sat_avgs %>%
   mutate(ResultBasesName = "30DADMean",
          Date = as.Date(ActStartD)) %>%
   select(MLocID, ma.DOS.mean30, Date,ResultBasesName) 
 
 
+# Join DO Sat back into the original data table and recalculate violations
 yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
   mutate(Date = as.Date(ActStartD)) %>%
   left_join(DO_sat_join, by = c('MLocID', 'Date', 'ResultBasesName')) %>%
-  mutate(Violation = ifelse(DO_Class == "Cold Water"& ResultBasesName == "30DADMean" & Result4IR < crit_30D & ma.DOS.mean30 < 90, 1,
+  mutate(Violation = ifelse(DO_Class == "Cold Water"& 
+                              ResultBasesName == "30DADMean" & 
+                              Result4IR < crit_30D & 
+                              (ma.DOS.mean30 < 90 | is.na(ma.DOS.mean30)), 1,
                             ifelse(DO_Class != "Cold Water"& ResultBasesName == "30DADMean" & Result4IR < crit_30D, 1, 
                               ifelse(ResultBasesName == "7DADMin" & Result4IR < crit_7Mi, 1, 
                                    ifelse(ResultBasesName == "Minimum" & Result4IR < crit_Min, 1, 0 ))))) 
 
+
+# Write this table to a file to be used for the data review  
 write.csv(yr_round_cont_DO_data_analysis, file = "Parameters/DO/Data Review/yearround_continuous_data_analysis.csv", row.names = FALSE)
 
 
+# Summarise data and 
+# Set the categories basedon flow charts
 yr_round_cont_data_categories <- continuous_data_analysis %>%
   group_by(AU_ID, DO_Class) %>%
   summarise(Total_violations = sum(Violation),
@@ -200,11 +253,25 @@ yr_round_cont_data_categories <- continuous_data_analysis %>%
 
 # Insantaneous metrics ----------------------------------------------------
 
+# Analyze year round criteria using instantaneous metrics
+print("Beginning instantaneous analysis")
+
+
+# Begin preliminary analysis
+
+# Create data table of data needed to use instant metrics
+# Au's not found in results_cont_summary$AU_ID
+# ResultBases Name of Minimum (to use cont data as instant)
+# and NA which indicates grab data. 
+# set preliminary violations based on results < 30D criteria
 instant_data_analysis <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
   filter(ResultBasesName %in% c("Minimum", NA)) %>%
   mutate(Violation_crit = ifelse(Result4IR < crit_30D, 1, 0 ))
 
+
+# assign initial categories
+# Where percent saturation would make a difference, set category as "Check percent Sat"
 instant_data_categories <- instant_data_analysis %>%
   group_by(AU_ID, DO_Class) %>%
   summarise(num_samples = n(),
@@ -229,14 +296,18 @@ instant_data_categories <- instant_data_analysis %>%
 inst_perc_sat_check <- instant_data_analysis %>%
   filter(AU_ID %in% unique(subset(instant_data_categories, category == "Check percent Sat" )$AU_ID) ) 
 
+# vector of monitoring locations to check DO saturdation. Used for database query
 instant_mon_locs <- unique(inst_perc_sat_check$MLocID)
   
 
 # Get data from database --------------------------------------------------
 
 
+print("querying the IR database to get data for DO sat calculations ")
+
 # Get DO and temp data from IR_database to calculate percent sat --------
 
+# query DO data using instant_mon_locs as a monitoring location filter
 Doqry <- "SELECT * 
 FROM            VW_DO
 WHERE        ((ResultBasesName = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((ResultBasesName IS NULL) AND MLocID in ({instant_mon_locs*}))"
@@ -246,6 +317,8 @@ con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 Doqry <- glue::glue_sql(Doqry, .con = con)
 
 instant_perc_sat_DO <- DBI::dbGetQuery(con, Doqry)
+
+# query temp data using instant_mon_locs as a monitoring location filter
 
 tempqry <- "SELECT * 
 FROM            VW_Temp_4_DO
@@ -257,8 +330,9 @@ instant_perc_sat_temp <-  DBI::dbGetQuery(con, tempqry)
 
 DBI::dbDisconnect(con)
 
-#Join
+print("Finished database query")
 
+#Join toables together
 
 # Pare down temp table to be used for joining
 instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
@@ -275,20 +349,23 @@ instant_DO_sat <- instant_perc_sat_DO %>%
   mutate(ActDepth = as.numeric(ActDepth))
 
 
-#Join back in
-
+#Join back in and recalculate violations
+# if do sat could not be calculated, then violation if Result4IR < 30D criteria
 Instant_data_analysis_DOS <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
   filter(ResultBasesName %in% c("Minimum", NA)) %>%
   left_join(instant_DO_sat, by = c('MLocID', 'ActStartD', 'ActStartT', 'ResultBasesName', 'ActDepth')) %>%
   mutate(Violation = ifelse(DO_Class == "Cold Water" & 
-                              Result4IR < crit_30D &
-                              DO_sat < 90.0, 1, 
+                              Result4IR < crit_30D & 
+                              (DO_sat < 90.0 | is.na(DO_sat) ), 1, 
                             ifelse(DO_Class != "Cold Water" & 
                                      Result4IR < crit_30D, 1, 0))  )
 
+# Write table to be used for data review
 write.csv(Instant_data_analysis_DOS, file = "Parameters/DO/Data Review/yearround_instantaneous_data_analysis.csv", row.names = FALSE)
 
+
+# Reassign categories based on flow charts
 yr_round_instant_categories <- Instant_data_analysis_DOS %>%
   group_by(AU_ID, DO_Class) %>%
   summarise(num_samples = n(),
@@ -304,6 +381,12 @@ yr_round_instant_categories <- Instant_data_analysis_DOS %>%
                                                  ifelse(num_critical_samples >= 10 &
                                                          num_below_crit <= critical_excursions, "Cat 2", "ERROR" )))))
 
+print("Year round analysis finished")
+
+
+# Since functions cannot return two items, we stick the 
+# Continuous and instant data tables into a list
+# and we will seperate them outside of the function
 return(list(yr_round_cont_data_categories,yr_round_instant_categories ))
 
 }
