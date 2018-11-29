@@ -2,7 +2,7 @@
 
 BioCriteria_Assement <- function(df){
 
-bio_A <- df %>% 
+bio_A <- BioCriteria %>% 
   filter(Qualifier == "DQL=A")
 
 MWCF_AU_sum = bio_A %>%
@@ -31,12 +31,14 @@ WC_AU_sum = bio_A %>%
                                 ifelse(n_8to21PTL >=1,"Cat3C",
                                        ifelse(n_less7PTL >=1,"Cat2","")))))
 
-bio_E <- df %>% 
+bio_E <- BioCriteria %>% 
   filter(Qualifier == "DQL=E") %>%
   group_by(AU_ID) %>%
   summarise(num_Samples = n()) %>%
-  mutate(IR_Cat = "Cat3B")     }  
+  mutate(IR_Cat = "Cat3")       
 
 
-
-
+write.csv(MWCF_AU_sum,"MWCF_AU_sum.csv")
+write.csv(WC_AU_sum,"WC_AU_sum.csv")
+write.csv(bio_E,"Cat3_AU_sum.csv")
+write.csv(BioCriteria,"Bio_Data.csv")
