@@ -336,17 +336,21 @@ print("Finished database query")
 
 # Pare down temp table to be used for joining
 instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
-  select(MLocID, Statistical_Base, IRResultNWQSunit, SampleStartDate, SampleStartTime, ActDepth) %>%
+  select(MLocID, Statistical_Base, IRResultNWQSunit, SampleStartDate, SampleStartTime, act_depth_height
+) %>%
   rename(Temp_res = IRResultNWQSunit)
 
 
 # Join DO and temp tables and calculate DO-Sat
 instant_DO_sat <- instant_perc_sat_DO %>%
   rename(DO_res =  IRResultNWQSunit) %>%
-  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'ActDepth')) %>%
+  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height
+')) %>%
   mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft ))  %>%
-  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, ActDepth,DO_sat ) %>%
-  mutate(ActDepth = as.numeric(ActDepth))
+  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, act_depth_height
+,DO_sat ) %>%
+  mutate(ActDepth = as.numeric(act_depth_height
+))
 
 
 #Join back in and recalculate violations
@@ -354,7 +358,7 @@ instant_DO_sat <- instant_perc_sat_DO %>%
 Instant_data_analysis_DOS <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
   filter(Statistical_Base %in% c("Minimum", NA)) %>%
-  left_join(instant_DO_sat, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'ActDepth')) %>%
+  left_join(instant_DO_sat, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(Violation = ifelse(DO_Class == "Cold Water" & 
                               IRResultNWQSunit < crit_30D & 
                               (DO_sat < 90.0 | is.na(DO_sat) ), 1, 
@@ -392,3 +396,7 @@ return(list(yr_round_cont_data_categories,yr_round_instant_categories ))
 }
 
   
+
+# TO do
+
+# Bring in DO sat directly, only join calculated DOsats where DOsat is null after join with data query

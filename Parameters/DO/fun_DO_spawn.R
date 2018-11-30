@@ -210,7 +210,7 @@ DBI::dbDisconnect(con)
 
 # Pare down temp table to be used for joining
 instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
-  select(MLocID, ResultBasesName, IRResultNWQSunit, SampleStartDate, SampleStartTime, act_depth_height) %>%
+  select(MLocID, Statistical_Base, IRResultNWQSunit, SampleStartDate, SampleStartTime, act_depth_height) %>%
   rename(Temp_res = IRResultNWQSunit)
 
 
