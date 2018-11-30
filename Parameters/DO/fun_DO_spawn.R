@@ -20,12 +20,12 @@ library(IRlibrary)
 # add spawn start and end dates as dates, include indicator if actdate is within spawn
 # add critical period start and end dates, include indicator is actdate is within critperiod
 Results_spawndates <- df %>%
-  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(ActStartD) ), SpawnStart ),
-         SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(ActStartD)), SpawnEnd ),
+  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
+         SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
          SpawnStart = mdy(SpawnStart),
          SpawnEnd = mdy(SpawnEnd),
          SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
-         in_spawn = ifelse(ActStartD >= SpawnStart & ActStartD <= SpawnEnd & !is.na(SpawnStart), 1, 0 )) %>%
+         in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 )) %>%
   filter(in_spawn == 1, !is.na(AU_ID))
 
 
@@ -35,20 +35,20 @@ Results_spawndates <- df %>%
 
 #  get counts of number of results per ResultBasesName and AU_ID
 Results_spawndates_counts <- Results_spawndates %>%
-  group_by(AU_ID, ResultBasesName) %>%
+  group_by(AU_ID, Statistical_Base) %>%
   summarise(count = n())
 
 
 # Data table of results of 7DADMean with more than 15 values
 continuous_data_AUs <- Results_spawndates_counts %>%
-  filter(ResultBasesName == "7DADMean",
+  filter(Statistical_Base == "7DADMean",
          count >= 15)
 
 
 # This table is the table of data that will be used for evaulation
 continuous_data <- Results_spawndates %>%
   filter(AU_ID %in% unique(continuous_data_AUs$AU_ID),
-         ResultBasesName == "7DADMean" )
+         Statistical_Base == "7DADMean" )
 
 
 # These more the monitoring locations that have data that meets continuous metrics criteria
@@ -59,7 +59,7 @@ continuous_mon_locs <- unique(continuous_data$MLocID)
 # Query out the mean DO values from the indentified monitoring locations
 Doqry <- "SELECT * 
 FROM            VW_DO
-WHERE        (ResultBasesName = 'Mean') AND MLocID in ({continuous_mon_locs*})"
+WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
 
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
@@ -71,7 +71,7 @@ perc_sat_DO <- DBI::dbGetQuery(con, Doqry)
 # Query out the mean temp values from the indentified monitoring locations
 tempqry <- "SELECT * 
 FROM            VW_Temp_4_DO
-WHERE        (ResultBasesName = 'Mean') AND MLocID in ({continuous_mon_locs*})"
+WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
 
 tempqry <- glue::glue_sql(tempqry, .con = con)
 
@@ -85,8 +85,8 @@ DBI::dbDisconnect(con)
 
 # Pare down the temperature table to be used to join
 perc_sat_temp_join <- perc_sat_temp %>%
-  select(MLocID, Result4IR, ActStartD, ActStartT) %>%
-  rename(Temp_res = Result4IR)
+  select(MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime) %>%
+  rename(Temp_res = IRResultNWQSunit)
 
 
 # prep the imported DO table to be joined
@@ -94,8 +94,8 @@ perc_sat_temp_join <- perc_sat_temp %>%
 # Join the DO table to the pared down temperature table
 # Calculate DOSat
 DO_sat <- perc_sat_DO %>%
-  rename(DO_res =  Result4IR) %>%
-  left_join(perc_sat_temp_join, by = c('MLocID', 'ActStartD', 'ActStartT')) %>%
+  rename(DO_res =  IRResultNWQSunit) %>%
+  left_join(perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime')) %>%
   mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft ))
 
 
@@ -103,8 +103,8 @@ DO_sat <- perc_sat_DO %>%
 # create flag for which results have 7 days worth of data
 # calculate 7 day moving average of DO_Sat off of daily mean DO_Sat
 DO_sat_7dma <- DO_sat %>%
-  mutate(Date = as.Date(ActStartD)) %>%
-  arrange(MLocID, ActStartD) %>%
+  mutate(Date = as.Date(SampleStartDate)) %>%
+  arrange(MLocID, SampleStartDate) %>%
   group_by(MLocID) %>%
   mutate(startdate7 = lag(Date, 6, order_by = Date),
        # flag out which result gets a moving average calculated
@@ -122,8 +122,8 @@ DO_sat_join <- DO_sat_7dma %>%
 
 # Join DO_Sat values to the table that will be used for evaluation
 spawn_DO_data <- continuous_data %>%
-  mutate(Do_7D = Result4IR,
-         Date = as.Date(ActStartD)) %>%
+  mutate(Do_7D = IRResultNWQSunit,
+         Date = as.Date(SampleStartDate)) %>%
   left_join(DO_sat_join, by = c('MLocID', 'Date'))
 
 
@@ -170,8 +170,8 @@ cont_spawn_DO_categories <- cont_spawn_Do_analysis %>%
 # ResultBasesName thatare null, indicated grab samples
 instantaneous_data <- Results_spawndates %>%
   filter(!AU_ID %in% unique(continuous_data_AUs$AU_ID),
-         ResultBasesName == "Minimum" |
-           is.na(ResultBasesName) )
+         Statistical_Base == "Minimum" |
+           is.na(Statistical_Base) )
 
 
 # List of monitoring locations found in above data table, used to put together 
@@ -186,7 +186,7 @@ instant_mon_locs <- unique(instantaneous_data$MLocID)
 
 Doqry <- "SELECT * 
 FROM            VW_DO
-WHERE        ((ResultBasesName = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((ResultBasesName IS NULL) AND MLocID in ({instant_mon_locs*}))"
+WHERE        ((Statistical_Base = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((Statistical_Base IS NULL) AND MLocID in ({instant_mon_locs*}))"
 
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
@@ -199,7 +199,7 @@ instant_perc_sat_DO <- DBI::dbGetQuery(con, Doqry)
 
 tempqry <- "SELECT * 
 FROM            VW_Temp_4_DO
-WHERE        ((ResultBasesName = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((ResultBasesName IS NULL) AND MLocID in ({instant_mon_locs*}))"
+WHERE        ((Statistical_Base = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((Statistical_Base IS NULL) AND MLocID in ({instant_mon_locs*}))"
 
 tempqry <- glue::glue_sql(tempqry, .con = con)
 
@@ -210,14 +210,14 @@ DBI::dbDisconnect(con)
 
 # Pare down temp table to be used for joining
 instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
-  select(MLocID, ResultBasesName, Result4IR, ActStartD, ActStartT, ActDepth) %>%
-  rename(Temp_res = Result4IR)
+  select(MLocID, ResultBasesName, IRResultNWQSunit, SampleStartDate, SampleStartTime, act_depth_height) %>%
+  rename(Temp_res = IRResultNWQSunit)
 
 
 # Join DO and temp tables and calculate DO-Sat
 instant_DO_sat <- instant_perc_sat_DO %>%
-  rename(DO_res =  Result4IR) %>%
-  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'ActStartD', 'ActStartT', 'ResultBasesName', 'ActDepth')) %>%
+  rename(DO_res =  IRResultNWQSunit) %>%
+  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft )) 
 
 
