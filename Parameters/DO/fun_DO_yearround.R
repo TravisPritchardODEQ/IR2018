@@ -19,19 +19,19 @@ print("Beginning continuous analysis")
 # add spawn start and end dates as dates, include indicator if actdate is within spawn
 # add critical period start and end dates, include indicator is actdate is within critperiod
 Results_spawndates <- df %>%
-  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(ActStartD) ), SpawnStart ),
-         SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(ActStartD)), SpawnEnd ),
+  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
+         SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
          SpawnStart = mdy(SpawnStart),
          SpawnEnd = mdy(SpawnEnd),
          SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
-         in_spawn = ifelse(ActStartD >= SpawnStart & ActStartD <= SpawnEnd & !is.na(SpawnStart), 1, 0 ),
-         critstart = mdy(paste0("7/1/",year(ActStartD) )),
-         critend = mdy(paste0("9/30/",year(ActStartD) )),
-         is.crit = ifelse(ActStartD >= critstart & ActStartD <= critend, 1, 0 ))
+         in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 ),
+         critstart = mdy(paste0("7/1/",year(SampleStartDate) )),
+         critend = mdy(paste0("9/30/",year(SampleStartDate) )),
+         is.crit = ifelse(SampleStartDate >= critstart & SampleStartDate <= critend, 1, 0 ))
 
 # Summarize available data to get a list of AU's to be analyzed using cont. data
 results_cont_summary <- Results_spawndates %>%
-  filter(ResultBasesName == "30DADMean") %>%
+  filter(Statistical_Base == "30DADMean") %>%
   group_by(AU_ID) %>%
   summarise(tot_30d_metrics = n(),
             crit_30d_periods = sum(is.crit)) %>%
@@ -52,10 +52,10 @@ results_cont_summary <- Results_spawndates %>%
 # Flag various violations
 continuous_data_analysis <- Results_spawndates %>%
   filter(AU_ID %in% results_cont_summary$AU_ID) %>%
-  filter(ResultBasesName %in% c("30DADMean", "7DADMin", "Minimum")) %>%
-  mutate(Violation = ifelse(ResultBasesName == "30DADMean" & Result4IR < crit_30D, 1, 
-                            ifelse(ResultBasesName == "7DADMin" & Result4IR < crit_7Mi, 1, 
-                                   ifelse(ResultBasesName == "Minimum" & Result4IR < crit_Min, 1, 0 )))) 
+  filter(Statistical_Base %in% c("30DADMean", "7DADMin", "Minimum")) %>%
+  mutate(Violation = ifelse(Statistical_Base == "30DADMean" & IRResultNWQSunit < crit_30D, 1, 
+                            ifelse(Statistical_Base == "7DADMin" & IRResultNWQSunit < crit_7Mi, 1, 
+                                   ifelse(Statistical_Base == "Minimum" & IRResultNWQSunit < crit_Min, 1, 0 )))) 
 
 
 # Run through initial categorization
@@ -64,9 +64,9 @@ continuous_data_analysis <- Results_spawndates %>%
 continuous_data_categories <- continuous_data_analysis %>%
   group_by(AU_ID, DO_Class) %>%
   summarise(Total_violations = sum(Violation),
-            Sum_30D_violations = sum(Violation [ResultBasesName == "30DADMean"]),
-            Sum_7mi_violations = sum(Violation [ResultBasesName == "7DADMin"]),
-            Sum_abs_min_violations = sum(Violation [ResultBasesName == "Minimum"])) %>%
+            Sum_30D_violations = sum(Violation [Statistical_Base == "30DADMean"]),
+            Sum_7mi_violations = sum(Violation [Statistical_Base == "7DADMin"]),
+            Sum_abs_min_violations = sum(Violation [Statistical_Base == "Minimum"])) %>%
   mutate(category = ifelse(DO_Class != "Cold Water" & 
                              (Sum_30D_violations >= 2 |
                                 Sum_7mi_violations >= 2 |
@@ -100,7 +100,7 @@ print("querying the IR database to get data for DO sat calculations ")
 
 Doqry <- "SELECT * 
 FROM            VW_DO
-WHERE        (ResultBasesName = 'Mean') AND MLocID in ({continuous_mon_locs*})"
+WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
 
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
@@ -112,7 +112,7 @@ perc_sat_DO <- DBI::dbGetQuery(con, Doqry)
 
 tempqry <- "SELECT * 
 FROM            VW_Temp_4_DO
-WHERE        (ResultBasesName = 'Mean') AND MLocID in ({continuous_mon_locs*})"
+WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
 
 tempqry <- glue::glue_sql(tempqry, .con = con)
 
@@ -128,14 +128,14 @@ print("Finished database query")
 
 # Pare down table to be used in join
 perc_sat_temp_join <- perc_sat_temp %>%
-  select(MLocID, Result4IR, ActStartD, ActStartT, ResultBasesName) %>%
-  rename(Temp_res = Result4IR)
+  select(MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime, Statistical_Base) %>%
+  rename(Temp_res = IRResultNWQSunit)
 
 # Rename the result to DO_res and join with the temperature
 # Calculate DOsat
 DO_sat <- perc_sat_DO %>%
-  rename(DO_res =  Result4IR) %>%
-  left_join(perc_sat_temp_join, by = c('MLocID', 'ActStartD', 'ActStartT', 'ResultBasesName')) %>%
+  rename(DO_res =  IRResultNWQSunit) %>%
+  left_join(perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base')) %>%
   mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft ),
          ma.DOS.mean30 = "")
 
@@ -159,8 +159,8 @@ for(i in 1:length(unique(DO_sat$MLocID))){
   #Filter dataset to only look at 1 monitoring location at a time
   daydat_station <- DO_sat %>%
     filter(MLocID == station) %>%
-    mutate(startdate30 = as.Date(ActStartD) -30) %>%
-    arrange(ActStartD)
+    mutate(startdate30 = as.Date(SampleStartDate) -30) %>%
+    arrange(SampleStartDate)
   
  # Begin 30-d moving averages loop
    print("Begin 30 day moving averages" )
@@ -171,19 +171,19 @@ for(i in 1:length(unique(DO_sat$MLocID))){
     #Beginning of 30 day window
     start30 <- daydat_station$startdate30[l]
     # End of 30 day window
-    end30 <- daydat_station$ActStartD[l] 
+    end30 <- daydat_station$SampleStartDate[l] 
     
     
     # For each row in table, crate a new datatable for taht row plus all
     # Results that are in the 30 day window
     station_30day <- daydat_station %>%
-      filter(ActStartD <= end30 & ActStartD >= start30) 
+      filter(SampleStartDate <= end30 & SampleStartDate >= start30) 
     
     
     # If there are at least 29 values in the 30 day window
     # Calculate the average DO-Sat
     # Otherwise use NA
-    ma.mean30 <- ifelse(length(unique(station_30day$ActStartD)) >= 29, mean(station_30day$DO_sat), NA )
+    ma.mean30 <- ifelse(length(unique(station_30day$SampleStartDate)) >= 29, mean(station_30day$DO_sat), NA )
     
     
     # Pass the 30-d DO Sat vaule back into the single monitoring location table
@@ -206,27 +206,27 @@ DO_sat_avgs <-  bind_rows(monloc_do_list)
 
 # Join DOsat to 30_D metrics -----------------------------------------------
 
-# Add ResultBasesName to the DO Sat table
+# Add Statistical_Base to the DO Sat table
 # Create Date field to be used for the join
 # The Activity start dates were slighly different causing problems
 # (1/1/1900 vs 1/1/1900 00:00)
 DO_sat_join <- DO_sat_avgs %>%
-  mutate(ResultBasesName = "30DADMean",
-         Date = as.Date(ActStartD)) %>%
-  select(MLocID, ma.DOS.mean30, Date,ResultBasesName) 
+  mutate(Statistical_Base = "30DADMean",
+         Date = as.Date(SampleStartDate)) %>%
+  select(MLocID, ma.DOS.mean30, Date,Statistical_Base) 
 
 
 # Join DO Sat back into the original data table and recalculate violations
 yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
-  mutate(Date = as.Date(ActStartD)) %>%
-  left_join(DO_sat_join, by = c('MLocID', 'Date', 'ResultBasesName')) %>%
+  mutate(Date = as.Date(SampleStartDate)) %>%
+  left_join(DO_sat_join, by = c('MLocID', 'Date', 'Statistical_Base')) %>%
   mutate(Violation = ifelse(DO_Class == "Cold Water"& 
-                              ResultBasesName == "30DADMean" & 
-                              Result4IR < crit_30D & 
+                              Statistical_Base == "30DADMean" & 
+                              IRResultNWQSunit < crit_30D & 
                               (ma.DOS.mean30 < 90 | is.na(ma.DOS.mean30)), 1,
-                            ifelse(DO_Class != "Cold Water"& ResultBasesName == "30DADMean" & Result4IR < crit_30D, 1, 
-                              ifelse(ResultBasesName == "7DADMin" & Result4IR < crit_7Mi, 1, 
-                                   ifelse(ResultBasesName == "Minimum" & Result4IR < crit_Min, 1, 0 ))))) 
+                            ifelse(DO_Class != "Cold Water"& Statistical_Base == "30DADMean" & IRResultNWQSunit < crit_30D, 1, 
+                              ifelse(Statistical_Base == "7DADMin" & IRResultNWQSunit < crit_7Mi, 1, 
+                                   ifelse(Statistical_Base == "Minimum" & IRResultNWQSunit < crit_Min, 1, 0 ))))) 
 
 
 # Write this table to a file to be used for the data review  
@@ -238,9 +238,9 @@ write.csv(yr_round_cont_DO_data_analysis, file = "Parameters/DO/Data Review/year
 yr_round_cont_data_categories <- continuous_data_analysis %>%
   group_by(AU_ID, DO_Class) %>%
   summarise(Total_violations = sum(Violation),
-            Sum_30D_violations = sum(Violation [ResultBasesName == "30DADMean"]),
-            Sum_7mi_violations = sum(Violation [ResultBasesName == "7DADMin"]),
-            Sum_abs_min_violations = sum(Violation [ResultBasesName == "Minimum"])) %>%
+            Sum_30D_violations = sum(Violation [Statistical_Base == "30DADMean"]),
+            Sum_7mi_violations = sum(Violation [Statistical_Base == "7DADMin"]),
+            Sum_abs_min_violations = sum(Violation [Statistical_Base == "Minimum"])) %>%
   mutate(category = ifelse(Sum_30D_violations >= 2 |
                                 Sum_7mi_violations >= 2 |
                                 Sum_abs_min_violations >= 2, "Cat 5", 
@@ -266,8 +266,8 @@ print("Beginning instantaneous analysis")
 # set preliminary violations based on results < 30D criteria
 instant_data_analysis <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
-  filter(ResultBasesName %in% c("Minimum", NA)) %>%
-  mutate(Violation_crit = ifelse(Result4IR < crit_30D, 1, 0 ))
+  filter(Statistical_Base %in% c("Minimum", NA)) %>%
+  mutate(Violation_crit = ifelse(IRResultNWQSunit < crit_30D, 1, 0 ))
 
 
 # assign initial categories
@@ -310,7 +310,7 @@ print("querying the IR database to get data for DO sat calculations ")
 # query DO data using instant_mon_locs as a monitoring location filter
 Doqry <- "SELECT * 
 FROM            VW_DO
-WHERE        ((ResultBasesName = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((ResultBasesName IS NULL) AND MLocID in ({instant_mon_locs*}))"
+WHERE        ((Statistical_Base = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((Statistical_Base IS NULL) AND MLocID in ({instant_mon_locs*}))"
 
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
@@ -322,7 +322,7 @@ instant_perc_sat_DO <- DBI::dbGetQuery(con, Doqry)
 
 tempqry <- "SELECT * 
 FROM            VW_Temp_4_DO
-WHERE        ((ResultBasesName = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((ResultBasesName IS NULL) AND MLocID in ({instant_mon_locs*}))"
+WHERE        ((Statistical_Base = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((Statistical_Base IS NULL) AND MLocID in ({instant_mon_locs*}))"
 
 tempqry <- glue::glue_sql(tempqry, .con = con)
 
@@ -336,30 +336,30 @@ print("Finished database query")
 
 # Pare down temp table to be used for joining
 instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
-  select(MLocID, ResultBasesName, Result4IR, ActStartD, ActStartT, ActDepth) %>%
-  rename(Temp_res = Result4IR)
+  select(MLocID, Statistical_Base, IRResultNWQSunit, SampleStartDate, SampleStartTime, ActDepth) %>%
+  rename(Temp_res = IRResultNWQSunit)
 
 
 # Join DO and temp tables and calculate DO-Sat
 instant_DO_sat <- instant_perc_sat_DO %>%
-  rename(DO_res =  Result4IR) %>%
-  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'ActStartD', 'ActStartT', 'ResultBasesName', 'ActDepth')) %>%
+  rename(DO_res =  IRResultNWQSunit) %>%
+  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'ActDepth')) %>%
   mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft ))  %>%
-  select(MLocID, ActStartD, ActStartT, ResultBasesName, ActDepth,DO_sat ) %>%
+  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, ActDepth,DO_sat ) %>%
   mutate(ActDepth = as.numeric(ActDepth))
 
 
 #Join back in and recalculate violations
-# if do sat could not be calculated, then violation if Result4IR < 30D criteria
+# if do sat could not be calculated, then violation if IRResultNWQSunit < 30D criteria
 Instant_data_analysis_DOS <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
-  filter(ResultBasesName %in% c("Minimum", NA)) %>%
-  left_join(instant_DO_sat, by = c('MLocID', 'ActStartD', 'ActStartT', 'ResultBasesName', 'ActDepth')) %>%
+  filter(Statistical_Base %in% c("Minimum", NA)) %>%
+  left_join(instant_DO_sat, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'ActDepth')) %>%
   mutate(Violation = ifelse(DO_Class == "Cold Water" & 
-                              Result4IR < crit_30D & 
+                              IRResultNWQSunit < crit_30D & 
                               (DO_sat < 90.0 | is.na(DO_sat) ), 1, 
                             ifelse(DO_Class != "Cold Water" & 
-                                     Result4IR < crit_30D, 1, 0))  )
+                                     IRResultNWQSunit < crit_30D, 1, 0))  )
 
 # Write table to be used for data review
 write.csv(Instant_data_analysis_DOS, file = "Parameters/DO/Data Review/yearround_instantaneous_data_analysis.csv", row.names = FALSE)
