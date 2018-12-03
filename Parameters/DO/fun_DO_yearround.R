@@ -98,11 +98,23 @@ print("querying the IR database to get data for DO sat calculations ")
 
 # Get DO IR_database to calculate percent sat --------
 
+con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
+DOSatQry <- "SELECT [MLocID], [SampleStartDate],[SampleStartTime],[Statistical_Base],[IRResultNWQSunit] as DO_sat
+FROM [IntegratedReport].[dbo].[ResultsRawWater2018]
+WHERE   Char_Name = 'Dissolved oxygen saturation' AND 
+MLocID in ({continuous_mon_locs*}) AND 
+Statistical_Base = 'Mean'"
+
+Dosqry <- glue::glue_sql(DOSatQry, .con = con)
+DO_sat_AWQMS <- DBI::dbGetQuery(con, Dosqry)
+
+
 Doqry <- "SELECT * 
 FROM            VW_DO
 WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
 
-con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
 
 Doqry <- glue::glue_sql(Doqry, .con = con)
 
@@ -131,12 +143,17 @@ perc_sat_temp_join <- perc_sat_temp %>%
   select(MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime, Statistical_Base) %>%
   rename(Temp_res = IRResultNWQSunit)
 
+
+
+perc_sat_DO <- perc_sat_DO %>%
+  left_join(DO_sat_AWQMS, by =c('MLocID', 'SampleStartDate','SampleStartTime','Statistical_Base'  ))
+
 # Rename the result to DO_res and join with the temperature
 # Calculate DOsat
 DO_sat <- perc_sat_DO %>%
   rename(DO_res =  IRResultNWQSunit) %>%
   left_join(perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base')) %>%
-  mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft ),
+  mutate(DO_sat = ifelse(is.na(DO_sat),DOSat_calc(DO_res, Temp_res, ELEV_Ft ), DO_sat),
          ma.DOS.mean30 = "")
 
 # calculate 30-D averages
@@ -306,13 +323,22 @@ instant_mon_locs <- unique(inst_perc_sat_check$MLocID)
 print("querying the IR database to get data for DO sat calculations ")
 
 # Get DO and temp data from IR_database to calculate percent sat --------
+con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
+DOsat_AWQMS <- "SELECT [MLocID], [SampleStartDate],[SampleStartTime],[Statistical_Base],[IRResultNWQSunit] as DO_sat
+FROM [IntegratedReport].[dbo].[ResultsRawWater2018]
+WHERE ((Statistical_Base = 'Minimum') AND MLocID in ({instant_mon_locs*}) AND Char_Name = 'Dissolved oxygen saturation') OR 
+((Statistical_Base IS NULL) AND MLocID in ({instant_mon_locs*}) AND Char_Name = 'Dissolved oxygen saturation')"
+
+DOsat_from_AWQMS <-  glue::glue_sql(DOsat_AWQMS, .con = con)
+instant_perc_sat_AWQMS <- DBI::dbGetQuery(con, DOsat_from_AWQMS)
 
 # query DO data using instant_mon_locs as a monitoring location filter
 Doqry <- "SELECT * 
 FROM            VW_DO
 WHERE        ((Statistical_Base = 'Minimum') AND MLocID in ({instant_mon_locs*})) OR  ((Statistical_Base IS NULL) AND MLocID in ({instant_mon_locs*}))"
 
-con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
 
 Doqry <- glue::glue_sql(Doqry, .con = con)
 
@@ -341,16 +367,15 @@ instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
   rename(Temp_res = IRResultNWQSunit)
 
 
+instant_perc_sat_DO <- instant_perc_sat_DO %>%
+  left_join(instant_perc_sat_AWQMS, by =c('MLocID', 'SampleStartDate','SampleStartTime','Statistical_Base'  ))
+
 # Join DO and temp tables and calculate DO-Sat
 instant_DO_sat <- instant_perc_sat_DO %>%
   rename(DO_res =  IRResultNWQSunit) %>%
-  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height
-')) %>%
-  mutate(DO_sat = DOSat_calc(DO_res, Temp_res, ELEV_Ft ))  %>%
-  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, act_depth_height
-,DO_sat ) %>%
-  mutate(ActDepth = as.numeric(act_depth_height
-))
+  left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
+  mutate(DO_sat = ifelse(is.na(DO_sat), DOSat_calc(DO_res, Temp_res, ELEV_Ft ),DO_sat))  %>%
+  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, act_depth_height,DO_sat ) 
 
 
 #Join back in and recalculate violations
