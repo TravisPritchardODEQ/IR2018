@@ -32,6 +32,9 @@ DO_data <- function(database) {
   
   # Data validation ---------------------------------------------------------
 
+  Results_import <- Results_import %>%
+    filter(is.na(Statistical_Base) | Statistical_Base != 'Delta')
+  
   
   print("Validating Data")
 
