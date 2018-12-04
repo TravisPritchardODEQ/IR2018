@@ -1,4 +1,5 @@
 ### Assess biocriteria using % taxa loss from the PREDATOR model 
+df= BioCriteria
 
 BioCriteria_Assement <- function(df){
 
