@@ -18,8 +18,8 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
   require(openxlsx)
    
   Res_validation <- Results_import %>%
-    left_join(anom_crit, by = c("ChrName" = "char")) %>%
-    mutate(validation = ifelse((Result4IR < per99 & Result4IR > per1) | is.na(per99) , "Valid", "Invalid")) %>%
+    left_join(anom_crit, by = c("Char_Name" = "char")) %>%
+    mutate(validation = ifelse((IRResultNWQSunit < per99 & IRResultNWQSunit > per1) | is.na(per99) , "Valid", "Invalid")) %>%
     group_by(AU_ID) %>%
     mutate(Au_valid_count = sum(validation == "Valid"),
            AU_total_count = n() ) %>%

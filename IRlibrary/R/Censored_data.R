@@ -14,7 +14,7 @@
 #' @export
 #' 
 
-   Censored_data <- function(df, res= `Result4IR`, resqual = `ResultOp4IR`, crit = `crit`) {
+   Censored_data <- function(df, res= `IRResultNWQSunit`, resqual = `Result_Operator`, crit = `crit`) {
     res =  enquo(res)
     resqual = enquo(resqual)
     crit  = enquo(crit)
