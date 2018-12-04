@@ -13,7 +13,7 @@ dup_check <- function(df, chr) {
   
   
   Dup_data <- df %>%
-    group_by(MLocID, ActStartD, ActStartT, ChrName, Result) %>%
+    group_by(MLocID, ActStartD, ActStartT, Char_Name, IRResultNWQSunit) %>%
     summarise(count = n()) %>%
     filter(count > 1)
   
