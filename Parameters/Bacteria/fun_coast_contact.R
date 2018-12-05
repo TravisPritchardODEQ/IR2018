@@ -23,7 +23,7 @@ Coastal_Contact_rec <- function(df){
   # Bacteria code #2 and Entero 
   Coastal <- df %>%
     filter(BacteriaCode == 1,
-           ChrName == "Enterococcus") %>%
+           Char_Name == "Enterococcus") %>%
     #add blank columns to be filled in during analysis phase
     mutate(geomean = "",
            count_period = "",
@@ -61,18 +61,18 @@ Coastal_Contact_rec <- function(df){
     # Filter table down to single station
     Coastal_singlestation <- Coastal %>%
       filter(AU_ID == station) %>%
-      mutate(geomean_start_date = as.Date(ActStartD)-90)
+      mutate(geomean_start_date = as.Date(SampleStartDate)-90)
     
     for(j in 1:nrow(Coastal_singlestation)){
       
       #start of 90 day window
       geomean_date <- Coastal_singlestation$geomean_start_date[j]
       # end of 90 day window
-      enddate <- Coastal_singlestation$ActStartD[j]
+      enddate <- Coastal_singlestation$SampleStartDate[j]
       
       #create table for only samples in that window
       geomean_period <- Coastal_singlestation %>%
-        filter(ActStartD <= enddate & ActStartD >= geomean_date )
+        filter(SampleStartDate <= enddate & SampleStartDate >= geomean_date )
       
       count_period = nrow(geomean_period)
       

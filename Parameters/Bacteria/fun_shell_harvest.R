@@ -6,7 +6,7 @@ Shell_Harvest <- function(df) {
   
   shell_harvest <- df %>%
     filter(BacteriaCode == 3,
-           ChrName == "Fecal Coliform") %>%
+           Char_Name == "Fecal Coliform") %>%
     mutate(perc_exceed = ifelse(Result_cen < Perc_Crit, 1, 0))
   
   if(nrow(shell_harvest) == 0) {

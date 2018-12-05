@@ -14,7 +14,7 @@ Fresh_Contact_rec <- function(df){
   
   fresh_contact <- df %>%
     filter(BacteriaCode == 2,
-           ChrName == "Escherichia coli") %>%
+           Char_Name == "Escherichia coli") %>%
     #add blank columns to be filled in during analysis phase
     mutate(geomean = "",
            count_period = "",
@@ -52,18 +52,18 @@ Fresh_Contact_rec <- function(df){
     # Filter table down to single station
     fresh_singlestation <- fresh_contact %>%
       filter(AU_ID == station) %>%
-      mutate(geomean_start_date = as.Date(ActStartD)-90)
+      mutate(geomean_start_date = as.Date(SampleStartDate)-90)
     
     for(j in 1:nrow(fresh_singlestation)){
       
       #start of 90 day window
       geomean_date <- fresh_singlestation$geomean_start_date[j]
       # end of 90 day window
-      enddate <- fresh_singlestation$ActStartD[j]
+      enddate <- fresh_singlestation$SampleStartDate[j]
       
       #create table for only samples in that window
       geomean_period <- fresh_singlestation %>%
-        filter(ActStartD <= enddate & ActStartD >= geomean_date )
+        filter(SampleStartDate <= enddate & SampleStartDate >= geomean_date )
       
       count_period = nrow(geomean_period)
       
