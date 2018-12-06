@@ -11,7 +11,7 @@ tox_HH_assesment <- df %>%
 #Write table here
   
 tox_HH_categories <- tox_HH_assesment %>%
-  group_by(AU_ID, Pollutant, SampleFractName,Crit_Fraction) %>%
+  group_by(AU_ID, Pollutant, Sample_Fraction,Crit_Fraction) %>%
   summarise(crit = max(crit),
             num_samples = n(),
             num_violations = sum(violation),
