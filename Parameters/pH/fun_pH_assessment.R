@@ -29,6 +29,5 @@ pH_assessment <- function(df) {
 }
 
 
-#To do 
-# The 10% exceedence will be using the binomial method. This will need to be updated when that is written up
+
 

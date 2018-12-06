@@ -42,6 +42,7 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
      print(paste("Removing", length(invalid_AUs), "AUs for conatining invalid data"))
    }
    
+  print("Writing excel file")
    write.xlsx(data2review, paste0("Parameters/Invalid_data/Invalid-", parameter, ".xlsx"))
    
    Valid_AUs <- Res_validation %>%

@@ -9,14 +9,14 @@ chl_assessment <- function(df){
 
 chla_data <- df %>%
   #filter(!is.na(AU_ID)) %>%
-  mutate( month = month(ActStartD),
-          yrfromstart = year(ActStartD) - 2008,
+  mutate( month = month(SampleStartDate),
+          yrfromstart = year(SampleStartDate) - 2008,
           monthfromstart = month + 12*yrfromstart) 
 
 chla_mo_avg <- chla_data %>%
   arrange(AU_ID,monthfromstart ) %>%
-  group_by(AU_ID, monthfromstart, Chla_Criteria, OWRD_Basin, ChrName) %>%
-  summarise(monthaverage = mean(Result4IR))
+  group_by(AU_ID, monthfromstart, Chla_Criteria, OWRD_Basin, Char_Name) %>%
+  summarise(monthaverage = mean(IRResultNWQSunit))
   
 
 
@@ -47,7 +47,7 @@ chla_avgs <- chla_consec_mon %>%
                                                        na.rm = T), NA ) )
 
 chla_data_analysis <-  chla_data %>%
-  left_join(chla_avgs, by = c("AU_ID", "monthfromstart", "Chla_Criteria", "OWRD_Basin", "ChrName")) %>%
+  left_join(chla_avgs, by = c("AU_ID", "monthfromstart", "Chla_Criteria", "OWRD_Basin", "Char_Name")) %>%
   select(-diffs, -consecutive3) %>%
   arrange(AU_ID, monthfromstart)
 
@@ -69,7 +69,7 @@ for(i in 1:length(basins)){
 
 
 chl_categories <- chla_data_analysis %>%
-  group_by(AU_ID, MonLocType, OWRD_Basin, ChrName, Chla_Criteria) %>%
+  group_by(AU_ID, MonLocType, OWRD_Basin, Char_Name, Chla_Criteria) %>%
   summarise(max_result = max(Result_cen),
             max_mo_avg = max(monthaverage),
             max_3_mo_avg = max(avg.3.mo)) %>%
@@ -77,7 +77,7 @@ chl_categories <- chla_data_analysis %>%
                            ifelse(is.na(max_3_mo_avg) & max_result > Chla_Criteria, "Cat3b", 
                                   ifelse(max_3_mo_avg > Chla_Criteria, "Cat5",
                                          ifelse(max_3_mo_avg <= Chla_Criteria, "Cat2", "ERROR" ))))) %>%
-  select(AU_ID, OWRD_Basin,MonLocType, ChrName, Chla_Criteria, IR_category, 
+  select(AU_ID, OWRD_Basin,MonLocType, Char_Name, Chla_Criteria, IR_category, 
          max_result,max_mo_avg, max_3_mo_avg )
 
 return(chl_categories)

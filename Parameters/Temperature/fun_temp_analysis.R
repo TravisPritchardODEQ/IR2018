@@ -8,30 +8,31 @@ temp_asessment <- function(df){
 
 temp_analysis <- df %>%
   mutate(# Add columns for Critcal period start and end date
-         Crit_period_start = mdy(paste0("7/1/",year(ActStartD))),
-         Cirt_period_end = mdy(paste0("9/30/",year(ActStartD))),
+         Crit_period_start = mdy(paste0("7/1/",year(SampleStartDate))),
+         Cirt_period_end = mdy(paste0("9/30/",year(SampleStartDate))),
          # Append spawn start and end dates with year
-         Start_spawn = ifelse(!is.na(SpawnStart), paste0(SpawnStart,"/",year(ActStartD)), NA ) ,
-         End_spawn = ifelse(!is.na(SpawnEnd), paste0(SpawnEnd,"/",year(ActStartD)), NA ),
+         Start_spawn = ifelse(!is.na(SpawnStart), paste0(SpawnStart,"/",year(SampleStartDate)), NA ) ,
+         End_spawn = ifelse(!is.na(SpawnEnd), paste0(SpawnEnd,"/",year(SampleStartDate)), NA ),
          # Make spwnmn start and end date date format
          Start_spawn = mdy(Start_spawn),
          End_spawn = mdy(End_spawn),
          # If Spawn dates span a calendar year, account for year change in spawn end date
          End_spawn = if_else(End_spawn < Start_spawn, End_spawn + years(1), End_spawn ),
-         ActStartD = ymd(ActStartD), 
+         SampleStartDate = ymd(SampleStartDate), 
          # Flag for results in critical period
-         In_crit_period = ifelse(ActStartD >=Crit_period_start & ActStartD <= Cirt_period_end, 1, 0 ),
+         In_crit_period = ifelse(SampleStartDate >=Crit_period_start & SampleStartDate <= Cirt_period_end, 1, 0 ),
          # Print if result is in spawn or out of spawn
-         Spawn_type = ifelse((ActStartD >= Start_spawn & ActStartD <= End_spawn & !is.na(Start_spawn)),  "Spawn", "Not_Spawn"),
+         Spawn_type = ifelse((SampleStartDate >= Start_spawn & SampleStartDate <= End_spawn & !is.na(Start_spawn)),  "Spawn", "Not_Spawn"),
          # Flag if result violates standard,  use 13 for during spawn dates, else use criteria
          Violation = ifelse(Spawn_type == "Spawn" & Result_cen > 13, 1,
                             ifelse(Spawn_type == "Not_Spawn" & Result_cen > Temp_Criteria, 1, 0)),
          # Flag for is violation was in spawn period
          Spawn_Violation = ifelse(Spawn_type == "Spawn" & Violation == 1, 1, 0 )
          ) %>%
-   arrange(ActStartD, ActStartD)
+   arrange(SampleStartDate, SampleStartTime) %>%
+  filter(!is.na(AU_ID))
 
-print("Writing data table for review as 'Parameters/Temperature/Temperature_IR_data.csv")
+print("Writing data tables for review in 'Parameters/Temperature/Data_Review/")
 
 # Get list of unique basins in dataset. Used for generating data for review
 basins <- unique(temp_analysis$OWRD_Basin) 
@@ -41,11 +42,12 @@ basins <- unique(temp_analysis$OWRD_Basin)
 for(i in 1:length(basins)){
   
   Basin <- basins[i]
+  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
   
   temp_analysis_by_basin <-  temp_analysis %>%
     filter(OWRD_Basin == Basin)
   
-  write.csv(temp_analysis, paste0("Parameters/Temperature/Data_Review/Temperature_IR_data_",Basin,".csv"))
+  write.csv(temp_analysis_by_basin, paste0("Parameters/Temperature/Data_Review/Temperature_IR_data_",Basin,".csv"))
   
 }
 
@@ -92,11 +94,11 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
   for(j in 1:nrow(Review_AU)){
     
     
-    start3yr <- Review_AU$ActStartD[j] - years(3)
-    end3yr <- Review_AU$ActStartD[j]
+    start3yr <- Review_AU$SampleStartDate[j] - years(3)
+    end3yr <- Review_AU$SampleStartDate[j]
     
     period3yr <- Review_AU %>%
-      filter(between(ActStartD,start3yr, end3yr ))
+      filter(between(SampleStartDate,start3yr, end3yr ))
     
     num_violations = sum(period3yr$Violation)
     samples_crit_period <- sum(period3yr$In_crit_period)
@@ -125,7 +127,7 @@ print("Assessment Complete. Beginning Categorization")
 
 # get the data out of the list and create a dataframe
 reviewed_data <- bind_rows(Au_review_list) %>%
-  arrange(AU_ID, ActStartD)
+  arrange(AU_ID, SampleStartDate)
 
 #Remove the list from the environment, to free up memory
 rm(Au_review_list)
@@ -133,12 +135,12 @@ rm(Au_review_list)
   
 # This is the where the IR categories get assigned
 Temp_IR_categories <- reviewed_data %>%
-    group_by(AU_ID) %>%
+    group_by(AU_ID,FishCode ) %>%
     # Sum the total violations and spawning violations by AU
     # So we have a record of total violations over the assessment period
     mutate(total_violations = sum(Violation),
            Spawn_Violation_count = sum(Spawn_Violation)) %>%
-    arrange(ActStartD) %>%
+    arrange(SampleStartDate) %>%
     # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
     # number of violations in a 3 year period (Violations_3yr). Since we are looking at cat5
     # being 2 in 3 years, if we filter down to 3 year period with the max violations, we
@@ -150,8 +152,8 @@ Temp_IR_categories <- reviewed_data %>%
     # in the critical period or the spawn period. We also get the total violations, and 
     # total spawn violations.
     summarise(OWRD_Basin = first(OWRD_Basin), 
-              data_period_start = min(ActStartD),
-              data_period_end = max(ActStartD),
+              data_period_start = min(SampleStartDate),
+              data_period_end = max(SampleStartDate),
               max_violations_3yr = max(Violations_3yr),
               total_violations = first(total_violations),
               total_Spawn_Violation_count = first(Spawn_Violation_count),
@@ -163,12 +165,13 @@ Temp_IR_categories <- reviewed_data %>%
     #           in the critical periods or spawn periods - Cat 3
     #      If the three year period with the maximum number of violations has example 1 violation, than Cat3B
     #      Otherwise Category 2
-    mutate(IR_category = ifelse(max_violations_3yr >= 2, "Cat5", 
+    mutate(IR_category = ifelse(FishCode == 10 | FishCode == 11, "Narrative",
+                                ifelse(max_violations_3yr >= 2, "Cat5", 
                                 ifelse(max_violations_3yr < 2 & 
                                          max_3yr_results_in_crit_period == 0 &
                                          max_3yr_results_in_spawn_period == 0, "Cat3", 
                                        ifelse(max_violations_3yr == 1, "Cat3B", 
-                                              "Cat2")))) %>%
+                                              "Cat2"))))) %>%
     select(AU_ID, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
            max_3yr_results_in_spawn_period)
 
