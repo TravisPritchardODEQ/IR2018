@@ -20,7 +20,8 @@ pH_data <- function(database) {
   
   odbcClose(IR.sql)
   
-  print(paste("Fetched", nrow(Results_import), "results from", length(unique(Results_import$MLocID)), "monitoring locations" ))
+  print(paste("Fetched", nrow(Results_import), "results from", length(unique(Results_import$MLocID)), 
+              "monitoring locations in", length(unique(Results_import$AU_ID)), "AUs"))
   
   # Set factors to characters
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
