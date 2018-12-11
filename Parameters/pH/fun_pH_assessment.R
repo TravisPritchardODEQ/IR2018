@@ -9,6 +9,12 @@ pH_assessment <- function(df) {
            pH_violation_low = ifelse(Result_cen < pH_Min, 1, 0 ),
            ) 
   
+
+
+# Data review exports -----------------------------------------------------
+
+
+
   # Get list of unique basins in dataset. Used for generating data for review
   basins <- unique(pH_summary$OWRD_Basin) 
   
@@ -27,6 +33,9 @@ pH_assessment <- function(df) {
   }
   
   
+
+# Categorization ----------------------------------------------------------
+
   
   pH_categories <- pH_summary %>%
     group_by(AU_ID) %>%
