@@ -7,7 +7,28 @@ pH_assessment <- function(df) {
     mutate(pH_violation = ifelse(Result_cen < pH_Min | Result_cen > pH_Max, 1, 0 ),
            pH_violation_high = ifelse(Result_cen > pH_Max, 1, 0 ),
            pH_violation_low = ifelse(Result_cen < pH_Min, 1, 0 ),
-           ) %>%
+           ) 
+  
+  # Get list of unique basins in dataset. Used for generating data for review
+  basins <- unique(pH_summary$OWRD_Basin) 
+  
+  
+  # Loop through data, and filter by OWRD basin, write csv file of all data in that basin
+  for(i in 1:length(basins)){
+    
+    Basin <- basins[i]
+    print(paste("Writing table", i, "of",length(basins), "-", Basin ))
+    
+    pH_analysis_by_basin <-  pH_summary %>%
+      filter(OWRD_Basin == Basin)
+    
+    write.csv(pH_analysis_by_basin, paste0("Parameters/pH/Data_Review/pH_IR_data_",Basin,".csv"))
+    
+  }
+  
+  
+  
+  pH_categories <- pH_summary %>%
     group_by(AU_ID) %>%
     summarise(num_Samples = n(),
               num_violation = sum(pH_violation),
@@ -25,7 +46,7 @@ pH_assessment <- function(df) {
                                                        ((num_Samples >= 5 & num_Samples <= 9) & num_violation == 0), 'Cat2', 
                                                      "ERROR")))))
            
-  return(pH_summary)
+  return(pH_categories)
 }
 
 
