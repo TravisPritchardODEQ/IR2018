@@ -1,12 +1,13 @@
 ### Assess biocriteria using % taxa loss from the PREDATOR model 
+df= BioCriteria
 
+BioCriteria_Assement <- function(df){
 
-biodata <- biodata %>% 
-  filter(Qualifier == "DQL=A") %>%
-  filter(ID == "% Taxa Loss")
+bio_A <- BioCriteria %>% 
+  filter(Qualifier == "DQL=A")
 
-MWCF_AU_sum = biodata %>%
-  filter(Eco2 == "MWCF") %>%
+MWCF_AU_sum = bio_A %>%
+  filter(EcoRegion2 == "MARINE WEST COAST FOREST") %>%
   group_by(AU_ID) %>%
   summarise(num_Samples = n(),
             n_over20PTL = sum(Score >= 20),
@@ -18,8 +19,8 @@ MWCF_AU_sum = biodata %>%
                                 ifelse(n_9to14PTL >= 1,"Cat3C",
                                        ifelse(n_less8PTL >= 1,"Cat2","")))))
 
-WC_AU_sum = biodata %>%
-  filter(Eco2 == "WC"|Eco2 == "COLD DESERTS") %>%
+WC_AU_sum = bio_A %>%
+  filter(EcoRegion2 == "WESTERN CORDILLERA"|EcoRegion2 == "COLD DESERTS") %>%
   group_by(AU_ID) %>%
   summarise(num_Samples = n(),
             n_over27PTL = sum(Score >= 27),
@@ -31,6 +32,14 @@ WC_AU_sum = biodata %>%
                                 ifelse(n_8to21PTL >=1,"Cat3C",
                                        ifelse(n_less7PTL >=1,"Cat2","")))))
 
+bio_E <- BioCriteria %>% 
+  filter(Qualifier == "DQL=E") %>%
+  group_by(AU_ID) %>%
+  summarise(num_Samples = n()) %>%
+  mutate(IR_Cat = "Cat3")       
 
 
-
+write.csv(MWCF_AU_sum,"MWCF_AU_sum.csv")
+write.csv(WC_AU_sum,"WC_AU_sum.csv")
+write.csv(bio_E,"Cat3_AU_sum.csv")
+write.csv(BioCriteria,"Bio_Data.csv")
