@@ -34,12 +34,14 @@ Temp_data <- function(database) {
 
 # Data validation ---------------------------------------------------------
 
-  print("Validating Data")
-  
-  # Load validation table
-  load("Validation/anom_crit.Rdata")
-  
-  Results_valid <- IR_Validation(Results_import, anom_crit, "Temperature")
+  # print("Validating Data")
+  # 
+  # # Load validation table
+  # load("Validation/anom_crit.Rdata")
+  # 
+  # Results_valid <- IR_Validation(Results_import, anom_crit, "Temperature")
+  # 
+  Results_valid <- Results_import
   
 
 # Censored data ------------------------------------------------------------

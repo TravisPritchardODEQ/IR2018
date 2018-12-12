@@ -135,7 +135,7 @@ rm(Au_review_list)
   
 # This is the where the IR categories get assigned
 Temp_IR_categories <- reviewed_data %>%
-    group_by(AU_ID,FishCode ) %>%
+    group_by(AU_ID) %>%
     # Sum the total violations and spawning violations by AU
     # So we have a record of total violations over the assessment period
     mutate(total_violations = sum(Violation),
@@ -165,13 +165,12 @@ Temp_IR_categories <- reviewed_data %>%
     #           in the critical periods or spawn periods - Cat 3
     #      If the three year period with the maximum number of violations has example 1 violation, than Cat3B
     #      Otherwise Category 2
-    mutate(IR_category = ifelse(FishCode == 10 | FishCode == 11, "Narrative",
-                                ifelse(max_violations_3yr >= 2, "Cat5", 
+    mutate(IR_category = ifelse(max_violations_3yr >= 2, "Cat5", 
                                 ifelse(max_violations_3yr < 2 & 
                                          max_3yr_results_in_crit_period == 0 &
                                          max_3yr_results_in_spawn_period == 0, "Cat3", 
                                        ifelse(max_violations_3yr == 1, "Cat3B", 
-                                              "Cat2"))))) %>%
+                                              "Cat2")))) %>%
     select(AU_ID, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
            max_3yr_results_in_spawn_period)
 

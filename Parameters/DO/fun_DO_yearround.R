@@ -27,7 +27,8 @@ Results_spawndates <- df %>%
          in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 ),
          critstart = mdy(paste0("7/1/",year(SampleStartDate) )),
          critend = mdy(paste0("9/30/",year(SampleStartDate) )),
-         is.crit = ifelse(SampleStartDate >= critstart & SampleStartDate <= critend, 1, 0 ))
+         is.crit = ifelse(SampleStartDate >= critstart & SampleStartDate <= critend, 1, 0 )) %>%
+  filter(!is.null(OWRD_Basin) & DO_code %in% c(2,3,4))
 
 # Summarize available data to get a list of AU's to be analyzed using cont. data
 results_cont_summary <- Results_spawndates %>%
@@ -154,7 +155,8 @@ DO_sat <- perc_sat_DO %>%
   rename(DO_res =  IRResultNWQSunit) %>%
   left_join(perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base')) %>%
   mutate(DO_sat = ifelse(is.na(DO_sat),DOSat_calc(DO_res, Temp_res, ELEV_Ft ), DO_sat),
-         ma.DOS.mean30 = "")
+         ma.DOS.mean30 = "") %>%
+  mutate(DO_sat = ifelse(DO_sat > 100, 100, DO_sat ))
 
 # calculate 30-D averages
 
@@ -246,8 +248,26 @@ yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
                                    ifelse(Statistical_Base == "Minimum" & IRResultNWQSunit < crit_Min, 1, 0 ))))) 
 
 
+
+# Get list of unique basins in dataset. Used for generating data for review
+basins <- unique(yr_round_cont_DO_data_analysis$OWRD_Basin) 
+
+
+# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
+for(i in 1:length(basins)){
+  
+  Basin <- basins[i]
+  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
+  
+  analysis_by_basin <-  yr_round_cont_DO_data_analysis %>%
+    filter(OWRD_Basin == Basin)
+  
+  write.csv(analysis_by_basin, paste0("Parameters/DO/Data_Review/Continuous_yearRound_DO_IR_data_",Basin,".csv"))
+  
+}
+
 # Write this table to a file to be used for the data review  
-write.csv(yr_round_cont_DO_data_analysis, file = "Parameters/DO/Data Review/yearround_continuous_data_analysis.csv", row.names = FALSE)
+#write.csv(yr_round_cont_DO_data_analysis, file = "Parameters/DO/Data Review/yearround_continuous_data_analysis.csv", row.names = FALSE)
 
 
 # Summarise data and 
@@ -375,6 +395,7 @@ instant_DO_sat <- instant_perc_sat_DO %>%
   rename(DO_res =  IRResultNWQSunit) %>%
   left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(DO_sat = ifelse(is.na(DO_sat), DOSat_calc(DO_res, Temp_res, ELEV_Ft ),DO_sat))  %>%
+  mutate(DO_sat = ifelse(DO_sat > 100, 100, DO_sat )) %>%
   select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, act_depth_height,DO_sat ) 
 
 
@@ -390,8 +411,26 @@ Instant_data_analysis_DOS <- Results_spawndates %>%
                             ifelse(DO_Class != "Cold Water" & 
                                      IRResultNWQSunit < crit_30D, 1, 0))  )
 
+# Get list of unique basins in dataset. Used for generating data for review
+basins <- unique(Instant_data_analysis_DOS$OWRD_Basin) 
+
+
+# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
+for(i in 1:length(basins)){
+  
+  Basin <- basins[i]
+  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
+  
+  analysis_by_basin <-  Instant_data_analysis_DOS %>%
+    filter(OWRD_Basin == Basin)
+  
+  write.csv(analysis_by_basin, paste0("Parameters/DO/Data_Review/Instantaneous_YearRound_DO_IR_data_",Basin,".csv"))
+  
+}
+
+
 # Write table to be used for data review
-write.csv(Instant_data_analysis_DOS, file = "Parameters/DO/Data Review/yearround_instantaneous_data_analysis.csv", row.names = FALSE)
+#write.csv(Instant_data_analysis_DOS, file = "Parameters/DO/Data Review/yearround_instantaneous_data_analysis.csv", row.names = FALSE)
 
 
 # Reassign categories based on flow charts

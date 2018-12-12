@@ -24,7 +24,8 @@ DO_data <- function(database) {
   
   
   
-  print(paste("Fetched", nrow(Results_import), "results from", length(unique(Results_import$MLocID)), "monitoring locations" ))
+  print(paste("Fetched", nrow(Results_import), "results from", length(unique(Results_import$MLocID)), "monitoring locations in",
+              length(unique(Results_import$AU_ID)), "AUs"))
   
   # Set factors to characters
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
@@ -36,14 +37,14 @@ DO_data <- function(database) {
     filter(is.na(Statistical_Base) | Statistical_Base != 'Delta')
   
   
-  print("Validating Data")
+  # print("Validating Data")
+  # 
+  # # Load validation table
+  # load("Validation/anom_crit.Rdata")
+  # 
+  # Results_valid <- IR_Validation(Results_import, anom_crit, "DO")
 
-  # Load validation table
-  load("Validation/anom_crit.Rdata")
-
-  Results_valid <- IR_Validation(Results_import, anom_crit, "DO")
-
-
+  Results_valid <- Results_import
   
   # Censored data ------------------------------------------------------------
   
