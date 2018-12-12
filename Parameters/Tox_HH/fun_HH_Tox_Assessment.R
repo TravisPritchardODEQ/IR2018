@@ -12,7 +12,8 @@ tox_HH_assesment <- df %>%
   
 tox_HH_categories <- tox_HH_assesment %>%
   group_by(AU_ID, Pollutant, Sample_Fraction,Crit_Fraction) %>%
-  summarise(crit = max(crit),
+  summarise(OWRD_Basin = first(OWRD_Basin), 
+            crit = max(crit),
             num_samples = n(),
             num_violations = sum(violation),
             geomean = geo_mean(Result_cen)) %>%

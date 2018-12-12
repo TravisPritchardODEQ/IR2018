@@ -202,7 +202,8 @@ for(i in 1:length(basins)){
 # Else Cat 2
 cont_spawn_DO_categories <- cont_spawn_Do_analysis %>%
   group_by(AU_ID) %>%
-  summarise(num_valid_samples = sum(!is.na(Violation)),
+  summarise(OWRD_Basin = first(OWRD_Basin), 
+            num_valid_samples = sum(!is.na(Violation)),
             num_violations = sum(Violation, na.rm = TRUE),
             category = ifelse(num_violations >= 2, "Cat 5", "Cat 2" )) %>%
   mutate(type = "Spawning continuous")
@@ -323,7 +324,8 @@ for(i in 1:length(basins)){
 
 instant_DO_sat_categories <- instant_DO_sat_analysis %>%
   group_by(AU_ID) %>%
-  summarise(num_samples = n(),
+  summarise(OWRD_Basin = first(OWRD_Basin), 
+            num_samples = n(),
             num_Violations = sum(Violation, na.rm = TRUE)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
   mutate(category = ifelse(num_samples < 10 &

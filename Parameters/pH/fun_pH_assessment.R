@@ -39,7 +39,8 @@ pH_assessment <- function(df) {
   
   pH_categories <- pH_summary %>%
     group_by(AU_ID) %>%
-    summarise(num_Samples = n(),
+    summarise(OWRD_Basin = first(OWRD_Basin), 
+              num_Samples = n(),
               num_violation = sum(pH_violation),
               num_violation_high = sum(pH_violation_high),
               num_violation_low = sum(pH_violation_low),

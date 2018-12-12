@@ -134,7 +134,8 @@ Coastal_Contact_rec <- function(df){
   Coastal_AU_summary <-  Coastal_analysis %>%
     group_by(AU_ID) %>%
     # list out the maxium geometric mean per AU
-    summarise(Max_Geomean = ifelse(!all(is.na(geomean)),max(geomean, na.rm = TRUE),NA),
+    summarise(OWRD_Basin = first(OWRD_Basin), 
+              Max_Geomean = ifelse(!all(is.na(geomean)),max(geomean, na.rm = TRUE),NA),
               # maximum percentage of results within geomean groups with more 10 samples that are above criteria 
               max.perc_above_crit_10 =  ifelse(!all(is.na(perc_above_crit_10)),max(perc_above_crit_10, na.rm = TRUE),NA),
               # maximum percentage of results within geomean groups with more 5 samples that are above criteria 

@@ -274,7 +274,8 @@ for(i in 1:length(basins)){
 # Set the categories basedon flow charts
 yr_round_cont_data_categories <- continuous_data_analysis %>%
   group_by(AU_ID, DO_Class) %>%
-  summarise(Total_violations = sum(Violation),
+  summarise(OWRD_Basin = first(OWRD_Basin), 
+            Total_violations = sum(Violation),
             Sum_30D_violations = sum(Violation [Statistical_Base == "30DADMean"]),
             Sum_7mi_violations = sum(Violation [Statistical_Base == "7DADMin"]),
             Sum_abs_min_violations = sum(Violation [Statistical_Base == "Minimum"])) %>%
@@ -436,7 +437,8 @@ for(i in 1:length(basins)){
 # Reassign categories based on flow charts
 yr_round_instant_categories <- Instant_data_analysis_DOS %>%
   group_by(AU_ID, DO_Class) %>%
-  summarise(num_samples = n(),
+  summarise(OWRD_Basin = first(OWRD_Basin), 
+            num_samples = n(),
             num_critical_samples = sum(is.crit),
             num_below_crit = sum(Violation, na.rm = TRUE)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
