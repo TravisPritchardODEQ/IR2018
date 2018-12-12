@@ -13,8 +13,9 @@ Yearround_analysis_list <-  DO_year_round_analysis(Results_censored_DO)
 DO_yearround_continuous <- Yearround_analysis_list[[1]]
 DO_yearround_instantaneous <- Yearround_analysis_list[[2]]
 
-# write.csv(DO_yearround_continuous, "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Test data for Review/DO/DO_yearround_continuous.csv")
-# write.csv(DO_yearround_instantaneous, "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Test data for Review/DO/DO_yearround_instantaneous.csv")
+
+IR_export(DO_yearround_continuous, "Parameters/DO", "DO_yearround_continuous")
+IR_export(DO_yearround_instantaneous, "Parameters/DO", "DO_yearround_instantaneous")
 
 
 Spawning_analysis_list <- DO_spawning_analysis(Results_censored_DO)
@@ -24,7 +25,6 @@ Spawning_analysis_list <- DO_spawning_analysis(Results_censored_DO)
 DO_Spawning_continuous <- Spawning_analysis_list[[1]]
 DO_Spawning_instantaneous <- Spawning_analysis_list[[2]]
 
+IR_export(DO_Spawning_continuous, "Parameters/DO", "DO_Spawning_continuous")
+IR_export(DO_Spawning_instantaneous, "Parameters/DO", "DO_Spawning_instantaneous")
 
-# write.csv(DO_Spawning_continuous, "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Test data for Review/DO/DO_Spawning_continuous.csv")
-# write.csv(DO_Spawning_instantaneous, "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Test data for Review/DO/DO_Spawning_instantaneous.csv")
-# 

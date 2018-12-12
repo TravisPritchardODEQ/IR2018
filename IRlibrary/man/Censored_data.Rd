@@ -4,7 +4,7 @@
 \alias{Censored_data}
 \title{Censored Data}
 \usage{
-Censored_data(df, res = Result4IR, resqual = ResultOp4IR,
+Censored_data(df, res = IRResultNWQSunit, resqual = Result_Operator,
   crit = crit)
 }
 \arguments{
