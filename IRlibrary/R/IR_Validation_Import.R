@@ -5,6 +5,7 @@
 #' change the Conclusion field to read "Valid"
 #' @param file File that contains reviewd data validation table
 #' @param df Dataframe that results from IR_Validation function. For the IR, this will be the results of the datapull script. 
+#' @export
 
 IR_Validation_Import <- function(file, df){
 
