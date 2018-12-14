@@ -33,7 +33,8 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
   invalid_AUs <- unique(invalid_data$AU_ID)
   
   data2review <- Res_validation %>%
-    filter(AU_ID %in% invalid_AUs)
+    filter(AU_ID %in% invalid_AUs) %>%
+    mutate(Conclusion = "")
      
    
    if (nrow(invalid_data) == 0) {
@@ -47,7 +48,9 @@ IR_Validation <- function(Results_import, anom_crit, parameter) {
    
    Valid_AUs <- Res_validation %>%
      filter(!(AU_ID %in% invalid_AUs)) %>%
-     select(-Au_valid_count, -AU_total_count, -perc_valid)
+     select(-Au_valid_count, -AU_total_count, 
+            -perc_valid, -per99, -per1, 
+            -AmbDatarange, -StdRef)
   
   return(Valid_AUs)
 }
