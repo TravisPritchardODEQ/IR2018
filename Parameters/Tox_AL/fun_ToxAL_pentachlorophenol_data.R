@@ -6,7 +6,7 @@ library(glue)
 
 Pentachlorophenol_data <- function(database){
 
-print("Fetch bacteria data from IR database")
+print("Fetch Pentachlorophenol data from IR database")
 
 #open connection to database
 con <- DBI::dbConnect(odbc::odbc(), database)
@@ -19,6 +19,8 @@ db_qry <- DoSatqry <- glue::glue_sql( "SELECT *
 # Send query to database and return with the data
 Results_import <-  DBI::dbGetQuery(con, db_qry) 
 
+print(paste("Returned", nrow(Results_import), "results from", length(unique(Results_import$MLocID)), "monitoring locations"))
+print("Fetch matching pH values")
 
 #Create a vector of monitoring locations with Pentachlorophenol data. This list is used as a filter for the pH query
 mlocs <- unique(Results_import$MLocID)
@@ -39,17 +41,20 @@ WHERE Pollu_ID = '124' AND (Statistical_Base IS NULL)
 #Send to db and return with the data
 Results_pH <- DBI::dbGetQuery(con, ph_qry)
 
+print("finished pH query")
 
 # Close database connection
 DBI::dbDisconnect(con)
 
 
 # If there are multiple pH data points in a day, we only use the first one. 
-# This section just selects the first pH value for a given mloc, date, and depth
+# This section uses first pH result for a given mloc, date, and depth
 single_day_ph <- Results_pH %>%
   group_by(MLocID, SampleStartDate, Result_Depth ) %>%
   summarise(pH = first(pH)) %>%
   ungroup()
+
+print("Joining pH values and calculating criteria")
 
 #Join the pH data to the Pentachlorophenol data and calculate the criteria
 joined_data <- Results_import %>%
@@ -57,6 +62,13 @@ joined_data <- Results_import %>%
   mutate(CMC_crit = exp(1.005*pH-4.869),
          CCC_crit = exp(1.005*pH-5.134))
 
+
+print(paste("Removing", sum(is.na(joined_data$pH)), "results with no pH values"))
+
+joined_data <- joined_data %>%
+  filter(!is.na(pH))
+
+print("Data censoring")
 
 #Run data censoring here
 data_censored <- Censored_data(joined_data, crit = CMC_crit)
