@@ -8,7 +8,7 @@ tox_HH_assesment <- df %>%
 
 
 
-#Write table here
+write.csv(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/HH_tox_analysis.csv")
   
 tox_HH_categories <- tox_HH_assesment %>%
   group_by(AU_ID, Pollutant, Sample_Fraction,Crit_Fraction) %>%

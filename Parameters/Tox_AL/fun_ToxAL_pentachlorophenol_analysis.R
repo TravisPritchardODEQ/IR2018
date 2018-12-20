@@ -4,7 +4,8 @@ library(lubridate)
 
 # Assign violations
 penta_data_analysis <- Penta_data %>%
-  mutate(violation = ifelse(Result_cen > CMC_crit, 1, 0 ))
+  mutate(evaluation_crit = ifelse(WaterTypeCode == 2, pmin(Acute_FW, Chronic_FW, na.rm = TRUE), pmin(Acute_SW, Chronic_SW, na.rm = TRUE) )) %>%
+  mutate(violation = ifelse(Result_cen > evaluation_crit, 1, 0 ))
 
 #Write data review tables
 # Get list of unique basins in dataset. Used for generating data for review
@@ -32,8 +33,8 @@ penta_data_summary <- penta_data_analysis %>%
   group_by(AU_ID) %>%
   summarise(num_samples = n(),
             num_Violations = sum(violation),
-            percent_3D = round(sum(Result_Operator == "<" & MRLValue > CMC_crit )/num_samples * 100)) %>%
+            percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit > evaluation_crit )/num_samples * 100)) %>%
   mutate(critical_excursions = excursions_tox(num_samples),
-         Category = ifelse(percent_3D == 100, "Cat 3D", 
+         Category = ifelse(percent_3d == 100, "Cat 3D", 
                            ifelse(num_Violations > critical_excursions, "Cat 5", "Cat 2" )))
 
