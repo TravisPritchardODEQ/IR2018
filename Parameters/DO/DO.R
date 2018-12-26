@@ -15,8 +15,8 @@ DO_yearround_continuous <- Yearround_analysis_list[[1]]
 DO_yearround_instantaneous <- Yearround_analysis_list[[2]]
 
 
-IR_export(DO_yearround_continuous, "Parameters/DO", "DO_yearround_continuous")
-IR_export(DO_yearround_instantaneous, "Parameters/DO", "DO_yearround_instantaneous")
+IR_export(DO_yearround_continuous, "Parameters/DO", "DO_yearround_continuous", "categories")
+IR_export(DO_yearround_instantaneous, "Parameters/DO", "DO_yearround_instantaneous", "categories")
 
 
 Spawning_analysis_list <- DO_spawning_analysis(Results_censored_DO)
@@ -26,6 +26,6 @@ Spawning_analysis_list <- DO_spawning_analysis(Results_censored_DO)
 DO_Spawning_continuous <- Spawning_analysis_list[[1]]
 DO_Spawning_instantaneous <- Spawning_analysis_list[[2]]
 
-IR_export(DO_Spawning_continuous, "Parameters/DO", "DO_Spawning_continuous")
-IR_export(DO_Spawning_instantaneous, "Parameters/DO", "DO_Spawning_instantaneous")
+IR_export(DO_Spawning_continuous, "Parameters/DO", "DO_Spawning_continuous", "categories")
+IR_export(DO_Spawning_instantaneous, "Parameters/DO", "DO_Spawning_instantaneous", "categories")
 

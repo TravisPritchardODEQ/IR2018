@@ -13,26 +13,9 @@ pH_assessment <- function(df) {
 
 # Data review exports -----------------------------------------------------
 
+IR_export(pH_summary, "Parameters/pH/Data_Review", "pH", "data" )
 
 
-  # Get list of unique basins in dataset. Used for generating data for review
-  basins <- unique(pH_summary$OWRD_Basin) 
-  
-  
-  # Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-  for(i in 1:length(basins)){
-    
-    Basin <- basins[i]
-    print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-    
-    pH_analysis_by_basin <-  pH_summary %>%
-      filter(OWRD_Basin == Basin)
-    
-    write.csv(pH_analysis_by_basin, paste0("Parameters/pH/Data_Review/pH_IR_data_",Basin,".csv"))
-    
-  }
-  
-  
 
 # Categorization ----------------------------------------------------------
 

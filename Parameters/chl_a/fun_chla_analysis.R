@@ -51,21 +51,7 @@ chla_data_analysis <-  chla_data %>%
   select(-diffs, -consecutive3) %>%
   arrange(AU_ID, monthfromstart)
 
-
-
-basins <- unique(chla_data_analysis$OWRD_Basin) 
-
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  
-  chla_analysis_by_basin <-  chla_data_analysis %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(chla_analysis_by_basin, paste0("Parameters/chl_a/Data_Review/Chla_IR_data_",Basin,".csv"))
-  
-}
+IR_export(chla_data_analysis, "Parameters/chl_a/Data_Review", "Chla", "data" )
 
 
 chl_categories <- chla_data_analysis %>%

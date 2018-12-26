@@ -249,25 +249,11 @@ yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
 
 
 
-# Get list of unique basins in dataset. Used for generating data for review
-basins <- unique(yr_round_cont_DO_data_analysis$OWRD_Basin) 
 
 
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-  
-  analysis_by_basin <-  yr_round_cont_DO_data_analysis %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(analysis_by_basin, paste0("Parameters/DO/Data_Review/Continuous_yearRound_DO_IR_data_",Basin,".csv"))
-  
-}
+IR_export(yr_round_cont_DO_data_analysis, "Parameters/DO/Data_Review", "DO_YearRound_continuous", "data" )
 
-# Write this table to a file to be used for the data review  
-#write.csv(yr_round_cont_DO_data_analysis, file = "Parameters/DO/Data Review/yearround_continuous_data_analysis.csv", row.names = FALSE)
+
 
 
 # Summarise data and 
@@ -412,26 +398,9 @@ Instant_data_analysis_DOS <- Results_spawndates %>%
                             ifelse(DO_Class != "Cold Water" & 
                                      IRResultNWQSunit < crit_30D, 1, 0))  )
 
-# Get list of unique basins in dataset. Used for generating data for review
-basins <- unique(Instant_data_analysis_DOS$OWRD_Basin) 
+IR_export(Instant_data_analysis_DOS, "Parameters/DO/Data_Review", "DO_YearRound_instant", "data" )
 
 
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-  
-  analysis_by_basin <-  Instant_data_analysis_DOS %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(analysis_by_basin, paste0("Parameters/DO/Data_Review/Instantaneous_YearRound_DO_IR_data_",Basin,".csv"))
-  
-}
-
-
-# Write table to be used for data review
-#write.csv(Instant_data_analysis_DOS, file = "Parameters/DO/Data Review/yearround_instantaneous_data_analysis.csv", row.names = FALSE)
 
 
 # Reassign categories based on flow charts

@@ -172,27 +172,8 @@ cont_spawn_Do_analysis <- spawn_DO_data %>%
                                  is.na(dosat_mean7)), 1, 0 ))
 
 
+IR_export(cont_spawn_Do_analysis, "Parameters/DO/Data_Review", "DO_Continuous_Spawn", "data" )
 
-# Get list of unique basins in dataset. Used for generating data for review
-basins <- unique(cont_spawn_Do_analysis$OWRD_Basin) 
-
-
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-  
-  analysis_by_basin <-  cont_spawn_Do_analysis %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(analysis_by_basin, paste0("Parameters/DO/Data_Review/Continuous_Spawn_DO_IR_data_",Basin,".csv"))
-  
-}
-
-# Write table for data review
-# Should probably make this a loop to spit out versions for each basin
-#write.csv(cont_spawn_Do_analysis, file = "Parameters/DO/Data Review/Spawning_Continuous_data_analysis.csv", row.names = FALSE)
 
 
 # Categorize based on the analysis. 
@@ -301,23 +282,9 @@ instant_DO_sat_analysis <- instant_DO_sat %>%
                               (DO_res < 11.0 & is.na(DO_sat)) , 1, 0 ))
 
 
-
-# Get list of unique basins in dataset. Used for generating data for review
-basins <- unique(instant_DO_sat_analysis$OWRD_Basin) 
+IR_export(instant_DO_sat_analysis, "Parameters/DO/Data_Review", "DO_Continuous_YearRound", "data" )
 
 
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-  
-  analysis_by_basin <-  instant_DO_sat_analysis %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(analysis_by_basin, paste0("Parameters/DO/Data_Review/Continuous_YearRound_DO_IR_data_",Basin,".csv"))
-  
-}
 
 
 #write.csv(instant_DO_sat_analysis, file = "Parameters/DO/Data Review/Spawning_instantaneous_data_analysis.csv", row.names = FALSE)

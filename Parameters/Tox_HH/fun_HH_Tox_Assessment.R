@@ -3,6 +3,10 @@ library(lubridate)
 fun_Tox_HH_analysis <- function(df){ 
 
 
+DDT <- Results_censored_tox_HH %>%
+  filter(Pollu_ID == 48)
+  
+  
 tox_HH_assesment <- df %>%
   mutate(violation = ifelse(Result_cen > crit, 1, 0 )) 
 
@@ -11,19 +15,19 @@ tox_HH_assesment <- df %>%
 write.csv(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/HH_tox_analysis.csv")
   
 tox_HH_categories <- tox_HH_assesment %>%
-  group_by(AU_ID, Pollutant, Sample_Fraction,Crit_Fraction) %>%
+  group_by(AU_ID, Char_Name, Sample_Fraction,Crit_Fraction) %>%
   summarise(OWRD_Basin = first(OWRD_Basin), 
             crit = max(crit),
             num_samples = n(),
             num_violations = sum(violation),
             geomean = geo_mean(Result_cen)) %>%
   ungroup() %>%
-  group_by(AU_ID, Pollutant) %>%
+  group_by(AU_ID, Char_Name) %>%
   mutate(num_fraction_types =  n(),
          IR_category = ifelse(num_samples >= 3 & geomean >= crit, "Cat5", 
                                      ifelse(num_samples < 3 & num_violations >= 1, "Cat3B", 
                                             ifelse(num_samples < 3 & num_violations == 0, "Cat3", "Cat2" )))) %>%
-  arrange(AU_ID, Pollutant)
+  arrange(AU_ID, Char_Name)
  
 #write tablehere
 }

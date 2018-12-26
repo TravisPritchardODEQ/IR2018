@@ -26,21 +26,7 @@ Shell_Harvest <- function(df) {
   # Data review -------------------------------------------------------------
   
   
-  # Get list of unique basins in dataset. Used for generating data for review
-  basins <- unique(shell_harvest_analysis$OWRD_Basin) 
-  
-  
-  # Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-  for(i in 1:length(basins)){
-    
-    Basin <- basins[i]
-    
-    bacteria_shell_contact_analysis_by_basin <-  shell_harvest_analysis %>%
-      filter(OWRD_Basin == Basin)
-    
-    write.csv(bacteria_shell_contact_analysis_by_basin, paste0("Parameters/Bacteria/Data Review/Shell_Harvest_IR_data_",Basin,".csv"))
-    
-  }
+  IR_export(shell_harvest_analysis, "Parameters/Bacteria/Data Review", "Bacteria_Shell_harvest", "data" )
   
     
   shell_harvest_summary <- shell_harvest_analysis %>%

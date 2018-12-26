@@ -7,26 +7,10 @@ penta_data_analysis <- Penta_data %>%
   mutate(evaluation_crit = ifelse(WaterTypeCode == 2, pmin(Acute_FW, Chronic_FW, na.rm = TRUE), pmin(Acute_SW, Chronic_SW, na.rm = TRUE) )) %>%
   mutate(violation = ifelse(Result_cen > evaluation_crit, 1, 0 ))
 
-#Write data review tables
-# Get list of unique basins in dataset. Used for generating data for review
-basins <- unique(penta_data_analysis$OWRD_Basin) 
+
+IR_export(penta_data_analysis, "Parameters/Tox_AL/Data_Review", "TOX_AL_Pentachlorophenol", "data" )
 
 
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-  
-  analysis_by_basin <-  penta_data_analysis %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(analysis_by_basin, paste0("Parameters/Tox_AL/Data_Review/Pentachlorophenol_IR_data_",Basin,".csv"))
-  
-}
-
-
-write.csv(analysis_by_basin, "Parameters/Tox_AL/Data_Review/Pentachlorophenol_IR_data_ALL_DATA.csv")
 
 #Summarize data and assign critical excursions and IR category
 penta_data_summary <- penta_data_analysis %>%

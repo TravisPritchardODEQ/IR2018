@@ -34,22 +34,9 @@ temp_analysis <- df %>%
 
 print("Writing data tables for review in 'Parameters/Temperature/Data_Review/")
 
-# Get list of unique basins in dataset. Used for generating data for review
-basins <- unique(temp_analysis$OWRD_Basin) 
+IR_export(temp_analysis, "Parameters/Temperature/Data_Review", "Temperature", "data" )
 
 
-# Loop through data, and filter by OWRD basin, write csv file of all data in that basin
-for(i in 1:length(basins)){
-  
-  Basin <- basins[i]
-  print(paste("Writing table", i, "of",length(basins), "-", Basin ))
-  
-  temp_analysis_by_basin <-  temp_analysis %>%
-    filter(OWRD_Basin == Basin)
-  
-  write.csv(temp_analysis_by_basin, paste0("Parameters/Temperature/Data_Review/Temperature_IR_data_",Basin,".csv"))
-  
-}
 
 
 
