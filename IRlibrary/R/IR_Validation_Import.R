@@ -15,12 +15,13 @@ library(openxlsx)
 validated <- read.xlsx(file, detectDates = TRUE) 
 
 data_to_merge <- validated %>%
-  filter(validation == "Valid" | Conclusion == "Valid" | Conclusion == "valid") %>%
+  filter(validation == "Valid" | Conclusion %in% c("Valid", "valid")) %>%
   select(-Au_valid_count, -AU_total_count, 
          -perc_valid, -per99, -per1, 
-         -AmbDatarange, -StdRef, -Conclusion)
+         -AmbDatarange, -StdRef)
 
-complete_data <- df %>%
+
+  complete_data <- df %>%
   bind_rows(data_to_merge)
 
 return(complete_data)

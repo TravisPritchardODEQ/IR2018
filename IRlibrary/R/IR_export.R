@@ -18,7 +18,7 @@ IR_export <- function(df, location, parameter, type) {
 # Get list of unique basins in dataset. Used for generating data for review
 basins <- unique(df$OWRD_Basin) 
 
-write.csv(df, paste0(location, "/", parameter, "_IR_",type,"_ALLDATA.csv"))
+write.csv(df, paste0(location, "/", parameter, "_IR_",type,"_ALLDATA.csv"), row.names = FALSE)
 
 # Loop through data, and filter by OWRD basin, write csv file of all data in that basin
 for(i in 1:length(basins)){
@@ -29,7 +29,7 @@ for(i in 1:length(basins)){
   by_basin <-  df %>%
     filter(OWRD_Basin == Basin)
   
-  write.csv(by_basin, paste0(location, "/", parameter, "_IR_",type,"_",Basin,".csv"))
+  write.csv(by_basin, paste0(location, "/", parameter, "_IR_",type,"_",Basin,".csv"), row.names = FALSE)
   
   
 }
