@@ -29,9 +29,12 @@ Results_censored_bacteria <- Bacteria_data_censored(Validated_reults)
 # Water Contact Recreation - Freshwater
 Bacteria_fresh_contact_rec <- Fresh_Contact_rec(Results_censored_bacteria)
 
+IR_export(Bacteria_fresh_contact_rec, "Parameters/Bacteria/Data Review", "Bacteria_Fresh_Contact", "Categories" )
+
 # Water Contact recreation - Coastal Water 
 Bacteria_Coast_contact_rec <- Coastal_Contact_rec(Results_censored_bacteria)
 
 #Shellfish Harvesting
 Bacteria_Shell_Harvest <- Shell_Harvest(Results_censored_bacteria)
 
+IR_export(Bacteria_Shell_Harvest, "Parameters/Bacteria/Data Review", "Bacteria_Shell_Harvest", "Categories" )

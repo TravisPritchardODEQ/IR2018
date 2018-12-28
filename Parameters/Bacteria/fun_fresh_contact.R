@@ -53,9 +53,11 @@ Fresh_Contact_rec <- function(df){
     fresh_singlestation <- fresh_contact %>%
       filter(AU_ID == station) %>%
       mutate(geomean_start_date = as.Date(SampleStartDate)-90)
+    #print(paste("i = ", i))
     
     for(j in 1:nrow(fresh_singlestation)){
       
+     # print(paste("j = ", j))
       #start of 90 day window
       geomean_date <- fresh_singlestation$geomean_start_date[j]
       # end of 90 day window

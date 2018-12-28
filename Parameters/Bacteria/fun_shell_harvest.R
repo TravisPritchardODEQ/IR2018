@@ -14,7 +14,7 @@ Shell_Harvest <- function(df) {
   }
   
   shell_harvest_analysis <- shell_harvest %>%
-    group_by(AU_ID) %>%
+    group_by(AU_ID, OWRD_Basin) %>%
     summarise(num_samples = n(),
               median = ifelse(num_samples >= 5, median(Result_cen), NA ),
               num_exceed = sum(perc_exceed),
@@ -26,7 +26,7 @@ Shell_Harvest <- function(df) {
   # Data review -------------------------------------------------------------
   
   
-  IR_export(shell_harvest_analysis, "Parameters/Bacteria/Data Review", "Bacteria_Shell_harvest", "data" )
+  IR_export(shell_harvest, "Parameters/Bacteria/Data Review", "Bacteria_Shell_harvest", "data" )
   
     
   shell_harvest_summary <- shell_harvest_analysis %>%
