@@ -31,12 +31,12 @@ chla_data <- function(database) {
   
   # Data validation ---------------------------------------------------------
   
-  print("Validating Data")
+  print("NO data validation")
   
-  # Load validation table
-  load("Validation/anom_crit.Rdata")
-  
-  Results_valid <- IR_Validation(Results_import, anom_crit, "Chl")
+  # # Load validation table
+  # load("Validation/anom_crit.Rdata")
+  # 
+  # Results_valid <- IR_Validation(Results_import, anom_crit, "Chl")
   
   
   
@@ -47,7 +47,7 @@ chla_data <- function(database) {
   print("Modify censored data")
   
   #run the censored data function to set censored data. This will use the lowest crit value from above 
-  Results_censored <- Censored_data(Results_valid, crit = `Chla_Criteria` ) %>%
+  Results_censored <- Censored_data(Results_import, crit = `Chla_Criteria` ) %>%
     mutate(Result_cen = as.numeric(Result_cen))
   
   print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))

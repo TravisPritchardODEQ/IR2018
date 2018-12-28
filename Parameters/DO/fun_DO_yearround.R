@@ -409,16 +409,16 @@ yr_round_instant_categories <- Instant_data_analysis_DOS %>%
   summarise(OWRD_Basin = first(OWRD_Basin), 
             num_samples = n(),
             num_critical_samples = sum(is.crit),
-            num_below_crit = sum(Violation, na.rm = TRUE)) %>%
+            num_excursions = sum(Violation, na.rm = TRUE)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
   mutate(category = ifelse(num_critical_samples < 10 & 
-                             num_below_crit > 0, "Cat 3B", 
+                             num_excursions > 0, "Cat 3B", 
                            ifelse(num_critical_samples < 10 & 
-                                    num_below_crit == 0, "Cat 3", 
+                                    num_excursions == 0, "Cat 3", 
                                   ifelse(num_critical_samples >= 10 &
-                                           num_below_crit > critical_excursions , "Cat 5", 
+                                           num_excursions > critical_excursions , "Cat 5", 
                                                  ifelse(num_critical_samples >= 10 &
-                                                         num_below_crit <= critical_excursions, "Cat 2", "ERROR" )))))
+                                                         num_excursions <= critical_excursions, "Cat 2", "ERROR" )))))
 
 print("Year round analysis finished")
 

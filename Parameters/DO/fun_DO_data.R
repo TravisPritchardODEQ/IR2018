@@ -37,21 +37,13 @@ DO_data <- function(database) {
     filter(is.na(Statistical_Base) | Statistical_Base != 'Delta')
   
   
-  # print("Validating Data")
-  # 
-  # # Load validation table
-  # load("Validation/anom_crit.Rdata")
-  # 
-  # Results_valid <- IR_Validation(Results_import, anom_crit, "DO")
+  print("Validating Data")
 
-  Results_valid <- Results_import
-  
-  # Censored data ------------------------------------------------------------
-  
-  
-  
-  print("NO DATA CENSORING")
-  
- 
+  # Load validation table
+  load("Validation/anom_crit.Rdata")
+
+  Results_valid <- IR_Validation(Results_import, anom_crit, "DO")
+
   return(Results_valid)
+  
 }

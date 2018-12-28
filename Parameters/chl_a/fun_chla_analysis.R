@@ -48,8 +48,8 @@ chla_avgs <- chla_consec_mon %>%
 
 chla_data_analysis <-  chla_data %>%
   left_join(chla_avgs, by = c("AU_ID", "monthfromstart", "Chla_Criteria", "OWRD_Basin", "Char_Name")) %>%
-  select(-diffs, -consecutive3) %>%
-  arrange(AU_ID, monthfromstart)
+  select(-diffs, -consecutive3, -yrfromstart, -monthfromstart, monthaverage, -month) %>%
+  arrange(AU_ID)
 
 IR_export(chla_data_analysis, "Parameters/chl_a/Data_Review", "Chla", "data" )
 
@@ -58,13 +58,14 @@ chl_categories <- chla_data_analysis %>%
   group_by(AU_ID, MonLocType, OWRD_Basin, Char_Name, Chla_Criteria) %>%
   summarise(max_result = max(Result_cen),
             max_mo_avg = max(monthaverage),
-            max_3_mo_avg = max(avg.3.mo)) %>%
-  mutate(IR_category = ifelse(is.na(max_3_mo_avg) & max_result < Chla_Criteria, "Cat3",
+            max_3_mo_avg = max(avg.3.mo, na.rm = TRUE)) %>%
+  mutate(max_3_mo_avg = ifelse(is.infinite(max_3_mo_avg), NA, max_3_mo_avg ),
+         IR_category = ifelse(is.na(max_3_mo_avg) & max_result < Chla_Criteria, "Cat3",
                            ifelse(is.na(max_3_mo_avg) & max_result > Chla_Criteria, "Cat3b", 
                                   ifelse(max_3_mo_avg > Chla_Criteria, "Cat5",
                                          ifelse(max_3_mo_avg <= Chla_Criteria, "Cat2", "ERROR" ))))) %>%
-  select(AU_ID, OWRD_Basin,MonLocType, Char_Name, Chla_Criteria, IR_category, 
-         max_result,max_mo_avg, max_3_mo_avg )
+  select(AU_ID, OWRD_Basin,MonLocType, Char_Name, Chla_Criteria,  
+         max_result,max_mo_avg, max_3_mo_avg, IR_category)
 
 return(chl_categories)
 

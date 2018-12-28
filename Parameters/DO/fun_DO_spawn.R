@@ -53,7 +53,7 @@ continuous_data <- Results_spawndates %>%
          Statistical_Base == "7DADMean" )
 
 
-# These more the monitoring locations that have data that meets continuous metrics criteria
+# The monitoring locations that have data that meets continuous metrics criteria
 continuous_mon_locs <- unique(continuous_data$MLocID)
 
 
@@ -172,7 +172,12 @@ cont_spawn_Do_analysis <- spawn_DO_data %>%
                                  is.na(dosat_mean7)), 1, 0 ))
 
 
-IR_export(cont_spawn_Do_analysis, "Parameters/DO/Data_Review", "DO_Continuous_Spawn", "data" )
+print("Writing continuous spawning data tables")
+
+export <- cont_spawn_Do_analysis %>%
+  select(-Do_7D)
+
+IR_export(export, "Parameters/DO/Data_Review", "DO_Continuous_Spawn", "data" )
 
 
 
@@ -184,10 +189,10 @@ IR_export(cont_spawn_Do_analysis, "Parameters/DO/Data_Review", "DO_Continuous_Sp
 cont_spawn_DO_categories <- cont_spawn_Do_analysis %>%
   group_by(AU_ID) %>%
   summarise(OWRD_Basin = first(OWRD_Basin), 
-            num_valid_samples = sum(!is.na(Violation)),
+            #num_valid_samples = sum(!is.na(Violation)),
             num_violations = sum(Violation, na.rm = TRUE),
-            category = ifelse(num_violations >= 2, "Cat 5", "Cat 2" )) %>%
-  mutate(type = "Spawning continuous")
+            category = ifelse(num_violations >= 2, "Cat 5", "Cat 2" )) #%>%
+ # mutate(type = "Spawning continuous")
 
 #write table here
 
@@ -282,7 +287,13 @@ instant_DO_sat_analysis <- instant_DO_sat %>%
                               (DO_res < 11.0 & is.na(DO_sat)) , 1, 0 ))
 
 
-IR_export(instant_DO_sat_analysis, "Parameters/DO/Data_Review", "DO_Continuous_YearRound", "data" )
+
+print("Writing instant spawning data tables")
+
+export <- instant_DO_sat_analysis %>%
+  select(-DO_res)
+
+IR_export(export, "Parameters/DO/Data_Review", "DO_Instant_Spawn", "data" )
 
 
 

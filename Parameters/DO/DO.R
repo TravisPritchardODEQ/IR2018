@@ -5,27 +5,36 @@ source("Parameters/DO/fun_DO_spawn.R")
 
 
 
-Results_censored_DO <- DO_data("IR 2018")
+DO_results <-  DO_data("IR 2018")
+
+#######################################################################################################
+###                         Stop here and review the invalid data file.                             ###
+###                      For valid data, mark the Conclusion field as Valid                         ###
+#######################################################################################################
+
+#Reinput the data after the manual data validation step
+Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-DO.csv", df = DO_results)
 
 
-Yearround_analysis_list <-  DO_year_round_analysis(Results_censored_DO)
+
+Yearround_analysis_list <-  DO_year_round_analysis(Validated_results)
 # Because we can't get two values from function, they are put in list
 # and need to be extracted
 DO_yearround_continuous <- Yearround_analysis_list[[1]]
 DO_yearround_instantaneous <- Yearround_analysis_list[[2]]
 
 
-IR_export(DO_yearround_continuous, "Parameters/DO", "DO_yearround_continuous", "categories")
-IR_export(DO_yearround_instantaneous, "Parameters/DO", "DO_yearround_instantaneous", "categories")
+IR_export(DO_yearround_continuous, "Parameters/DO/Data_Review", "DO_yearround_continuous", "categories")
+IR_export(DO_yearround_instantaneous, "Parameters/DO/Data_Review", "DO_yearround_instantaneous", "categories")
 
 
-Spawning_analysis_list <- DO_spawning_analysis(Results_censored_DO)
+Spawning_analysis_list <- DO_spawning_analysis(Validated_results)
 
 # Because we can't get two values from function, they are put in list
 # and need to be extracted
 DO_Spawning_continuous <- Spawning_analysis_list[[1]]
 DO_Spawning_instantaneous <- Spawning_analysis_list[[2]]
 
-IR_export(DO_Spawning_continuous, "Parameters/DO", "DO_Spawning_continuous", "categories")
-IR_export(DO_Spawning_instantaneous, "Parameters/DO", "DO_Spawning_instantaneous", "categories")
+IR_export(DO_Spawning_continuous, "Parameters/DO/Data_Review", "DO_Spawning_continuous", "categories")
+IR_export(DO_Spawning_instantaneous, "Parameters/DO/Data_Review", "DO_Spawning_instantaneous", "categories")
 
