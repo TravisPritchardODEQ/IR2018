@@ -6,10 +6,20 @@ source("Parameters/Temperature/fun_temp_analysis.R")
 
 Results_censored_temp <- Temp_data("IR 2018")
 
-temperature_summary <- temp_asessment(Results_censored_temp)
 
-write.csv(temperature_summary, '//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Test data for Review/Temperature/temperature_categories.csv')
+#######################################################################################################
+###                         Stop here and review the invalid data file.                             ###
+###                      For valid data, mark the Conclusion field as Valid                         ###
+#######################################################################################################
+
+Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-Temperature.csv", df = Results_censored_temp)
+
+
+temperature_summary <- temp_asessment(Results_censored_temp)
+IR_export(temperature_summary, "Parameters/Temperature/Data_Review", "Temperature", "categorization" )
+
 
 
 Temperature_narrative_std <- Temp_data_narrative("IR 2018")
-write.csv(Temperature_narrative_std, '//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Test data for Review/Temperature/temperature_narrative_crit.csv')
+IR_export(Temperature_narrative_std, "Parameters/Temperature/Data_Review", "Temperature - narrative", "data" )
+

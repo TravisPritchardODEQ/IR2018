@@ -31,35 +31,33 @@ Temp_data <- function(database) {
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
   
   
-
-# Data validation ---------------------------------------------------------
-
-  # print("Validating Data")
-  # 
-  # # Load validation table
-  # load("Validation/anom_crit.Rdata")
-  # 
-  # Results_valid <- IR_Validation(Results_import, anom_crit, "Temperature")
-  # 
-  Results_valid <- Results_import
-  
-
 # Censored data ------------------------------------------------------------
-
+  
   
   
   print("Modify censored data")
   
   #run the censored data function to set censored data. This will use the lowest crit value from above 
-  Results_censored <- Censored_data(Results_valid, crit = `Temp_C` ) %>%
+  Results_censored <- Censored_data(Results_import, crit = `Temp_C` ) %>%
     mutate(Result_cen = as.numeric(Result_cen))
   
   print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
   
-  Results_censored <- Results_censored%>%
+  Results_censored <- Results_censored %>%
     filter(!is.na(Result_cen))
+
+# Data validation ---------------------------------------------------------
+
+  print("Validating Data")
+
+  # Load validation table
+  load("Validation/anom_crit.Rdata")
+
+  Results_valid <- IR_Validation(Results_censored, anom_crit, "Temperature")
+
+
   
   print("Data fetch and censored data modifications complete")
   
-  return(Results_censored)
+  return(Results_valid)
 }

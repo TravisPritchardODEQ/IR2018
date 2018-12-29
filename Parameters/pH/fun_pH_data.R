@@ -26,7 +26,18 @@ pH_data <- function(database) {
   # Set factors to characters
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
   
+# Censored data -----------------------------------------------------------
   
+  print("Modify censored data")
+  
+  #run the censored data function to set censored data. This will use the lowest crit value from above
+  Results_censored <- Censored_data(Results_import, crit = `pH_Min` ) %>%
+    mutate(Result_cen = as.numeric(Result_cen))
+  
+  print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
+  
+  Results_censored <- Results_censored %>%
+    filter(!is.na(Result_cen))
 
 # Data Validation ---------------------------------------------------------
 
@@ -36,25 +47,12 @@ pH_data <- function(database) {
   # Load validation table
   load("Validation/anom_crit.Rdata")
   
-  Results_valid <- IR_Validation(Results_import, anom_crit, "pH")
+  Results_valid <- IR_Validation(Results_censored, anom_crit, "pH")
   
   rm(anom_crit)
   
 
-# Censored data -----------------------------------------------------------
-
-  print("Modify censored data")
-  
-  #run the censored data function to set censored data. This will use the lowest crit value from above
-  Results_censored <- Censored_data(Results_valid, crit = `pH_Min` ) %>%
-    mutate(Result_cen = as.numeric(Result_cen))
-  
-  print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
-  
-  Results_censored <- Results_censored%>%
-    filter(!is.na(Result_cen))
-  
   print("Data fetch and censored data modifications complete")
   
-  return(Results_censored)
+  return(Results_valid)
 }

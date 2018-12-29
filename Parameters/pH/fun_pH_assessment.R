@@ -30,12 +30,12 @@ IR_export(pH_summary, "Parameters/pH/Data_Review", "pH", "data" )
               pH_low_crit = min(pH_Min),
               pH_high_crit = max(pH_Max),
               pH_code = first(pH_code)) %>%
-    mutate(k = excursions_conv(num_Samples),
-           IR_category = ifelse(num_violation >= k, 'Cat5', 
+    mutate(critical_excursions = excursions_conv(num_Samples),
+           IR_category = ifelse(num_violation >= critical_excursions, 'Cat5', 
                                 ifelse((num_Samples < 5 & num_violation < 2) | 
                                          ((num_Samples >= 5 & num_Samples <= 9) & num_violation == 1), 'Cat3', 
                                        ifelse(num_Samples < 5 & num_violation >= 2, 'Cat3B', 
-                                              ifelse((num_Samples >= 10 &  num_violation < k) | 
+                                              ifelse((num_Samples >= 10 &  num_violation < critical_excursions) | 
                                                        ((num_Samples >= 5 & num_Samples <= 9) & num_violation == 0), 'Cat2', 
                                                      "ERROR")))))
            
