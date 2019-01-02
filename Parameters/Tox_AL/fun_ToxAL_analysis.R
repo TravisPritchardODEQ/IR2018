@@ -1,6 +1,11 @@
 
 
-#Still need to fgure out how to sum censored data:
+# Pull data out for summing -----------------------------------------------
+
+
+
+# Endosulfan data ---------------------------------------------------------
+
 
 endosulfan_data <- Results_censored %>%
   # Filter for endosulfan Pollu_IDs
@@ -9,7 +14,7 @@ endosulfan_data <- Results_censored %>%
   mutate(is_total_endosulfan = ifelse(Pollu_ID == 77, 1, 0 ),
          summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
   # Set a group that identifies a single sample
-  group_by(OrganizationID, MLocID, SampleStartDate,SampleStartTime, Analytical_method, act_depth_height) %>%
+  group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
   # Flag if the group has a total endosulfan result 
   mutate(Has_total_endosulfan = ifelse(max(is_total_endosulfan) == 1, 1, 0)) %>%
   # undo the grouping so the filter works properly
@@ -40,9 +45,42 @@ endosulfan_data <- Results_censored %>%
   select(-Summed_values,  -num_types,  -Has_total_endosulfan, -is_total_endosulfan, -summed_censored_value)
 
 
+
+# PCB data ----------------------------------------------------------------
+
+PCB_data <- Results_censored %>%
+  filter(Pollu_ID == '153') %>%
+  mutate(is_aroclor = ifelse(chr_uid %in% c('575','578','580','582','583','586','587'), 1, 0 )) %>%
+  group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+  mutate(Has_aroclor = ifelse(max(is_aroclor) == 1, 1, 0)) %>%
+  ungroup() %>%
+  # remove individual congeners if the group has arochlor data
+  filter((Has_aroclor == 1 & is_aroclor == 1) | Has_aroclor == 0) %>%
+  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen )) %>%
+  #regroup
+  group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+  mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
+         Summed_values = sum(summed_censored_value),
+         IR_note = ifelse(Has_aroclor ==  1, "PCB - Sum of Aroclors", 
+                          ifelse(Has_aroclor ==  0, "PCB - Sum of congeners", "ERROR" )) ) %>%
+  # Keep only the first row. This preserves all the metadata
+  filter(row_number() == 1) %>%
+  # Change the Char_Name to Endosulfan and the Result_cen column to the summed value
+  mutate(Char_Name = "PCBs",
+         Result_cen = Summed_values) %>%
+  # get rid of extra columns that were created
+  select(-Summed_values,  -Has_aroclor,  -is_aroclor, -summed_censored_value)
+  
+
+
+# Put data back together --------------------------------------------------
+
+
 results_analysis <- Results_censored %>%
   filter(!Pollu_ID %in% c(77,78,79 )) %>%
-  bind_rows(endosulfan_data)
+  filter(Pollu_ID != 153) %>%
+  bind_rows(endosulfan_data) %>%
+  bind_rows(PCB_data)
   
 
 
@@ -50,11 +88,9 @@ Results_tox_AL_analysis <- results_analysis %>%
    arrange(OrganizationID, MLocID, Char_Name, SampleStartDate,SampleStartTime) %>%
   # Create column for simplfied version of sample fraction
   # THese distinctions came from Sara Krepps
-  mutate(Simplified_sample_fraction = ifelse(Sample_Fraction == "Total"  |
-                                               Sample_Fraction == "Extractable"  |
-                                               Sample_Fraction == "Total Recoverable"  |
-                                               Sample_Fraction == "Total Residual"    |
-                                               Sample_Fraction == "None"  |
+  mutate(Simplified_sample_fraction = ifelse(Sample_Fraction %in% c("Total", "Extractable",
+                                                                    "Total Recoverable","Total Residual", 
+                                                                    "None", "volatile", "Semivolatile")  |
                                                is.na(Sample_Fraction), 'Total', 
                                              ifelse(Sample_Fraction == "Dissolved"  |
                                                       Sample_Fraction == "Filtered, field"  |
