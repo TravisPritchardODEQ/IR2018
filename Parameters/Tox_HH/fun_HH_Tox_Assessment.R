@@ -3,27 +3,41 @@ library(lubridate)
 fun_Tox_HH_analysis <- function(df){ 
 
 
-# DDT <- Results_censored_tox_HH %>%
-#   filter(Pollu_ID %in% c(48, 49, 50 ))
+# Need to do chlordane
 #   
 
 
 # PCBs --------------------------------------------------------------------
 
-
-PCB_data <- df  %>%
+# Sum PCB Data
+  #PCB data is identifed by Pollu_ID
+  PCB_data <- df  %>%
   filter(Pollu_ID == '153') %>%
-  mutate(is_aroclor = ifelse(chr_uid %in% c('575','578','580','582','583','586','587'), 1, 0 )) %>%
+    #Identufy the aroclors
+  mutate(is_aroclor = ifelse(chr_uid %in% c('575','578','580','582','583','586','587'), 1, 0 )) %>% #THese are the uid for the Arochlors
+    # Group by org, mloc, date, and depth to identify sampling event
   group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+    # Flag of the grouping has an arochlor sample
   mutate(Has_aroclor = ifelse(max(is_aroclor) == 1, 1, 0)) %>%
+    # Undo the grouping
   ungroup() %>%
-  # remove individual congeners if the group has arochlor data
-  filter((Has_aroclor == 1 & is_aroclor == 1) | Has_aroclor == 0) %>%
-  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen )) %>%
-  #regroup
+    # keep the type (aroclor or congener) that has the least amount of non-detects by percentage
+    # Group by the same as above, but add in the is_arochlor flag
+  group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height, is_aroclor) %>%
+    # Calculate the percent nondetect of each group
+  mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+    #undo the grouping
+  ungroup() %>%
+    # redo the original single sample grouping 
   group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+    # remove individual congeners if the group has arochlor data & the aroclors have a lower percentage of nondetects
+  filter((Has_aroclor == 1 & is_aroclor == 1 & summed_percent_nondetect == min(summed_percent_nondetect)) | Has_aroclor == 0) %>%
+    # Recalculate the percent censored values
+  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen )) %>%
   mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
+         # Do the summing
          Summed_values = sum(summed_censored_value),
+         # Create note on what the summing is based on
          IR_note = ifelse(Has_aroclor ==  1, "PCB - Sum of Aroclors", 
                           ifelse(Has_aroclor ==  0, "PCB - Sum of congeners", "ERROR" )),
          Result_Operator = max(Result_Operator)
