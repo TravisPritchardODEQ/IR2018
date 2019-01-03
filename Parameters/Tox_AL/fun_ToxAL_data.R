@@ -6,8 +6,8 @@ library(IRlibrary)
 #This function does the straight AL tixics analysis. It is for the parameters that have non-calculated standards, and do not
 # need to be grouped and summed. 
 
-#testing 
-database = "IR 2018"
+tox_AL_data <- function(database){
+
 options(scipen = 999)
 
 #ALTox_data <- function(database) {
@@ -62,6 +62,6 @@ options(scipen = 999)
   
   print("Data fetch and censored data modifications complete")
   
-  #return(Results_censored)
-#}  
+  return(Results_censored)
+}  
   

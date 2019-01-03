@@ -13,7 +13,7 @@ con <- DBI::dbConnect(odbc::odbc(), database)
 
 #Build query language to get Pentachlorophenol data out. this grabs the IR 2018 db view [dbo].[VW_Pentachlorophenol]
 
-db_qry <- DoSatqry <- glue::glue_sql( "SELECT *
+db_qry <-  glue::glue_sql( "SELECT *
   FROM [IntegratedReport].[dbo].[VW_Pentachlorophenol]", .con = con)
 
 # Send query to database and return with the data

@@ -1,13 +1,32 @@
 
 
+TOX_AL_analysis <- function(df){
+  
 # Pull data out for summing -----------------------------------------------
 
 
+# DDT ---------------------------------------------------------------------
+
+DDT_data <- df %>%
+  filter(Pollu_ID %in% c(48,49,50)) %>%
+  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
+  group_by(OrganizationID, MLocID, SampleStartDate, SampleStartTime, Analytical_method, act_depth_height)
+  mutate(IR_note = "Sum of DDT and metabolites",
+         Summed_values = sum(summed_censored_value),
+         summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+  # Keep only the first row. This preserves all the metadata
+  filter(row_number() == 1) %>%
+  # Change the Char_Name to DDT and the Result_cen column to the summed value
+  mutate(Char_Name = "DDT",
+         Result_cen = Summed_values) %>%
+  # get rid of extra columns that were created
+  select(-Summed_values, -summed_censored_value)
+  
 
 # Endosulfan data ---------------------------------------------------------
 
 
-endosulfan_data <- Results_censored %>%
+endosulfan_data <- df %>%
   # Filter for endosulfan Pollu_IDs
   filter(Pollu_ID %in% c(77,78,79 )) %>%
   # Set a flag for if the value is total_endosulfan
@@ -48,7 +67,7 @@ endosulfan_data <- Results_censored %>%
 
 # PCB data ----------------------------------------------------------------
 
-PCB_data <- Results_censored  %>%
+PCB_data <- df  %>%
   filter(Pollu_ID == '153') %>%
   #Identufy the aroclors
   mutate(is_aroclor = ifelse(chr_uid %in% c('575','578','580','582','583','586','587'), 1, 0 )) %>% #These are the uid for the Arochlors
@@ -91,12 +110,13 @@ PCB_data <- Results_censored  %>%
 # Put data back together --------------------------------------------------
 
 
-results_analysis <- Results_censored %>%
+results_analysis <- df %>%
   filter(!Pollu_ID %in% c(77,78,79 )) %>%
   filter(Pollu_ID != 153) %>%
+  filter(!Pollu_ID %in% c(48,49,50)) %>%
   bind_rows(endosulfan_data) %>%
-  bind_rows(PCB_data)
-  
+  bind_rows(PCB_data) %>%
+  bind_rows(DDT_data)
 
 
 Results_tox_AL_analysis <- results_analysis %>%
@@ -129,13 +149,14 @@ Results_tox_AL_analysis <- results_analysis %>%
          excursion = ifelse((Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate")  & evaluation_result < evaluation_crit, 1, 
                             ifelse(Char_Name != "Alkalinity, total" & evaluation_result > evaluation_crit, 1, 0 ))
  )  
-#### Write table here
 
+IR_export(Results_tox_AL_analysis, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Data")
 
 Results_tox_AL_categories <- Results_tox_AL_analysis %>%
   group_by(AU_ID, Char_Name) %>%
   #Summarise data
-  summarise(criteria_fraction = first(Fraction),
+  summarise(OWRD_Basin = first(OWRD_Basin),
+            criteria_fraction = first(Fraction),
             num_samples = n(),
             percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit > evaluation_crit )/num_samples * 100),
             summed_percent_nondetect = sum(summed_percent_nondetect)/n(),
@@ -155,14 +176,16 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
                                      ifelse((Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate") & num_excursions_all > 0, "Cat 3B", 
                                             ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 0, "Cat 3", 
                                                    ifelse(num_excursions_all > critical_excursions, "Cat 5", 
-                                                          ifelse(num_excursions_all <= critical_excursions, "Cat 2", "ERROR" )))) ) ))
+                                                          ifelse(num_excursions_all <= critical_excursions, "Cat 2", "ERROR" )))) ) ),
+         percent_3d = ifelse(is.na(summed_percent_nondetect), percent_3d, NA ))
+
+IR_export(Results_tox_AL_categories, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Categories")
                                     
                                     
-                              
+}                             
 
 
 
 #TO do
-# Summed constiuents and data censoring. How do we sum up values below detection limit?
 # Chlordane
     # Need to update list from Lori
