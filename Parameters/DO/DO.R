@@ -10,6 +10,7 @@ DO_results <-  DO_data("IR 2018")
 #######################################################################################################
 ###                         Stop here and review the invalid data file.                             ###
 ###                      For valid data, mark the Conclusion field as Valid                         ###
+###                             Reformat the AU and time columns                                    ###
 #######################################################################################################
 
 #Reinput the data after the manual data validation step

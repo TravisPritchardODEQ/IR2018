@@ -4,16 +4,24 @@ source("Parameters/Temperature/fun_temp_analysis.R")
 
 
 
+# Data prep ---------------------------------------------------------------
+
+
+
 Results_censored_temp <- Temp_data("IR 2018")
 
 
 #######################################################################################################
 ###                         Stop here and review the invalid data file.                             ###
 ###                      For valid data, mark the Conclusion field as Valid                         ###
+###                             Reformat the AU and time columns                                    ###
 #######################################################################################################
 
 Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-Temperature.csv", df = Results_censored_temp)
 
+
+
+# Data analysis -----------------------------------------------------------
 
 temperature_summary <- temp_asessment(Results_censored_temp)
 IR_export(temperature_summary, "Parameters/Temperature/Data_Review", "Temperature", "categorization" )

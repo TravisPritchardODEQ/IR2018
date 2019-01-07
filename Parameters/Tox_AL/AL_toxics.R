@@ -32,3 +32,7 @@ Penta_analysis <- TOX_AL_penta_analysis(Penta_data)
 
 
 
+# To do
+# HArndess based metals
+# Chlordane
+#alkalinity
