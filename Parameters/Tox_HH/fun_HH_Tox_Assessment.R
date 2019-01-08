@@ -103,7 +103,7 @@ tox_HH_categories <- tox_HH_assesment %>%
   group_by(AU_ID, Char_Name) %>%
   mutate(num_fraction_types =  n(),
          IR_category = ifelse(percent_3d == 100, "Cat3D", 
-                              ifelse(num_samples >= 3 & geomean >= crit, "Cat5", 
+                              ifelse(num_samples >= 3 & geomean > crit, "Cat5", 
                               ifelse(num_samples < 3 & num_violations >= 1, "Cat3B", 
                                      ifelse(num_samples < 3 & num_violations == 0, "Cat3", "Cat2" )))),
          geomean = ifelse(summed_percent_nondetect == 100 & !is.na(summed_percent_nondetect), NA, geomean ))  %>%
@@ -114,4 +114,3 @@ tox_HH_categories <- tox_HH_assesment %>%
 
 # To do - 
 #Figure out fractions piece
-# make sure units are correct in data pull

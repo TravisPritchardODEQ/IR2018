@@ -43,8 +43,8 @@ spread <- Results_ancillary %>%
   filter(!Sample_Fraction %in% c("Suspended")) %>%
   mutate(Sample_Fraction = ifelse(Char_Name %in% c('Temperature, water', 'pH'), NA, Sample_Fraction )) %>%
   mutate(Char_Name = paste(Char_Name, "-", Sample_Fraction)) %>%
- #mutate(Char_Name = ifelse(Char_Name == "Organic carbon" & Sample_Fraction == "Total", "TOC", 
-                           # ifelse(Char_Name == "Organic carbon" & Sample_Fraction == "Dissolved", "DOC", Char_Name))) %>%
+  mutate(Char_Name = ifelse(Char_Name == "Organic carbon" & Sample_Fraction == "Total", "TOC", 
+                           ifelse(Char_Name == "Organic carbon" & Sample_Fraction == "Dissolved", "DOC", Char_Name))) %>%
   select(-Sample_Fraction) %>%
   group_by(MLocID, SampleStartDate,Char_Name,Result_Depth  ) %>%
   summarise(result = first(IRResultNWQSunit)) %>%

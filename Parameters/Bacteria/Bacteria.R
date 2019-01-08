@@ -11,14 +11,20 @@ source("Parameters/Bacteria/fun_shell_harvest.R")
 # Bring data into analysis
 Bacteria_results <- Bacteria_data("IR 2018")
 
+# Save valid results as RData object
+save(Bacteria_results, file = "Parameters/Bacteria/bacteria_valid_data.RData")
+
 #######################################################################################################
 ###                         Stop here and review the invalid data file.                             ###
 ###                      For valid data, mark the Conclusion field as Valid                         ###
 ###                             Reformat the AU and time columns                                    ###
 #######################################################################################################
 
+#Load calid results back into the Environment
+load("Parameters/Bacteria/bacteria_valid_data.RData")
+
 #Reinput the data after the manual data validation step
-Validated_reults <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-Bacteria.xlsx", df = Bacteria_results)
+Validated_reults <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-Bacteria.csv", df = Bacteria_results)
 
 # Perfrom the data censoring and cleaning
 Results_censored_bacteria <- Bacteria_data_censored(Validated_reults)

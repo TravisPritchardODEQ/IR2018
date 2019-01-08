@@ -10,7 +10,7 @@ TOX_AL_analysis <- function(df){
 DDT_data <- df %>%
   filter(Pollu_ID %in% c(48,49,50)) %>%
   mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
-  group_by(OrganizationID, MLocID, SampleStartDate, SampleStartTime, Analytical_method, act_depth_height)
+  group_by(OrganizationID, MLocID, SampleStartDate, SampleStartTime, Analytical_method, act_depth_height) %>%
   mutate(IR_note = "Sum of DDT and metabolites",
          Summed_values = sum(summed_censored_value),
          summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
