@@ -26,8 +26,14 @@ for(i in 1:length(basins)){
   Basin <- basins[i]
   print(paste("Writing table", i, "of",length(basins), "-", Basin ))
   
-  by_basin <-  df %>%
-    filter(OWRD_Basin == Basin)
+  if (!is.na(Basin)) {
+    by_basin <-  df %>%
+      filter(OWRD_Basin == Basin)
+  } else {
+    by_basin <-  df %>%
+      filter(is.na(OWRD_Basin))
+  }
+ 
   
   write.csv(by_basin, paste0(location, "/", parameter, "_IR_",type,"_",Basin,".csv"), row.names = FALSE)
   
