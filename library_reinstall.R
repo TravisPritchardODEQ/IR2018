@@ -1,3 +1,4 @@
+library(devtools)
 setwd("./IRlibrary")
 document()
 setwd("..")
