@@ -22,7 +22,7 @@ Coastal_Contact_rec <- function(df){
   # Get filter down to data needed only for coastal contact rec data
   # Bacteria code #2 and Entero 
   Coastal <- df %>%
-    filter(BacteriaCode == 1,
+    filter(BacteriaCode %in%  c(1, 3),
            Char_Name == "Enterococcus") %>%
     #add blank columns to be filled in during analysis phase
     mutate(geomean = "",
