@@ -1,4 +1,2 @@
-Invalid-Temperature.xlsx
-Invalid-Bacteria.xlsx
-Invalid-Chl.xlsx
-Invalid-pH.xlsx
+*.xlsx
+*.csv
