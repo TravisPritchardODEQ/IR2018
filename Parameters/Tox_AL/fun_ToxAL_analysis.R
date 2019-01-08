@@ -146,9 +146,9 @@ Results_tox_AL_analysis <- results_analysis %>%
   mutate(evaluation_result = ifelse(Char_Name == "Arsenic" & Sample_Fraction == "Total" & WaterTypeCode == 2, Result_cen*0.8, 
                                     ifelse(Char_Name == "Arsenic" & Sample_Fraction == "Total" & WaterTypeCode != 2, Result_cen*0.59, Result_cen )),
          #`Label as excursion if the evaluation criteria is above (or below for alkalinity) the criteria
-         excursion = ifelse((Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate")  & evaluation_result < evaluation_crit, 1, 
-                            ifelse(Char_Name != "Alkalinity, total" & evaluation_result > evaluation_crit, 1, 0 ))
- )  
+         excursion = ifelse(Char_Name %in% c("Alkalinity, total", "Alkalinity, bicarbonate")  & evaluation_result < evaluation_crit, 1, 
+                            ifelse(!(Char_Name %in% c("Alkalinity, total", "Alkalinity, bicarbonate")) & evaluation_result > evaluation_crit, 1, 0 )))
+   
 
 IR_export(Results_tox_AL_analysis, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Data")
 
