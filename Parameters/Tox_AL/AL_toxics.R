@@ -3,6 +3,7 @@ source("parameters/Tox_AL/fun_ToxAL_analysis.R")
 source("parameters/Tox_AL/fun_ToxAL_pentachlorophenol_data.R")
 source("parameters/Tox_AL/fun_ToxAL_pentachlorophenol_analysis.R")
 source("parameters/Tox_AL/fun_ToxAL_copper_data.R")
+source("parameters/Tox_AL/fun_ToxAL_hardnessmetals_data.R")
 
 
 
@@ -29,6 +30,11 @@ Penta_data <- Pentachlorophenol_data("IR 2018")
 
 # Run the Pentachlorophenol analysis
 Penta_analysis <- TOX_AL_penta_analysis(Penta_data)
+
+
+# Hardness Based Metals ---------------------------------------------------
+
+Hardness_metals <- Hardness_based_metals("IR 2018")
 
 
 

@@ -16,7 +16,7 @@ validated <- read.csv(file, stringsAsFactors = FALSE)
 
 data_to_merge <- validated %>%
   filter(validation == "Valid" | Conclusion %in% c("Valid", "valid")) %>%
-  mutate(SampleStartDate = mdy(SampleStartDate)) %>%
+  mutate(SampleStartDate = as.Date(parse_date_time(SampleStartDate, c("mdy", "ymd")))) %>%
   select(-Au_valid_count, -AU_total_count, 
          -perc_valid, -per99, -per1, 
          -AmbDatarange, -StdRef)

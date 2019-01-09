@@ -31,7 +31,10 @@ Coastal_Contact_rec <- function(df){
            perc_above_crit_10 = "",
            perc_above_crit_5 = "",
            less_5 = "",
-           Max_value = "")
+           Max_value = "",
+           SS_Crit = NA,
+           Geomean_Crit = 35,
+           Perc_Crit = 130)
   
   
   if(length(unique(Coastal$AU_ID)) == 0) {
@@ -83,7 +86,7 @@ Coastal_Contact_rec <- function(df){
       # get number that are above 130 criterion 
       Coastal_singlestation[j,"n_above_crit"] <- sum(geomean_period$Result_cen > 130) 
       # get percent that are above criteria if more than 10 samples in 90 day period
-      Coastal_singlestation[j,"perc_above_crit_10"] <- ifelse(count_period >= 10, n_above_crit/count_period, NA)
+      Coastal_singlestation[j,"perc_above_crit_10"] <- ifelse(count_period >= 10, sum(geomean_period$Result_cen > 130) /count_period, NA)
       # get lowest value in 90 day window if 5-9 samples in 90 day window
       Coastal_singlestation[j,"perc_above_crit_5"]  <- ifelse(count_period < 10 & count_period >= 5, max(geomean_period$Result_cen), NA )
       # flag if less than 5 in 90 day window
@@ -137,8 +140,8 @@ Coastal_Contact_rec <- function(df){
     mutate(IR_category = ifelse((!is.na(Max_Geomean) & Max_Geomean > Geomean_Crit) | 
                                   (!is.na(max.perc_above_crit_10) & max.perc_above_crit_10 > 0.10) | 
                                   (!is.na(max.perc_above_crit_5) & max.perc_above_crit_5 > Perc_Crit), "Cat5", 
-                                ifelse(Cat5 !=1 & perc.insuff == 1 & max.value < Perc_Crit, "Cat3", 
-                                       ifelse(Cat5 !=1 & perc.insuff == 1 & max.value > Perc_Crit, "Cat3B", 
+                                ifelse(perc.insuff == 1 & max.value < Perc_Crit, "Cat3", 
+                                       ifelse(perc.insuff == 1 & max.value > Perc_Crit, "Cat3B", 
                                               ifelse((
                                                 !is.na(Max_Geomean) &
                                                   Max_Geomean <= Geomean_Crit &
