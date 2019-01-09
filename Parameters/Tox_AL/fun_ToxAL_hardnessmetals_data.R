@@ -142,9 +142,24 @@ Hardness_analysis <- metals_hardness %>%
 
 print('Begin analysis')
 
+
+# Do the data censoring and deal with samples with both total and dissolved on same date and time
+  # Group by single sample event (mloc, date, time, char, and depth)
+  # Flag if the group contains a dissolved fraction sample
+  # Keep only results that have a dissolved fraction and are dissolved, or keep total if
+    #group does not have a dissolved (where where have dissolved, remove total fractions)
+  # Use the conversion factor to transform total results to dissolved results
 Results_censored <- Censored_data(Hardness_analysis, crit = `crit` ) %>%
-  mutate(excursion = ifelse(IRResultNWQSunit > crit , 1, 0 ),
-         Simplfied_Sample_Fraction = ifelse(Sample_Fraction ==  "Dissolved",  "Dissolved", "Total" ))
+  mutate(Simplfied_Sample_Fraction = ifelse(Sample_Fraction ==  "Dissolved",  "Dissolved", "Total" )) %>%
+  group_by(MLocID, SampleStartDate, SampleStartTime, Char_Name,Result_Depth) %>%
+  mutate(has_dissolved = ifelse(min(Simplfied_Sample_Fraction) == "Dissolved", 1, 0 )) %>%
+  ungroup() %>%
+  filter((has_dissolved == 1 & Simplfied_Sample_Fraction == "Dissolved") |
+           (has_dissolved == 0 & Simplfied_Sample_Fraction == "Total") ) %>%
+  mutate(converted_result = ifelse(Simplfied_Sample_Fraction == "Dissolved", IRResultNWQSunit, 
+                                   IRResultNWQSunit * CF),
+         excursion = ifelse(converted_result > crit , 1, 0 )
+         )
 
 IR_export(Results_censored, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Hardness_Metals", "Data")
 
@@ -163,8 +178,7 @@ Results_tox_AL_HBM_cats <- Results_censored %>%
             num_excursions_all = sum(excursion),
             num_excursions_total_fraction = sum(excursion[Simplfied_Sample_Fraction == "Total"]),
             num_excursions_dissolved_fraction = sum(excursion[Simplfied_Sample_Fraction == "Dissolved"]),
-            num_samples_crit_excursion_calc = ifelse(criteria_fraction == "Total", num_samples_total_fraction + num_excursions_dissolved_fraction,
-                                                     num_Samples_dissolved_fraction + (num_samples_total_fraction - num_excursions_total_fraction ) ), 
+            num_samples_crit_excursion_calc = num_samples, 
             critical_excursions = excursions_tox(num_samples_crit_excursion_calc)) %>%
  # Assign categories
     mutate(IR_category = ifelse(percent_3d == 100, "Cat 3D",
