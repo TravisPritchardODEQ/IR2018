@@ -41,6 +41,8 @@ IR_export(Bacteria_fresh_contact_rec, "Parameters/Bacteria/Data Review", "Bacter
 # Water Contact recreation - Coastal Water 
 Bacteria_Coast_contact_rec <- Coastal_Contact_rec(Results_censored_bacteria)
 
+IR_export(Bacteria_Coast_contact_rec, "Parameters/Bacteria/Data Review", "Bacteria_Coast_Contact", "Categories" )
+
 #Shellfish Harvesting
 Bacteria_Shell_Harvest <- Shell_Harvest(Results_censored_bacteria)
 
