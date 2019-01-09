@@ -14,7 +14,7 @@ Results_censored_temp <- Temp_data("IR 2018")
 #######################################################################################################
 ###                         Stop here and review the invalid data file.                             ###
 ###                      For valid data, mark the Conclusion field as Valid                         ###
-###                             Reformat the AU and time columns                                    ###
+###                             Reformat the MonLoc and time columns                                    ###
 #######################################################################################################
 
 Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-Temperature.csv", df = Results_censored_temp)
