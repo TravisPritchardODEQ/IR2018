@@ -17,7 +17,7 @@ save(Bacteria_results, file = "Parameters/Bacteria/bacteria_valid_data.RData")
 #######################################################################################################
 ###                         Stop here and review the invalid data file.                             ###
 ###                      For valid data, mark the Conclusion field as Valid                         ###
-###                             Reformat the AU and time columns                                    ###
+###                             Reformat the MLocID and time columns                                ###
 #######################################################################################################
 
 #Load calid results back into the Environment
