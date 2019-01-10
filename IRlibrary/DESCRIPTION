@@ -8,4 +8,4 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Imports: tidyverse, openxlsx 
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
