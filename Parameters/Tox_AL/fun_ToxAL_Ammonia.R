@@ -1,3 +1,6 @@
+# Note, this was done using the salmonid species present criteria equations. Need to adjust for no salmonid species
+
+
 database <- 'IR 2018'
 
 print("Fetch Ammonia data from IR database")
@@ -61,11 +64,14 @@ spread <- Results_ancillary %>%
 
 
 # Join table together
+# Calculate crit
+# Enter fish codes for non-slmonid fish use
 ammonia_data <- Results_import %>%
   left_join(spread, by = c('MLocID', 'SampleStartDate', 'Result_Depth')) %>%
   filter(!is.na(pH) & !is.na(Temp)) %>%
-  mutate(crit = pmin((0.275/(1 + 10 ^ (7.204 - pH))) + (39.0/ (1 + 10 ^(pH - 7.204 ))) , 
-                    0.7249 * ((0.0114/ ( 1 + 10^(7.204 - pH))) + (1.6181 / (1 + 10 ^ (pH - 7.204))) * (23.12*10^(0.036*(20-Temp)))))
+  mutate(crit = ifelse(FishCode %in% c("XXXXX", "YYYYY"), 0.7249 * (0.0114 / (1 + 10^7204-pH)) + (1.6181 / (1 + 10 ^(pH-7204)) * min(51.93, 23.13*10^(0.036*(20-Temp)))),  
+                       pmin((0.275/(1 + 10 ^ (7.204 - pH))) + (39.0/ (1 + 10 ^(pH - 7.204 ))) , 
+                             0.7249 * ((0.0114/ ( 1 + 10^(7.204 - pH))) + (1.6181 / (1 + 10 ^ (pH - 7.204))) * (23.12*10^(0.036*(20-Temp))))) )  
          )
 
 Results_censored <- Censored_data(ammonia_data, crit = `crit` ) %>%
@@ -77,7 +83,7 @@ Results_censored <- Censored_data(ammonia_data, crit = `crit` ) %>%
            (has_total == 0 & Simplfied_Sample_Fraction == "Dissolved") ) %>%
   mutate(excursion = ifelse(Result_cen > crit, 1, 0 ))
 
-IR_export(Results_censored, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Ammonia", "Data")
+#IR_export(Results_censored, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Ammonia", "Data")
 
 Results_tox_Ammonia_categories <- Results_censored %>%
   group_by(AU_ID, Char_Name) %>%
