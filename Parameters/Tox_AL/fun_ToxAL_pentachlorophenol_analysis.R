@@ -6,7 +6,7 @@ TOX_AL_penta_analysis <- function(df){
 
 # Assign violations
 penta_data_analysis <- df %>%
-  mutate(evaluation_crit = ifelse(WaterTypeCode == 2, pmin(Acute_FW, Chronic_FW, na.rm = TRUE), pmin(Acute_SW, Chronic_SW, na.rm = TRUE) )) %>%
+  mutate(evaluation_crit = ifelse(WaterTypeCode == 2, pmin(CMC_crit, CCC_crit, na.rm = TRUE), 7.9 )) %>%
   mutate(violation = ifelse(Result_cen > evaluation_crit, 1, 0 ))
 
 

@@ -4,6 +4,7 @@ source("parameters/Tox_AL/fun_ToxAL_pentachlorophenol_data.R")
 source("parameters/Tox_AL/fun_ToxAL_pentachlorophenol_analysis.R")
 source("parameters/Tox_AL/fun_ToxAL_copper_data.R")
 source("parameters/Tox_AL/fun_ToxAL_hardnessmetals_data.R")
+source("parameters/Tox_AL/fun_ToxAL_Ammonia.R")
 
 
 
@@ -37,8 +38,9 @@ Penta_analysis <- TOX_AL_penta_analysis(Penta_data)
 Hardness_metals <- Hardness_based_metals("IR 2018")
 
 
+# Ammonia -----------------------------------------------------------------
 
-# To do
-# HArndess based metals
-# Chlordane
-#alkalinity
+Ammonia_tox_al <- ToxAL_Ammonia("IR 2018")
+
+
+

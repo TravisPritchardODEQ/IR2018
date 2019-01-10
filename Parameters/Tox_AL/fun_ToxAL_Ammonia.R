@@ -1,7 +1,7 @@
 # Note, this was done using the salmonid species present criteria equations. Need to adjust for no salmonid species
 
+ToxAL_Ammonia <- function(database){
 
-database <- 'IR 2018'
 
 print("Fetch Ammonia data from IR database")
 
@@ -109,3 +109,4 @@ Results_tox_Ammonia_categories <- Results_censored %>%
                                                           ifelse(num_excursions_all <= critical_excursions, "Cat 2", "ERROR" ))))  )
          )
 
+}
