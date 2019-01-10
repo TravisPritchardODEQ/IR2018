@@ -65,6 +65,30 @@ endosulfan_data <- df %>%
 
 
 
+# Chlordane ---------------------------------------------------------------
+
+# Get only chlordate data
+# mark if result is  total chlordane  
+Chlordane <- df %>%
+  filter(Pollu_ID %in% c(27)) %>%
+  mutate(is_total = ifelse(chr_uid %in% c(767), 1, 0 ),
+         summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
+# Set a group that identifies a single sample
+  group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+  # Flag if the group has a total endosulfan result 
+  mutate(has_total_chlordane = ifelse(max(is_total) == 1, 1, 0)) %>%
+  # remove isomers, metabolites, etc if the group has a total
+  filter((has_total_chlordane == 1 & is_total == 1) | has_total_chlordane == 0) %>%
+  mutate( summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+  mutate(IR_note = ifelse(chr_uid != 767, "Sum of isomers, metabolites, and other constituents", "" ),
+         Summed_values = ifelse(is_total == 1, IRResultNWQSunit, sum(summed_censored_value) ) ) %>%
+  # Keep only the first row. This preserves all the metadata
+  filter(row_number() == 1) %>%
+  # Change the Char_Name to Endosulfan and the Result_cen column to the summed value
+  mutate(Char_Name = "Chlordane",
+         Result_cen = Summed_values) %>%
+  select(-Summed_values, is_total, summed_censored_value,has_total_chlordane )
+  
 # PCB data ----------------------------------------------------------------
 
 PCB_data <- df  %>%
@@ -114,9 +138,11 @@ results_analysis <- df %>%
   filter(!Pollu_ID %in% c(77,78,79 )) %>%
   filter(Pollu_ID != 153) %>%
   filter(!Pollu_ID %in% c(48,49,50)) %>%
+  filter(Pollu_ID != 27) %>%
   bind_rows(endosulfan_data) %>%
   bind_rows(PCB_data) %>%
-  bind_rows(DDT_data)
+  bind_rows(DDT_data) %>%
+  bind_rows(Chlordane)
 
 
 Results_tox_AL_analysis <- results_analysis %>%
@@ -181,6 +207,12 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
 
 IR_export(Results_tox_AL_categories, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Categories")
                                     
+
+# test_pivot <- Results_tox_AL_categories %>%
+#   select(AU_ID, Char_Name, IR_category) %>%
+#   spread(key =  Char_Name, value =   IR_category)
+
+return(Results_tox_AL_categories)
                                     
 }                             
 
