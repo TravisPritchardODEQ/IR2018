@@ -156,10 +156,17 @@ Results_censored <- Censored_data(Hardness_analysis, crit = `crit` ) %>%
   ungroup() %>%
   filter((has_dissolved == 1 & Simplfied_Sample_Fraction == "Dissolved") |
            (has_dissolved == 0 & Simplfied_Sample_Fraction == "Total") ) %>%
-  mutate(converted_result = ifelse(Simplfied_Sample_Fraction == "Dissolved", IRResultNWQSunit, 
-                                   IRResultNWQSunit * CF),
-         excursion = ifelse(converted_result > crit , 1, 0 )
+  mutate(#converted_result = ifelse(Simplfied_Sample_Fraction == "Dissolved", IRResultNWQSunit, 
+                                   #IRResultNWQSunit * CF),
+         excursion = ifelse(Result_cen > crit , 1, 0 )
          )
+
+
+# We made the decision that CF values were not "site_specific translotors, and we do not convert total fraction
+# to dissolved fraction. We follow the dissolved criteria rules on page 56 of the IR methodology.
+
+# If total sammple is less than the dissolved crit, it is considered valid to determine attainment. If total recoverable
+# is greater than a dissolved crit, 3b may be assigned if there are no other dissolved samples to indicate impairment
 
 IR_export(Results_censored, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Hardness_Metals", "Data")
 

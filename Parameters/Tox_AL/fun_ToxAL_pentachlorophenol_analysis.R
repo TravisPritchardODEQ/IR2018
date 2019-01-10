@@ -17,7 +17,8 @@ IR_export(penta_data_analysis, "Parameters/Tox_AL/Data_Review", "TOX_AL_Pentachl
 #Summarize data and assign critical excursions and IR category
 penta_data_summary <- penta_data_analysis %>%
   group_by(AU_ID) %>%
-  summarise(num_samples = n(),
+  summarise(OWRD_Basin = first(OWRD_Basin),
+            num_samples = n(),
             num_Violations = sum(violation),
             percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit > evaluation_crit )/num_samples * 100)) %>%
   mutate(critical_excursions = excursions_tox(num_samples),

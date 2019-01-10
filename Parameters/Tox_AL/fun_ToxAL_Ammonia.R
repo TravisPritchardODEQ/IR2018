@@ -83,7 +83,7 @@ Results_censored <- Censored_data(ammonia_data, crit = `crit` ) %>%
            (has_total == 0 & Simplfied_Sample_Fraction == "Dissolved") ) %>%
   mutate(excursion = ifelse(Result_cen > crit, 1, 0 ))
 
-#IR_export(Results_censored, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Ammonia", "Data")
+IR_export(Results_censored, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Ammonia", "Data")
 
 Results_tox_Ammonia_categories <- Results_censored %>%
   group_by(AU_ID, Char_Name) %>%
@@ -108,5 +108,8 @@ Results_tox_Ammonia_categories <- Results_censored %>%
                                                    ifelse(num_excursions_all > critical_excursions, "Cat 5", 
                                                           ifelse(num_excursions_all <= critical_excursions, "Cat 2", "ERROR" ))))  )
          )
+
+IR_export(Results_tox_Ammonia_categories, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Ammonia", "Categories")
+
 
 }
