@@ -4,6 +4,13 @@ library(odbc)
 library(DBI)
 library(glue)
 
+
+# This function builds an export table to run the copper BLM. It includes 
+# all necessary ancillary data. 
+
+#Where there are multiple fractions, or multiple names for constiuents, this 
+#script will export the maximums. 
+
 Copper_data <- function(database){
 
 
@@ -27,6 +34,7 @@ mlocs <- unique(Results_import$MLocID)
 
 print("Fetch ancillary data from IR database")
 ancillary_qry <- glue::glue_sql("SELECT [MLocID]
+,[chr_uid]
 ,[SampleStartDate]
 ,[Char_Name]
 ,[Sample_Fraction]
@@ -39,20 +47,23 @@ WHERE chr_uid in ('2849', '1648', '727', '1244', 1802, 1709, 1827, 774, 544, 100
 
 Results_ancillary <- DBI::dbGetQuery(con, ancillary_qry)
 
-spread <- Results_ancillary %>%
-  filter(!Sample_Fraction %in% c("Suspended")) %>%
-  mutate(Sample_Fraction = ifelse(Char_Name %in% c('Temperature, water', 'pH'), NA, Sample_Fraction )) %>%
-  mutate(Char_Name = paste(Char_Name, "-", Sample_Fraction)) %>%
-  mutate(Char_Name = ifelse(Char_Name == "Organic carbon" & Sample_Fraction == "Total", "TOC", 
-                           ifelse(Char_Name == "Organic carbon" & Sample_Fraction == "Dissolved", "DOC", Char_Name))) %>%
-  select(-Sample_Fraction) %>%
-  group_by(MLocID, SampleStartDate,Char_Name,Result_Depth  ) %>%
-  summarise(result = first(IRResultNWQSunit)) %>%
-  arrange(MLocID, SampleStartDate) %>%
-  spread(key = Char_Name, value = result)
+
 
 # Close database connection
 DBI::dbDisconnect(con)
+
+
+spread <- Results_ancillary %>%
+  mutate(Char_Name = ifelse(chr_uid %in% c(544, 100331), 'Alkalinity', 
+                            ifelse(chr_uid %in% c(1097, 1099), 'Hardness', 
+                                   ifelse(chr_uid == 2174 & Sample_Fraction == "Total" , 'TOC', 
+                                          ifelse(chr_uid == 2174 & Sample_Fraction == "Dissolved", 'DOC', Char_Name ))))) %>%
+  group_by(MLocID, SampleStartDate,Char_Name, Result_Depth) %>%
+  summarise(result = max(IRResultNWQSunit)) %>%
+  arrange(MLocID, SampleStartDate) %>%
+  spread(key = Char_Name, value = result)
+
+
 
 copper_data <- Results_import %>%
   left_join(spread, by = c("MLocID", "SampleStartDate", "Result_Depth")) %>%
