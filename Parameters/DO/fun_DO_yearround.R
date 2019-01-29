@@ -88,6 +88,8 @@ continuous_data_categories <- continuous_data_analysis %>%
 cont_perc_sat_check <- continuous_data_analysis %>%
   filter(AU_ID %in% unique(subset(continuous_data_categories, category == "Check percent Sat" )$AU_ID) )
 
+if(nrow(cont_perc_sat_check) > 0){
+
 # List of monitoring locations that need OD sat 
 # This list is used for the sql query that follows
 continuous_mon_locs <- unique(cont_perc_sat_check$MLocID)
@@ -247,7 +249,18 @@ yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
                               ifelse(Statistical_Base == "7DADMin" & IRResultNWQSunit < crit_7Mi, 1, 
                                    ifelse(Statistical_Base == "Minimum" & IRResultNWQSunit < crit_Min, 1, 0 ))))) 
 
-
+} else {
+  
+  yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
+    mutate(Date = as.Date(SampleStartDate)) %>%
+    mutate(Violation = ifelse(DO_Class == "Cold Water"& 
+                                Statistical_Base == "30DADMean" & 
+                                IRResultNWQSunit < crit_30D, 1,
+                              ifelse(DO_Class != "Cold Water"& Statistical_Base == "30DADMean" & IRResultNWQSunit < crit_30D, 1, 
+                                     ifelse(Statistical_Base == "7DADMin" & IRResultNWQSunit < crit_7Mi, 1, 
+                                            ifelse(Statistical_Base == "Minimum" & IRResultNWQSunit < crit_Min, 1, 0 ))))) 
+  
+}
 
 
 
@@ -291,7 +304,7 @@ print("Beginning instantaneous analysis")
 instant_data_analysis <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
   filter(Statistical_Base %in% c("Minimum", NA)) %>%
-  mutate(Violation_crit = ifelse(IRResultNWQSunit < crit_30D, 1, 0 ))
+  mutate(Violation_crit = ifelse(IRResultNWQSunit < crit_Instant, 1, 0 ))
 
 
 # assign initial categories
@@ -383,7 +396,8 @@ instant_DO_sat <- instant_perc_sat_DO %>%
   left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(DO_sat = ifelse(is.na(DO_sat), DOSat_calc(DO_res, Temp_res, ELEV_Ft ),DO_sat))  %>%
   mutate(DO_sat = ifelse(DO_sat > 100, 100, DO_sat )) %>%
-  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, act_depth_height,DO_sat ) 
+  select(MLocID, SampleStartDate, SampleStartTime, Statistical_Base, act_depth_height,DO_sat ) %>%
+  mutate(SampleStartDate = as.Date(parse_date_time(SampleStartDate, c("mdy", "ymd"))))
 
 
 #Join back in and recalculate violations
@@ -393,7 +407,7 @@ Instant_data_analysis_DOS <- Results_spawndates %>%
   filter(Statistical_Base %in% c("Minimum", NA)) %>%
   left_join(instant_DO_sat, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(Violation = ifelse(DO_Class == "Cold Water" & 
-                              IRResultNWQSunit < crit_30D & 
+                              IRResultNWQSunit < crit_Instant & 
                               (DO_sat < 90.0 | is.na(DO_sat) ), 1, 
                             ifelse(DO_Class != "Cold Water" & 
                                      IRResultNWQSunit < crit_30D, 1, 0))  )

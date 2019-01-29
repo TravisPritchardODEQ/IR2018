@@ -14,6 +14,10 @@ library(lubridate)
 
 validated <- read.csv(file, stringsAsFactors = FALSE) 
 
+
+df <- df %>%
+  mutate(SampleStartDate = as.Date(parse_date_time(SampleStartDate, c("mdy", "ymd"))))
+
 data_to_merge <- validated %>%
   filter(validation == "Valid" | Conclusion %in% c("Valid", "valid")) %>%
   mutate(SampleStartDate = as.Date(parse_date_time(SampleStartDate, c("mdy", "ymd")))) %>%
