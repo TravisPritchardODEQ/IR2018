@@ -150,6 +150,7 @@ print('Begin analysis')
     #group does not have a dissolved (where where have dissolved, remove total fractions)
   # Use the conversion factor to transform total results to dissolved results
 Results_censored <- Censored_data(Hardness_analysis, crit = `crit` ) %>%
+  mutate(Result_cen = as.numeric(Result_cen)) %>%
   mutate(Simplfied_Sample_Fraction = ifelse(Sample_Fraction ==  "Dissolved",  "Dissolved", "Total" )) %>%
   group_by(MLocID, SampleStartDate, SampleStartTime, Char_Name,Result_Depth) %>%
   mutate(has_dissolved = ifelse(min(Simplfied_Sample_Fraction) == "Dissolved", 1, 0 )) %>%
