@@ -274,6 +274,14 @@ instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
 
 # Join DO and temp tables and calculate DO-Sat
 instant_DO_sat <- instant_perc_sat_DO %>%
+  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
+         SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
+         SpawnStart = mdy(SpawnStart),
+         SpawnEnd = mdy(SpawnEnd),
+         SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
+         in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 )) %>%
+  filter(in_spawn == 1, !is.na(AU_ID)) %>%
+  filter(!is.null(OWRD_Basin) & DO_code %in% c(2,3,4)) %>%
   rename(DO_res =  IRResultNWQSunit) %>%
   left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(DO_sat = ifelse(is.na(DO_sat),DOSat_calc(DO_res, Temp_res, ELEV_Ft ), DO_sat),
@@ -304,14 +312,16 @@ instant_DO_sat_categories <- instant_DO_sat_analysis %>%
   group_by(AU_ID) %>%
   summarise(OWRD_Basin = first(OWRD_Basin), 
             num_samples = n(),
-            num_Violations = sum(Violation, na.rm = TRUE)) %>%
+            num_Violations = sum(Violation, na.rm = TRUE),
+            num_below_abs_min = sum(DO_res < 9) ) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
   mutate(category = ifelse(num_samples < 10 &
                              num_Violations == 0, "Cat 3", 
                            ifelse(num_samples < 10 &
                                     num_Violations > 0, "Cat 3B", 
-                                  ifelse(num_samples > 10 & num_Violations > critical_excursions, "Cat 5", 
-                                         ifelse(num_samples > 10 & num_Violations <= critical_excursions, "Cat 2", 
+                                  ifelse((num_samples >= 10 & num_Violations > critical_excursions) |
+                                           (num_below_abs_min >= 2), "Cat 5", 
+                                         ifelse(num_samples >= 10 & num_Violations <= critical_excursions, "Cat 2", 
                                                 "ERROR"))))) %>%
   mutate(type = "Spawning instant")
 
