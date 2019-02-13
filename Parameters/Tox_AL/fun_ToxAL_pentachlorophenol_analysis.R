@@ -23,7 +23,7 @@ penta_data_summary <- penta_data_analysis %>%
             percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit > evaluation_crit )/num_samples * 100)) %>%
   mutate(critical_excursions = excursions_tox(num_samples),
          Category = ifelse(percent_3d == 100, "Cat 3D", 
-                           ifelse(num_Violations > critical_excursions, "Cat 5", "Cat 2" )))
+                           ifelse(num_Violations >= critical_excursions, "Cat 5", "Cat 2" )))
 
 IR_export(penta_data_summary, "Parameters/Tox_AL/Data_Review", "TOX_AL_Pentachlorophenol", "categories" )
 

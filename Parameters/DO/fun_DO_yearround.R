@@ -430,9 +430,9 @@ yr_round_instant_categories <- Instant_data_analysis_DOS %>%
                            ifelse(num_critical_samples < 10 & 
                                     num_excursions == 0, "Cat 3", 
                                   ifelse(num_critical_samples >= 10 &
-                                           num_excursions > critical_excursions , "Cat 5", 
+                                           num_excursions >= critical_excursions , "Cat 5", 
                                                  ifelse(num_critical_samples >= 10 &
-                                                         num_excursions <= critical_excursions, "Cat 2", "ERROR" )))))
+                                                         num_excursions < critical_excursions, "Cat 2", "ERROR" )))))
 
 print("Year round analysis finished")
 

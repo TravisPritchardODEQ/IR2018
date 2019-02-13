@@ -201,8 +201,8 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
                               ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 1, "Cat 3B",
                                      ifelse((Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate") & num_excursions_all > 0, "Cat 3B", 
                                             ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 0, "Cat 3", 
-                                                   ifelse(num_excursions_all > critical_excursions, "Cat 5", 
-                                                          ifelse(num_excursions_all <= critical_excursions, "Cat 2", "ERROR" )))) ) ),
+                                                   ifelse(num_excursions_all >= critical_excursions, "Cat 5", 
+                                                          ifelse(num_excursions_all < critical_excursions, "Cat 2", "ERROR" )))) ) ),
          percent_3d = ifelse(is.na(summed_percent_nondetect), percent_3d, NA ))
 
 IR_export(Results_tox_AL_categories, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Categories")

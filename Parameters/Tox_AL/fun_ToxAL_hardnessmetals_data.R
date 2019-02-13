@@ -192,8 +192,8 @@ Results_tox_AL_HBM_cats <- Results_censored %>%
     mutate(IR_category = ifelse(percent_3d == 100, "Cat 3D",
                                 ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 1, "Cat 3B",
                                       ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 0, "Cat 3", 
-                                               ifelse(num_excursions_all > critical_excursions, "Cat 5", 
-                                                      ifelse(num_excursions_all <= critical_excursions, "Cat 2", "ERROR" )))) ) )
+                                               ifelse(num_excursions_all >= critical_excursions, "Cat 5", 
+                                                      ifelse(num_excursions_all < critical_excursions, "Cat 2", "ERROR" )))) ) )
 
 IR_export(Results_tox_AL_HBM_cats, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Hardness_Metals", "Categories")
 
