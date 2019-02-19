@@ -41,7 +41,7 @@ ancillary_qry <- glue::glue_sql("SELECT [MLocID]
 ,[IRResultNWQSunit]
 ,[Result_Depth]
 FROM [IntegratedReport].[dbo].[ResultsRawWater2018]
-WHERE chr_uid in ('2849', '1648', '727', '1244', 1802, 1709, 1827, 774, 544, 100331, 1097, 1099, 2174, 2982) 
+WHERE chr_uid in ('2849', '1648', '727', '1244', 1802, 1709, 1827, 773, 544, 100331, 1097, 1099, 2174, 2982) 
       AND (Statistical_Base IS NULL)
       AND MLocID in ({mlocs*})", .con = con)
 
