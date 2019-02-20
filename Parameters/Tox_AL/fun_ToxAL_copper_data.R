@@ -37,6 +37,8 @@ ancillary_qry <- glue::glue_sql("SELECT [MLocID]
 ,[chr_uid]
 ,[SampleStartDate]
 ,[Char_Name]
+,[Result_Unit]
+,[Unit_UID]
 ,[Sample_Fraction]
 ,[IRResultNWQSunit]
 ,[Result_Depth]
@@ -58,6 +60,9 @@ spread <- Results_ancillary %>%
                             ifelse(chr_uid %in% c(1097, 1099), 'Hardness', 
                                    ifelse(chr_uid == 2174 & Sample_Fraction == "Total" , 'TOC', 
                                           ifelse(chr_uid == 2174 & Sample_Fraction == "Dissolved", 'DOC', Char_Name ))))) %>%
+  mutate(IRResultNWQSunit = ifelse(Unit_UID == 14, IRResultNWQSunit / 1000, IRResultNWQSunit),
+         Result_Unit = ifelse(Unit_UID == 14, "mg/L", Result_Unit)) %>%
+  #mutate(Char_Name = paste(Char_Name, "-", Result_Unit)) %>%
   group_by(MLocID, SampleStartDate,Char_Name, Result_Depth) %>%
   summarise(result = max(IRResultNWQSunit)) %>%
   arrange(MLocID, SampleStartDate) %>%
