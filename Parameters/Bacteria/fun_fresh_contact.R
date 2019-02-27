@@ -17,12 +17,7 @@ Fresh_Contact_rec <- function(df){
            Char_Name == "Escherichia coli") %>%
     #add blank columns to be filled in during analysis phase
     mutate(geomean = "",
-           count_period = "",
-           n_above_crit = "",
-           perc_above_crit_10 = "",
-           perc_above_crit_5 = "",
-           less_5 = "",
-           Max_value = "")
+           count_period = "")
   
   
   if(length(unique(fresh_contact$AU_ID)) == 0) {
@@ -73,17 +68,8 @@ Fresh_Contact_rec <- function(df){
       fresh_singlestation[j,"geomean"] <- ifelse(nrow(geomean_period) >= 5, geo_mean(geomean_period$Result_cen), NA)
       #get count of 90 day period
       fresh_singlestation[j,"count_period"] <- count_period
-      # get number that are above 130 criterion 
-      fresh_singlestation[j,"n_above_crit"] <- sum(geomean_period$Result_cen > 406) 
-      # get percent that are above criteria if more than 10 samples in 90 day period
-      fresh_singlestation[j,"perc_above_crit_10"] <- ifelse(count_period >= 10, sum(geomean_period$Result_cen > 406) /count_period, NA)
-      # get lowest value in 90 day window if 5-9 samples in 90 day window
-      fresh_singlestation[j,"perc_above_crit_5"]  <- ifelse(count_period < 10 & count_period >= 5, max(geomean_period$Result_cen), NA )
-      # flag if less than 5 in 90 day window
-      fresh_singlestation[j,"less_5"] <- ifelse(nrow(geomean_period) < 5, 1, 0)
-      #Max Value
-      fresh_singlestation[j,"Max_value"] <- max(geomean_period$Result_cen)
-      
+     
+    
       
     }
     
@@ -96,11 +82,8 @@ Fresh_Contact_rec <- function(df){
   #Bind list to dataframe and ensure numbers are numeric
   fresh_analysis <- bind_rows(geomeanlist) %>%
     mutate(geomean = as.numeric(geomean),
-           count_period = as.numeric(count_period),
-           n_above_crit = as.numeric(n_above_crit),
-           perc_above_crit_10 = as.numeric(perc_above_crit_10),
-           perc_above_crit_5 = as.numeric(perc_above_crit_5 ),
-           less_5 = as.numeric(less_5))
+           count_period = as.numeric(count_period)) %>%
+    select(-Perc_Crit)
   
   
   # Data review -------------------------------------------------------------
@@ -114,35 +97,18 @@ Fresh_Contact_rec <- function(df){
     # list out the maxium geometric mean per AU
     summarise(OWRD_Basin = first(OWRD_Basin), 
               Max_Geomean = ifelse(!all(is.na(geomean)),max(geomean, na.rm = TRUE),NA),
-              # maximum percentage of results within geomean groups with more 10 samples that are above criteria 
-              max.perc_above_crit_10 =  ifelse(!all(is.na(perc_above_crit_10)),max(perc_above_crit_10, na.rm = TRUE),NA),
-              # maximum percentage of results within geomean groups with more 5 samples that are above criteria 
-              max.perc_above_crit_5 = ifelse(!all(is.na(perc_above_crit_5)),max(perc_above_crit_5, na.rm= TRUE),NA),
-              # percent of samples that do not have 5 or more samples in each 90 day period. 
-              #Used to determine if a 90 day geomean is even possible for cat 3 or cat 3b
-              perc.insuff = sum(less_5)/n(),
-              #Maximum value of AU group. Used for 3 or 3b
               max.value  = max(Result_cen),
+              num_Samples = as.numeric(n()),
+              num_ss_excursions = as.numeric(sum(Result_cen > SS_Crit)),
+              critical_excursions = excursions_conv(num_Samples),
               SS_Crit = max(SS_Crit),
-              Geomean_Crit = max(Geomean_Crit),
-              Perc_Crit = max(Perc_Crit)) %>%
-    # Cat 5 is max geomean is > 35 or no geomean group has more than 10% samples above perc crit 
-    mutate(IR_category = ifelse((!is.na(Max_Geomean) & Max_Geomean > Geomean_Crit) | 
-                                  (!is.na(max.perc_above_crit_10) & max.perc_above_crit_10 > 0.10) | 
-                                  (!is.na(max.perc_above_crit_5) & max.perc_above_crit_5 > Perc_Crit), "Cat5", "other")) %>%
-    mutate(IR_category =ifelse(IR_category == "Cat5", "Cat5",
-                               ifelse(perc.insuff == 1 & max.value < Perc_Crit, "Cat3", 
-                                       ifelse(IR_category != "Cat5" & perc.insuff == 1 & max.value > Perc_Crit, "Cat3B", 
-                                              ifelse((
-                                                !is.na(Max_Geomean) &
-                                                  Max_Geomean <= Geomean_Crit &
-                                                  perc.insuff < 1 & 
-                                                  !is.na(max.perc_above_crit_10) & max.perc_above_crit_10 < 0.10) |
-                                                  (!is.na(Max_Geomean) &
-                                                     Max_Geomean <= Geomean_Crit &
-                                                     perc.insuff < 1 &
-                                                     !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < Perc_Crit), "Cat2", "ERROR" )))))
-  
+              Geomean_Crit = max(Geomean_Crit)) %>%
+    mutate(IR_category = ifelse(!is.na(Max_Geomean) &
+                                  (Max_Geomean > Geomean_Crit |
+                                  num_ss_excursions > critical_excursions), "Cat5", 
+                                ifelse(is.na(Max_Geomean) & max.value < SS_Crit, "Cat3", 
+                                       ifelse(is.na(Max_Geomean) & max.value > SS_Crit, "Cat3B", 
+                                              "Cat2"))))
   
 
   
