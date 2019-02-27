@@ -29,7 +29,7 @@ Coastal_Contact_rec <- function(df){
            count_period = "",
            n_above_crit = "",
            perc_above_crit_10 = "",
-           perc_above_crit_5 = "",
+           n_samples_greater_perc_crit = "",
            less_5 = "",
            Max_value = "",
            SS_Crit = NA,
@@ -88,7 +88,7 @@ Coastal_Contact_rec <- function(df){
       # get percent that are above criteria if more than 10 samples in 90 day period
       Coastal_singlestation[j,"perc_above_crit_10"] <- ifelse(count_period >= 10, sum(geomean_period$Result_cen > 130) /count_period, NA)
       # get lowest value in 90 day window if 5-9 samples in 90 day window
-      Coastal_singlestation[j,"perc_above_crit_5"]  <- ifelse(count_period < 10 & count_period >= 5, max(geomean_period$Result_cen), NA )
+      Coastal_singlestation[j,"n_samples_greater_perc_crit"]  <- ifelse(count_period < 10 & count_period >= 5, sum(geomean_period$Result_cen > 130), NA )
       # flag if less than 5 in 90 day window
       Coastal_singlestation[j,"less_5"] <- ifelse(nrow(geomean_period) < 5, 1, 0)
       #Max Value
@@ -109,7 +109,7 @@ Coastal_Contact_rec <- function(df){
            count_period = as.numeric(count_period),
            n_above_crit = as.numeric(n_above_crit),
            perc_above_crit_10 = as.numeric(perc_above_crit_10),
-           perc_above_crit_5 = as.numeric(perc_above_crit_5 ),
+           n_samples_greater_perc_crit = as.numeric(n_samples_greater_perc_crit ),
            less_5 = as.numeric(less_5))
   
   
@@ -127,7 +127,7 @@ Coastal_Contact_rec <- function(df){
               # maximum percentage of results within geomean groups with more 10 samples that are above criteria 
               max.perc_above_crit_10 =  ifelse(!all(is.na(perc_above_crit_10)),max(perc_above_crit_10, na.rm = TRUE),NA),
               # maximum percentage of results within geomean groups with more 5 samples that are above criteria 
-              max.perc_above_crit_5 = ifelse(!all(is.na(perc_above_crit_5)),max(perc_above_crit_5, na.rm= TRUE),NA),
+              max.n_samples_greater_perc_crit = ifelse(all(is.na(n_samples_greater_perc_crit)), NA, max(n_samples_greater_perc_crit, na.rm= TRUE)),
               # percent of samples that do not have 5 or more samples in each 90 day period. 
               #Used to determine if a 90 day geomean is even possible for cat 3 or cat 3b
               perc.insuff = sum(less_5)/n(),
@@ -139,18 +139,10 @@ Coastal_Contact_rec <- function(df){
           # Cat 5 is max geomean is > 35 or no geomean group has more than 10% samples above perc crit 
     mutate(IR_category = ifelse((!is.na(Max_Geomean) & Max_Geomean > Geomean_Crit) | 
                                   (!is.na(max.perc_above_crit_10) & max.perc_above_crit_10 > 0.10) | 
-                                  (!is.na(max.perc_above_crit_5) & max.perc_above_crit_5 > Perc_Crit), "Cat5", 
+                                  (!is.na(max.n_samples_greater_perc_crit) & max.n_samples_greater_perc_crit >= 2), "Cat5", 
                                 ifelse(perc.insuff == 1 & max.value < Perc_Crit, "Cat3", 
                                        ifelse(perc.insuff == 1 & max.value > Perc_Crit, "Cat3B", 
-                                              ifelse((
-                                                !is.na(Max_Geomean) &
-                                                  Max_Geomean <= Geomean_Crit &
-                                                  perc.insuff < 1 & 
-                                                  !is.na(max.perc_above_crit_10) & max.perc_above_crit_10 < 0.10) |
-                                                  (!is.na(Max_Geomean) &
-                                                     Max_Geomean <= Geomean_Crit &
-                                                     perc.insuff < 1 &
-                                                     !is.na(max.perc_above_crit_5) & max.perc_above_crit_5 < Perc_Crit), "Cat2", "ERROR" ))))) 
+                                              "Cat2")))) 
   
   
   
