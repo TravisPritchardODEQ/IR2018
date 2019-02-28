@@ -70,7 +70,7 @@ chl_categories <- chla_data_analysis %>%
                            ifelse((!is.na(max_3_mo_avg) & max_result > Chla_Criteria) |
                                     (num_samples < 10 & max_mo_avg > Chla_Criteria), "Cat3b", 
                                   ifelse((!is.na(max_3_mo_avg) & max_3_mo_avg > Chla_Criteria) |
-                                           (num_samples > 10 & num_ss_excursions >= critical_excursions) , "Cat5",
+                                           (num_samples > 10 & num_ss_excursions > critical_excursions) , "Cat5",
                                          ifelse(num_samples > 10 & 
                                                   (max_3_mo_avg <= Chla_Criteria | is.na(max_3_mo_avg)) &
                                                   num_ss_excursions <= critical_excursions, "Cat2", "ERROR" )))))
