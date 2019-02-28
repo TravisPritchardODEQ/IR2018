@@ -55,17 +55,26 @@ IR_export(chla_data_analysis, "Parameters/chl_a/Data_Review", "Chla", "data" )
 
 
 chl_categories <- chla_data_analysis %>%
-  group_by(AU_ID, MonLocType, OWRD_Basin, Char_Name, Chla_Criteria) %>%
-  summarise(max_result = max(Result_cen),
+  group_by(AU_ID) %>%
+  summarise(OWRD_Basin = first(OWRD_Basin),
+            Char_Name = first(Char_Name),
+            Chla_Criteria = first(Chla_Criteria),
+            num_samples = as.numeric(n()),
+            num_ss_excursions = as.numeric(sum(Result_cen > Chla_Criteria)),
+            critical_excursions = excursions_conv(n()),
+            max_result = max(Result_cen),
             max_mo_avg = max(monthaverage),
             max_3_mo_avg = max(avg.3.mo, na.rm = TRUE)) %>%
   mutate(max_3_mo_avg = ifelse(is.infinite(max_3_mo_avg), NA, max_3_mo_avg ),
-         IR_category = ifelse(is.na(max_3_mo_avg) & max_result < Chla_Criteria, "Cat3",
-                           ifelse(is.na(max_3_mo_avg) & max_result > Chla_Criteria, "Cat3b", 
-                                  ifelse(max_3_mo_avg > Chla_Criteria, "Cat5",
-                                         ifelse(max_3_mo_avg <= Chla_Criteria, "Cat2", "ERROR" ))))) %>%
-  select(AU_ID, OWRD_Basin,MonLocType, Char_Name, Chla_Criteria,  
-         max_result,max_mo_avg, max_3_mo_avg, IR_category)
+         IR_category = ifelse((!is.na(max_3_mo_avg) & max_result < Chla_Criteria) |
+                               (num_samples < 10 & max_mo_avg <= Chla_Criteria) , "Cat3",
+                           ifelse((!is.na(max_3_mo_avg) & max_result > Chla_Criteria) |
+                                    (num_samples < 10 & max_mo_avg > Chla_Criteria), "Cat3b", 
+                                  ifelse((!is.na(max_3_mo_avg) & max_3_mo_avg > Chla_Criteria) |
+                                           (num_samples > 10 & num_ss_excursions >= critical_excursions) , "Cat5",
+                                         ifelse(num_samples > 10 & 
+                                                  (max_3_mo_avg <= Chla_Criteria | is.na(max_3_mo_avg)) &
+                                                  num_ss_excursions <= critical_excursions, "Cat2", "ERROR" )))))
 
 return(chl_categories)
 
