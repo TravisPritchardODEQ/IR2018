@@ -55,10 +55,9 @@ IR_export(chla_data_analysis, "Parameters/chl_a/Data_Review", "Chla", "data" )
 
 
 chl_categories <- chla_data_analysis %>%
-  group_by(AU_ID) %>%
+  group_by(AU_ID, Chla_Criteria) %>%
   summarise(OWRD_Basin = first(OWRD_Basin),
             Char_Name = first(Char_Name),
-            Chla_Criteria = first(Chla_Criteria),
             num_samples = as.numeric(n()),
             num_ss_excursions = as.numeric(sum(Result_cen > Chla_Criteria)),
             critical_excursions = excursions_conv(n()),
