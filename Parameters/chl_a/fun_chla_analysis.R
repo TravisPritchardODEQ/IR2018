@@ -65,16 +65,22 @@ chl_categories <- chla_data_analysis %>%
             max_mo_avg = max(monthaverage),
             max_3_mo_avg = max(avg.3.mo, na.rm = TRUE)) %>%
   mutate(max_3_mo_avg = ifelse(is.infinite(max_3_mo_avg), NA, max_3_mo_avg ),
-         IR_category = ifelse((!is.na(max_3_mo_avg) & max_result < Chla_Criteria) |
-                               (num_samples < 10 & max_mo_avg <= Chla_Criteria) , "Cat3",
-                           ifelse((!is.na(max_3_mo_avg) & max_result > Chla_Criteria) |
-                                    (num_samples < 10 & max_mo_avg > Chla_Criteria), "Cat3b", 
-                                  ifelse((!is.na(max_3_mo_avg) & max_3_mo_avg > Chla_Criteria) |
-                                           (num_samples > 10 & num_ss_excursions > critical_excursions) , "Cat5",
-                                         ifelse(num_samples > 10 & 
-                                                  (max_3_mo_avg <= Chla_Criteria | is.na(max_3_mo_avg)) &
-                                                  num_ss_excursions <= critical_excursions, "Cat2", "ERROR" )))))
+         IR_category = ifelse( ((!is.na(max_3_mo_avg) & max_result < Chla_Criteria) | is.na(max_3_mo_avg))&
+                                num_samples < 5 &
+                                num_ss_excursions > critical_excursions, "Cat3B", 
+                               ifelse(((!is.na(max_3_mo_avg) & max_result < Chla_Criteria) | is.na(max_3_mo_avg))&
+                                        num_samples < 5 &
+                                        num_ss_excursions <= critical_excursions, "Cat3", 
+                                      ifelse(((!is.na(max_3_mo_avg) & max_result > Chla_Criteria) | 
+                                               num_samples >= 5  &  num_ss_excursions > critical_excursions) |
+                                               (is.na(max_3_mo_avg) & num_samples >= 5  &  num_ss_excursions > critical_excursions), "Cat5", 
+                                             ifelse(((!is.na(max_3_mo_avg) & max_result <= Chla_Criteria) | 
+                                                       num_samples >= 5  &  num_ss_excursions <= critical_excursions) |
+                                                      (is.na(max_3_mo_avg) & num_samples >= 5  &  num_ss_excursions <= critical_excursions), "Cat2", 
+                                                    "ERROR" )))))
 
+           
+ 
 return(chl_categories)
 
 }
