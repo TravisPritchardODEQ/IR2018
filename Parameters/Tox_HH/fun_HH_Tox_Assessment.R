@@ -84,8 +84,8 @@ tox_HH_assesment <- results_analysis %>%
   mutate(violation = ifelse(evaluation_result > crit, 1, 0 ))
 
 
-
-write.csv(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/HH_tox_analysis.csv")
+IR_export(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/", "Tox_HH", "data")
+#write.csv(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/HH_tox_analysis.csv")
   
 tox_HH_categories <- tox_HH_assesment %>%
   group_by(AU_ID, Char_Name, Simplified_sample_fraction,Crit_Fraction) %>%
@@ -110,6 +110,7 @@ tox_HH_categories <- tox_HH_assesment %>%
   arrange(AU_ID, Char_Name)
  
 #write tablehere
+IR_export(tox_HH_categories, "Parameters/Tox_HH/Data_Review/", "Tox_HH", "Categories")
 }
 
 # To do - 
