@@ -92,6 +92,10 @@ Fresh_Contact_rec <- function(df){
  
   
   # do the conparisons listed in methodology
+   # Category 5: ≥ 1 geomean over 126 OR for 10 or more samples > 10% exceedances of 406 according to the binomial
+   # Category 3: : no 90 day  geomean AND < 10 samples with no exceedances of 406
+   # Category 3B: no 90 day geomean AND < 10 samples with one or more exceedances of 406
+   # Categpry 2: all geomeans < 126 AND AUs with 10 or more samples have < 10% exceedances of 406 according to the binomial. 
   fresh_AU_summary <-  fresh_analysis %>%
     group_by(AU_ID) %>%
     # list out the maxium geometric mean per AU
@@ -103,12 +107,14 @@ Fresh_Contact_rec <- function(df){
               critical_excursions = excursions_conv(num_Samples),
               SS_Crit = max(SS_Crit),
               Geomean_Crit = max(Geomean_Crit)) %>%
-    mutate(IR_category = ifelse(!is.na(Max_Geomean) &
-                                  (Max_Geomean > Geomean_Crit |
-                                  num_ss_excursions > critical_excursions), "Cat5", 
-                                ifelse(is.na(Max_Geomean) & max.value < SS_Crit, "Cat3", 
-                                       ifelse(is.na(Max_Geomean) & max.value > SS_Crit, "Cat3B", 
-                                              "Cat2"))))
+    mutate(IR_category = ifelse((!is.na(Max_Geomean) &
+                                  Max_Geomean > Geomean_Crit) |
+                                     (num_Samples >= 10 & num_ss_excursions > critical_excursions), "Cat5", 
+                                ifelse(is.na(Max_Geomean) & max.value < SS_Crit & num_Samples < 10, "Cat3", 
+                                       ifelse(is.na(Max_Geomean) & max.value > SS_Crit & num_Samples < 10, "Cat3B",
+                                              ifelse(((!is.na(Max_Geomean) & Max_Geomean <= Geomean_Crit) | is.na(Max_Geomean)) &
+                                                       ((num_Samples >= 10 & num_ss_excursions <= critical_excursions | (num_Samples< 10 & !is.na(Max_Geomean)))), 
+                                                     "Cat2", "ERROR")))))
   
 
   
