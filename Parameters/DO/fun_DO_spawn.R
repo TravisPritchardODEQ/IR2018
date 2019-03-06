@@ -78,7 +78,7 @@ perc_sat_AWQMS_DOSat <- DBI::dbGetQuery(con, DoSatqry)
 
 
 
-# Query out the daily mean DO values from the indentified monitoring locations
+# Query out the mean DO values from the indentified monitoring locations
 Doqry <- "SELECT * 
 FROM            VW_DO
 WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
@@ -116,7 +116,7 @@ perc_sat_DO <- perc_sat_DO %>%
 
 # Pare down the temperature table to be used to join
 perc_sat_temp_join <- perc_sat_temp %>%
-  select(OrganizationID,MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime) %>%
+  select(MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime) %>%
   rename(Temp_res = IRResultNWQSunit)
 
 
