@@ -65,7 +65,7 @@ con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
 
 #Query DOSat from AWQMS
-DOsat_AWQMS <- "SELECT [MLocID], [SampleStartDate],[SampleStartTime],[Statistical_Base],[IRResultNWQSunit] as DO_sat
+DOsat_AWQMS <- "SELECT [OrganizationID],[MLocID], [SampleStartDate],[SampleStartTime],[Statistical_Base],[IRResultNWQSunit] as DO_sat
 FROM [IntegratedReport].[dbo].[ResultsRawWater2018]
 WHERE   Char_Name = 'Dissolved oxygen saturation' AND 
         MLocID in ({continuous_mon_locs*}) AND 
@@ -78,7 +78,7 @@ perc_sat_AWQMS_DOSat <- DBI::dbGetQuery(con, DoSatqry)
 
 
 
-# Query out the mean DO values from the indentified monitoring locations
+# Query out the daily mean DO values from the indentified monitoring locations
 Doqry <- "SELECT * 
 FROM            VW_DO
 WHERE        (Statistical_Base = 'Mean') AND MLocID in ({continuous_mon_locs*})"
@@ -108,7 +108,7 @@ DBI::dbDisconnect(con)
 
 
 perc_sat_DO <- perc_sat_DO %>%
-  left_join(perc_sat_AWQMS_DOSat, by =c('MLocID', 'SampleStartDate','SampleStartTime','Statistical_Base'  ))
+  left_join(perc_sat_AWQMS_DOSat, by =c('OrganizationID','MLocID', 'SampleStartDate','SampleStartTime','Statistical_Base'  ))
 
 
 
@@ -116,7 +116,7 @@ perc_sat_DO <- perc_sat_DO %>%
 
 # Pare down the temperature table to be used to join
 perc_sat_temp_join <- perc_sat_temp %>%
-  select(MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime) %>%
+  select(OrganizationID,MLocID, IRResultNWQSunit, SampleStartDate, SampleStartTime) %>%
   rename(Temp_res = IRResultNWQSunit)
 
 
@@ -126,7 +126,7 @@ perc_sat_temp_join <- perc_sat_temp %>%
 # Calculate DOSat
 DO_sat <- perc_sat_DO %>%
   rename(DO_res =  IRResultNWQSunit) %>%
-  left_join(perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime')) %>%
+  left_join(perc_sat_temp_join, by = c('OrganizationID','MLocID', 'SampleStartDate', 'SampleStartTime')) %>%
   mutate(DO_sat = ifelse(is.na(DO_sat), DOSat_calc(DO_res, Temp_res, ELEV_Ft ), DO_sat ),
          DO_sat = ifelse(DO_sat > 100, 100, DO_sat )) 
 
