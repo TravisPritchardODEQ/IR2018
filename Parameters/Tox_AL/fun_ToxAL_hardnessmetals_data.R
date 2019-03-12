@@ -135,8 +135,8 @@ Hardness_analysis <- metals_hardness %>%
                                           ifelse(Char_Name == 'Silver', 0.85, 
                                                  ifelse(Char_Name == 'Zinc', 0.986, "ERROR" ) )))))) %>%
   mutate(CF = as.numeric(CF)) %>%
-  mutate(crit = ifelse(Char_Name == 'Silver', pmin(0.10, (exp(ma*(log(crit_hardness)+ba))*CF)), 
-                        exp(mc*(log(crit_hardness)+bc))*CF ),
+  mutate(crit = ifelse(Char_Name == 'Silver', pmin(0.10, (exp(ma*log(crit_hardness)+ba)*CF)), 
+                        exp(mc*log(crit_hardness)+bc)*CF ),
          crit = ifelse(WaterTypeCode %in% c(1,3), pmin(Chronic_SW, Acute_SW, na.rm = TRUE), crit ))
 
 
