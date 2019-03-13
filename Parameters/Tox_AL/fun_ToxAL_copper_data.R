@@ -75,6 +75,6 @@ copper_data <- Results_import %>%
   left_join(spread, by = c("MLocID", "SampleStartDate", "Result_Depth")) %>%
   arrange(MLocID, SampleStartDate, SampleStartTime)
 
-write.csv(copper_data, "Parameters/Tox_AL/Data_Review/Copper_data_4_BLM.csv", row.names = FALSE)
+write.csv(copper_data, "Parameters/Tox_AL/Data_Review/Copper_data_4_BLM.csv", row.names = FALSE, na = "")
 
 }
