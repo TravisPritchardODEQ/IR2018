@@ -41,6 +41,7 @@ ancillary_qry <- glue::glue_sql("SELECT [MLocID]
 ,[Unit_UID]
 ,[Sample_Fraction]
 ,[IRResultNWQSunit]
+,[IRWQSUnitName]
 ,[Result_Depth]
 FROM [IntegratedReport].[dbo].[ResultsRawWater2018]
 WHERE chr_uid in ('2849', '1648', '727', '1244', 1802, 1709, 1827, 773, 544, 100331, 1097, 1099, 2174, 2982) 
@@ -61,8 +62,8 @@ spread <- Results_ancillary %>%
                                    ifelse(chr_uid == 2174 & Sample_Fraction == "Total" , 'TOC', 
                                           ifelse(chr_uid == 2174 & Sample_Fraction == "Dissolved", 'DOC', Char_Name ))))) %>%
   mutate(IRResultNWQSunit = ifelse(IRWQSUnitName == 'ug/l', IRResultNWQSunit / 1000, IRResultNWQSunit),
-         Result_Unit = ifelse(IRWQSUnitName == 'ug/l', "mg/L", Result_Unit)) %>%
-  #mutate(Char_Name = paste(Char_Name, "-", Result_Unit)) %>%
+         Result_Unit = ifelse(IRWQSUnitName == 'ug/l', "mg/L", IRWQSUnitName)) %>%
+  mutate(Char_Name = paste0(Char_Name, "-", Result_Unit)) %>%
   group_by(MLocID, SampleStartDate,Char_Name, Result_Depth) %>%
   summarise(result = max(IRResultNWQSunit)) %>%
   arrange(MLocID, SampleStartDate) %>%
