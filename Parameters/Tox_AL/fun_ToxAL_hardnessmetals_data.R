@@ -128,7 +128,7 @@ constants <- data.frame("Char_Name" = c('Cadmium', 'Chromium', 'Lead', 'Nickel',
 # get criteria, for silver, if the acute criteria is lower than the chronic, use acute, else use chronic
 Hardness_analysis <- metals_hardness %>%
   left_join(constants, by = "Char_Name") %>%
-  mutate(CF = ifelse(Char_Name == 'Cadmium', 1.101672-  (log(crit_hardness) * 0.041838), 
+  mutate(CF = ifelse(Char_Name == 'Cadmium', 1.101672 -  (log(crit_hardness) * 0.041838), 
                      ifelse(Char_Name == 'Chromium', 0.860, 
                             ifelse(Char_Name == 'Lead', 1.46203 - (log(crit_hardness) * 0.145712), 
                                    ifelse(Char_Name == 'Nickel', 0.997, 
@@ -153,14 +153,12 @@ Results_censored <- Censored_data(Hardness_analysis, crit = `crit` ) %>%
   mutate(Result_cen = as.numeric(Result_cen)) %>%
   mutate(Simplfied_Sample_Fraction = ifelse(Sample_Fraction ==  "Dissolved",  "Dissolved", "Total" )) %>%
   group_by(MLocID, SampleStartDate, SampleStartTime, Char_Name,Result_Depth) %>%
-  mutate(has_dissolved = ifelse(min(Simplfied_Sample_Fraction) == "Dissolved", 1, 0 )) %>%
+  mutate(Has_Crit_Fraction = ifelse(Crit_fraction == "Total" & max(Simplfied_Sample_Fraction) == "Total", 1, 
+                                    ifelse(Crit_fraction == "Dissolved" & max(Simplfied_Sample_Fraction) != "Total", 1, 0 ))) %>%
+  # Filter out the results that do not macth criteira fraction, if the group has matching criteria. Also keep where whole group does not match
   ungroup() %>%
-  filter((has_dissolved == 1 & Simplfied_Sample_Fraction == "Dissolved") |
-           (has_dissolved == 0 & Simplfied_Sample_Fraction == "Total") ) %>%
-  mutate(#converted_result = ifelse(Simplfied_Sample_Fraction == "Dissolved", IRResultNWQSunit, 
-                                   #IRResultNWQSunit * CF),
-         excursion = ifelse(Result_cen > crit , 1, 0 )
-         )
+  filter((Has_Crit_Fraction == 1 & Simplfied_Sample_Fraction == Crit_fraction) | Has_Crit_Fraction == 0) %>%
+  mutate(excursion = ifelse(Result_cen > crit , 1, 0 ))
 
 
 # We made the decision that CF values were not "site_specific translotors, and we do not convert total fraction
@@ -186,14 +184,17 @@ Results_tox_AL_HBM_cats <- Results_censored %>%
             num_excursions_all = sum(excursion),
             num_excursions_total_fraction = sum(excursion[Simplfied_Sample_Fraction == "Total"]),
             num_excursions_dissolved_fraction = sum(excursion[Simplfied_Sample_Fraction == "Dissolved"]),
-            num_samples_crit_excursion_calc = num_samples, 
+            num_samples_crit_excursion_calc = ifelse(criteria_fraction == "Total", num_samples_total_fraction + num_excursions_dissolved_fraction, 
+                                                     num_Samples_dissolved_fraction + (num_samples_total_fraction - num_excursions_total_fraction )),
             critical_excursions = excursions_tox(num_samples_crit_excursion_calc)) %>%
  # Assign categories
     mutate(IR_category = ifelse(percent_3d == 100, "Cat 3D",
-                                ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 1, "Cat 3B",
-                                      ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 0, "Cat 3", 
-                                               ifelse(num_excursions_all >= critical_excursions, "Cat 5", 
-                                                      ifelse(num_excursions_all < critical_excursions, "Cat 2", "ERROR" )))) ) )
+                                ifelse((num_samples == 1 & num_excursions_all == 1) |
+                                         (criteria_fraction == "Dissolved" & num_excursions_total_fraction > 0 & num_Samples_dissolved_fraction == 0), "Cat 3B",
+                                      ifelse(num_samples_crit_excursion_calc <= 1 & num_excursions_all == 0, "Cat 3", 
+                                               ifelse((criteria_fraction == "Dissolved" & num_excursions_dissolved_fraction > critical_excursions) |
+                                                        (criteria_fraction == "Total" & num_excursions_all > critical_excursions), "Cat 5", 
+                                                      ifelse(num_excursions_dissolved_fraction <= critical_excursions, "Cat 2", "ERROR" )))) ) )
 
 IR_export(Results_tox_AL_HBM_cats, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Hardness_Metals", "Categories")
 
