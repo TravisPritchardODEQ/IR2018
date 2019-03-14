@@ -61,20 +61,34 @@ spread <- Results_ancillary %>%
                             ifelse(chr_uid %in% c(1097, 1099), 'Hardness', 
                                    ifelse(chr_uid == 2174 & Sample_Fraction == "Total" , 'TOC', 
                                           ifelse(chr_uid == 2174 & Sample_Fraction == "Dissolved", 'DOC', Char_Name ))))) %>%
+  mutate(IRWQSUnitName = ifelse(Result_Unit == "None", 'None', IRWQSUnitName )) %>%
   mutate(IRResultNWQSunit = ifelse(IRWQSUnitName == 'ug/l', IRResultNWQSunit / 1000, IRResultNWQSunit),
          Result_Unit = ifelse(IRWQSUnitName == 'ug/l', "mg/L", IRWQSUnitName)) %>%
-  mutate(Char_Name = paste0(Char_Name, "-", Result_Unit)) %>%
+  mutate(Simplified_sample_fraction = ifelse(Sample_Fraction %in% c("Total", "Extractable",
+                                                                   "Total Recoverable","Total Residual", 
+                                                                   "None", "volatile", "Semivolatile", 
+                                                                   "Acid Soluble", "Suspended")  |
+                                              is.na(Sample_Fraction), 'Total', 
+                                            ifelse(Sample_Fraction == "Dissolved"  |
+                                                     Sample_Fraction == "Filtered, field"  |
+                                                     Sample_Fraction == "Filtered, lab"  , "Dissolved", "Error"))) %>%
+  group_by(MLocID, SampleStartDate,Char_Name, Result_Depth) %>%
+  mutate(Has_dissolved = ifelse(min(Simplified_sample_fraction) == "Dissolved", 1, 0 )) %>%
+  ungroup() %>%
+  filter((Has_dissolved == 1 & Simplified_sample_fraction == "Dissolved") | Has_dissolved == 0) %>%
+  select(-Has_dissolved) %>%
+  #mutate(Char_Name = paste0(Char_Name, "-", Simplified_sample_fraction)) %>%
   group_by(MLocID, SampleStartDate,Char_Name, Result_Depth) %>%
   summarise(result = max(IRResultNWQSunit)) %>%
   arrange(MLocID, SampleStartDate) %>%
   spread(key = Char_Name, value = result)
 
-
+colnames(spread) <- make.names(names(spread), unique = TRUE, allow_ = TRUE)
 
 copper_data <- Results_import %>%
   left_join(spread, by = c("MLocID", "SampleStartDate", "Result_Depth")) %>%
   arrange(MLocID, SampleStartDate, SampleStartTime)
 
-write.csv(copper_data, "Parameters/Tox_AL/Data_Review/Copper_data_4_BLM.csv", row.names = FALSE, na = "")
+write.csv(copper_data, "Parameters/Tox_AL/Data_Review/Copper_data_4_BLM.csv", row.names = FALSE)
 
 }
