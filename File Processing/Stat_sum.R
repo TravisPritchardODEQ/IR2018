@@ -303,7 +303,8 @@ AQWMS_sum_stat <- sumstat_long %>%
                                 ifelse(StatisticalBasis == "30DMADMean", "30 Day", "1 Day" )),
          ActivityType = "FMC",
          Result.Analytical.Method.ID = ifelse(charID == "Conductivity", "120.1", 
-                                              ifelse(charID == "Dissolved oxygen (DO)", "NFM 6.2.1-LUM", 
+                                              ifelse(charID == "Dissolved oxygen (DO)" |
+                                                       charID == "Dissolved oxygen saturation", "NFM 6.2.1-LUM", 
                                                      ifelse(charID == "pH","150.1", 
                                                             ifelse(charID == "Temperature, water", "170.1", 
                                                                    ifelse(charID == "Turbidity", "180.1", "error" ))))),
@@ -375,7 +376,7 @@ graph <- ggplot(results_data,aes(x = as.factor(Monitoring.Location.ID), y = r) )
   facet_grid(Characteristic.Name ~ ., scales = 'free') +
   theme_bw() +
   xlab("Monitoring Location") +
-  ylab("Result") + 
+  ylab("Result") +
   theme(strip.background = element_blank())
 
 
