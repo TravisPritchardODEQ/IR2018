@@ -25,6 +25,8 @@ Results_spawndates <- df %>%
          SpawnStart = mdy(SpawnStart),
          SpawnEnd = mdy(SpawnEnd),
          SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
+         SpawnStart = if_else(SpawnEnd < SpawnStart & SampleStartDate <= SpawnEnd, SpawnStart - years(1), # subtract a year if in spawn period carrying from previous year
+                              SpawnStart),
          in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 )) %>%
   filter(in_spawn == 1, !is.na(AU_ID)) %>%
   filter(!is.null(OWRD_Basin) & DO_code %in% c(2,3,4))
