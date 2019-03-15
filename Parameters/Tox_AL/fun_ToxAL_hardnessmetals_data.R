@@ -152,9 +152,9 @@ print('Begin analysis')
 Results_censored <- Censored_data(Hardness_analysis, crit = `crit` ) %>%
   mutate(Result_cen = as.numeric(Result_cen)) %>%
   mutate(Simplfied_Sample_Fraction = ifelse(Sample_Fraction ==  "Dissolved",  "Dissolved", "Total" )) %>%
-  group_by(MLocID, SampleStartDate, SampleStartTime, Char_Name,Result_Depth) %>%
+  group_by(MLocID, SampleStartDate, Char_Name,Result_Depth) %>%
   mutate(Has_Crit_Fraction = ifelse(Crit_fraction == "Total" & max(Simplfied_Sample_Fraction) == "Total", 1, 
-                                    ifelse(Crit_fraction == "Dissolved" & max(Simplfied_Sample_Fraction) != "Total", 1, 0 ))) %>%
+                                    ifelse(Crit_fraction == "Dissolved" & min(Simplfied_Sample_Fraction) == "Dissolved", 1, 0 ))) %>%
   # Filter out the results that do not macth criteira fraction, if the group has matching criteria. Also keep where whole group does not match
   ungroup() %>%
   filter((Has_Crit_Fraction == 1 & Simplfied_Sample_Fraction == Crit_fraction) | Has_Crit_Fraction == 0) %>%
