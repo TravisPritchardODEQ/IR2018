@@ -177,6 +177,84 @@ for (i in 1:length(unique_characteritics)){
     
     } # end of DO if statement
   
+  if (results_data_char$Characteristic.Name[1] == "Dissolved oxygen saturation") {
+    
+    #monitoring location loop
+    for(j in 1:length(unique(daydat$Monitoring.Location.ID))){
+      print(paste("Station", j, "of", length(unique(daydat$Monitoring.Location.ID))))
+      
+      station <- unique(daydat$Monitoring.Location.ID)[j]
+      
+      #Filter dataset to only look at 1 monitoring location at a time
+      daydat_station <- daydat %>%
+        filter(Monitoring.Location.ID == station) %>%
+        mutate(startdate7 = as.Date(date) - 6,
+               startdate30 = as.Date(date) -30)
+      
+      # 7 day loop
+      # Loops throough each row in the monitoring location dataset
+      # And pulls out records that are within the preceding 7 day window
+      # If there are at least 6 values, then calculate 7 day min and mean
+      # Assigns data back to daydat_station
+      print("Begin 7 day moving averages")
+      pb <- txtProgressBar(min = 0, max = nrow(daydat_station), style = 3)
+      for(k in 1:nrow(daydat_station)){
+        
+        start7 <- daydat_station$startdate7[k]
+        end7 <- daydat_station$date[k] 
+        
+        station_7day <- daydat_station %>%
+          filter(date <= end7 & date >= start7) %>%
+          filter(hrNday >= 22) 
+        
+        ma.mean7 <- ifelse(length(unique(station_7day$date)) >= 6, mean(station_7day$dyMean), NA )
+        ma.min7 <- ifelse(length(unique(station_7day$date)) >= 6, mean(station_7day$dyMin), NA )
+        
+        daydat_station[k,"ma.mean7"] <- ifelse(k >=7, ma.mean7, NA)
+        daydat_station[k, "ma.min7"] <- ifelse(k >=7, ma.min7, NA)
+        
+        
+        setTxtProgressBar(pb, k)
+        
+      } #end of 7day loop
+      close(pb)
+      # 30 day loop
+      # Loops throough each row in the monitoring location dataset
+      # And pulls out records that are within the preceding 30 day window
+      # If there are at least 29 values, then calculate 30 day mean
+      # Assigns data back to daydat_station
+      print("Begin 30 day moving averages" )
+      pb <- txtProgressBar(min = 0, max = nrow(daydat_station), style = 3)
+      for(l in 1:nrow(daydat_station)){
+        
+        
+        start30 <- daydat_station$startdate30[l]
+        end30 <- daydat_station$date[l] 
+        
+        station_30day <- daydat_station %>%
+          filter(date <= end30 & date >= start30) %>%
+          filter(hrNday >= 22) 
+        
+        ma.mean30 <- ifelse(length(unique(station_30day$date)) >= 29, mean(station_30day$dyMean), NA )
+        
+        
+        daydat_station[l,"ma.mean30"] <- ifelse(l >= 30, ma.mean30, NA)
+        setTxtProgressBar(pb, l)
+      } #end of 30day loop
+      
+      close(pb)
+      # Assign dataset filtered to 1 monitoring location to a list for combining outside of for loop
+      monloc_do_list[[j]] <- daydat_station
+      
+      
+      
+    } # end of monitoring location for loop
+    
+    # Combine list to single dataframe
+    sum_stats <- bind_rows(monloc_do_list)    
+    
+  } # end of DO if statement
+  
   
   ##  TEMPERATURE
   
@@ -203,7 +281,7 @@ for (i in 1:length(unique_characteritics)){
  
  
    ## Other - just set sum_stats to daydat, since no moving averages need to be generated. 
-  if (results_data_char$Characteristic.Name[1] != 'Temperature, water' & results_data_char$Characteristic.Name[1] != "Dissolved oxygen (DO)"  ) {
+  if (!results_data_char$Characteristic.Name[1] %in% c('Temperature, water', "Dissolved oxygen (DO)", "Dissolved oxygen saturation")) {
     
     sum_stats <- daydat
     
