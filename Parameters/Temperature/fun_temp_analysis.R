@@ -17,9 +17,9 @@ temp_analysis <- df %>%
          Start_spawn = mdy(Start_spawn),
          End_spawn = mdy(End_spawn),
          # If Spawn dates span a calendar year, account for year change in spawn end date
-         End_spawn = if_else(End_spawn < Start_spawn & sample_datetime >= End_spawn, End_spawn + years(1), # add a year if in spawn period carrying to next year
+         End_spawn = if_else(End_spawn < Start_spawn & SampleStartDate >= End_spawn, End_spawn + years(1), # add a year if in spawn period carrying to next year
                              End_spawn),
-         Start_spawn = if_else(End_spawn < Start_spawn & sample_datetime <= End_spawn, Start_spawn - years(1), # subtract a year if in spawn period carrying from previous year
+         Start_spawn = if_else(End_spawn < Start_spawn & SampleStartDate <= End_spawn, Start_spawn - years(1), # subtract a year if in spawn period carrying from previous year
                                Start_spawn),
          SampleStartDate = ymd(SampleStartDate), 
          # Flag for results in critical period
