@@ -105,3 +105,37 @@ cont_spawn_DO_categories <- cont_spawn_Do_analysis %>%
                            "Cat 2" )) #%>%
 
 write.csv(cont_spawn_DO_categories, file = "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Information_Requests/SFWW/DO_spawn_categories.csv", row.names = FALSE)
+
+raw_data <- read_excel("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Information_Requests/SFWW/SFWW_Template_31519.xlsx", sheet = "Results")
+
+raw_graph_data <- raw_data %>%
+  rename(MLocID = "Monitoring Location ID",
+         SampleStartDate = `Activity Start Date`,
+         SampleStartTime = `Activity Start Time`,
+         char_id = `Characteristic Name`,
+         result = `Result Value`) %>%
+  mutate(SampleStartTime = strftime(SampleStartTime, format="%H:%M:%S", tz = "GMT"),
+         datetime = paste(SampleStartDate, SampleStartTime),
+         datetime = ymd_hms(datetime)) %>%
+  filter(char_id == 'Dissolved oxygen (DO)')
+
+ggplot()+
+  geom_point(data = raw_graph_data, aes(x = datetime, y = result), alpha = 0.3, color = 'steelblue') +
+  geom_line(data = continuous_data, aes(x = ymd_hms(paste(SampleStartDate, "0:00:00")), y = DO_Conc), size = 2) +
+  geom_segment(data = continuous_data, aes(x = mdy_hms("09/01/2018 0:00:00"), 
+                                           xend = mdy_hms("02/08/2019 0:00:00"), 
+                                           y = 11, 
+                                           yend = 11 ),
+               color = "red",
+               linetype = 'longdash') +
+  geom_segment(data = continuous_data, aes(x = mdy_hms("05/01/2018 0:00:00"), 
+                                           xend = mdy_hms("06/15/2018 23:59:00"), 
+                                           y = 11, 
+                                           yend = 11 ),
+               color = "red",
+               linetype = 'longdash') +
+  facet_grid(rows =  vars(MLocID)) + 
+  theme_bw() +
+  coord_cartesian(xlim = c(mdy_hms("05/31/2018 0:00:00"), mdy_hms("02/08/2019 0:00:00"))) +
+  labs(x = "Date") +
+  theme(strip.background =element_rect(fill="white"))
