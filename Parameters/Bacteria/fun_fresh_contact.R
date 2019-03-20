@@ -109,11 +109,11 @@ Fresh_Contact_rec <- function(df){
               Geomean_Crit = max(Geomean_Crit)) %>%
     mutate(IR_category = ifelse((!is.na(Max_Geomean) &
                                   Max_Geomean > Geomean_Crit) |
-                                     (num_Samples >= 10 & num_ss_excursions > critical_excursions), "Cat5", 
-                                ifelse(is.na(Max_Geomean) & max.value < SS_Crit & num_Samples < 10, "Cat3", 
-                                       ifelse(is.na(Max_Geomean) & max.value > SS_Crit & num_Samples < 10, "Cat3B",
+                                     (num_Samples >= 5 & num_ss_excursions > critical_excursions), "Cat5", 
+                                ifelse(is.na(Max_Geomean) & max.value < SS_Crit & num_Samples < 5, "Cat3", 
+                                       ifelse(is.na(Max_Geomean) & max.value > SS_Crit & num_Samples < 5, "Cat3B",
                                               ifelse(((!is.na(Max_Geomean) & Max_Geomean <= Geomean_Crit) | is.na(Max_Geomean)) &
-                                                       ((num_Samples >= 10 & num_ss_excursions <= critical_excursions | (num_Samples< 10 & !is.na(Max_Geomean)))), 
+                                                       ((num_Samples >= 5 & num_ss_excursions <= critical_excursions | (num_Samples< 5 & !is.na(Max_Geomean)))), 
                                                      "Cat2", "ERROR")))))
   
 
