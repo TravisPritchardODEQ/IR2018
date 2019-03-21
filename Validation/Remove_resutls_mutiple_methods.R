@@ -29,9 +29,97 @@ Pest <- Results_import %>%
 # ensure all MRLs have same units 
 unique(Pest$Analytical_method) 
 unique(Pest$MRLUnit)
-
 # select result with lowest MRL
 Pest <- Results_import %>% 
   filter(chr_uid %in% c(7,8,13,529,821,934,1001,1104,1105,1115,1235,1280,1349,1516,1517,1518,100464)) %>%
   group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia, chr_uid) %>%
   slice(which.min(MRLValue))
+unique(Pest$Analytical_method) 
+
+## output = [1] "Pesticides in water, soil, sediment, biosolids, and tissue by HRGC/HRMS" 
+## removed results analyzed by other methods 
+unused <- Results_import %>%
+  mutate(Data_Review_Code = ifelse(chr_uid %in% c(7,8,13,529,821,934,1001,1104,1105,1115,1235,1280,1349,1516,1517,1518,100464) 
+                                   & Analytical_method == 'Semivolatile Organic Compounds by GC/MS', 52, 1)) %>%
+  mutate(Data_Review_Comment = ifelse(chr_uid %in% c(7,8,13,529,821,934,1001,1104,1105,1115,1235,1280,1349,1516,1517,1518,100464) 
+                                      & Analytical_method == 'Semivolatile Organic Compounds by GC/MS',"same sample analyzed by Pesticides in water, soil, sediment, biosolids, and tissue by HRGC/HRMS", "")) %>%
+  filter(Data_Review_Code == 52) %>% 
+  select(Result_UID,Char_Name,Data_Review_Code,Data_Review_Comment)
+# export and add to unused_data_2018 table in IR 2018 database 
+write.csv(unused,"Z:\\AWQMS\\IRDatabase\\Unused_Pest_from_R.csv")
+
+# Remove multiple method for Azinphos_methyl
+Azinphos_methyl <- Results_import %>%
+  filter(chr_uid == 602)
+unique(Azinphos_methyl$Analytical_method) 
+unique(Azinphos_methyl$MRLUnit)
+# check methods for lowest MRL by sample 
+Azinphos_methyl <- Results_import %>%
+  filter(chr_uid == 602) %>%
+  group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia) %>%
+  slice(which.min(MRLValue))
+unique(Azinphos_methyl$Analytical_method)
+# lowest MRL fluctuates between methods 
+unused_Azinphos_methyl <- Results_import %>%
+  filter(chr_uid == 602) %>%
+  group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia) %>%
+  slice(which.max(MRLValue)) %>%
+  mutate(Data_Review_Code = 52) %>%
+  mutate(Data_Review_Comment = "same sample analyzed by different method with a lower detection level (MRLValue)")
+
+unused_Azinphos_methyl <- select(unused_Azinphos_methyl,Result_UID,Char_Name,Data_Review_Code,Data_Review_Comment)
+write.csv(unused_Azinphos_methyl,"Z:\\AWQMS\\IRDatabase\\Unused_Azinphos_methyl_from_R.csv")
+
+# Remove multiple method for Pentachlorophenol
+Pentachlorophenol <- Results_import %>%
+  filter(chr_uid == 1633)
+unique(Pentachlorophenol$Analytical_method) 
+unique(Pentachlorophenol$MRLUnit)
+# ugh multiple units! 
+Pentachlorophenol <- Results_import %>%
+  filter(chr_uid == 1633) %>% 
+  mutate(MRLValue_ngL = ifelse(MRLUnit == "ug/l", MRLValue*1000,MRLValue)) 
+
+Penta_good <- Pentachlorophenol %>%
+  group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia) %>%
+  slice(which.min(MRLValue_ngL))
+unique(Penta_good$Analytical_method) 
+# lowest MRL fluctuates between methods 
+unused_penta <- Pentachlorophenol %>%
+  group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia) %>%
+  slice(which.max(MRLValue_ngL)) %>%
+  mutate(Data_Review_Code = 52) %>%
+  mutate(Data_Review_Comment = "same sample analyzed by different method with a lower detection level (MRLValue)")
+unused_penta <- select(unused_penta,Result_UID,Char_Name,Data_Review_Code,Data_Review_Comment)
+write.csv(unused_penta,"Z:\\AWQMS\\IRDatabase\\Unused_Pentachlorophenol_from_R.csv")
+
+Alk <- Results_import %>% 
+  filter(chr_uid == 544) %>% 
+  group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia) %>%
+  summarise(total_samples = n(),
+            titration = sum(Analytical_method == 'Alkalinity by Titration'),
+            Gran = sum(Analytical_method == 'Alkalinity by Gran Titration'))
+
+# there are non detects choose Alkalinity by Titration method 
+
+unused_Alk <- Results_import %>% 
+  filter(chr_uid == 544) %>%
+  filter(Analytical_method =='Alkalinity by Gran Titration') %>%
+  mutate(Data_Review_Code = 52) %>% 
+  mutate(Data_Review_Comment = "Alkalinity by Titration") %>%
+  select(Result_UID,Char_Name,Data_Review_Code,Data_Review_Comment)
+
+write.csv(unused_Alk,"Z:\\AWQMS\\IRDatabase\\Unused_Alk_from_R.csv")
+
+unused_Arsenic <- Results_import %>% 
+  filter(chr_uid == 591) %>%
+  filter(Analytical_method =='Metals by Temperature Stabilized GFAA') %>%
+  mutate(Data_Review_Code = 52) %>% 
+  mutate(Data_Review_Comment = "same sample analyzed by Metals in Waters by ICP/MS") %>%
+  select(Result_UID,Char_Name,Data_Review_Code,Data_Review_Comment)
+
+write.csv(unused_Arsenic,"Z:\\AWQMS\\IRDatabase\\Unused_Arsenic_from_R.csv")
+
+#### checked everything else and it was already being removed for InputRaw for another reason 
+
+

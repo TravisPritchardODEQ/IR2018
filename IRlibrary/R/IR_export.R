@@ -15,8 +15,10 @@
 IR_export <- function(df, location, parameter, type) {
 
 df <- df %>% 
-  mutate(Data_Review_Code = "")
-
+  mutate(Data_Review_Code = "") %>%
+  mutate(Data_Review_Comment = "") %>%
+  mutate(Rational = "") 
+  
 # Get list of unique basins in dataset. Used for generating data for review
 basins <- unique(df$OWRD_Basin) 
 

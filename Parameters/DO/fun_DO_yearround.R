@@ -68,7 +68,7 @@ continuous_data_categories <- continuous_data_analysis %>%
             Sum_30D_violations = sum(Violation [Statistical_Base == "30DADMean"]),
             Sum_7mi_violations = sum(Violation [Statistical_Base == "7DADMin"]),
             Sum_abs_min_violations = sum(Violation [Statistical_Base == "Minimum"])) %>%
-  mutate(category = ifelse(DO_Class != "Cold Water" & 
+  mutate(IR_category = ifelse(DO_Class != "Cold Water" & 
                              (Sum_30D_violations >= 2 |
                                 Sum_7mi_violations >= 2 |
                                 Sum_abs_min_violations >= 2), "Cat 5", 
@@ -86,7 +86,7 @@ continuous_data_categories <- continuous_data_analysis %>%
 
 # Datatable of results that need percent saturation
 cont_perc_sat_check <- continuous_data_analysis %>%
-  filter(AU_ID %in% unique(subset(continuous_data_categories, category == "Check percent Sat" )$AU_ID) )
+  filter(AU_ID %in% unique(subset(continuous_data_categories, IR_category == "Check percent Sat" )$AU_ID) )
 
 if(nrow(cont_perc_sat_check) > 0){
 
@@ -278,7 +278,7 @@ yr_round_cont_data_categories <- continuous_data_analysis %>%
             Sum_30D_violations = sum(Violation [Statistical_Base == "30DADMean"]),
             Sum_7mi_violations = sum(Violation [Statistical_Base == "7DADMin"]),
             Sum_abs_min_violations = sum(Violation [Statistical_Base == "Minimum"])) %>%
-  mutate(category = ifelse(Sum_30D_violations >= 2 |
+  mutate(IR_category = ifelse(Sum_30D_violations >= 2 |
                                 Sum_7mi_violations >= 2 |
                                 Sum_abs_min_violations >= 2, "Cat 5", 
                              ifelse(Sum_30D_violations < 2 &
@@ -315,23 +315,23 @@ instant_data_categories <- instant_data_analysis %>%
             num_critical_samples = sum(is.crit),
             num_below_crit = sum(Violation_crit)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
-  mutate(category = ifelse(num_critical_samples < 10 & 
+  mutate(IR_category = ifelse(num_critical_samples < 5 & 
                              num_below_crit > 0, "Cat 3B", 
-                           ifelse(num_critical_samples < 10 & 
+                           ifelse(num_critical_samples < 5 & 
                                     num_below_crit == 0, "Cat 3", 
-                                  ifelse(num_critical_samples >= 10 &
+                                  ifelse(num_critical_samples >= 5 &
                                            num_below_crit > critical_excursions &
                                            DO_Class != "Cold Water", "Cat 5", 
-                                         ifelse(num_critical_samples >= 10 &
+                                         ifelse(num_critical_samples >= 5 &
                                                    num_below_crit > critical_excursions &
                                                    DO_Class == "Cold Water", "Check percent Sat",
-                                                ifelse(num_critical_samples >= 10 &
+                                                ifelse(num_critical_samples >= 5 &
                                                          num_below_crit <= critical_excursions, "Cat 2", "ERROR" ))))))
 
 
 # Data to be used to check percent saturation
 inst_perc_sat_check <- instant_data_analysis %>%
-  filter(AU_ID %in% unique(subset(instant_data_categories, category == "Check percent Sat" )$AU_ID) ) 
+  filter(AU_ID %in% unique(subset(instant_data_categories, IR_category == "Check percent Sat" )$AU_ID) ) 
 
 # vector of monitoring locations to check DO saturdation. Used for database query
 instant_mon_locs <- unique(inst_perc_sat_check$MLocID)
@@ -425,13 +425,13 @@ yr_round_instant_categories <- Instant_data_analysis_DOS %>%
             num_critical_samples = sum(is.crit),
             num_excursions = sum(Violation, na.rm = TRUE)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
-  mutate(category = ifelse(num_critical_samples < 10 & 
+  mutate(IR_category = ifelse(num_critical_samples < 5 & 
                              num_excursions > 0, "Cat 3B", 
-                           ifelse(num_critical_samples < 10 & 
+                           ifelse(num_critical_samples < 5 & 
                                     num_excursions == 0, "Cat 3", 
-                                  ifelse(num_critical_samples >= 10 &
+                                  ifelse(num_critical_samples >= 5 &
                                            num_excursions >= critical_excursions , "Cat 5", 
-                                                 ifelse(num_critical_samples >= 10 &
+                                                 ifelse(num_critical_samples >= 5 &
                                                          num_excursions < critical_excursions, "Cat 2", "ERROR" )))))
 
 print("Year round analysis finished")

@@ -205,7 +205,7 @@ cont_spawn_DO_categories <- cont_spawn_Do_analysis %>%
             #num_valid_samples = sum(!is.na(Violation)),
             num_violations = sum(Violation, na.rm = TRUE)) %>%
   left_join(daily_minimums, by = 'AU_ID') %>%
-  mutate(category = ifelse(num_violations >= 2 | num_below_abs_min >= 2 , "Cat 5", 
+  mutate(IR_category = ifelse(num_violations >= 2 | num_below_abs_min >= 2 , "Cat 5", 
                            "Cat 2" )) #%>%
  # mutate(type = "Spawning continuous")
 
@@ -329,12 +329,12 @@ instant_DO_sat_categories <- instant_DO_sat_analysis %>%
             num_samples = n(),
             num_Violations = sum(Violation, na.rm = TRUE)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
-  mutate(category = ifelse(num_samples < 10 &
+  mutate(IR_category = ifelse(num_samples < 5 &
                              num_Violations == 0, "Cat 3", 
-                           ifelse(num_samples < 10 &
+                           ifelse(num_samples < 5 &
                                     num_Violations > 0, "Cat 3B", 
-                                  ifelse(num_samples > 10 & num_Violations >= critical_excursions, "Cat 5", 
-                                         ifelse(num_samples > 10 & num_Violations < critical_excursions, "Cat 2",  
+                                  ifelse(num_samples > 5 & num_Violations >= critical_excursions, "Cat 5", 
+                                         ifelse(num_samples > 5 & num_Violations < critical_excursions, "Cat 2",  
                                                 "ERROR"))))) %>%
   mutate(type = "Spawning instant")
 
