@@ -2,6 +2,7 @@ library(IRlibrary)
 source("Parameters/DO/fun_DO_data.R")
 source("Parameters/DO/fun_DO_yearround.R")
 source("Parameters/DO/fun_DO_spawn.R")
+source("Parameters/DO/fun_DO_estuary.R")
 
 
 
@@ -39,3 +40,5 @@ DO_Spawning_instantaneous <- Spawning_analysis_list[[2]]
 IR_export(DO_Spawning_continuous, "Parameters/DO/Data_Review", "DO_Spawning_continuous", "categories")
 IR_export(DO_Spawning_instantaneous, "Parameters/DO/Data_Review", "DO_Spawning_instantaneous", "categories")
 
+
+DO_estuary_analysis(Validated_results)
