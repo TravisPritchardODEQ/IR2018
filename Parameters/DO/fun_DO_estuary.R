@@ -2,6 +2,8 @@
 DO_estuary_analysis <- function(df){
   
   
+  print('beginning estuary spawning analysis.')
+  
   library(lubridate)
   library(IRlibrary)
   
@@ -50,7 +52,8 @@ DO_estuary_analysis <- function(df){
     
 
 # Yearround estuary -------------------------------------------------------
-
+    print('beginning estuary year round analysis.')
+    
     Results_estuary_data <- Results_estuary %>%
       mutate(excursion = ifelse(IRResultNWQSunit < crit_Instant, 1, 0 )) 
     
@@ -71,5 +74,6 @@ DO_estuary_analysis <- function(df){
     IR_export(estuary_categories, "Parameters/DO/Data_Review", "DO_Estuary_Yearround", "categories" )
     
     
+    print("'Failed to parse' warnings can be ignored.", quote = FALSE)
     return(list(estuary_spawn_categories,estuary_categories ))
 }

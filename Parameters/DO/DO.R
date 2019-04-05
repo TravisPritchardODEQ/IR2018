@@ -41,4 +41,4 @@ IR_export(DO_Spawning_continuous, "Parameters/DO/Data_Review", "DO_Spawning_cont
 IR_export(DO_Spawning_instantaneous, "Parameters/DO/Data_Review", "DO_Spawning_instantaneous", "categories")
 
 
-DO_estuary_analysis(Validated_results)
+estuary_list <- DO_estuary_analysis(Validated_results)
