@@ -109,6 +109,7 @@ DBI::dbDisconnect(con)
 # Where we don't already have them
 
 
+
 perc_sat_DO <- perc_sat_DO %>%
   left_join(perc_sat_AWQMS_DOSat, by =c('OrganizationID','MLocID', 'SampleStartDate','SampleStartTime','Statistical_Base'  ))
 
@@ -275,6 +276,9 @@ instant_perc_sat_temp <-  DBI::dbGetQuery(con, tempqry)
 
 DBI::dbDisconnect(con)
 
+# Remove duplicate DO sat Values that are mistakenly in AWQMS
+instant_perc_sat_DO_AWQMS <- instant_perc_sat_DO_AWQMS %>%
+  distinct(MLocID, SampleStartDate,SampleStartTime,Statistical_Base, .keep_all = TRUE)
 
 
 instant_perc_sat_DO <- instant_perc_sat_DO %>%
