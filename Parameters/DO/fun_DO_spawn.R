@@ -178,7 +178,12 @@ cont_spawn_Do_analysis <- spawn_DO_data %>%
 print("Writing continuous spawning data tables")
 
 export <- cont_spawn_Do_analysis %>%
-  select(-Do_7D)
+  select(-Do_7D) %>%
+  rename(DO_sat = dosat_mean7)
+
+
+
+export <- DO_Dup_remover(export, filename = "Parameters/DO/DO_Spawn_continuous_Duplicated.csv")
 
 IR_export(export, "Parameters/DO/Data_Review", "DO_Continuous_Spawn", "data" )
 
@@ -319,8 +324,11 @@ instant_DO_sat_analysis <- instant_DO_sat %>%
 print("Writing instant spawning data tables")
 
 export <- instant_DO_sat_analysis %>%
-  select(-DO_res)
+  select(-DO_res) %>%
+  rename(IRResultNWQSunit = Result_Numeric)
 
+
+export <- DO_Dup_remover(export, filename = "Parameters/DO/DO_Spawn_instant_Duplicated.csv")
 IR_export(export, "Parameters/DO/Data_Review", "DO_Instant_Spawn", "data" )
 
 

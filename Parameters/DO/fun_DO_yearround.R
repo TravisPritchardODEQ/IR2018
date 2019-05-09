@@ -262,7 +262,12 @@ yr_round_cont_DO_data_analysis <- continuous_data_analysis %>%
   
 }
 
+yr_round_cont_DO_data_analysis <- yr_round_cont_DO_data_analysis %>%
+  rename(DO_sat = ma.DOS.mean30)
 
+#remove DOsat duplicates
+yr_round_cont_DO_data_analysis <- DO_Dup_remover(yr_round_cont_DO_data_analysis, 
+                                                 filename = "Parameters/DO/DO_YearRound_continuous_Duplicated.csv")
 
 IR_export(yr_round_cont_DO_data_analysis, "Parameters/DO/Data_Review", "DO_YearRound_continuous", "data" )
 
@@ -406,12 +411,14 @@ Instant_data_analysis_DOS <- Results_spawndates %>%
   filter(!AU_ID %in% results_cont_summary$AU_ID) %>%
   filter(Statistical_Base %in% c("Minimum", NA)) %>%
   left_join(instant_DO_sat, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
-  mutate(Violation = ifelse(DO_Class == "Cold Water" & 
-                              IRResultNWQSunit < crit_Instant & 
-                              (DO_sat < 90.0 | is.na(DO_sat) ), 1, 
-                            ifelse(DO_Class != "Cold Water" & 
-                                     IRResultNWQSunit < crit_30D, 1, 0))  )
+  mutate(Violation = case_when(DO_Class == "Cold Water" & IRResultNWQSunit < crit_Instant & (DO_sat < 90.0 | is.na(DO_sat)) ~ 1,
+                               DO_Class != "Cold Water" & IRResultNWQSunit < crit_30D ~ 1,
+                               TRUE ~ 0))
+           
+           
+#Remove DO duplcates
 
+Instant_data_analysis_DOS <- DO_Dup_remover(Instant_data_analysis_DOS, filename = "Parameters/DO/DO_YearRound_instant_Duplicated.csv")
 IR_export(Instant_data_analysis_DOS, "Parameters/DO/Data_Review", "DO_YearRound_instant", "data" )
 
 
@@ -425,15 +432,13 @@ yr_round_instant_categories <- Instant_data_analysis_DOS %>%
             num_critical_samples = sum(is.crit),
             num_excursions = sum(Violation, na.rm = TRUE)) %>%
   mutate(critical_excursions = excursions_conv(num_samples)) %>%
-  mutate(IR_category = ifelse(num_critical_samples < 5 & 
-                             num_excursions > 0, "Cat 3B", 
-                           ifelse(num_critical_samples < 5 & 
-                                    num_excursions == 0, "Cat 3", 
-                                  ifelse(num_critical_samples >= 5 &
-                                           num_excursions >= critical_excursions , "Cat 5", 
-                                                 ifelse(num_critical_samples >= 5 &
-                                                         num_excursions < critical_excursions, "Cat 2", "ERROR" )))))
-
+  mutate(IR_category = case_when(num_critical_samples < 5 & num_excursions > 0 ~ "Cat 3B",
+                                 num_critical_samples < 5 & num_excursions == 0 ~ "Cat 3",
+                                 num_critical_samples >= 5 & num_excursions >= critical_excursions ~ "Cat 5",
+                                 num_critical_samples >= 5 & num_excursions < critical_excursions ~ "Cat 2",
+                                 TRUE ~ "ERROR"))
+           
+        
 print("Year round analysis finished")
 
 
