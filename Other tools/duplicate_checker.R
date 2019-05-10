@@ -430,3 +430,124 @@ writeData(wb, "pH suspect rep, depth, x sec", pH_depth, rowNames = FALSE)
 writeData(wb, "pH suspect duplicate", ph_dups, rowNames = FALSE)
 
 saveWorkbook(wb, "suspect_data.xlsx", overwrite = TRUE)
+
+
+######################################################################################
+######################################################################################
+######################################################################################
+######################################################################################
+
+# Calculate thresholds ----------------------------------------------------
+
+# Do ----------------------------------------------------------------------
+
+
+
+
+reviewed_DO_data <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/suspect_data v3.xlsx",
+                             sheet = 'DO suspect rep, depth, x sec')
+
+DO_data_thresholds <- reviewed_DO_data %>%
+  mutate(Result = as.numeric(Result)) %>%
+  filter(code == "-999") %>%
+  group_by(group) %>%
+  mutate(threshold_num = n(),
+         min = min(Result),
+         max = max(Result),
+         delta = max(Result) - min(Result))
+
+
+test <- DO_data_thresholds %>%
+  ungroup() %>%
+  filter(threshold_num == 1) %>%
+  select(Result_UID)
+
+hist_data <- DO_data_thresholds %>%
+  filter(!Result_UID %in% test$Result_UID)
+
+ggplot(data = hist_data) +
+  geom_histogram(aes(x =delta ), bins = 100) +
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .90), color = "90th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .50), color = "50th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .10), color = "10th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .75), color = "75th Percentile"))+
+  geom_vline(aes(xintercept = 1, color = "DQL = B Criteria"), size = 1.5) +
+  scale_y_continuous(breaks=seq(0,150,5),expand = c(0, 0)) +
+  scale_x_continuous(breaks=seq(0,8,0.5), expand = c(0, 0)) +
+  theme_minimal() +
+  labs(title = "DO Delta", subtitle = "Delta DO within duplicate groups")+
+  theme(panel.grid.minor = element_line(linetype = "blank"))
+
+
+ggsave("Delta_DO_hist.png")
+
+
+ggplot(data = hist_data)+
+  ggplot2::stat_ecdf(ggplot2::aes(x = delta )) +
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .90), color = "90th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .50), color = "50th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .10), color = "10th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .75), color = "75th Percentile"))+
+  geom_vline(aes(xintercept = 1, color = "DQL = B Criteria"), size = 1.5) +
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_continuous(breaks=seq(0,8,0.5), expand = c(0, 0)) +
+  theme_minimal() +
+  labs(title = "DO cumulative frequency", subtitle = "Delta DO within duplicate groups") +
+  labs(y = "Cumulative Frequency")
+
+ggsave("Delta_DO_cumulative_freq.png")
+# pH ----------------------------------------------------------------------
+
+reviewed_DO_data <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/suspect_data v3.xlsx",
+                              sheet = 'pH suspect rep, depth, x sec')
+
+DO_data_thresholds <- reviewed_DO_data %>%
+  mutate(Result = as.numeric(Result)) %>%
+  filter(code == "-999") %>%
+  group_by(group) %>%
+  mutate(threshold_num = n(),
+         min = min(Result),
+         max = max(Result),
+         delta = max(Result) - min(Result))
+
+
+test <- DO_data_thresholds %>%
+  ungroup() %>%
+  filter(threshold_num == 1) %>%
+  select(Result_UID)
+
+hist_data <- DO_data_thresholds %>%
+  filter(!Result_UID %in% test$Result_UID)
+
+ggplot(data = hist_data) +
+  geom_histogram(aes(x =delta ), bins = 100) +
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .90), color = "90th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .50), color = "50th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .10), color = "10th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .75), color = "75th Percentile"))+
+  geom_vline(aes(xintercept = 0.5, color = "DQL = B Criteria"), size = 1.5) +
+  scale_y_continuous(breaks=seq(0,150,5),expand = c(0, 0)) +
+  scale_x_continuous(breaks=seq(0,8,0.2), expand = c(0, 0)) +
+  theme_minimal() +
+  labs(title = "pH Delta", subtitle = "Delta pH within duplicate groups") + 
+  theme(panel.grid.minor = element_line(linetype = "blank"))
+
+
+ggsave("Delta_pH_hist.png")
+
+
+ggplot(data = hist_data)+
+  ggplot2::stat_ecdf(ggplot2::aes(x = delta )) +
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .90), color = "90th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .50), color = "50th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .10), color = "10th Percentile"))+
+  geom_vline(aes(xintercept = quantile(hist_data$delta, probs = .75), color = "75th Percentile"))+
+  geom_vline(aes(xintercept = 0.5, color = "DQL = B Criteria"), size = 1.5) +
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_continuous(breaks=seq(0,8,0.2), expand = c(0, 0)) +
+  theme_minimal() +
+  labs(title = "pH cumulative frequency", subtitle = "Delta pH within duplicate groups") +
+  labs(y = "Cumulative Frequency")
+                      
+
+ggsave("Delta_pH_cumulative_freq.png")
