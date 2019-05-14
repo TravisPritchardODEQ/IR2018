@@ -25,16 +25,16 @@ fun_Tox_HH_analysis <- function(df){
     # Group by the same as above, but add in the is_arochlor flag
   group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height, is_aroclor) %>%
     # Calculate the percent nondetect of each group
-  mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+  mutate(PCB_summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
     #undo the grouping
   ungroup() %>%
     # redo the original single sample grouping 
   group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
     # remove individual congeners if the group has arochlor data & the aroclors have a lower percentage of nondetects
-  filter((Has_aroclor == 1 & is_aroclor == 1 & summed_percent_nondetect == min(summed_percent_nondetect)) | Has_aroclor == 0) %>%
+  filter((Has_aroclor == 1 & is_aroclor == 1 & PCB_summed_percent_nondetect == min(PCB_summed_percent_nondetect)) | Has_aroclor == 0) %>%
     # Recalculate the percent censored values
   mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen )) %>%
-  mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
+  mutate(PCB_summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
          # Do the summing
          Summed_values = sum(summed_censored_value),
          # Create note on what the summing is based on
@@ -93,20 +93,27 @@ tox_HH_categories <- tox_HH_assesment %>%
             Pollu_ID = first(Pollu_ID),
             crit = max(crit),
             num_samples = n(),
-            summed_percent_nondetect = sum(summed_percent_nondetect)/n(),
-            percent_3d = ifelse(is.na(summed_percent_nondetect),  
+            PCB_summed_percent_nondetect = sum(PCB_summed_percent_nondetect)/n(),
+            num_3d = ifelse(is.na(PCB_summed_percent_nondetect), sum(Result_Operator == "<" & IRResultNWQSunit > crit ), 
+                            sum(PCB_summed_percent_nondetect)/100 * num_samples),
+            num_not_3d = num_samples - num_3d,
+            percent_3d = ifelse(is.na(PCB_summed_percent_nondetect),  
                                 round(sum(Result_Operator == "<" & IRResultNWQSunit > crit )/num_samples * 100), 
-                                sum(summed_percent_nondetect)) ,
+                                sum(PCB_summed_percent_nondetect)),
             num_violations = sum(violation),
-            geomean = geo_mean(Result_cen)) %>%
+            geomean = ifelse(num_not_3d >= 3, geo_mean(Result_cen[!(Result_Operator == "<" & IRResultNWQSunit > crit)]), 
+                             NA))  %>%
   ungroup() %>%
   group_by(AU_ID, Char_Name) %>%
   mutate(num_fraction_types =  n(),
-         IR_category = ifelse(percent_3d == 100, "Cat3D", 
-                              ifelse(num_samples >= 3 & geomean > crit, "Cat5", 
-                              ifelse(num_samples < 3 & num_violations >= 1, "Cat3B", 
-                                     ifelse(num_samples < 3 & num_violations == 0, "Cat3", "Cat2" )))),
-         geomean = ifelse(summed_percent_nondetect == 100 & !is.na(summed_percent_nondetect), NA, geomean ))  %>%
+         IR_category =  case_when(percent_3d == 100 ~ "Cat3D",
+                                  num_samples >= 3 & geomean > crit ~ "Cat5",
+                                  num_samples < 3 & num_violations >= 1 ~ "Cat3B",
+                                  num_samples < 3 & num_violations == 0 ~ "Cat3",
+                                  num_not_3d < 3 ~ "Cat3",
+                                  geomean <= crit ~ "Cat 2",
+                                  TRUE ~ "ERROR"), 
+        geomean = ifelse(PCB_summed_percent_nondetect == 100 & !is.na(PCB_summed_percent_nondetect), NA, geomean ))  %>%
   arrange(AU_ID, Char_Name)
  
 #write tablehere
