@@ -109,6 +109,7 @@ DBI::dbDisconnect(con)
 # Where we don't already have them
 
 
+
 perc_sat_DO <- perc_sat_DO %>%
   left_join(perc_sat_AWQMS_DOSat, by =c('OrganizationID','MLocID', 'SampleStartDate','SampleStartTime','Statistical_Base'  ))
 
@@ -177,7 +178,12 @@ cont_spawn_Do_analysis <- spawn_DO_data %>%
 print("Writing continuous spawning data tables")
 
 export <- cont_spawn_Do_analysis %>%
-  select(-Do_7D)
+  select(-Do_7D) %>%
+  rename(DO_sat = dosat_mean7)
+
+
+
+export <- DO_Dup_remover(export, filename = "Parameters/DO/DO_Spawn_continuous_Duplicated.csv")
 
 IR_export(export, "Parameters/DO/Data_Review", "DO_Continuous_Spawn", "data" )
 
@@ -275,6 +281,9 @@ instant_perc_sat_temp <-  DBI::dbGetQuery(con, tempqry)
 
 DBI::dbDisconnect(con)
 
+# Remove duplicate DO sat Values that are mistakenly in AWQMS
+instant_perc_sat_DO_AWQMS <- instant_perc_sat_DO_AWQMS %>%
+  distinct(MLocID, SampleStartDate,SampleStartTime,Statistical_Base, .keep_all = TRUE)
 
 
 instant_perc_sat_DO <- instant_perc_sat_DO %>%
@@ -315,8 +324,11 @@ instant_DO_sat_analysis <- instant_DO_sat %>%
 print("Writing instant spawning data tables")
 
 export <- instant_DO_sat_analysis %>%
-  select(-DO_res)
+  select(-DO_res) %>%
+  rename(IRResultNWQSunit = Result_Numeric)
 
+
+export <- DO_Dup_remover(export, filename = "Parameters/DO/DO_Spawn_instant_Duplicated.csv")
 IR_export(export, "Parameters/DO/Data_Review", "DO_Instant_Spawn", "data" )
 
 
