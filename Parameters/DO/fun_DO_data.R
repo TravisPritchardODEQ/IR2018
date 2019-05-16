@@ -31,18 +31,43 @@ DO_data <- function(database) {
   Results_import %>% map_if(is.factor, as.character) %>% as_data_frame -> Results_import
   
   
-  # Data validation ---------------------------------------------------------
+
+# Data aggregation --------------------------------------------------------
+
+ 
 
   Results_import <- Results_import %>%
     filter(is.na(Statistical_Base) | Statistical_Base != 'Delta')
+
+  load("Other tools/aggregate_data.Rdata")
   
+  data_to_agg <- Results_import %>%
+    left_join(aggregate_data, by = 'Result_UID') %>%
+    filter(!is.na(group)) %>%
+    arrange(group) %>%
+    group_by(group) %>%
+    mutate(analysis_comment = paste0(Result_UID, collapse = ", "),
+           keep = ifelse(row_number() == 1, 1, 0 )) %>%
+    mutate(analysis_comment = paste("Result is the average of result_UIDs:",analysis_comment, " - due to multiple results at same date")) %>%
+    ungroup() %>%
+    select(Result_UID, mean_result, keep, analysis_comment)
+  
+  results_to_validate <- Results_import %>%
+    left_join(data_to_agg) %>%
+    filter(keep == 1 | is.na(keep)) %>%
+    mutate(IRResultNWQSunit = ifelse(!is.na(mean_result), mean_result, IRResultNWQSunit )) %>%
+    select(-mean_result, -keep)
+  # Data validation ---------------------------------------------------------  
   
   print("Validating Data")
 
   # Load validation table
   load("Validation/anom_crit.Rdata")
 
-  Results_valid <- IR_Validation(Results_import, anom_crit, "DO")
+
+  Results_valid <- IR_Validation(results_to_validate, anom_crit, "DO")
+  
+  
 
   return(Results_valid)
   
