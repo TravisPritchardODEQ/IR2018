@@ -9,18 +9,22 @@ TOX_AL_analysis <- function(df){
 
 DDT_data <- df %>%
   filter(Pollu_ID %in% c(48,49,50)) %>%
-  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
+  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen),
+         is_3d = ifelse(Result_Operator == "<" & IRResultNWQSunit > ifelse(WaterTypeCode == 2, 
+                                                                           pmin(Acute_FW, Chronic_FW, na.rm = TRUE), 
+                                                                           pmin(Acute_SW, Chronic_SW, na.rm = TRUE)), 1, 0)) %>%
   group_by(OrganizationID, MLocID, SampleStartDate, SampleStartTime, Analytical_method, act_depth_height) %>%
   mutate(IR_note = "Sum of DDT and metabolites",
          Summed_values = sum(summed_censored_value),
-         summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+         summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
+         summed_percent_3d = round(sum(is_3d == 1)/n()*100)) %>%
   # Keep only the first row. This preserves all the metadata
   filter(row_number() == 1) %>%
   # Change the Char_Name to DDT and the Result_cen column to the summed value
   mutate(Char_Name = "DDT",
          Result_cen = Summed_values) %>%
   # get rid of extra columns that were created
-  select(-Summed_values, -summed_censored_value)
+  select(-Summed_values, -summed_censored_value, -is_3d)
   
 
 # Endosulfan data ---------------------------------------------------------
@@ -31,7 +35,10 @@ endosulfan_data <- df %>%
   filter(Pollu_ID %in% c(77,78,79 )) %>%
   # Set a flag for if the value is total_endosulfan
   mutate(is_total_endosulfan = ifelse(Pollu_ID == 77, 1, 0 ),
-         summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
+         summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen),
+         is_3d = ifelse(Result_Operator == "<" & IRResultNWQSunit > ifelse(WaterTypeCode == 2, 
+                                                                           pmin(Acute_FW, Chronic_FW, na.rm = TRUE), 
+                                                                           pmin(Acute_SW, Chronic_SW, na.rm = TRUE)), 1, 0)) %>%
   # Set a group that identifies a single sample
   group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
   # Flag if the group has a total endosulfan result 
@@ -47,7 +54,8 @@ endosulfan_data <- df %>%
   # this is needed to be sure that when we are summing the inidividual componants
   # we have both of them
   mutate(num_types = n_distinct(Char_Name),
-         summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+         summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
+         summed_percent_3d = round(sum(is_3d == 1)/n()*100)) %>%
   #Filter out the results where the group has only alpha or beta, but not both
   filter(Pollu_ID == 77 | num_types == 2 ) %>%
   # Create a comment field so we know where we did the summing
@@ -61,7 +69,7 @@ endosulfan_data <- df %>%
   mutate(Char_Name = "Endosulfan",
          Result_cen = Summed_values) %>%
   # get rid of extra columns that were created
-  select(-Summed_values,  -num_types,  -Has_total_endosulfan, -is_total_endosulfan, -summed_censored_value)
+  select(-Summed_values,  -num_types,  -Has_total_endosulfan, -is_total_endosulfan, -summed_censored_value, -is_3d)
 
 
 
@@ -72,7 +80,10 @@ endosulfan_data <- df %>%
 Chlordane <- df %>%
   filter(Pollu_ID %in% c(27)) %>%
   mutate(is_total = ifelse(chr_uid %in% c(767), 1, 0 ),
-         summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen)) %>%
+         summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen),
+         is_3d = ifelse(Result_Operator == "<" & IRResultNWQSunit > ifelse(WaterTypeCode == 2, 
+                                                                           pmin(Acute_FW, Chronic_FW, na.rm = TRUE), 
+                                                                           pmin(Acute_SW, Chronic_SW, na.rm = TRUE)), 1, 0)) %>%
 # Set a group that identifies a single sample
   group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
   # Flag if the group has a total endosulfan result 
@@ -81,13 +92,14 @@ Chlordane <- df %>%
   filter((has_total_chlordane == 1 & is_total == 1) | has_total_chlordane == 0) %>%
   mutate( summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
   mutate(IR_note = ifelse(chr_uid != 767, "Sum of isomers, metabolites, and other constituents", "" ),
-         Summed_values = ifelse(is_total == 1, IRResultNWQSunit, sum(summed_censored_value) ) ) %>%
+         Summed_values = ifelse(is_total == 1, IRResultNWQSunit, sum(summed_censored_value) ),
+         summed_percent_3d = round(sum(is_3d == 1)/n()*100)) %>%
   # Keep only the first row. This preserves all the metadata
   filter(row_number() == 1) %>%
   # Change the Char_Name to Endosulfan and the Result_cen column to the summed value
   mutate(Char_Name = "Chlordane",
          Result_cen = Summed_values) %>%
-  select(-Summed_values, is_total, summed_censored_value,has_total_chlordane )
+  select(-Summed_values, is_total, summed_censored_value,has_total_chlordane, -is_3d )
   
 # PCB data ----------------------------------------------------------------
 
@@ -113,10 +125,14 @@ PCB_data <- df  %>%
   # remove individual congeners if the group has arochlor data & the aroclors have a lower percentage of nondetects
   filter((Has_aroclor == 1 & is_aroclor == 1 & summed_percent_nondetect == min(summed_percent_nondetect)) | Has_aroclor == 0) %>%
   # Recalculate the percent censored values
-  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen )) %>%
+  mutate(summed_censored_value = ifelse(Result_Operator == "<", 0, Result_cen ),
+         is_3d = ifelse(Result_Operator == "<" & IRResultNWQSunit > ifelse(WaterTypeCode == 2, 
+                                                                           pmin(Acute_FW, Chronic_FW, na.rm = TRUE), 
+                                                                           pmin(Acute_SW, Chronic_SW, na.rm = TRUE)), 1, 0)) %>%
   mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
          # Do the summing
          Summed_values = sum(summed_censored_value),
+         summed_percent_3d = round(sum(is_3d == 1)/n()*100),
          # Create note on what the summing is based on
          IR_note = ifelse(Has_aroclor ==  1, "PCB - Sum of Aroclors", 
                           ifelse(Has_aroclor ==  0, "PCB - Sum of congeners", "ERROR" )),
@@ -128,7 +144,7 @@ PCB_data <- df  %>%
   mutate(Char_Name = "PCBs",
          Result_cen = Summed_values) %>%
   # get rid of extra columns that were created
-  select(-Summed_values,  -Has_aroclor,  -is_aroclor, -summed_censored_value)
+  select(-Summed_values,  -Has_aroclor,  -is_aroclor, -summed_censored_value, -is_3d)
 
 
 # Put data back together --------------------------------------------------
@@ -173,7 +189,11 @@ Results_tox_AL_analysis <- results_analysis %>%
                                     ifelse(Char_Name == "Arsenic" & Sample_Fraction == "Total" & WaterTypeCode != 2, Result_cen*0.59, Result_cen )),
          #`Label as excursion if the evaluation criteria is above (or below for alkalinity) the criteria
          excursion = ifelse(Char_Name %in% c("Alkalinity, total", "Alkalinity, bicarbonate")  & evaluation_result < evaluation_crit, 1, 
-                            ifelse(!(Char_Name %in% c("Alkalinity, total", "Alkalinity, bicarbonate")) & evaluation_result > evaluation_crit, 1, 0 )))
+                            ifelse(!(Char_Name %in% c("Alkalinity, total", "Alkalinity, bicarbonate")) & evaluation_result > evaluation_crit, 1, 0 )),
+         is_3d = case_when(summed_percent_3d == 100 ~ 1,
+                           Result_Operator == "<" & IRResultNWQSunit > evaluation_crit & is.na(summed_percent_3d) ~ 1,
+                           TRUE ~ 0) 
+           )
    
 
 IR_export(Results_tox_AL_analysis, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Data")
@@ -184,7 +204,7 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
   summarise(OWRD_Basin = first(OWRD_Basin),
             criteria_fraction = first(Fraction),
             num_samples = n(),
-            percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit > evaluation_crit )/num_samples * 100),
+            percent_3d = sum(is_3d)/num_samples * 100,
             summed_percent_nondetect = sum(summed_percent_nondetect)/n(),
             num_fraction_types = n_distinct(Simplified_sample_fraction),
             num_samples_total_fraction = sum(Simplified_sample_fraction == "Total"),
@@ -197,13 +217,13 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
                                                             num_Samples_dissolved_fraction + (num_samples_total_fraction - num_excursions_total_fraction ) )), 
             critical_excursions = excursions_tox(num_samples_crit_excursion_calc)) %>%
   # Assign categories
-  mutate(IR_category = ifelse(percent_3d == 100 | (summed_percent_nondetect == 100 & !is.na(summed_percent_nondetect)), "Cat 3D",
-                              ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 1, "Cat 3B",
-                                     ifelse((Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate") & num_excursions_all > 0, "Cat 3B", 
-                                            ifelse(num_samples_crit_excursion_calc == 1 & num_excursions_all == 0, "Cat 3", 
-                                                   ifelse(num_excursions_all >= critical_excursions, "Cat 5", 
-                                                          ifelse(num_excursions_all < critical_excursions, "Cat 2", "ERROR" )))) ) ),
-         percent_3d = ifelse(is.na(summed_percent_nondetect), percent_3d, NA ))
+  mutate(IR_category = case_when(percent_3d == 100 &  num_samples_crit_excursion_calc > 1 ~ "Cat 3D",
+                                 num_samples_crit_excursion_calc == 1 & num_excursions_all == 1 ~ "Cat 3B",
+                                 (Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate") & num_excursions_all > 0 ~ "Cat 3B",
+                                 num_samples_crit_excursion_calc == 1 & num_excursions_all == 0 ~ "Cat 3",
+                                 num_excursions_all >= critical_excursions ~ "Cat 5",
+                                 num_excursions_all < critical_excursions ~ "Cat 2",
+                                 TRUE ~ "ERROR"))
 
 IR_export(Results_tox_AL_categories, "Parameters/Tox_AL/Data_Review/", "TOX_AL_Others", "Categories")
                                     
