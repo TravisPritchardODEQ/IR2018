@@ -184,7 +184,7 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
   summarise(OWRD_Basin = first(OWRD_Basin),
             criteria_fraction = first(Fraction),
             num_samples = n(),
-            percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit < evaluation_crit )/num_samples * 100),
+            percent_3d = round(sum(Result_Operator == "<" & IRResultNWQSunit > evaluation_crit )/num_samples * 100),
             summed_percent_nondetect = sum(summed_percent_nondetect)/n(),
             num_fraction_types = n_distinct(Simplified_sample_fraction),
             num_samples_total_fraction = sum(Simplified_sample_fraction == "Total"),
