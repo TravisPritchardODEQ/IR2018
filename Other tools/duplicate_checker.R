@@ -49,7 +49,7 @@ grouped_no_res_no_time <- IR_res %>%
   group_by(OrganizationID, 
            MLocID,
            Char_Name,
-           Activity_Type, 
+           #Activity_Type, 
            SampleStartDate,
            #SampleStartTime,
            Char_Name, 
@@ -65,9 +65,9 @@ grouped_no_res_no_time <- IR_res %>%
   left_join(join_table, by = c('OrganizationID',
                                'MLocID',
                                'Char_Name',
-                               'Activity_Type', 
+                               #'Activity_Type',
                                'SampleStartDate',
-                               'Char_Name', 
+                               'Char_Name',
                                'Statistical_Base',
                                'act_depth_height')) %>%
   filter(Result_UID %in% view_results_table$Result_UID)
@@ -128,7 +128,7 @@ depth <- grouped_no_res_no_time %>%
   ) 
 
 # manual Review
-#write.csv(filter(depth,code =="), "Other tools/dup_check_manual_review.csv")
+write.csv(filter(depth,code ==""), "Other tools/dup_check_manual_review.csv")
 
 manual_review <- read.csv("Other tools/dup_check_manual_review.csv", stringsAsFactors = FALSE)
 
@@ -198,7 +198,7 @@ save(aggregate_data, file = "Other tools/aggregate_data.Rdata")
 # Writedata to IR database for exclusion ----------------------------------
 
 #write csv file of data to be excluded
-write.csv(add_to_UnusedData_2018, "Other tools/excluded_data.Rdata")
+write.csv(add_to_UnusedData_2018, "Other tools/excluded_datav2.csv")
 
 add_to_db <- add_to_UnusedData_2018 %>%
   rename(Data_Review_Code = code,
