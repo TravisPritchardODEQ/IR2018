@@ -1,0 +1,619 @@
+,Result_UID,Char_Name,code,rational
+1,51912538,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+2,47233962,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+3,46368006,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+4,48821972,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+5,48821746,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+6,48821208,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+7,48822160,Dissolved oxygen (DO),52,Multiple results at datetime and higher DQL exists
+8,43492987,pH,52,Multiple results at datetime and higher DQL exists
+9,47223654,pH,52,Multiple results at datetime and higher DQL exists
+10,43493888,pH,52,Multiple results at datetime and higher DQL exists
+11,47333832,pH,52,Multiple results at datetime and higher DQL exists
+12,43497388,pH,52,Multiple results at datetime and higher DQL exists
+13,43498220,pH,52,Multiple results at datetime and higher DQL exists
+14,43504563,pH,52,Multiple results at datetime and higher DQL exists
+15,43505300,pH,52,Multiple results at datetime and higher DQL exists
+16,47327834,pH,52,Multiple results at datetime and higher DQL exists
+17,51920927,pH,52,Multiple results at datetime and higher DQL exists
+18,47278970,pH,52,Multiple results at datetime and higher DQL exists
+19,43506486,pH,52,Multiple results at datetime and higher DQL exists
+20,43507622,pH,52,Multiple results at datetime and higher DQL exists
+21,47327792,pH,52,Multiple results at datetime and higher DQL exists
+22,43513887,pH,52,Multiple results at datetime and higher DQL exists
+23,43514523,pH,52,Multiple results at datetime and higher DQL exists
+24,43518506,pH,52,Multiple results at datetime and higher DQL exists
+25,43518543,pH,52,Multiple results at datetime and higher DQL exists
+26,46831496,pH,52,Multiple results at datetime and higher DQL exists
+27,43519467,pH,52,Multiple results at datetime and higher DQL exists
+28,43519589,pH,52,Multiple results at datetime and higher DQL exists
+29,46831985,pH,52,Multiple results at datetime and higher DQL exists
+30,47331257,pH,52,Multiple results at datetime and higher DQL exists
+31,43521255,pH,52,Multiple results at datetime and higher DQL exists
+32,43521791,pH,52,Multiple results at datetime and higher DQL exists
+33,51913957,pH,52,Multiple results at datetime and higher DQL exists
+34,43525041,pH,52,Multiple results at datetime and higher DQL exists
+35,43525902,pH,52,Multiple results at datetime and higher DQL exists
+36,43526706,pH,52,Multiple results at datetime and higher DQL exists
+37,43527516,pH,52,Multiple results at datetime and higher DQL exists
+38,43528305,pH,52,Multiple results at datetime and higher DQL exists
+39,43529125,pH,52,Multiple results at datetime and higher DQL exists
+40,43532963,pH,52,Multiple results at datetime and higher DQL exists
+41,43535752,pH,52,Multiple results at datetime and higher DQL exists
+42,43536437,pH,52,Multiple results at datetime and higher DQL exists
+43,46837577,pH,52,Multiple results at datetime and higher DQL exists
+44,47329473,pH,52,Multiple results at datetime and higher DQL exists
+45,43539809,pH,52,Multiple results at datetime and higher DQL exists
+46,47281739,pH,52,Multiple results at datetime and higher DQL exists
+47,43544444,pH,52,Multiple results at datetime and higher DQL exists
+48,51764568,pH,52,Multiple results at datetime and higher DQL exists
+49,43545260,pH,52,Multiple results at datetime and higher DQL exists
+50,43546672,pH,52,Multiple results at datetime and higher DQL exists
+51,43546810,pH,52,Multiple results at datetime and higher DQL exists
+52,43549266,pH,52,Multiple results at datetime and higher DQL exists
+53,51890485,pH,52,Multiple results at datetime and higher DQL exists
+54,43550729,pH,52,Multiple results at datetime and higher DQL exists
+55,46840385,pH,52,Multiple results at datetime and higher DQL exists
+56,43551605,pH,52,Multiple results at datetime and higher DQL exists
+57,47262227,pH,52,Multiple results at datetime and higher DQL exists
+58,43557254,pH,52,Multiple results at datetime and higher DQL exists
+59,50722966,pH,52,Multiple results at datetime and higher DQL exists
+60,47327750,pH,52,Multiple results at datetime and higher DQL exists
+61,51681739,pH,52,Multiple results at datetime and higher DQL exists
+62,51685384,pH,52,Multiple results at datetime and higher DQL exists
+63,51696957,pH,52,Multiple results at datetime and higher DQL exists
+64,43563503,pH,52,Multiple results at datetime and higher DQL exists
+65,46843307,pH,52,Multiple results at datetime and higher DQL exists
+66,50723395,pH,52,Multiple results at datetime and higher DQL exists
+67,46843764,pH,52,Multiple results at datetime and higher DQL exists
+68,50723504,pH,52,Multiple results at datetime and higher DQL exists
+69,46844016,pH,52,Multiple results at datetime and higher DQL exists
+70,43568752,pH,52,Multiple results at datetime and higher DQL exists
+71,47322515,pH,52,Multiple results at datetime and higher DQL exists
+72,46844658,pH,52,Multiple results at datetime and higher DQL exists
+73,50723714,pH,52,Multiple results at datetime and higher DQL exists
+74,51923714,pH,52,Multiple results at datetime and higher DQL exists
+75,45157906,pH,52,Multiple results at datetime and higher DQL exists
+76,45158004,pH,52,Multiple results at datetime and higher DQL exists
+77,51925523,pH,52,Multiple results at datetime and higher DQL exists
+78,45164786,pH,52,Multiple results at datetime and higher DQL exists
+79,45165985,pH,52,Multiple results at datetime and higher DQL exists
+80,51887642,pH,52,Multiple results at datetime and higher DQL exists
+81,46847585,pH,52,Multiple results at datetime and higher DQL exists
+82,50727098,pH,52,Multiple results at datetime and higher DQL exists
+83,51887333,pH,52,Multiple results at datetime and higher DQL exists
+84,46848026,pH,52,Multiple results at datetime and higher DQL exists
+85,45174358,pH,52,Multiple results at datetime and higher DQL exists
+86,46848384,pH,52,Multiple results at datetime and higher DQL exists
+87,51887024,pH,52,Multiple results at datetime and higher DQL exists
+88,45175432,pH,52,Multiple results at datetime and higher DQL exists
+89,46848745,pH,52,Multiple results at datetime and higher DQL exists
+90,46849169,pH,52,Multiple results at datetime and higher DQL exists
+91,50727527,pH,52,Multiple results at datetime and higher DQL exists
+92,51886397,pH,52,Multiple results at datetime and higher DQL exists
+93,46849770,pH,52,Multiple results at datetime and higher DQL exists
+94,50727745,pH,52,Multiple results at datetime and higher DQL exists
+95,45179645,pH,52,Multiple results at datetime and higher DQL exists
+96,45179696,pH,52,Multiple results at datetime and higher DQL exists
+97,45181026,pH,52,Multiple results at datetime and higher DQL exists
+98,47281758,pH,52,Multiple results at datetime and higher DQL exists
+99,46850683,pH,52,Multiple results at datetime and higher DQL exists
+100,46850971,pH,52,Multiple results at datetime and higher DQL exists
+101,50729286,pH,52,Multiple results at datetime and higher DQL exists
+102,51652926,pH,52,Multiple results at datetime and higher DQL exists
+103,51652946,pH,52,Multiple results at datetime and higher DQL exists
+104,51661330,pH,52,Multiple results at datetime and higher DQL exists
+105,45217814,pH,52,Multiple results at datetime and higher DQL exists
+106,45219998,pH,52,Multiple results at datetime and higher DQL exists
+107,45223646,pH,52,Multiple results at datetime and higher DQL exists
+108,51913715,pH,52,Multiple results at datetime and higher DQL exists
+109,45245161,pH,52,Multiple results at datetime and higher DQL exists
+110,45249313,pH,52,Multiple results at datetime and higher DQL exists
+111,46862766,pH,52,Multiple results at datetime and higher DQL exists
+112,45254203,pH,52,Multiple results at datetime and higher DQL exists
+113,45255092,pH,52,Multiple results at datetime and higher DQL exists
+114,47262246,pH,52,Multiple results at datetime and higher DQL exists
+115,47281720,pH,52,Multiple results at datetime and higher DQL exists
+116,45265129,pH,52,Multiple results at datetime and higher DQL exists
+117,45265188,pH,52,Multiple results at datetime and higher DQL exists
+118,47272435,pH,52,Multiple results at datetime and higher DQL exists
+119,45282211,pH,52,Multiple results at datetime and higher DQL exists
+120,45288217,pH,52,Multiple results at datetime and higher DQL exists
+121,45288249,pH,52,Multiple results at datetime and higher DQL exists
+122,51914569,pH,52,Multiple results at datetime and higher DQL exists
+123,45290537,pH,52,Multiple results at datetime and higher DQL exists
+124,45290572,pH,52,Multiple results at datetime and higher DQL exists
+125,45291420,pH,52,Multiple results at datetime and higher DQL exists
+126,45291483,pH,52,Multiple results at datetime and higher DQL exists
+127,47327813,pH,52,Multiple results at datetime and higher DQL exists
+128,45293125,pH,52,Multiple results at datetime and higher DQL exists
+129,50741170,pH,52,Multiple results at datetime and higher DQL exists
+130,45295981,pH,52,Multiple results at datetime and higher DQL exists
+131,51652906,pH,52,Multiple results at datetime and higher DQL exists
+132,51651784,pH,52,Multiple results at datetime and higher DQL exists
+133,51652886,pH,52,Multiple results at datetime and higher DQL exists
+134,45308990,pH,52,Multiple results at datetime and higher DQL exists
+135,47278665,pH,52,Multiple results at datetime and higher DQL exists
+136,46881077,pH,52,Multiple results at datetime and higher DQL exists
+137,45320352,pH,52,Multiple results at datetime and higher DQL exists
+138,51681397,pH,52,Multiple results at datetime and higher DQL exists
+139,51696633,pH,52,Multiple results at datetime and higher DQL exists
+140,45335913,pH,52,Multiple results at datetime and higher DQL exists
+141,47327771,pH,52,Multiple results at datetime and higher DQL exists
+142,51681625,pH,52,Multiple results at datetime and higher DQL exists
+143,51690794,pH,52,Multiple results at datetime and higher DQL exists
+144,51696308,pH,52,Multiple results at datetime and higher DQL exists
+145,51539422,pH,52,Multiple results at datetime and higher DQL exists
+146,46886454,pH,52,Multiple results at datetime and higher DQL exists
+147,45348877,pH,52,Multiple results at datetime and higher DQL exists
+148,45348894,pH,52,Multiple results at datetime and higher DQL exists
+149,45349304,pH,52,Multiple results at datetime and higher DQL exists
+150,45349834,pH,52,Multiple results at datetime and higher DQL exists
+151,45350766,pH,52,Multiple results at datetime and higher DQL exists
+152,45336846,pH,52,Multiple results at datetime and higher DQL exists
+153,45351180,pH,52,Multiple results at datetime and higher DQL exists
+154,45351214,pH,52,Multiple results at datetime and higher DQL exists
+155,45352128,pH,52,Multiple results at datetime and higher DQL exists
+156,45352162,pH,52,Multiple results at datetime and higher DQL exists
+157,50748946,pH,52,Multiple results at datetime and higher DQL exists
+158,44834842,pH,52,Multiple results at datetime and higher DQL exists
+159,44838458,pH,52,Multiple results at datetime and higher DQL exists
+160,44852729,pH,52,Multiple results at datetime and higher DQL exists
+161,44852866,pH,52,Multiple results at datetime and higher DQL exists
+162,51690564,pH,52,Multiple results at datetime and higher DQL exists
+163,51696416,pH,52,Multiple results at datetime and higher DQL exists
+164,47281873,pH,52,Multiple results at datetime and higher DQL exists
+165,47281835,pH,52,Multiple results at datetime and higher DQL exists
+166,51765654,pH,52,Multiple results at datetime and higher DQL exists
+167,51765870,pH,52,Multiple results at datetime and higher DQL exists
+168,51765681,pH,52,Multiple results at datetime and higher DQL exists
+169,51765882,pH,52,Multiple results at datetime and higher DQL exists
+170,51765732,pH,52,Multiple results at datetime and higher DQL exists
+171,51765707,pH,52,Multiple results at datetime and higher DQL exists
+172,51777044,pH,52,Multiple results at datetime and higher DQL exists
+173,50766050,pH,52,Multiple results at datetime and higher DQL exists
+174,50772816,pH,52,Multiple results at datetime and higher DQL exists
+175,44385189,pH,52,Multiple results at datetime and higher DQL exists
+176,51647498,pH,52,Multiple results at datetime and higher DQL exists
+177,51652024,pH,52,Multiple results at datetime and higher DQL exists
+178,51653143,pH,52,Multiple results at datetime and higher DQL exists
+179,51654174,pH,52,Multiple results at datetime and higher DQL exists
+180,51647574,pH,52,Multiple results at datetime and higher DQL exists
+181,51648583,pH,52,Multiple results at datetime and higher DQL exists
+182,51654194,pH,52,Multiple results at datetime and higher DQL exists
+183,51670239,pH,52,Multiple results at datetime and higher DQL exists
+184,51764387,pH,52,Multiple results at datetime and higher DQL exists
+185,51764655,pH,52,Multiple results at datetime and higher DQL exists
+186,51778397,pH,52,Multiple results at datetime and higher DQL exists
+187,51778206,pH,52,Multiple results at datetime and higher DQL exists
+188,51659134,pH,52,Multiple results at datetime and higher DQL exists
+189,51662199,pH,52,Multiple results at datetime and higher DQL exists
+190,51658698,pH,52,Multiple results at datetime and higher DQL exists
+191,51663652,pH,52,Multiple results at datetime and higher DQL exists
+192,51696741,pH,52,Multiple results at datetime and higher DQL exists
+193,51643812,pH,52,Multiple results at datetime and higher DQL exists
+194,51695640,pH,52,Multiple results at datetime and higher DQL exists
+195,51696524,pH,52,Multiple results at datetime and higher DQL exists
+196,51652866,pH,52,Multiple results at datetime and higher DQL exists
+197,51646163,pH,52,Multiple results at datetime and higher DQL exists
+198,51647632,pH,52,Multiple results at datetime and higher DQL exists
+199,51653204,pH,52,Multiple results at datetime and higher DQL exists
+200,51654214,pH,52,Multiple results at datetime and higher DQL exists
+201,51666502,pH,52,Multiple results at datetime and higher DQL exists
+202,51670348,pH,52,Multiple results at datetime and higher DQL exists
+203,51680825,pH,52,Multiple results at datetime and higher DQL exists
+204,51646316,pH,52,Multiple results at datetime and higher DQL exists
+205,51647805,pH,52,Multiple results at datetime and higher DQL exists
+206,51653284,pH,52,Multiple results at datetime and higher DQL exists
+207,51654290,pH,52,Multiple results at datetime and higher DQL exists
+208,51666292,pH,52,Multiple results at datetime and higher DQL exists
+209,51669915,pH,52,Multiple results at datetime and higher DQL exists
+210,51680483,pH,52,Multiple results at datetime and higher DQL exists
+211,51646215,pH,52,Multiple results at datetime and higher DQL exists
+212,51647678,pH,52,Multiple results at datetime and higher DQL exists
+213,51653224,pH,52,Multiple results at datetime and higher DQL exists
+214,51654233,pH,52,Multiple results at datetime and higher DQL exists
+215,51670457,pH,52,Multiple results at datetime and higher DQL exists
+216,51680939,pH,52,Multiple results at datetime and higher DQL exists
+217,51764510,pH,52,Multiple results at datetime and higher DQL exists
+218,51764684,pH,52,Multiple results at datetime and higher DQL exists
+219,51764452,pH,52,Multiple results at datetime and higher DQL exists
+220,51646391,pH,52,Multiple results at datetime and higher DQL exists
+221,51647892,pH,52,Multiple results at datetime and higher DQL exists
+222,51654328,pH,52,Multiple results at datetime and higher DQL exists
+223,51646353,pH,52,Multiple results at datetime and higher DQL exists
+224,51647846,pH,52,Multiple results at datetime and higher DQL exists
+225,51653304,pH,52,Multiple results at datetime and higher DQL exists
+226,51654309,pH,52,Multiple results at datetime and higher DQL exists
+227,51666397,pH,52,Multiple results at datetime and higher DQL exists
+228,51680367,pH,52,Multiple results at datetime and higher DQL exists
+229,51692351,pH,52,Multiple results at datetime and higher DQL exists
+230,45683213,pH,52,Multiple results at datetime and higher DQL exists
+231,45683262,pH,52,Multiple results at datetime and higher DQL exists
+232,45683837,pH,52,Multiple results at datetime and higher DQL exists
+233,47287131,pH,52,Multiple results at datetime and higher DQL exists
+234,45684410,pH,52,Multiple results at datetime and higher DQL exists
+235,45684939,pH,52,Multiple results at datetime and higher DQL exists
+236,45686416,pH,52,Multiple results at datetime and higher DQL exists
+237,45685658,pH,52,Multiple results at datetime and higher DQL exists
+238,51659025,pH,52,Multiple results at datetime and higher DQL exists
+239,51662087,pH,52,Multiple results at datetime and higher DQL exists
+240,51658480,pH,52,Multiple results at datetime and higher DQL exists
+241,51658589,pH,52,Multiple results at datetime and higher DQL exists
+242,51661540,pH,52,Multiple results at datetime and higher DQL exists
+243,51654430,pH,52,Multiple results at datetime and higher DQL exists
+244,51658916,pH,52,Multiple results at datetime and higher DQL exists
+245,51661975,pH,52,Multiple results at datetime and higher DQL exists
+246,51656046,pH,52,Multiple results at datetime and higher DQL exists
+247,51658807,pH,52,Multiple results at datetime and higher DQL exists
+248,51661861,pH,52,Multiple results at datetime and higher DQL exists
+249,47603747,pH,52,Multiple results at datetime and higher DQL exists
+250,51690103,pH,52,Multiple results at datetime and higher DQL exists
+251,51696849,pH,52,Multiple results at datetime and higher DQL exists
+252,45336389,pH,52,Multiple results at datetime and higher DQL exists
+253,46568034,pH,52,Multiple results at datetime and higher DQL exists
+254,46568118,pH,52,Multiple results at datetime and higher DQL exists
+255,47287170,pH,52,Multiple results at datetime and higher DQL exists
+256,46046363,pH,52,Multiple results at datetime and higher DQL exists
+257,50800379,pH,52,Multiple results at datetime and higher DQL exists
+258,46053918,pH,52,Multiple results at datetime and higher DQL exists
+259,46057635,pH,52,Multiple results at datetime and higher DQL exists
+260,46078228,pH,52,Multiple results at datetime and higher DQL exists
+261,46078933,pH,52,Multiple results at datetime and higher DQL exists
+262,46079052,pH,52,Multiple results at datetime and higher DQL exists
+263,47233754,Dissolved oxygen (DO),46,Suspected Duplicate
+264,47234897,Dissolved oxygen (DO),46,Suspected Duplicate
+265,51912605,pH,46,Suspected Duplicate
+266,47236680,pH,46,Suspected Duplicate
+267,47232458,pH,46,Suspected Duplicate
+268,47241630,pH,46,Suspected Duplicate
+269,47243351,pH,46,Suspected Duplicate
+270,47282616,pH,46,Suspected Duplicate
+271,47236900,pH,46,Suspected Duplicate
+272,47241668,pH,46,Suspected Duplicate
+273,47260429,pH,46,Suspected Duplicate
+274,47239438,pH,46,Suspected Duplicate
+275,47241503,pH,46,Suspected Duplicate
+276,47249892,pH,46,Suspected Duplicate
+277,47253245,pH,46,Suspected Duplicate
+278,47321180,pH,46,Suspected Duplicate
+279,47231278,pH,46,Suspected Duplicate
+280,43496509,pH,46,Suspected Duplicate
+281,47229200,pH,46,Suspected Duplicate
+282,47257414,pH,46,Suspected Duplicate
+283,51711270,pH,46,Suspected Duplicate
+284,51702931,pH,46,Suspected Duplicate
+285,47276119,pH,46,Suspected Duplicate
+286,47276171,pH,46,Suspected Duplicate
+287,47266072,pH,46,Suspected Duplicate
+288,47326726,pH,46,Suspected Duplicate
+289,47329340,pH,46,Suspected Duplicate
+290,47261453,pH,46,Suspected Duplicate
+291,47255169,pH,46,Suspected Duplicate
+292,51892904,pH,46,Suspected Duplicate
+293,47225955,pH,46,Suspected Duplicate
+294,47234481,pH,46,Suspected Duplicate
+295,47252730,pH,46,Suspected Duplicate
+296,47229716,pH,46,Suspected Duplicate
+297,47241475,pH,46,Suspected Duplicate
+298,47257242,pH,46,Suspected Duplicate
+299,47254109,pH,46,Suspected Duplicate
+300,47257160,pH,46,Suspected Duplicate
+301,47275661,pH,46,Suspected Duplicate
+302,47245503,pH,46,Suspected Duplicate
+303,47277418,pH,46,Suspected Duplicate
+304,47331248,pH,46,Suspected Duplicate
+305,47224182,pH,46,Suspected Duplicate
+306,47245531,pH,46,Suspected Duplicate
+307,51914345,pH,46,Suspected Duplicate
+308,47271672,pH,46,Suspected Duplicate
+309,47333762,pH,46,Suspected Duplicate
+310,47257371,pH,46,Suspected Duplicate
+311,47279540,pH,46,Suspected Duplicate
+312,47324495,pH,46,Suspected Duplicate
+313,47333724,pH,46,Suspected Duplicate
+314,47249762,pH,46,Suspected Duplicate
+315,47233507,pH,46,Suspected Duplicate
+316,47257302,pH,46,Suspected Duplicate
+317,47327541,pH,46,Suspected Duplicate
+318,47333743,pH,46,Suspected Duplicate
+319,47282234,pH,46,Suspected Duplicate
+320,47249287,pH,46,Suspected Duplicate
+321,47241180,pH,46,Suspected Duplicate
+322,50718922,pH,46,Suspected Duplicate
+323,47227369,pH,46,Suspected Duplicate
+324,47251571,pH,46,Suspected Duplicate
+325,47266954,pH,46,Suspected Duplicate
+326,47249094,pH,46,Suspected Duplicate
+327,47254765,pH,46,Suspected Duplicate
+328,47256213,pH,46,Suspected Duplicate
+329,47281786,pH,46,Suspected Duplicate
+330,47328350,pH,46,Suspected Duplicate
+331,47234772,pH,46,Suspected Duplicate
+332,47247955,pH,46,Suspected Duplicate
+333,51766707,pH,46,Suspected Duplicate
+334,47277792,pH,46,Suspected Duplicate
+335,47257142,pH,46,Suspected Duplicate
+336,47280305,pH,46,Suspected Duplicate
+337,47282478,pH,46,Suspected Duplicate
+338,47224265,pH,46,Suspected Duplicate
+339,47280237,pH,46,Suspected Duplicate
+340,43552266,pH,46,Suspected Duplicate
+341,43552459,pH,46,Suspected Duplicate
+342,47327399,pH,46,Suspected Duplicate
+343,47321446,pH,46,Suspected Duplicate
+344,47330418,pH,46,Suspected Duplicate
+345,43328146,pH,46,Suspected Duplicate
+346,43333802,pH,46,Suspected Duplicate
+347,47239207,pH,46,Suspected Duplicate
+348,51690907,pH,46,Suspected Duplicate
+349,43562619,pH,46,Suspected Duplicate
+350,47241247,pH,46,Suspected Duplicate
+351,47269392,pH,46,Suspected Duplicate
+352,47331863,pH,46,Suspected Duplicate
+353,47233141,pH,46,Suspected Duplicate
+354,43569713,pH,46,Suspected Duplicate
+355,47324975,pH,46,Suspected Duplicate
+356,47247311,pH,46,Suspected Duplicate
+357,47225892,pH,46,Suspected Duplicate
+358,47225883,pH,46,Suspected Duplicate
+359,47244586,pH,46,Suspected Duplicate
+360,51896811,pH,46,Suspected Duplicate
+361,47322589,pH,46,Suspected Duplicate
+362,47241199,pH,46,Suspected Duplicate
+363,47287436,pH,46,Suspected Duplicate
+364,47241323,pH,46,Suspected Duplicate
+365,51886635,pH,46,Suspected Duplicate
+366,47261770,pH,46,Suspected Duplicate
+367,47241294,pH,46,Suspected Duplicate
+368,47258821,pH,46,Suspected Duplicate
+369,51705318,pH,46,Suspected Duplicate
+370,47231136,pH,46,Suspected Duplicate
+371,47241592,pH,46,Suspected Duplicate
+372,50727970,pH,46,Suspected Duplicate
+373,47241048,pH,46,Suspected Duplicate
+374,47281939,pH,46,Suspected Duplicate
+375,51680019,pH,46,Suspected Duplicate
+376,43328240,pH,46,Suspected Duplicate
+377,47327389,pH,46,Suspected Duplicate
+378,47245449,pH,46,Suspected Duplicate
+379,43328383,pH,46,Suspected Duplicate
+380,47250397,pH,46,Suspected Duplicate
+381,47283105,pH,46,Suspected Duplicate
+382,51658369,pH,46,Suspected Duplicate
+383,45218127,pH,46,Suspected Duplicate
+384,47236604,pH,46,Suspected Duplicate
+385,47257405,pH,46,Suspected Duplicate
+386,47268291,pH,46,Suspected Duplicate
+387,45219876,pH,46,Suspected Duplicate
+388,47245522,pH,46,Suspected Duplicate
+389,47263380,pH,46,Suspected Duplicate
+390,45223823,pH,46,Suspected Duplicate
+391,47331379,pH,46,Suspected Duplicate
+392,47232065,pH,46,Suspected Duplicate
+393,47245610,pH,46,Suspected Duplicate
+394,47254296,pH,46,Suspected Duplicate
+395,47258450,pH,46,Suspected Duplicate
+396,47288108,pH,46,Suspected Duplicate
+397,47263274,pH,46,Suspected Duplicate
+398,47225937,pH,46,Suspected Duplicate
+399,47276967,pH,46,Suspected Duplicate
+400,51907039,pH,46,Suspected Duplicate
+401,47323924,pH,46,Suspected Duplicate
+402,47241706,pH,46,Suspected Duplicate
+403,47228521,pH,46,Suspected Duplicate
+404,47275964,pH,46,Suspected Duplicate
+405,47324214,pH,46,Suspected Duplicate
+406,47231489,pH,46,Suspected Duplicate
+407,47240823,pH,46,Suspected Duplicate
+408,47325881,pH,46,Suspected Duplicate
+409,47287647,pH,46,Suspected Duplicate
+410,47241746,pH,46,Suspected Duplicate
+411,47253465,pH,46,Suspected Duplicate
+412,47260155,pH,46,Suspected Duplicate
+413,47230984,pH,46,Suspected Duplicate
+414,47251052,pH,46,Suspected Duplicate
+415,47255546,pH,46,Suspected Duplicate
+416,47224057,pH,46,Suspected Duplicate
+417,47232954,pH,46,Suspected Duplicate
+418,47266390,pH,46,Suspected Duplicate
+419,45275090,pH,46,Suspected Duplicate
+420,47230687,pH,46,Suspected Duplicate
+421,47285733,pH,46,Suspected Duplicate
+422,47248990,pH,46,Suspected Duplicate
+423,47251136,pH,46,Suspected Duplicate
+424,47278439,pH,46,Suspected Duplicate
+425,47325290,pH,46,Suspected Duplicate
+426,47261630,pH,46,Suspected Duplicate
+427,47277109,pH,46,Suspected Duplicate
+428,47322188,pH,46,Suspected Duplicate
+429,47225919,pH,46,Suspected Duplicate
+430,47228107,pH,46,Suspected Duplicate
+431,47229627,pH,46,Suspected Duplicate
+432,47232182,pH,46,Suspected Duplicate
+433,47280507,pH,46,Suspected Duplicate
+434,45291579,pH,46,Suspected Duplicate
+435,47329403,pH,46,Suspected Duplicate
+436,47252410,pH,46,Suspected Duplicate
+437,47225964,pH,46,Suspected Duplicate
+438,47228002,pH,46,Suspected Duplicate
+439,47248452,pH,46,Suspected Duplicate
+440,51534587,pH,46,Suspected Duplicate
+441,47246711,pH,46,Suspected Duplicate
+442,47259468,pH,46,Suspected Duplicate
+443,47281911,pH,46,Suspected Duplicate
+444,51651657,pH,46,Suspected Duplicate
+445,51684894,pH,46,Suspected Duplicate
+446,51687061,pH,46,Suspected Duplicate
+447,51690448,pH,46,Suspected Duplicate
+448,45323318,pH,46,Suspected Duplicate
+449,47239323,pH,46,Suspected Duplicate
+450,47234167,pH,46,Suspected Duplicate
+451,47274176,pH,46,Suspected Duplicate
+452,45336814,pH,46,Suspected Duplicate
+453,51539910,pH,46,Suspected Duplicate
+454,47287922,pH,46,Suspected Duplicate
+455,51768709,pH,46,Suspected Duplicate
+456,47286868,pH,46,Suspected Duplicate
+457,47282959,pH,46,Suspected Duplicate
+458,50749191,pH,46,Suspected Duplicate
+459,47274924,pH,46,Suspected Duplicate
+460,47288295,pH,46,Suspected Duplicate
+461,47324235,pH,46,Suspected Duplicate
+462,47225512,pH,46,Suspected Duplicate
+463,51653877,pH,46,Suspected Duplicate
+464,51681542,pH,46,Suspected Duplicate
+465,43312569,pH,46,Suspected Duplicate
+466,43326174,pH,46,Suspected Duplicate
+467,44889510,pH,46,Suspected Duplicate
+468,47274493,pH,46,Suspected Duplicate
+469,47281901,pH,46,Suspected Duplicate
+470,47328741,pH,46,Suspected Duplicate
+471,47281854,pH,46,Suspected Duplicate
+472,51765979,pH,46,Suspected Duplicate
+473,51791104,pH,46,Suspected Duplicate
+474,51769439,pH,46,Suspected Duplicate
+475,51792131,pH,46,Suspected Duplicate
+476,44909134,pH,46,Suspected Duplicate
+477,47281796,pH,46,Suspected Duplicate
+478,51776895,pH,46,Suspected Duplicate
+479,44956741,pH,46,Suspected Duplicate
+480,51820869,pH,46,Suspected Duplicate
+481,47269492,pH,46,Suspected Duplicate
+482,51788605,pH,46,Suspected Duplicate
+483,51785430,pH,46,Suspected Duplicate
+484,51689761,pH,46,Suspected Duplicate
+485,51652563,pH,46,Suspected Duplicate
+486,51653184,pH,46,Suspected Duplicate
+487,51689875,pH,46,Suspected Duplicate
+488,43324916,pH,46,Suspected Duplicate
+489,51656265,pH,46,Suspected Duplicate
+490,51650229,pH,46,Suspected Duplicate
+491,51661645,pH,46,Suspected Duplicate
+492,43302803,pH,46,Suspected Duplicate
+493,43333347,pH,46,Suspected Duplicate
+494,51762479,pH,46,Suspected Duplicate
+495,51791245,pH,46,Suspected Duplicate
+496,51791379,pH,46,Suspected Duplicate
+497,51792518,pH,46,Suspected Duplicate
+498,51681200,pH,46,Suspected Duplicate
+499,51684666,pH,46,Suspected Duplicate
+500,51690250,pH,46,Suspected Duplicate
+501,51648340,pH,46,Suspected Duplicate
+502,51686980,pH,46,Suspected Duplicate
+503,51690365,pH,46,Suspected Duplicate
+504,43344850,pH,46,Suspected Duplicate
+505,43325514,pH,46,Suspected Duplicate
+506,43331915,pH,46,Suspected Duplicate
+507,51677026,pH,46,Suspected Duplicate
+508,51686037,pH,46,Suspected Duplicate
+509,43310382,pH,46,Suspected Duplicate
+510,51654106,pH,46,Suspected Duplicate
+511,51676709,pH,46,Suspected Duplicate
+512,51691285,pH,46,Suspected Duplicate
+513,51652598,pH,46,Suspected Duplicate
+514,51666632,pH,46,Suspected Duplicate
+515,51651148,pH,46,Suspected Duplicate
+516,51652757,pH,46,Suspected Duplicate
+517,43322716,pH,46,Suspected Duplicate
+518,47080429,pH,46,Suspected Duplicate
+519,51652707,pH,46,Suspected Duplicate
+520,51653324,pH,46,Suspected Duplicate
+521,51653657,pH,46,Suspected Duplicate
+522,51668778,pH,46,Suspected Duplicate
+523,51685580,pH,46,Suspected Duplicate
+524,51691515,pH,46,Suspected Duplicate
+525,51668694,pH,46,Suspected Duplicate
+526,51669834,pH,46,Suspected Duplicate
+527,47332318,pH,46,Suspected Duplicate
+528,45679598,pH,46,Suspected Duplicate
+529,47270817,pH,46,Suspected Duplicate
+530,47226853,pH,46,Suspected Duplicate
+531,47229463,pH,46,Suspected Duplicate
+532,47251482,pH,46,Suspected Duplicate
+533,47282035,pH,46,Suspected Duplicate
+534,45687372,pH,46,Suspected Duplicate
+535,51655725,pH,46,Suspected Duplicate
+536,51694127,pH,46,Suspected Duplicate
+537,51661435,pH,46,Suspected Duplicate
+538,51650181,pH,46,Suspected Duplicate
+539,51655866,pH,46,Suspected Duplicate
+540,43321229,pH,46,Suspected Duplicate
+541,51760396,pH,46,Suspected Duplicate
+542,51681084,pH,46,Suspected Duplicate
+543,43318541,pH,46,Suspected Duplicate
+544,51390820,pH,46,Suspected Duplicate
+545,51471270,pH,46,Suspected Duplicate
+546,51533072,pH,46,Suspected Duplicate
+547,51533217,pH,46,Suspected Duplicate
+548,51534110,pH,46,Suspected Duplicate
+549,51534348,pH,46,Suspected Duplicate
+550,51536169,pH,46,Suspected Duplicate
+551,51786821,pH,46,Suspected Duplicate
+552,46049161,pH,46,Suspected Duplicate
+553,51861680,pH,46,Suspected Duplicate
+554,51772696,Dissolved oxygen (DO),44,Duplicate data outside of DQL=B quality threshold
+555,51772975,Dissolved oxygen (DO),44,Duplicate data outside of DQL=B quality threshold
+556,51772423,Dissolved oxygen (DO),44,Duplicate data outside of DQL=B quality threshold
+557,51772966,Dissolved oxygen (DO),44,Duplicate data outside of DQL=B quality threshold
+558,50712060,pH,44,Duplicate data outside of DQL=B quality threshold
+559,50712052,pH,44,Duplicate data outside of DQL=B quality threshold
+560,50712137,pH,44,Duplicate data outside of DQL=B quality threshold
+561,50712128,pH,44,Duplicate data outside of DQL=B quality threshold
+562,47244113,pH,44,Duplicate data outside of DQL=B quality threshold
+563,47244104,pH,44,Duplicate data outside of DQL=B quality threshold
+564,50722441,pH,44,Duplicate data outside of DQL=B quality threshold
+565,50722451,pH,44,Duplicate data outside of DQL=B quality threshold
+566,50722476,pH,44,Duplicate data outside of DQL=B quality threshold
+567,50722487,pH,44,Duplicate data outside of DQL=B quality threshold
+568,51652846,pH,44,Duplicate data outside of DQL=B quality threshold
+569,51652854,pH,44,Duplicate data outside of DQL=B quality threshold
+570,51644694,pH,44,Duplicate data outside of DQL=B quality threshold
+571,51644677,pH,44,Duplicate data outside of DQL=B quality threshold
+572,50727935,pH,44,Duplicate data outside of DQL=B quality threshold
+573,50727945,pH,44,Duplicate data outside of DQL=B quality threshold
+574,46851348,pH,44,Duplicate data outside of DQL=B quality threshold
+575,46851299,pH,44,Duplicate data outside of DQL=B quality threshold
+576,46851293,pH,44,Duplicate data outside of DQL=B quality threshold
+577,46851312,pH,44,Duplicate data outside of DQL=B quality threshold
+578,46851234,pH,44,Duplicate data outside of DQL=B quality threshold
+579,46851243,pH,44,Duplicate data outside of DQL=B quality threshold
+580,46851318,pH,44,Duplicate data outside of DQL=B quality threshold
+581,46851342,pH,44,Duplicate data outside of DQL=B quality threshold
+582,46851263,pH,44,Duplicate data outside of DQL=B quality threshold
+583,46851287,pH,44,Duplicate data outside of DQL=B quality threshold
+584,46851275,pH,44,Duplicate data outside of DQL=B quality threshold
+585,46851269,pH,44,Duplicate data outside of DQL=B quality threshold
+586,46851281,pH,44,Duplicate data outside of DQL=B quality threshold
+587,46851305,pH,44,Duplicate data outside of DQL=B quality threshold
+588,46851336,pH,44,Duplicate data outside of DQL=B quality threshold
+589,46851257,pH,44,Duplicate data outside of DQL=B quality threshold
+590,46851330,pH,44,Duplicate data outside of DQL=B quality threshold
+591,46851324,pH,44,Duplicate data outside of DQL=B quality threshold
+592,46851251,pH,44,Duplicate data outside of DQL=B quality threshold
+593,47324204,pH,44,Duplicate data outside of DQL=B quality threshold
+594,47324192,pH,44,Duplicate data outside of DQL=B quality threshold
+595,47245561,pH,44,Duplicate data outside of DQL=B quality threshold
+596,47245550,pH,44,Duplicate data outside of DQL=B quality threshold
+597,51643697,pH,44,Duplicate data outside of DQL=B quality threshold
+598,51643710,pH,44,Duplicate data outside of DQL=B quality threshold
+599,51643754,pH,44,Duplicate data outside of DQL=B quality threshold
+600,51643739,pH,44,Duplicate data outside of DQL=B quality threshold
+601,51643975,pH,44,Duplicate data outside of DQL=B quality threshold
+602,51643992,pH,44,Duplicate data outside of DQL=B quality threshold
+603,51765842,pH,44,Duplicate data outside of DQL=B quality threshold
+604,51765829,pH,44,Duplicate data outside of DQL=B quality threshold
+605,51765907,pH,44,Duplicate data outside of DQL=B quality threshold
+606,51765920,pH,44,Duplicate data outside of DQL=B quality threshold
+607,51648538,pH,44,Duplicate data outside of DQL=B quality threshold
+608,51648524,pH,44,Duplicate data outside of DQL=B quality threshold
+609,51643846,pH,44,Duplicate data outside of DQL=B quality threshold
+610,51643862,pH,44,Duplicate data outside of DQL=B quality threshold
+611,51652834,pH,44,Duplicate data outside of DQL=B quality threshold
+612,51652826,pH,44,Duplicate data outside of DQL=B quality threshold
+613,51648620,pH,44,Duplicate data outside of DQL=B quality threshold
+614,51648609,pH,44,Duplicate data outside of DQL=B quality threshold
+615,51643945,pH,44,Duplicate data outside of DQL=B quality threshold
+616,51643928,pH,44,Duplicate data outside of DQL=B quality threshold
+617,51644627,pH,44,Duplicate data outside of DQL=B quality threshold
+618,51644642,pH,44,Duplicate data outside of DQL=B quality threshold
