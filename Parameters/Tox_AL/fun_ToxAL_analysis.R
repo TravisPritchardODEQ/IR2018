@@ -175,7 +175,7 @@ Results_tox_AL_analysis <- results_analysis %>%
   group_by(OrganizationID, MLocID, Char_Name, SampleStartDate,SampleStartTime, Analytical_method, act_depth_height) %>%
   # If group has Total fractionin it, mark with a 1. If ony dissolved, mark with 0
   mutate(Has_Crit_Fraction = ifelse(Fraction == "Total" & max(Simplified_sample_fraction) == "Total", 1, 
-                                    ifelse(Fraction == "Dissolved" & max(Simplified_sample_fraction) != "Total", 1, 0 ))) %>%
+                                    ifelse(Fraction == "Dissolved" & min(Simplified_sample_fraction) == "Dissolved", 1, 0 ))) %>%
   # Filter out the results that do not macth criteira fraction, if the group has matching criteria. Also keep where whole group does not match
   ungroup() %>%
   filter((Has_Crit_Fraction == 1 & Simplified_sample_fraction == Fraction) | Has_Crit_Fraction == 0) %>%
