@@ -27,10 +27,9 @@ temp_analysis <- df %>%
          # Print if result is in spawn or out of spawn
          Spawn_type = ifelse((SampleStartDate >= Start_spawn & SampleStartDate <= End_spawn & !is.na(Start_spawn)),  "Spawn", "Not_Spawn"),
          # Flag if result violates standard,  use 13 for during spawn dates, else use criteria
-         Violation = ifelse(Spawn_type == "Spawn" & Result_cen > 13, 1,
-                            ifelse(Spawn_type == "Not_Spawn" & Result_cen > Temp_Criteria, 1, 0)),
-         # Flag for is violation was in spawn period
-         Spawn_Violation = ifelse(Spawn_type == "Spawn" & Violation == 1, 1, 0 )
+         year_round_Violation = ifelse(Result_cen > Temp_Criteria, 1, 0),
+                  # Flag for is violation was in spawn period
+         Spawn_Violation = ifelse(Spawn_type == "Spawn" & Result_cen > 13, 1, 0 )
          ) %>%
    arrange(SampleStartDate, SampleStartTime) %>%
   filter(!is.na(AU_ID))
@@ -42,6 +41,8 @@ IR_export(temp_analysis, "Parameters/Temperature/Data_Review", "Temperature", "d
 
 
 
+
+# Year_round analysis -----------------------------------------------------
 
 
 # Create list for getting data out of loop
@@ -90,14 +91,14 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
     period3yr <- Review_AU %>%
       filter(between(SampleStartDate,start3yr, end3yr ))
     
-    num_violations = sum(period3yr$Violation)
+    num_violations = sum(period3yr$year_round_Violation)
     samples_crit_period <- sum(period3yr$In_crit_period)
     samples_spawn <- nrow(subset(period3yr, Spawn_type == "Spawn"))
-   # spawn_violations <- sum(period3yr$Spawn_type == "Spawn" & period3yr$Violation == 1)
+    spawn_violations <- sum(period3yr$Spawn_type == "Spawn" & period3yr$Spawn_Violation == 1)
     
     
     Review_AU[j,"Violations_3yr"] <- num_violations
-    #Review_AU[j,"Violations_in_Spawning"] <- spawn_violations
+    Review_AU[j,"Violations_Spawning_3yr"] <- spawn_violations
     Review_AU[j,"Samples_in_crit_period"] <- samples_crit_period
     Review_AU[j,"samples_in_spawn_period"] <- samples_spawn
     
@@ -113,7 +114,12 @@ for (i in 1:length(unique(temp_analysis$AU_ID))){
   
 }
 
-print("Assessment Complete. Beginning Categorization")
+
+
+
+
+
+print("Assessment Complete. Beginning Year round Categorization")
 
 # get the data out of the list and create a dataframe
 reviewed_data <- bind_rows(Au_review_list) %>%
@@ -122,14 +128,18 @@ reviewed_data <- bind_rows(Au_review_list) %>%
 #Remove the list from the environment, to free up memory
 rm(Au_review_list)
 
+
+
+# Year round categorization -----------------------------------------------
   
 # This is the where the IR categories get assigned
 Temp_IR_categories <- reviewed_data %>%
     group_by(AU_ID) %>%
     # Sum the total violations and spawning violations by AU
     # So we have a record of total violations over the assessment period
-    mutate(total_violations = sum(Violation),
-           Spawn_Violation_count = sum(Spawn_Violation)) %>%
+    mutate(total_violations = sum(year_round_Violation)
+           #,Spawn_Violation_count = sum(Spawn_Violation)
+           ) %>%
     arrange(SampleStartDate) %>%
     # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
     # number of violations in a 3 year period (Violations_3yr). Since we are looking at cat5
@@ -146,26 +156,107 @@ Temp_IR_categories <- reviewed_data %>%
               data_period_end = max(SampleStartDate),
               max_violations_3yr = max(Violations_3yr),
               total_violations = first(total_violations),
-              total_Spawn_Violation_count = first(Spawn_Violation_count),
+              #total_Spawn_Violation_count = first(Spawn_Violation_count),
               max_3yr_results_in_crit_period = max(Samples_in_crit_period),
-              max_3yr_results_in_spawn_period = max(samples_in_spawn_period)) %>%
+             # max_3yr_results_in_spawn_period = max(samples_in_spawn_period)
+             ) %>%
     # Assign to IR categories. 
     #      If there is any 3 year rolling period with 2 or more violations - Cat 5
     #      If all the 3 rolling year periods have less than 2 violations, and there are never any results
     #           in the critical periods or spawn periods - Cat 3
     #      If the three year period with the maximum number of violations has example 1 violation, than Cat3B
     #      Otherwise Category 2
-    mutate(IR_category = ifelse(max_violations_3yr >= 2, "Cat5", 
-                                ifelse(max_violations_3yr < 2 & 
-                                         max_3yr_results_in_crit_period == 0 &
-                                         max_3yr_results_in_spawn_period == 0, "Cat3", 
-                                       ifelse(max_violations_3yr == 1, "Cat3B", 
-                                              "Cat2")))) %>%
-    select(AU_ID, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, total_Spawn_Violation_count,max_violations_3yr, max_3yr_results_in_crit_period,
-           max_3yr_results_in_spawn_period)
+    mutate(IR_category =  case_when(max_violations_3yr >= 2 ~ "Cat5",
+                                    max_violations_3yr < 2 & max_3yr_results_in_crit_period == 0 ~ "Cat3",
+                                    max_violations_3yr == 1 ~ "Cat3B",
+                                    TRUE ~ 'Cat2'),
+           Period = "Year round") %>%
+    select(AU_ID,Period, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, max_violations_3yr, max_3yr_results_in_crit_period)
 
-print("Categorization Complete")
+print(" Year Round Categorization Complete")
 
 
-return(Temp_IR_categories)
+
+# Spawning categorization -------------------------------------------------
+
+
+print("Start spawning categorization")
+
+
+# This is the where the IR categories get assigned
+Temp_Spawn_IR_categories <- reviewed_data %>%
+  filter(Spawn_type == "Spawn") %>%
+  group_by(AU_ID) %>%
+  # Sum the total violations and spawning violations by AU
+  # So we have a record of total violations over the assessment period
+  mutate(total_Spawn_violations = sum(Spawn_Violation)) %>%
+  arrange(SampleStartDate) %>%
+  # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
+  # number of violations in a 3 year period (Violations_3yr). Since we are looking at cat5
+  # being 2 in 3 years, if we filter down to 3 year period with the max violations, we
+  # can see if the AU shoudl be listed. 
+  filter(Violations_Spawning_3yr %in% range(Violations_Spawning_3yr)) %>%
+  # Create summary of the data needed to make IR categorization determinations. 
+  # basically this is so we can see if there are any 3 year periods with 2 or more
+  # violations, and see if we have at any point in the assessmnet window any results 
+  # in the critical period or the spawn period. We also get the total violations, and 
+  # total spawn violations.
+  summarise(OWRD_Basin = first(OWRD_Basin), 
+            data_period_start = min(SampleStartDate),
+            data_period_end = max(SampleStartDate),
+            max_spawn_violations_3yr = max(Violations_Spawning_3yr),
+            total_spawn_violations = first(total_Spawn_violations),
+            max_3yr_results_in_spawn_period = max(samples_in_spawn_period)
+  ) %>%
+  # Assign to IR categories. 
+  #      If there is any 3 year rolling period with 2 or more violations - Cat 5
+  #      If all the 3 rolling year periods have less than 2 violations, and there are never any results
+  #           in the critical periods or spawn periods - Cat 3
+  #      If the three year period with the maximum number of violations has example 1 violation, than Cat3B
+  #      Otherwise Category 2
+  mutate(IR_category =  case_when(max_spawn_violations_3yr >= 2 ~ "Cat5",
+                                  max_spawn_violations_3yr == 1 ~ "Cat3B",
+                                  max_spawn_violations_3yr < 1 ~ 'Cat2'),
+         Period = 'Spawn') %>%
+  select(AU_ID, Period,  OWRD_Basin, data_period_start, data_period_end, IR_category, total_spawn_violations, max_spawn_violations_3yr)
+
+
+
+
+# Cat 3 analysis ----------------------------------------------------------
+
+#select from database AU's with any sort of temperature results
+
+# Get DO and temp data from IR_database to calculate percent sat --------
+con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
+all_temperature_data <- "SELECT [AU_ID], 
+OWRD_Basin, 
+min([SampleStartDate]) as data_period_start, 
+max([SampleStartDate]) as data_period_end
+
+FROM [IntegratedReport].[dbo].[InputRaw]
+where Char_Name = 'Temperature, water'
+group by [AU_ID], OWRD_Basin
+"
+
+all_temp_AUs_query <-  glue::glue_sql(all_temperature_data, .con = con)
+all_temp_AUs <- DBI::dbGetQuery(con, all_temp_AUs_query)
+DBI::dbDisconnect(con)
+
+AUs_with_no_7DADM <- all_temp_AUs %>%
+  filter(!AU_ID %in% unique(temp_analysis$AU_ID),
+         AU_ID != "") %>%
+  mutate(IR_category = "Cat3",
+         Period = "Year round",
+         analysis_comment = "Data insufficient to calculate 7DADM value")%>%
+  mutate(data_period_start = ymd(data_period_start),
+         data_period_end = ymd(data_period_end))
+
+
+
+all_temp_categories <- bind_rows(Temp_IR_categories, Temp_Spawn_IR_categories, AUs_with_no_7DADM) %>%
+  arrange(AU_ID) 
+
+return(all_temp_categories)
 }
