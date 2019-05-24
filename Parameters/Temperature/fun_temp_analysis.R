@@ -236,7 +236,7 @@ min([SampleStartDate]) as data_period_start,
 max([SampleStartDate]) as data_period_end
 
 FROM [IntegratedReport].[dbo].[InputRaw]
-where Char_Name = 'Temperature, water'
+where Char_Name = 'Temperature, water' and Statistical_Base = 'Mean'
 group by [AU_ID], OWRD_Basin
 "
 
@@ -253,6 +253,9 @@ AUs_with_no_7DADM <- all_temp_AUs %>%
   mutate(data_period_start = ymd(data_period_start),
          data_period_end = ymd(data_period_end))
 
+
+
+# Put everything together -------------------------------------------------
 
 
 all_temp_categories <- bind_rows(Temp_IR_categories, Temp_Spawn_IR_categories, AUs_with_no_7DADM) %>%
