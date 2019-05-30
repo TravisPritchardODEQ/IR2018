@@ -206,6 +206,7 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
             num_samples = n(),
             percent_3d = sum(is_3d)/num_samples * 100,
             summed_percent_nondetect = sum(summed_percent_nondetect)/n(),
+            num_sample_days = n_distinct(SampleStartDate),
             num_fraction_types = n_distinct(Simplified_sample_fraction),
             num_samples_total_fraction = sum(Simplified_sample_fraction == "Total"),
             num_Samples_dissolved_fraction = sum(Simplified_sample_fraction == "Dissolved"),
@@ -218,9 +219,9 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
             critical_excursions = excursions_tox(num_samples_crit_excursion_calc)) %>%
   # Assign categories
   mutate(IR_category = case_when(percent_3d == 100 &  num_samples_crit_excursion_calc >= 1 ~ "Cat 3D",
-                                 (num_samples_crit_excursion_calc == 1 | num_samples == 1) & num_excursions_all == 1 ~ "Cat 3B",
+                                 (num_samples_crit_excursion_calc == 1 | num_samples == 1 | num_sample_days == 1) & num_excursions_all == 1 ~ "Cat 3B",
                                  (Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate") & num_excursions_all > 0 ~ "Cat 3B",
-                                 (num_samples_crit_excursion_calc == 1 | num_samples == 1) & num_excursions_all == 0 ~ "Cat 3",
+                                 (num_samples_crit_excursion_calc == 1 | num_samples == 1 | num_sample_days == 1) & num_excursions_all == 0 ~ "Cat 3",
                                  num_excursions_all >= critical_excursions ~ "Cat 5",
                                  num_excursions_all < critical_excursions ~ "Cat 2",
                                  TRUE ~ "ERROR"))
