@@ -222,6 +222,8 @@ Results_tox_AL_categories <- Results_tox_AL_analysis %>%
                                  (num_samples_crit_excursion_calc == 1 | num_samples == 1 | num_sample_days == 1) & num_excursions_all == 1 ~ "Cat 3B",
                                  (Char_Name == "Alkalinity, total" | Char_Name == "Alkalinity, bicarbonate") & num_excursions_all > 0 ~ "Cat 3B",
                                  (num_samples_crit_excursion_calc == 1 | num_samples == 1 | num_sample_days == 1) & num_excursions_all == 0 ~ "Cat 3",
+                                 num_samples_crit_excursion_calc == 0 & criteria_fraction == "Total" & num_excursions_all < critical_excursions ~ "Cat 3",
+                                 num_samples_crit_excursion_calc == 0 & criteria_fraction == "Dissolved" & num_excursions_all >= critical_excursions ~ "Cat 3B", 
                                  num_excursions_all >= critical_excursions ~ "Cat 5",
                                  num_excursions_all < critical_excursions ~ "Cat 2",
                                  TRUE ~ "ERROR"))

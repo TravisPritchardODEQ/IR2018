@@ -1,0 +1,1076 @@
+"MLocID","StationDes","Lat_DD","Long_DD","AU_ID","MonLocType","Period","OWRD_Basin","data_period_start","data_period_end","IR_category","total_violations","max_violations_3yr","max_3yr_results_in_crit_period","total_spawn_violations","max_spawn_violations_3yr"
+"BAT12","Battle Creek at Lone Oak Rd.  ",44.8611,-123.0488,"OR_WS_170900070203_02_104411","River/Stream","Year round","Willamette",2008-10-28,2017-12-15,"Cat5",550,224,277,NA,NA
+"BAT3","Battle Creek at Commercial Ave.",44.8603,-123.0169,"OR_WS_170900070203_02_104411","River/Stream","Year round","Willamette",2008-10-27,2016-02-29,"Cat5",698,274,270,NA,NA
+"CLK1","Clark Creek at Bush Park",44.9268,-123.0337,"OR_WS_170900070301_02_104413","River/Stream","Year round","Willamette",2008-01-11,2016-09-05,"Cat5",696,275,277,NA,NA
+"CLK12","Clark Creek at Ewald Ave.",44.9012,-123.0515,"OR_WS_170900070301_02_104413","River/Stream","Year round","Willamette",2008-01-11,2016-09-01,"Cat5",254,146,277,NA,NA
+"GLE12","Glenn Creek at Hidden Valley Rd.",44.9475,-123.102,"OR_WS_170900070303_02_104415","River/Stream","Year round","Willamette",2008-01-07,2016-02-29,"Cat5",74,59,195,NA,NA
+"GLE3","Glenn Creek at Wallace Rd.",44.9653,-123.0579,"OR_WS_170900070303_02_104415","River/Stream","Year round","Willamette",2008-01-07,2016-07-04,"Cat5",448,224,274,NA,NA
+"PRI12","East Fork of Pringle Creek at Trelstad Ave.  ",44.8853,-122.9871,"OR_WS_170900070204_02_104412","River/Stream","Year round","Willamette",2008-01-11,2016-02-29,"Cat5",896,325,253,NA,NA
+"PRI3","Pringle Creek at Pringle Park",44.9341,-123.0378,"OR_WS_170900070301_02_104413","River/Stream","Year round","Willamette",2008-01-11,2017-09-19,"Cat5",948,354,268,NA,NA
+"PRI3","Pringle Creek at Pringle Park",44.9341,-123.0378,"OR_WS_170900070301_02_104413","River/Stream","Spawn","Willamette",2008-01-11,2017-04-08,"Cat5",NA,NA,NA,390,183
+"10688-ORDEQ","Deschutes River at Pringle Falls",43.74117494,-121.6067814,"OR_WS_170703010301_05_102282","River/Stream","Year round","Deschutes",2014-05-18,2014-09-08,"Cat2",0,0,70,NA,NA
+"10689-ORDEQ","Deschutes River at Wickiup Reservoir Gauge Station",43.68612582,-121.68725,"OR_WS_170703010301_05_102282","River/Stream","Year round","Deschutes",2017-08-21,2017-12-31,"Cat2",0,0,41,NA,NA
+"10699-ORDEQ","Little Deschutes River at Road 2320",43.52475709,-121.6515739,"OR_WS_170703020106_05_102338","River/Stream","Year round","Deschutes",2016-07-31,2016-10-23,"Cat5",33,33,62,NA,NA
+"10703-ORDEQ","Little Deschutes River upstream of Gilchrist Mill Pond",43.4634918,-121.6979735,"OR_WS_170703020106_05_102338","River/Stream","Year round","Deschutes",2016-07-31,2016-10-23,"Cat5",33,33,62,NA,NA
+"12032-ORDEQ","Mitchell Creek at SE 162nd (downstream of trailer park)",45.46017207,-122.4967473,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-06-23,2014-11-10,"Cat5",7,7,184,NA,NA
+"13141-ORDEQ","Neal Creek at mouth (upstream of bridge)",45.66386253,-121.525546,"OR_WS_170701050703_02_102007","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat5",9,9,276,NA,NA
+"13141-ORDEQ","Neal Creek at mouth (upstream of bridge)",45.66386253,-121.525546,"OR_WS_170701050703_02_102007","River/Stream","Spawn","Hood",2010-04-12,2011-11-08,"Cat2",NA,NA,NA,0,0
+"13183-ORDEQ","East Fork Neal Creek at mouth",45.59457833,-121.4990237,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat2",0,0,276,NA,NA
+"13183-ORDEQ","East Fork Neal Creek at mouth",45.59457833,-121.4990237,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2010-04-12,2011-11-08,"Cat2",NA,NA,NA,0,0
+"13184-ORDEQ","West Fork Neal Creek at mouth",45.5945686,-121.4996554,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat5",7,7,276,NA,NA
+"13184-ORDEQ","West Fork Neal Creek at mouth",45.5945686,-121.4996554,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2010-04-12,2011-11-08,"Cat2",NA,NA,NA,0,0
+"13430-ORDEQ","Hoquarten Slough at Hwy 101 (Tillamook)",45.45912869,-123.8444452,"OR_WS_171002030406_05_106217","Estuary","Year round","North Coast",2010-05-24,2010-05-25,"Cat3",0,0,0,NA,NA
+"18746-ORDEQ","Eliot Branch Middle Fork Hood River, upstream of Mfid Diversion",45.45494435,-121.6378278,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-08-06,2012-08-27,"Cat5",184,161,185,NA,NA
+"21811-ORDEQ","Ben Smith Creek at River Mile 0.44",45.58497307,-123.5160454,"OR_WS_171002030504_05_106117","River/Stream","Year round","North Coast",2009-07-06,2009-09-20,"Cat5",11,11,77,NA,NA
+"21838-ORDEQ","Glenn Creek at River Mile 5.45",44.94748716,-123.1025499,"OR_WS_170900070303_02_104415","River/Stream","Year round","Willamette",2008-01-01,2009-04-05,"Cat3",0,0,0,NA,NA
+"23526-ORDEQ","Beaver Creek at Beaver Falls Road (Tidewater, upstream of Stewart Creek)",46.11901653,-123.1642861,"OR_WS_170800030406_05_103657","River/Stream","Year round","North Coast",2017-07-05,2017-10-10,"Cat5",71,71,88,NA,NA
+"23535-ORDEQ","Girt Creek at Beaver Spring Road (Beaver Creek tributary River Mile 16.6)",46.0631888,-122.9648095,"OR_WS_170800030405_05_103656","River/Stream","Year round","North Coast",2017-07-05,2017-10-11,"Cat5",20,20,88,NA,NA
+"23537-ORDEQ","Carcus Creek at mouth (Clatskanie River tributary, River Mile 11.2)",46.0409906,-123.0834681,"OR_WS_170800030502_05_103659","River/Stream","Year round","North Coast",2017-07-04,2017-10-11,"Cat2",0,0,89,NA,NA
+"23539-ORDEQ","Little Clatskanie River at Apiary Road (Clatskanie River tributary River Mile 16.2)",45.98796904,-123.0390707,"OR_WS_170800030503_05_103660","River/Stream","Year round","North Coast",2017-07-05,2017-10-11,"Cat5",11,11,88,NA,NA
+"23888-ORDEQ","Horse Heaven Creek above confluence with Steamboat Creek",43.51122734,-122.5823311,"OR_WS_171003010701_02_105650","River/Stream","Year round","Umpqua",2017-07-13,2017-10-07,"Cat5",100,100,160,NA,NA
+"24317-ORDEQ","Whychus Creek at city park in Sisters, OR",44.28798595,-121.5439889,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2008-07-03,2008-09-29,"Cat2",0,0,16,NA,NA
+"24318-ORDEQ","Whychus Creek at Gaging Station above Diversions",44.23377862,-121.5672366,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2014-03-30,2017-10-15,"Cat2",0,0,93,NA,NA
+"25242-ORDEQ","Jack Creek, tributary to Chetco River, just downstream of Fish Trap",42.06180384,-124.2192307,"OR_WS_171003120111_02_104697","River/Stream","Year round","South Coast",2008-07-06,2008-10-19,"Cat5",6,6,87,NA,NA
+"25242-ORDEQ","Jack Creek, tributary to Chetco River, just downstream of Fish Trap",42.06180384,-124.2192307,"OR_WS_171003120111_02_104697","River/Stream","Spawn","South Coast",2008-10-15,2008-10-19,"Cat5",NA,NA,NA,4,4
+"25484-ORDEQ","Maxfield Creek at Hwy 223",44.69482848,-123.4322279,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-06,2017-09-30,"Cat5",46,46,92,NA,NA
+"25485-ORDEQ","Price Creek at Hwy 223",44.68580005,-123.433875,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-10,2017-10-08,"Cat5",52,52,92,NA,NA
+"25564-ORDEQ","Little Deschutes River at Cow Camp",43.30738395,-121.8648103,"OR_WS_170703020101_05_102333","River/Stream","Year round","Deschutes",2016-07-31,2016-10-23,"Cat5",27,27,62,NA,NA
+"25565-ORDEQ","Little Deschutes River upstream of Hemlock Creek",43.36064953,-121.8272492,"OR_WS_170703020101_05_102333","River/Stream","Year round","Deschutes",2016-07-31,2016-10-23,"Cat5",52,52,62,NA,NA
+"25566-ORDEQ","Hemlock Creek  downstream of NFS Road 5830",43.36094255,-121.8293457,"OR_WS_170703020102_05_102334","River/Stream","Year round","Deschutes",2016-05-08,2016-10-23,"Cat5",120,120,92,NA,NA
+"25726-ORDEQ","Fish Creek below Slipper Creek, North Umpqua River",43.23041942,-122.4473754,"OR_WS_171003010404_02_105643","River/Stream","Year round","Umpqua",2009-09-07,2009-10-14,"Cat5",15,15,17,NA,NA
+"25858-ORDEQ","Morten Creek downstream of Wallers",42.94624312,-124.4478033,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-09-04,2017-08-16,"Cat5",69,62,88,NA,NA
+"27847-ORDEQ","Fate Creek",42.99964329,-123.1029484,"OR_WS_171003020505_02_105697","River/Stream","Year round","Umpqua",2014-06-26,2014-09-14,"Cat2",0,0,76,NA,NA
+"28076-ORDEQ","Powder Creek",45.25198941,-123.6588165,"OR_WS_171002030206_05_106105","River/Stream","Year round","North Coast",2009-07-06,2009-09-20,"Cat5",23,23,77,NA,NA
+"28284-ORDEQ","Jack Creek above bridge 1 mile above golfcourse (Chetco River)",42.03988568,-124.197198,"OR_WS_171003120111_02_104697","River/Stream","Year round","South Coast",2008-07-06,2008-10-19,"Cat2",0,0,65,NA,NA
+"28284-ORDEQ","Jack Creek above bridge 1 mile above golfcourse (Chetco River)",42.03988568,-124.197198,"OR_WS_171003120111_02_104697","River/Stream","Spawn","South Coast",2008-10-15,2008-10-19,"Cat2",NA,NA,NA,0,0
+"28306-ORDEQ","East Fork Edson Creek near mouth (Rogue River below Lobster Creek)",42.4806,-124.3926,"OR_WS_171003100803_02_104698","River/Stream","Year round","Rogue",2016-06-28,2016-09-26,"Cat2",0,0,88,NA,NA
+"28386-ORDEQ","Euchre: Pea Creek at mouth",42.56376386,-124.3588059,"OR_WS_171003060403_02_104675","River/Stream","Year round","South Coast",2009-06-18,2016-07-25,"Cat2",0,0,75,NA,NA
+"28728-ORDEQ","Johnson Creek at SE 327th Avenue",45.46049274,-122.3263697,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2014-06-11,2015-10-26,"Cat5",140,140,184,NA,NA
+"28729-ORDEQ","Johnson Creek at Revenue Road",45.46174295,-122.3368358,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2011-08-11,2011-10-03,"Cat5",15,15,51,NA,NA
+"28964-ORDEQ","Clark Creek at mouth (tributary to Pringle Creek at River Mile 1.05)",44.92694513,-123.0331353,"OR_WS_170900070301_02_104413","River/Stream","Year round","Willamette",2008-01-01,2009-04-19,"Cat5",49,49,71,NA,NA
+"28975-ORDEQ","Fifteenmile Creek upstream of Underhill's Diversion",45.43913809,-121.1860371,"OR_WS_170701050302_02_101985","River/Stream","Year round","Hood",2008-04-07,2008-10-21,"Cat5",74,74,92,NA,NA
+"28975-ORDEQ","Fifteenmile Creek upstream of Underhill's Diversion",45.43913809,-121.1860371,"OR_WS_170701050302_02_101985","River/Stream","Spawn","Hood",2008-04-07,2008-10-21,"Cat5",NA,NA,NA,53,53
+"28976-ORDEQ","Fifteenmile Creek upstream of Ramsey Creek",45.4309174,-121.2249578,"OR_WS_170701050301_02_101984","River/Stream","Year round","Hood",2008-04-07,2008-10-21,"Cat5",49,49,92,NA,NA
+"28976-ORDEQ","Fifteenmile Creek upstream of Ramsey Creek",45.4309174,-121.2249578,"OR_WS_170701050301_02_101984","River/Stream","Spawn","Hood",2008-04-07,2008-10-21,"Cat5",NA,NA,NA,40,40
+"28977-ORDEQ","Fifteenmile Creek at Dufur City Reservoir intake",45.39582049,-121.2786149,"OR_WS_170701050301_02_101984","River/Stream","Year round","Hood",2008-04-07,2008-10-21,"Cat5",10,10,92,NA,NA
+"28977-ORDEQ","Fifteenmile Creek at Dufur City Reservoir intake",45.39582049,-121.2786149,"OR_WS_170701050301_02_101984","River/Stream","Spawn","Hood",2008-04-07,2008-10-21,"Cat5",NA,NA,NA,27,27
+"28979-ORDEQ","Eightmile Creek upstream of Fivemile Creek",45.59265626,-121.0800969,"OR_WS_170701050204_02_101983","River/Stream","Year round","Hood",2008-04-07,2008-10-21,"Cat5",61,61,92,NA,NA
+"28979-ORDEQ","Eightmile Creek upstream of Fivemile Creek",45.59265626,-121.0800969,"OR_WS_170701050204_02_101983","River/Stream","Spawn","Hood",2008-04-07,2008-05-15,"Cat3B",NA,NA,NA,1,1
+"28980-ORDEQ","Eightmile Creek at Highway 197",45.529513,-121.0925094,"OR_WS_170701050204_02_101983","River/Stream","Year round","Hood",2008-04-07,2008-06-11,"Cat3",0,0,0,NA,NA
+"28980-ORDEQ","Eightmile Creek at Highway 197",45.529513,-121.0925094,"OR_WS_170701050204_02_101983","River/Stream","Spawn","Hood",2008-04-07,2008-05-14,"Cat2",NA,NA,NA,0,0
+"29406-ORDEQ","Deschutes River at Pringle Fall Experiment Station",43.74013573,-121.6066698,"OR_WS_170703010301_05_102282","River/Stream","Year round","Deschutes",2017-05-15,2017-10-16,"Cat2",0,0,72,NA,NA
+"29540-ORDEQ","Morton Creek at 101",42.94252697,-124.4446383,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-05,2017-08-16,"Cat5",94,64,88,NA,NA
+"29563-ORDEQ","Boulder Creek near mouth",42.56358947,-124.3484086,"OR_WS_171003060403_02_104675","River/Stream","Year round","South Coast",2016-06-27,2016-08-11,"Cat2",0,0,42,NA,NA
+"29596-ORDEQ","Crook Creek at cattle bridge",42.27597113,-124.3943263,"OR_WS_171003120404_02_104696","River/Stream","Year round","South Coast",2009-06-18,2009-08-06,"Cat5",25,25,37,NA,NA
+"29627-ORDEQ","Jack Creek above golf course",42.03944912,-124.1867076,"OR_WS_171003120111_02_104697","River/Stream","Year round","South Coast",2008-07-06,2008-10-19,"Cat5",4,4,87,NA,NA
+"29627-ORDEQ","Jack Creek above golf course",42.03944912,-124.1867076,"OR_WS_171003120111_02_104697","River/Stream","Spawn","South Coast",2008-10-15,2008-10-19,"Cat2",NA,NA,NA,0,0
+"29697-ORDEQ","Edson Creek, above bridge #256",42.4747724,-124.3902949,"OR_WS_171003100803_02_104698","River/Stream","Year round","Rogue",2016-06-28,2016-09-26,"Cat2",0,0,88,NA,NA
+"31694-ORDEQ","Newton Creek at mouth, NW Jefferson Street, Roseburg, OR",43.22553131,-123.3819415,"OR_WS_171003021305_02_105321","River/Stream","Year round","Umpqua",2016-06-08,2017-10-04,"Cat5",181,181,173,NA,NA
+"32054-ORDEQ","Drift Creek at Victor Point Road",44.92407374,-122.7562004,"OR_WS_170900090102_02_104455","River/Stream","Year round","Willamette",2008-12-10,2009-05-06,"Cat3",0,0,0,NA,NA
+"32054-ORDEQ","Drift Creek at Victor Point Road",44.92407374,-122.7562004,"OR_WS_170900090102_02_104455","River/Stream","Spawn","Willamette",2008-12-10,2009-05-06,"Cat2",NA,NA,NA,0,0
+"32462-ORDEQ","West Fork Neal Creek above EFID main canal inflow",45.584174,-121.5281168,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat2",0,0,276,NA,NA
+"32462-ORDEQ","West Fork Neal Creek above EFID main canal inflow",45.584174,-121.5281168,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2010-04-13,2011-05-15,"Cat2",NA,NA,NA,0,0
+"32463-ORDEQ","EF Irrigation District Main Canal at Base ",45.58542885,-121.5294327,"OR_WS_170701050701_02_102005","Canal Transport","Year round","Hood",2009-06-12,2011-11-08,"Cat5",2,2,275,NA,NA
+"32464-ORDEQ","West Fork Neal Creek below EFID main canal",45.58624653,-121.5255164,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat2",0,0,184,NA,NA
+"32464-ORDEQ","West Fork Neal Creek below EFID main canal",45.58624653,-121.5255164,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2011-04-27,2011-05-15,"Cat2",NA,NA,NA,0,0
+"32468-ORDEQ","Neal Creek below east/west confluence",45.59955496,-121.5015614,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat2",0,0,276,NA,NA
+"32468-ORDEQ","Neal Creek below east/west confluence",45.59955496,-121.5015614,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2010-04-12,2011-11-08,"Cat2",NA,NA,NA,0,0
+"32640-ORDEQ","Butte Creek at Hwy 101 (New River)",42.9575901,-124.435149,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-05,2008-10-02,"Cat2",0,0,88,NA,NA
+"32641-ORDEQ","Crook Creek at North Bank Bridge (Pistol River)",42.27672438,-124.3932182,"OR_WS_171003120404_02_104696","River/Stream","Year round","South Coast",2009-06-19,2009-09-13,"Cat5",11,11,75,NA,NA
+"32653-ORDEQ","Turnbow Creek at High Pass Road, RM 0.88 (Owens Creek, Bear Creek, Long Tom R., Upper Willamette)",44.22314755,-123.345699,"OR_WS_170900030109_02_104251","River/Stream","Year round","Willamette",2017-07-24,2017-10-26,"Cat5",51,51,69,NA,NA
+"32666-ORDEQ","Crook Creek at Pistol River Loop Road (Pistol River)",42.27590917,-124.3947004,"OR_WS_171003120404_02_104696","River/Stream","Year round","South Coast",2009-06-18,2009-09-13,"Cat5",47,47,75,NA,NA
+"32808-ORDEQ","Walla Walla River, North Fork near mouth (River Mile 0.4)",45.90038943,-118.297166,"OR_WS_170701020104_16_101866","River/Stream","Year round","Umatilla",2008-06-23,2017-10-19,"Cat5",1307,492,274,NA,NA
+"33252-ORDEQ","Weaver Creek at Hidden Homestead Road near mouth (South Myrtle, South Umpqua)",43.0522738,-123.0674572,"OR_WS_171003021001_02_105703","River/Stream","Year round","Umpqua",2011-07-03,2011-10-23,"Cat2",0,0,90,NA,NA
+"33252-ORDEQ","Weaver Creek at Hidden Homestead Road near mouth (South Myrtle, South Umpqua)",43.0522738,-123.0674572,"OR_WS_171003021001_02_105703","River/Stream","Spawn","Umpqua",2011-10-15,2011-10-23,"Cat2",NA,NA,NA,0,0
+"33312-ORDEQ","Little Muddy CR at RM 0.5 (ODFW)",45.96888484,-123.9411941,"OR_WS_171002010103_05_106209","River/Stream","Year round","North Coast",2009-07-06,2009-09-21,"Cat2",0,0,78,NA,NA
+"33319-ORDEQ","Rogers Creek (ODFW)",44.15865198,-123.8858697,"OR_WS_171002060501_02_106168","River/Stream","Year round","Mid Coast",2009-07-01,2009-08-31,"Cat5",40,40,62,NA,NA
+"33357-ORDEQ","Mill CR N FK at RM 0.08 (Middle Siletz R, ODFW)",44.76702637,-123.758735,"OR_WS_171002040502_02_106182","River/Stream","Year round","Mid Coast",2009-07-28,2009-09-16,"Cat5",14,14,51,NA,NA
+"33374-ORDEQ","Fourmile Creek 2 (ODFW)",42.9864926,-124.3320658,"OR_WS_171003060105_02_106330","River/Stream","Year round","South Coast",2009-07-07,2009-09-08,"Cat5",21,21,64,NA,NA
+"33419-ORDEQ","Billy Moore Creek (ODFW)",43.887241,-123.9711157,"OR_WS_171002070102_02_106386","River/Stream","Year round","Mid Coast",2009-07-23,2009-10-11,"Cat2",0,0,70,NA,NA
+"33452-ORDEQ","Clear Creek (ODFW)",42.79553171,-123.2452889,"OR_WS_171003020702_02_106348","River/Stream","Year round","Umpqua",2009-07-20,2009-08-31,"Cat5",43,43,43,NA,NA
+"33461-ORDEQ","Rock Creek East Fork (ODFW)",43.38072288,-122.8285913,"OR_WS_171003010902_02_105664","River/Stream","Year round","Umpqua",2009-07-14,2009-08-13,"Cat5",8,8,31,NA,NA
+"33603-ORDEQ","Neal Creek at Fir Mountain Road",45.6387919,-121.5134566,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2009-06-11,2011-11-08,"Cat5",10,10,276,NA,NA
+"33603-ORDEQ","Neal Creek at Fir Mountain Road",45.6387919,-121.5134566,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2010-04-12,2011-11-08,"Cat2",NA,NA,NA,0,0
+"33915-ORDEQ","Maxfield Creek at River Mile 2.6 at Maxfield Creek Road (Luckiamute, Willamette)",44.69877746,-123.3920923,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-06,2017-10-10,"Cat5",41,41,92,NA,NA
+"34063-ORDEQ","Reed Creek Below Coquille WA restoration project (Middle Fork Coquille)",43.03537035,-123.7009561,"OR_WS_171003050101_02_105309","River/Stream","Year round","South Coast",2008-06-15,2008-08-19,"Cat5",50,50,50,NA,NA
+"34064-ORDEQ","Reed Creek Above Coquille WA restoration project (Middle Fork Coquille)",43.03674894,-123.7016521,"OR_WS_171003050101_02_105309","River/Stream","Year round","South Coast",2008-06-15,2008-08-19,"Cat5",51,51,50,NA,NA
+"34124-ORDEQ","Louis Creek at South Myrtle Creek Road (S. Myrtle, Umpqua)",43.03553293,-123.1484183,"OR_WS_171003021001_02_105703","River/Stream","Year round","Umpqua",2011-07-03,2011-10-23,"Cat5",25,25,90,NA,NA
+"34124-ORDEQ","Louis Creek at South Myrtle Creek Road (S. Myrtle, Umpqua)",43.03553293,-123.1484183,"OR_WS_171003021001_02_105703","River/Stream","Spawn","Umpqua",2011-10-15,2011-10-23,"Cat5",NA,NA,NA,3,3
+"34299-ORDEQ","Pea Creek 140m DS of Euchre Cr Rd culver (Euchre)",42.56562695,-124.3596372,"OR_WS_171003060403_02_104675","River/Stream","Year round","South Coast",2009-06-18,2009-09-13,"Cat2",0,0,75,NA,NA
+"34300-ORDEQ","Pea Creek 40m DS of Euchre Cr Rd culvert (Euchre)",42.56657502,-124.3599364,"OR_WS_171003060403_02_104675","River/Stream","Year round","South Coast",2009-06-18,2009-08-06,"Cat2",0,0,37,NA,NA
+"34301-ORDEQ","Pea Creek 30m US of Euchre Cr Rd culvert (Euchre)",42.56749611,-124.3603067,"OR_WS_171003060403_02_104675","River/Stream","Year round","South Coast",2009-06-18,2009-09-13,"Cat2",0,0,75,NA,NA
+"34319-ORDEQ","Morten Creek at RM 1.2 (New River)",42.94694919,-124.4491671,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-05,2008-10-02,"Cat5",19,19,88,NA,NA
+"34322-ORDEQ","Crowley Cr at RM 0.72",45.04862073,-123.9856192,"OR_WS_171002040803_02_106178","River/Stream","Year round","Mid Coast",2009-07-30,2009-09-16,"Cat2",0,0,49,NA,NA
+"34323-ORDEQ","Beaver Cr NF Trib G (NF Beaver at RM 6.38) at RM 1.08",44.53429873,-123.9262446,"OR_WS_171002050501_02_106160","River/Stream","Year round","Mid Coast",2009-07-29,2009-09-29,"Cat2",0,0,63,NA,NA
+"34325-ORDEQ","Steel Cr at RM 0.14",43.15859453,-123.9621837,"OR_WS_171003050306_02_106393","River/Stream","Year round","South Coast",2009-07-07,2009-09-14,"Cat5",61,61,70,NA,NA
+"34328-ORDEQ","Willow Creek at RM 4.3 (Floras)",42.87743965,-124.4275128,"OR_WS_171003060102_02_104668","River/Stream","Year round","South Coast",2009-07-03,2009-09-10,"Cat2",0,0,70,NA,NA
+"34627-ORDEQ","Lousignont Cr at RM 1.06 US of NF Lousignont Cr",45.74294322,-123.303611,"OR_WS_171002020101_05_106443","River/Stream","Year round","North Coast",2008-04-11,2017-07-11,"Cat5",331,170,267,NA,NA
+"34627-ORDEQ","Lousignont Cr at RM 1.06 US of NF Lousignont Cr",45.74294322,-123.303611,"OR_WS_171002020101_05_106443","River/Stream","Spawn","North Coast",2008-04-11,2016-10-05,"Cat5",NA,NA,NA,215,105
+"34688-ORDEQ","Johnson Cr at RM 6.0",43.52660792,-124.0486055,"OR_WS_171003040402_02_105002","River/Stream","Year round","South Coast",2014-07-28,2014-09-28,"Cat2",0,0,63,NA,NA
+"35208-ORDEQ","Lousignont Creek Below State Forest Boundary at RM 1.6 (Nehalem)",45.73563423,-123.3061633,"OR_WS_171002020101_05_106443","River/Stream","Year round","North Coast",2008-04-11,2017-07-15,"Cat5",301,160,228,NA,NA
+"35208-ORDEQ","Lousignont Creek Below State Forest Boundary at RM 1.6 (Nehalem)",45.73563423,-123.3061633,"OR_WS_171002020101_05_106443","River/Stream","Spawn","North Coast",2008-04-11,2016-09-23,"Cat5",NA,NA,NA,225,112
+"35209-ORDEQ","Lousignont Cr Trib (Approx. RM 1.2) T3N R5W SESE Sec 16 (Nehalem)",45.74419974,-123.3067923,"OR_WS_171002020101_05_106443","River/Stream","Year round","North Coast",2008-04-11,2008-12-08,"Cat2",0,0,92,NA,NA
+"35209-ORDEQ","Lousignont Cr Trib (Approx. RM 1.2) T3N R5W SESE Sec 16 (Nehalem)",45.74419974,-123.3067923,"OR_WS_171002020101_05_106443","River/Stream","Spawn","North Coast",2008-04-11,2008-12-08,"Cat2",NA,NA,NA,0,0
+"35210-ORDEQ","Lousignont Cr Trib Pond (Approx. RM 1.5) T3N R5W NWSE Sec 16 (Nehalem)",45.7446228,-123.3099272,"OR_WS_171002020101_05_106443","River/Stream","Year round","North Coast",2008-04-11,2008-09-30,"Cat5",70,70,92,NA,NA
+"35210-ORDEQ","Lousignont Cr Trib Pond (Approx. RM 1.5) T3N R5W NWSE Sec 16 (Nehalem)",45.7446228,-123.3099272,"OR_WS_171002020101_05_106443","River/Stream","Spawn","North Coast",2008-04-11,2008-05-14,"Cat2",NA,NA,NA,0,0
+"35211-ORDEQ","Kuder Cr below Schmadeke Reservoir (Dairy, Rock, Tualatin)",45.66485173,-123.1809125,"OR_WS_170900100302_02_104499","River/Stream","Year round","Willamette",2008-04-11,2017-10-12,"Cat5",2,2,276,NA,NA
+"35212-ORDEQ","Kuder Cr Trib Pond near NW Way Rd T2N R4W SESE Sec 9 (Dairy, Rock, Tualatin)",45.66592124,-123.1786164,"OR_WS_170900100302_02_104499","River/Stream","Year round","Willamette",2008-04-11,2008-10-23,"Cat5",7,7,74,NA,NA
+"35214-ORDEQ","Tualatin River Drainage at T2S R4W SENW Sec 6",45.42870388,-123.2303372,"OR_WS_170900100204_02_104495","River/Stream","Year round","Willamette",2008-04-11,2008-10-06,"Cat2",0,0,92,NA,NA
+"35216-ORDEQ","Tualatin River Drainage Pond near Cherry Grove T1S R4W NESW Sec 31",45.43844129,-123.2328009,"OR_WS_170900100204_02_104495","River/Stream","Year round","Willamette",2008-04-11,2008-04-28,"Cat3",0,0,0,NA,NA
+"35267-ORDEQ","Paul Creek 1.2RM u/s of Riddle Creek(Donner und Blitzen River)",43.07510712,-118.5425414,"OR_WS_171200010601_05_106529","River/Stream","Year round","Malheur Lake",2008-04-29,2008-09-15,"Cat5",68,68,77,NA,NA
+"35268-ORDEQ","Paul Creek 5.2RM u/s of Riddle Creek(Donner und Blitzen River)",43.0730101,-118.470479,"OR_WS_171200010601_05_106529","River/Stream","Year round","Malheur Lake",2008-05-02,2008-09-15,"Cat5",77,77,77,NA,NA
+"35270-ORDEQ","Coffeepot Creek at RM 4.9(Malheur Lake)",43.71440593,-118.8279456,"OR_WS_171200010104_05_106513","River/Stream","Year round","Malheur Lake",2008-05-06,2008-09-07,"Cat5",15,15,69,NA,NA
+"35271-ORDEQ","Krumbo Creek 0.5mi u/s of Krumbo Reservoir(Donner und Blitzen River)",42.94485838,-118.7863682,"OR_WS_171200030205_05_106597","River/Stream","Year round","Malheur Lake",2008-05-05,2008-09-30,"Cat5",42,42,92,NA,NA
+"35272-ORDEQ","Landing Creek 1.0RM u/s of Silvies River",43.77871007,-119.1789589,"OR_WS_171200020404_05_106566","River/Stream","Year round","Malheur Lake",2008-06-09,2008-09-17,"Cat2",0,0,79,NA,NA
+"35274-ORDEQ","Muddy Creek 5.6RM u/s of Malheur River",43.88391826,-118.677022,"OR_WS_170501160502_05_102989","River/Stream","Year round","Malheur",2008-05-09,2008-09-08,"Cat5",68,68,70,NA,NA
+"35316-ORDEQ","Little Deschutes River d/s of Gilchrist Pond & Sawmill Rd.",43.47744002,-121.6895361,"OR_WS_170703020106_05_102338","River/Stream","Year round","Deschutes",2016-07-31,2016-10-23,"Cat5",36,36,62,NA,NA
+"35387-ORDEQ","Whychus Creek at Road 4606 footbridge",44.27362701,-121.5548191,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2014-03-30,2017-10-15,"Cat2",0,0,93,NA,NA
+"35389-ORDEQ","Whychus Creek at city park in Sisters, OR",44.28836,-121.54182,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2014-03-30,2017-10-15,"Cat2",0,0,92,NA,NA
+"35587-ORDEQ","Battle Creek at RM 3.64",44.86022359,-123.0169234,"OR_WS_170900070203_02_104411","River/Stream","Year round","Willamette",2008-10-27,2009-04-07,"Cat3",0,0,0,NA,NA
+"35933-ORDEQ","Battle Creek above Jory Creek",44.86095919,-123.0487604,"OR_WS_170900070203_02_104411","River/Stream","Year round","Willamette",2008-10-28,2009-04-07,"Cat3",0,0,0,NA,NA
+"36630-ORDEQ","Butte Creek NR Mouth",42.95768613,-124.4602304,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-05,2008-10-02,"Cat2",0,0,88,NA,NA
+"36728-ORDEQ","North Langlois Cr at DS Bridge",42.93782914,-124.4576296,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-10,2008-10-18,"Cat2",0,0,83,NA,NA
+"36732-ORDEQ","Edson Cr EF at Rock Quarry",42.48712396,-124.3892805,"OR_WS_171003100803_02_104698","River/Stream","Year round","Rogue",2016-06-28,2016-09-26,"Cat2",0,0,88,NA,NA
+"36734-ORDEQ","Edson Cr WF ABV EF",42.4805,-124.39467,"OR_WS_171003100803_02_104698","River/Stream","Year round","Rogue",2016-06-28,2016-09-26,"Cat2",0,0,88,NA,NA
+"36903-ORDEQ","Nestucca River d/s of McMinnville Dam, just d/s of Walker Creek",45.31034431,-123.4127614,"OR_WS_171002030201_05_106100","River/Stream","Year round","North Coast",2015-06-03,2015-09-27,"Cat5",75,75,89,NA,NA
+"36903-ORDEQ","Nestucca River d/s of McMinnville Dam, just d/s of Walker Creek",45.31034431,-123.4127614,"OR_WS_171002030201_05_106100","River/Stream","Spawn","North Coast",2015-06-03,2015-06-14,"Cat5",NA,NA,NA,12,12
+"37108-ORDEQ","Camp Creek north of Whitney (USFS",44.69441996,-118.3220629,"OR_WS_170502020102_05_103113","River/Stream","Year round","Powder",2017-06-22,2017-10-06,"Cat2",0,0,92,NA,NA
+"37111-ORDEQ","East Camp Creek (USFS)",44.32494791,-118.1403666,"OR_WS_170502020302_05_103124","River/Stream","Year round","Powder",2017-05-21,2017-10-10,"Cat2",0,0,92,NA,NA
+"37113-ORDEQ","West Camp Cr. (USFS)",44.34866975,-118.1904489,"OR_WS_170502020301_05_103123","River/Stream","Year round","Powder",2017-06-18,2017-10-10,"Cat2",0,0,92,NA,NA
+"37120-ORDEQ","North Fork Burnt River at Hwy. 7 (USFS/DEQ)",44.668234,-118.3772469,"OR_WS_170502020103_05_103114","River/Stream","Year round","Powder",2012-06-27,2017-10-05,"Cat5",78,72,91,NA,NA
+"37122-ORDEQ","Snow Creek (USFS)",44.68359833,-118.4618483,"OR_WS_170502020101_05_103112","River/Stream","Year round","Powder",2017-06-27,2017-10-05,"Cat2",0,0,92,NA,NA
+"37300-ORDEQ","Gettings Cr at Sears Rd",43.83658224,-123.0249008,"OR_WS_170900020401_02_104238","River/Stream","Year round","Willamette",2017-08-16,2017-12-17,"Cat5",42,42,46,NA,NA
+"37329-ORDEQ","Wolf Creek at Inlet to Wolf Creek Reservoir",45.0523928,-118.0187606,"OR_WS_170502030602_05_103182","River/Stream","Year round","Powder",2017-06-24,2017-10-25,"Cat5",89,89,92,NA,NA
+"37330-ORDEQ","Wolf Creek at outlet to Wolf Creek Reservoir",45.0639664,-118.0323515,"OR_WS_170502030602_05_103182","Reservoir","Year round","Powder",2017-07-02,2017-10-25,"Cat5",60,60,91,NA,NA
+"37339-ORDEQ","Johnson Creek at SE 307th Ave., Gresham, OR",45.46082097,-122.3470864,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2012-06-19,2015-09-06,"Cat5",217,148,185,NA,NA
+"37346-ORDEQ","Johnson Creek Tributary just east of 307th & Orient St.",45.46069918,-122.3450013,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2012-06-19,2012-10-22,"Cat5",61,61,92,NA,NA
+"37348-ORDEQ","Badger Creek at Telford Rd. north of Haley",45.44496926,-122.3851558,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2011-08-11,2015-08-31,"Cat5",56,56,154,NA,NA
+"37356-ORDEQ","Clatsop Creek at mouth (@ confl. w/Kelly Cr.)",45.47023336,-122.4956611,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2012-06-19,2013-10-22,"Cat5",92,92,137,NA,NA
+"37365-ORDEQ","Errol Springs Creek @ mouth off SE 42nd St. (T-23)",45.46354204,-122.6175771,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2012-06-19,2013-10-03,"Cat2",0,0,176,NA,NA
+"37371-ORDEQ","Kelley Creek @ Richey Road  (T-30)",45.46587749,-122.4768017,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-06-19,2013-10-22,"Cat5",94,94,92,NA,NA
+"37372-ORDEQ","Mitchell Creek @ Old Race Track (T-32)",45.46680095,-122.4913992,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2012-06-28,2016-07-20,"Cat5",377,273,223,NA,NA
+"37375-ORDEQ","Unnamed Johnson Creek Tributary @ SE 287th St., betwn. Stone & Wheeler Rds. (T-36)",45.4589015,-122.3676458,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2012-06-19,2012-11-07,"Cat2",0,0,92,NA,NA
+"37376-ORDEQ","Spring Creek @ mouth, outlet to Johnson Creek near Hwy. 224 (T-37)",45.4487,-122.6427,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2017-05-24,2017-10-11,"Cat5",76,76,92,NA,NA
+"37377-ORDEQ","Spring Creek @ Harrison Road, Milwaukie, OR",45.446,-122.6396,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2012-06-11,2012-11-05,"Cat2",0,0,92,NA,NA
+"37378-ORDEQ","Sunshine Creek @ SE Rugg Road, east of sharp bend",45.45994606,-122.4026488,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2014-06-17,2015-10-26,"Cat5",150,150,184,NA,NA
+"37379-ORDEQ","Sunshine Creek @ Sunshine Valley Road, just east of SE 242nd St.",45.44675867,-122.4134499,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2011-08-11,2012-11-07,"Cat5",46,46,143,NA,NA
+"37380-ORDEQ","Sunshine Creek, North Fork, @ SE 242nd St. no. of Sunshine Valley Road",45.44724151,-122.4138072,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2011-08-11,2013-10-07,"Cat5",212,212,235,NA,NA
+"37423-ORDEQ","North powder River d/s of Antone Creek",44.98586633,-118.088604,"OR_WS_170502030502_05_103177","River/Stream","Year round","Powder",2016-05-17,2017-03-14,"Cat2",0,0,92,NA,NA
+"37425-ORDEQ","Wolf Creek 3.5 miles u/s of Wolf Creek Reservoir",45.0953,-118.0743,"OR_WS_170502030601_05_103181","River/Stream","Year round","Powder",2017-05-12,2017-10-17,"Cat5",89,89,92,NA,NA
+"37426-ORDEQ","wolf Creek @ Hwy. I-84",45.04321648,-117.9360025,"OR_WS_170502030602_05_103182","River/Stream","Year round","Powder",2017-06-24,2017-10-17,"Cat5",50,50,92,NA,NA
+"37428-ORDEQ","Clear Creek at Gulick Road",44.86608397,-117.0529233,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2017-06-12,2017-10-16,"Cat5",115,115,92,NA,NA
+"37523-ORDEQ","Newsome Cr at Shotgun Rd",44.14495937,-120.4666163,"OR_WS_170703040604_05_102438","River/Stream","Year round","Deschutes",2010-08-02,2010-10-26,"Cat5",33,33,60,NA,NA
+"37543-ORDEQ","Butler Creek at SW Towle Ave and SW Butler Road (T-48)",45.46988104,-122.4473807,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2011-08-11,2011-10-03,"Cat2",0,0,51,NA,NA
+"37702-ORDEQ","Elk Cr at RM 2.4 near Baker City",44.73288015,-117.8844987,"OR_WS_170502030204_05_103160","River/Stream","Year round","Powder",2017-06-28,2017-10-25,"Cat2",0,0,92,NA,NA
+"37728-ORDEQ","Silver Cr below Fruit Cr",44.80893178,-118.2119452,"OR_WS_170502030101_05_103151","River/Stream","Year round","Powder",2017-05-28,2017-10-06,"Cat2",0,0,92,NA,NA
+"37730-ORDEQ","Deer Cr above Alder Cr",44.73581032,-118.0996171,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2017-05-28,2017-10-25,"Cat2",0,0,92,NA,NA
+"37788-ORDEQ","Silver Cr above Erin Cr",44.854217,-118.2688287,"OR_WS_170502030101_05_103151","River/Stream","Year round","Powder",2017-06-28,2017-10-06,"Cat5",9,9,92,NA,NA
+"37789-ORDEQ","Clear Cr below Deadrick Ditch",44.9510192,-117.126464,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2017-06-20,2017-10-16,"Cat5",86,86,92,NA,NA
+"37790-ORDEQ","East Pine at Gulick Lane",44.87480021,-117.0529806,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2017-07-24,2017-10-16,"Cat5",48,48,69,NA,NA
+"38046-ORDEQ","Mehl Creek at Mehl Road",43.57950984,-123.5947279,"OR_WS_171003030208_02_105318","River/Stream","Year round","Umpqua",2016-07-05,2017-10-02,"Cat5",42,42,175,NA,NA
+"38089-ORDEQ","Edson Ck  East Fork below Powerline Crossing",42.492572,-124.387284,"OR_WS_171003100803_02_104698","River/Stream","Year round","Rogue",2016-07-06,2016-09-26,"Cat2",0,0,83,NA,NA
+"38306-ORDEQ","Murphy Cr at Mouth",43.60902007,-124.1128101,"OR_WS_171003040401_02_105044","River/Stream","Year round","South Coast",2015-06-11,2015-08-26,"Cat5",21,21,57,NA,NA
+"38495-ORDEQ","Deer Cr near mouth (WF Millicoma R)",43.5821885,-123.9595136,"OR_WS_171003040204_02_106398","River/Stream","Year round","South Coast",2014-06-18,2014-10-06,"Cat5",32,32,92,NA,NA
+"38496-ORDEQ","Otter Creek near Mouth (WF Millicoma R)",43.58069897,-123.9635824,"OR_WS_171003040204_02_106398","River/Stream","Year round","South Coast",2014-06-18,2014-10-06,"Cat2",0,0,92,NA,NA
+"38502-ORDEQ","Joe's Cr near Mouth",43.57365746,-123.963897,"OR_WS_171003040204_02_106398","River/Stream","Year round","South Coast",2014-06-18,2014-10-06,"Cat2",0,0,82,NA,NA
+"38539-ORDEQ","Clear Branch below Laurance Lake at Gauging Station",45.46164288,-121.6534134,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-04-26,2012-11-12,"Cat5",75,42,185,NA,NA
+"38540-ORDEQ","Clear Branch at Laurance Lake Spillway Pool",45.4602305,-121.6563831,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-04-26,2012-11-12,"Cat5",110,68,185,NA,NA
+"38597-ORDEQ","Panther Creek at Deerlane Dr",45.00930483,-123.91046482,"OR_WS_171002040803_02_106178","River/Stream","Year round","Mid Coast",2015-07-01,2015-07-22,"Cat2",0,0,22,NA,NA
+"38667-ORDEQ","Badger Cr",45.45624761,-122.38284818,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2016-05-10,2016-11-09,"Cat5",50,50,92,NA,NA
+"38673-ORDEQ","Mitchell Cr above Centennial School Pond",45.46460822,-122.49136193,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-07-09,2016-08-08,"Cat5",134,119,277,NA,NA
+"38676-ORDEQ","Kelley Cr above Clatsop Cr",45.47023099,-122.4950591,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-06-12,2013-10-22,"Cat5",90,90,92,NA,NA
+"38676-ORDEQ","Kelley Cr above Clatsop Cr",45.47023099,-122.4950591,"OR_WS_170900120101_02_104550","River/Stream","Spawn","Willamette",2013-10-15,2013-10-22,"Cat2",NA,NA,NA,0,0
+"38677-ORDEQ","Sunshine Cr W Fk at SE Borges Rd (Trib to Johnson Cr)",45.44954304,-122.42081402,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-06-18,2015-10-26,"Cat5",68,68,224,NA,NA
+"38678-ORDEQ","Johnson Cr Trib at Mouth nr SE Stone Rd",45.46185483,-122.37261874,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-06-18,2013-10-16,"Cat5",78,78,92,NA,NA
+"38680-ORDEQ","Wahoo Cr  blw SE Flavel St (Johnson Cr Trib)",45.46881654,-122.52828605,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2013-07-09,2013-10-03,"Cat5",9,9,84,NA,NA
+"38681-ORDEQ","Kelley Cr at SE 190th Dr",45.46589005,-122.46667715,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2013-06-19,2013-12-16,"Cat5",37,37,92,NA,NA
+"38755-ORDEQ","Spring Creek u/s of Portland Waldorf School in Milwaukie",45.446234,-122.638242,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2012-06-11,2012-11-05,"Cat2",0,0,92,NA,NA
+"38756-ORDEQ","Badger Cr off Telford Rd West of SE 282nd Ave and Hwy 26 intersection",45.45224293,-122.3803696,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2014-06-09,2015-10-26,"Cat5",112,112,184,NA,NA
+"38757-ORDEQ","East Fork Sunshine Cr Johnson Cr Trib at Sunshine Valley Rd nr SE 250th Pl",45.44316023,-122.40630529,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2014-06-09,2015-10-26,"Cat5",23,23,184,NA,NA
+"38759-ORDEQ","Johnson Cr Trib Deardorff Cr at Mouth",45.47120612,-122.52521502,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2012-06-28,2012-11-07,"Cat5",7,7,57,NA,NA
+"39446-ORDEQ","Flat Cr US Junction City outfall (RM 9.5)",44.21830616,-123.2297883,"OR_WS_170900030603_02_104290","River/Stream","Year round","Willamette",2017-05-28,2017-11-13,"Cat5",4,4,0,NA,NA
+"39447-ORDEQ","Flat Cr at Ferguson Rd (RM 6.7)",44.25325453,-123.24169958,"OR_WS_170900030603_02_104290","River/Stream","Year round","Willamette",2017-05-30,2017-11-13,"Cat5",2,2,0,NA,NA
+"39448-ORDEQ","Flat Cr at 99W (RM 5.2)",44.27001686,-123.23467836,"OR_WS_170900030603_02_104290","River/Stream","Year round","Willamette",2017-05-28,2017-11-13,"Cat5",4,4,0,NA,NA
+"39449-ORDEQ","Flat Cr at Old River Rd (RM 2.5)",44.29550613,-123.23882777,"OR_WS_170900030603_02_104290","River/Stream","Year round","Willamette",2017-05-28,2017-11-13,"Cat5",4,4,0,NA,NA
+"39450-ORDEQ","Flat Cr at Cox Butte Rd (RM 8.0)",44.23699754,-123.23511751,"OR_WS_170900030603_02_104290","River/Stream","Year round","Willamette",2017-11-05,2017-11-13,"Cat3",0,0,0,NA,NA
+"40026-ORDEQ","Edson Creek US BPA  Access",42.49528358,-124.38870507,"OR_WS_171003100803_02_104698","River/Stream","Year round","Rogue",2016-06-28,2016-09-26,"Cat2",0,0,88,NA,NA
+"40041-ORDEQ","South Fork Bear CK at USFS Boundry",43.90269975,-123.96830314,"OR_WS_171002070102_02_106386","River/Stream","Year round","Mid Coast",2017-07-26,2017-10-09,"Cat2",0,0,67,NA,NA
+"40044-ORDEQ","Lower Grant Creek at Maple Creek Rd crossing",43.92749252,-124.02160268,"OR_WS_171002070101_02_106385","River/Stream","Year round","Mid Coast",2017-07-31,2017-10-09,"Cat2",0,0,62,NA,NA
+"40046-ORDEQ","Upper Grant Ck 0.4 miles US Maple Ck Rd crossing",43.93240071,-124.02550242,"OR_WS_171002070101_02_106385","River/Stream","Year round","Mid Coast",2017-07-31,2017-10-09,"Cat2",0,0,62,NA,NA
+"40049-ORDEQ","Upper Billy Moore Ck at BLM boundary",43.88290056,-123.9734995,"OR_WS_171002070102_02_106386","River/Stream","Year round","Mid Coast",2017-07-19,2017-10-03,"Cat2",0,0,74,NA,NA
+"40052-ORDEQ","Lower Billy Moore Ck 47 Meters US Fiddle Creek Confluence",43.87279142,-123.97720805,"OR_WS_171002070102_02_106386","River/Stream","Year round","Mid Coast",2017-07-05,2017-10-03,"Cat2",0,0,88,NA,NA
+"40060-ORDEQ","Morton CR US BPA Lines",42.94372674,-124.42485698,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2017-08-14,2017-09-14,"Cat5",11,11,32,NA,NA
+"40061-ORDEQ","Morton CK at RM 0.83",42.94890055,-124.4504,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-05,2017-08-16,"Cat5",12,8,88,NA,NA
+"40062-ORDEQ","Morton CK 845 Meters US of confluence with Butte CK",42.95286881,-124.45698238,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2017-08-14,2017-09-14,"Cat2",0,0,32,NA,NA
+"40083-ORDEQ","North Langlois Creek  227 meters US of bridge",42.9361126,-124.45883974,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-10,2008-10-18,"Cat2",0,0,83,NA,NA
+"40084-ORDEQ","Morton Creek at RM 2.03",42.94992846,-124.45076728,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-05,2008-10-02,"Cat3B",1,1,88,NA,NA
+"40085-ORDEQ","Butte CK 0.60 Miles DS of HWY 101",42.95607559,-124.44710905,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-10,2008-10-02,"Cat5",2,2,52,NA,NA
+"40086-ORDEQ","Butte CK at Mill CK ",42.95565942,-124.44938893,"OR_WS_171003060104_02_106331","River/Stream","Year round","South Coast",2008-07-10,2008-10-02,"Cat5",13,13,83,NA,NA
+"40087-ORDEQ","Ferguson Creek SFK at RM 0.48",44.24630223,-123.37860292,"OR_WS_170900030110_02_104252","River/Stream","Year round","Willamette",2017-07-20,2017-10-23,"Cat2",0,0,73,NA,NA
+"40091-ORDEQ","Owen's CK 0.3 miles US of Turnbow CK confluence",44.21318338,-123.34069464,"OR_WS_170900030109_02_104251","River/Stream","Year round","Willamette",2017-07-24,2017-10-26,"Cat5",23,23,69,NA,NA
+"40092-ORDEQ","Owens Ck US of Bear CK confluence",44.19439912,-123.30720134,"OR_WS_170900030109_02_104251","River/Stream","Year round","Willamette",2017-07-24,2017-10-26,"Cat5",9,9,18,NA,NA
+"40094-ORDEQ","Gettings CK 60 yds DS of crossing",43.84738273,-123.01730933,"OR_WS_180102020405_05_107058","River/Stream","Year round","Willamette",2017-08-14,2017-12-17,"Cat5",33,33,48,NA,NA
+"40095-ORDEQ","Deming Creek 20 yards N of Mouth ",42.42000792,-121.03106437,"OR_WS_180102020406_05_107059","River/Stream","Year round","Klamath",2017-08-06,2017-10-18,"Cat5",39,39,56,NA,NA
+"40114-ORDEQ","Fate CK 205 Meters US of Days Creek RD",42.989693,-123.10301615,"OR_WS_171003020505_02_105697","River/Stream","Year round","Umpqua",2013-07-04,2013-09-27,"Cat5",21,21,86,NA,NA
+"40126-ORDEQ","Fruitland Ck 0.2 RM downstream of Lardon Road",44.97169231,-122.93048841,"OR_WS_170900090108_02_104461","River/Stream","Year round","Willamette",2009-02-04,2009-04-22,"Cat3",0,0,0,NA,NA
+"40237-ORDEQ","Upper sunshine Creek at SE Tillstrom Rd",45.4400137,-122.42085415,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2017-05-22,2017-10-15,"Cat5",63,63,92,NA,NA
+"40256-ORDEQ","Clean Branch US of reservoir at RM 1.02",45.45682478,-121.67979048,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-05-21,2012-11-12,"Cat5",4,4,185,NA,NA
+"40257-ORDEQ","Pinnacle Creek at gauging station",45.45373915,-121.66513489,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-05-21,2012-11-12,"Cat2",0,0,185,NA,NA
+"40258-ORDEQ","Clear Branch south dam springs",45.45948505,-121.65684687,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-05-12,2012-11-12,"Cat2",0,0,185,NA,NA
+"40259-ORDEQ","Reservoir outfall in MFID powerhouse below dam",45.46006826,-121.65585445,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-04-26,2012-07-18,"Cat5",223,150,181,NA,NA
+"40260-ORDEQ","Clean Branch north dam springs",45.4607888,-121.65657597,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-05-12,2012-11-12,"Cat2",0,0,185,NA,NA
+"40261-ORDEQ","Coe Branch at road bridge",45.45868689,-121.64836036,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2012-05-13,2012-10-14,"Cat5",37,37,92,NA,NA
+"40262-ORDEQ","Coe Branch upstream of MFID diversion structure",45.45377367,-121.65172414,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-04-26,2012-08-22,"Cat5",90,71,185,NA,NA
+"40265-ORDEQ","South Fork Siuslaw at Territorial HWY and Gowdyville Road",43.80063303,-123.22606868,"OR_WS_171002060301_02_105629","River/Stream","Year round","Mid Coast",2017-06-27,2017-10-15,"Cat5",34,34,184,NA,NA
+"40266-ORDEQ","Munsel Creek at Greenway Park ",43.98868688,-124.09381464,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2017-06-13,2017-10-15,"Cat2",0,0,184,NA,NA
+"40267-ORDEQ","Ackerley Creek upstream of Martin Road",44.01077302,-124.08421464,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2017-06-12,2017-10-15,"Cat5",228,228,184,NA,NA
+"40267-ORDEQ","Ackerley Creek upstream of Martin Road",44.01077302,-124.08421464,"OR_WS_171002060804_02_106406","River/Stream","Spawn","Mid Coast",2017-10-15,2017-10-15,"Cat5",NA,NA,NA,2,2
+"40268-ORDEQ","Munsel Creek at  Spruce St. ",43.97638795,-124.09949341,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2017-06-12,2017-10-10,"Cat2",0,0,169,NA,NA
+"40270-ORDEQ","Lake Creek below Hult Dam Outlet Pipe",44.23959116,-123.494881,"OR_WS_171002060601_02_106169","River/Stream","Year round","Mid Coast",2017-06-28,2017-10-09,"Cat2",0,0,163,NA,NA
+"40273-ORDEQ","Upper Deming Creek 100 feet W of diversion",42.44800111,-120.954,"OR_WS_180102020405_05_107058","River/Stream","Year round","Klamath",2017-07-26,2017-10-18,"Cat2",0,0,67,NA,NA
+"40299-ORDEQ","Coe Branch upstream of Clear Branch Confluence",45.46254882,-121.6456762,"OR_WS_170701050504_02_101999","River/Stream","Year round","Hood",2009-05-12,2010-10-26,"Cat5",84,84,184,NA,NA
+"40300-ORDEQ","Laurance lake at buoy",45.45879145,-121.65784464,"OR_WS_170701050504_02_101999","Lake","Year round","Hood",2010-05-17,2010-10-26,"Cat5",127,127,92,NA,NA
+"40317-ORDEQ","South Scappoose Creek 129 m above Otto Miller Rd",45.74475381,-122.9614517,"OR_WS_170900120301_02_104557","River/Stream","Year round","Willamette",2017-07-05,2017-10-11,"Cat5",5,5,88,NA,NA
+"40371-ORDEQ","Gettings Creek North Fork DS of Witcher Gateway Rd",43.83670099,-123.0142009,"OR_WS_170900020401_02_104238","River/Stream","Year round","Willamette",2017-08-14,2017-11-07,"Cat5",24,24,48,NA,NA
+"40426-ORDEQ","Whychus Creek 364 m DS of Rd 1514 bridge",44.1922894,-121.66393487,"OR_WS_170703010701_05_102297","River/Stream","Year round","Deschutes",2014-03-30,2017-08-10,"Cat2",0,0,93,NA,NA
+"40432-ORDEQ","Tumalo Creek at mouth ",44.11606085,-121.33933292,"OR_WS_170703010502_05_102292","River/Stream","Year round","Deschutes",2014-05-21,2014-09-30,"Cat5",13,13,92,NA,NA
+"40513-ORDEQ","Plunkett Creek just upstream of Highway 223",44.65266721,-123.42692091,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-10,2017-09-27,"Cat2",0,0,89,NA,NA
+"40514-ORDEQ","Maxfield Creek about 1000 ft upstream of Highway 223",44.69287401,-123.42058464,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-06,2017-10-10,"Cat5",57,57,92,NA,NA
+"40515-ORDEQ","Maxfield Creek near Pit Rd.",44.69632738,-123.4005179,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-06,2017-10-08,"Cat5",53,53,92,NA,NA
+"40516-ORDEQ","Woods Creek about 1.5 miles east of Highway 223 on private roads",44.66474167,-123.40674268,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-28,2017-10-08,"Cat2",0,0,92,NA,NA
+"40517-ORDEQ","South Fork Pedee Creek about 900 ft upstream of Pedee Creek Road",44.77307107,-123.45246268,"OR_WS_170900030504_02_104278","River/Stream","Year round","Willamette",2017-06-09,2017-09-27,"Cat5",8,8,89,NA,NA
+"40522-ORDEQ","Woods Creek just upstream of Price Creek Road",44.68338666,-123.43237854,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-07-03,2017-10-08,"Cat5",11,11,90,NA,NA
+"40524-ORDEQ","Grant Creek at Frost Road culvert",44.83914596,-123.41033464,"OR_WS_170900030507_02_104281","River/Stream","Year round","Willamette",2017-06-09,2017-09-27,"Cat2",0,0,89,NA,NA
+"40525-ORDEQ","Price Creek just downstream of 90-degree bend in Pit Road",44.67774563,-123.41138691,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-10,2017-10-08,"Cat5",14,14,92,NA,NA
+"40528-ORDEQ","Ritner Creek at upstream end of county park",44.7401881,-123.493,"OR_WS_170900030504_02_104278","River/Stream","Year round","Willamette",2017-06-08,2017-09-30,"Cat5",24,24,92,NA,NA
+"40529-ORDEQ","Ritner Creek at Gage Road culvert",44.7431664,-123.50519797,"OR_WS_170900030504_02_104278","River/Stream","Year round","Willamette",2017-06-08,2017-09-30,"Cat2",0,0,85,NA,NA
+"40530-ORDEQ","Maxfield Creek at most downstream bridge on Maxfield Creek Rd.",44.69415218,-123.41010413,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-08,2017-10-10,"Cat5",51,51,92,NA,NA
+"40531-ORDEQ","Maxfield Creek just upstream of Luckiamute R",44.69872141,-123.43846146,"OR_WS_170900030503_02_104277","River/Stream","Year round","Willamette",2017-06-06,2017-10-10,"Cat5",35,35,92,NA,NA
+"CRGNSA-002","Bridal Veil Temp Monitor",45.55607948,-122.1825408,"OR_WS_170800010803_15_103654","River/Stream","Year round","Sandy",2010-06-30,2010-09-22,"Cat2",0,0,84,NA,NA
+"CRGNSA-007","Horsetail Water Temp Probe",45.59052858,-122.0693824,"OR_WS_170800010802_15_103653","River/Stream","Year round","Columbia River",2012-06-19,2012-10-01,"Cat2",0,0,92,NA,NA
+"CRGNSA-008","McCord Water Temp Monitor",45.6144034,-121.997059,"OR_WS_170800010801_15_103707","River/Stream","Year round","Sandy",2014-07-23,2014-10-15,"Cat5",40,40,70,NA,NA
+"CRGNSA-008","McCord Water Temp Monitor",45.6144034,-121.997059,"OR_WS_170800010801_15_103707","River/Stream","Spawn","Sandy",2014-08-15,2014-10-15,"Cat5",NA,NA,NA,62,62
+"CRGNSA-009","Moffett Water Temperature Monitor",45.62298199,-121.9766136,"OR_WS_170800010801_15_103707","River/Stream","Year round","Sandy",2014-07-23,2014-10-15,"Cat5",39,39,70,NA,NA
+"CRGNSA-009","Moffett Water Temperature Monitor",45.62298199,-121.9766136,"OR_WS_170800010801_15_103707","River/Stream","Spawn","Sandy",2014-08-15,2014-10-15,"Cat5",NA,NA,NA,62,62
+"CRGNSA-011","Multnomah Creek mu15_LTWT",45.57867585,-122.1296971,"OR_WS_170800010803_15_103654","River/Stream","Year round","Sandy",2008-07-01,2010-10-19,"Cat5",21,21,184,NA,NA
+"CRGNSA-012","Multnomah Creek Upper mu40_LTWT",45.57777447,-122.1201179,"OR_WS_170800010803_15_103654","River/Stream","Year round","Sandy",2008-06-04,2017-08-29,"Cat5",23,17,60,NA,NA
+"CRGNSA-013","Oneonta Water Temp Probe",45.58987397,-122.075404,"OR_WS_170800010802_15_103653","River/Stream","Year round","Columbia River",2012-06-19,2012-10-01,"Cat2",0,0,92,NA,NA
+"CRGNSA-014","Viento Cr. 2013 Water Temp Monitor 1",45.69612843,-121.6679001,"OR_WS_170701051106_02_102614","River/Stream","Year round","Hood",2013-07-08,2013-09-16,"Cat2",0,0,71,NA,NA
+"CRGNSA-015","Wahkeena Creek wa20_LTWT",45.57791417,-122.129531,"OR_WS_170800010803_15_103654","River/Stream","Year round","Sandy",2008-07-01,2011-10-24,"Cat2",0,0,92,NA,NA
+"CRGNSA-015","Wahkeena Creek wa20_LTWT",45.57791417,-122.129531,"OR_WS_170800010803_15_103654","River/Stream","Spawn","Sandy",2011-10-15,2011-10-24,"Cat2",NA,NA,NA,0,0
+"DNF_001","ab2750_LTWT",44.56057263,-121.6298686,"OR_WS_170703010911_05_102321","River/Stream","Year round","Deschutes",2008-06-06,2009-10-15,"Cat5",18,18,184,NA,NA
+"DNF_002","ba4856_WT",43.35549339,-121.8847649,"OR_WS_170703020102_05_102334","River/Stream","Year round","Deschutes",2008-06-18,2008-10-26,"Cat2",0,0,92,NA,NA
+"DNF_004","bc4200_LTWT",43.72362831,-121.795478,"OR_WS_170703010205_05_102279","River/Stream","Year round","Deschutes",2011-07-05,2014-10-29,"Cat5",36,36,270,NA,NA
+"DNF_005","bm4633_LTWT",43.48256419,-121.9094742,"OR_WS_170703020202_05_102340","River/Stream","Year round","Deschutes",2009-06-11,2009-10-12,"Cat5",10,10,92,NA,NA
+"DNF_006","bm4738_LTWT",43.36704885,-121.9660553,"OR_WS_170703020201_05_102339","River/Stream","Year round","Deschutes",2008-06-19,2008-10-26,"Cat2",0,0,92,NA,NA
+"DNF_007","br3130_LTWT",44.50619461,-121.6620093,"OR_WS_170703010907_05_102318","River/Stream","Year round","Deschutes",2009-06-15,2011-10-17,"Cat5",41,41,184,NA,NA
+"DNF_008","ca5731_WT",44.04131985,-121.7058796,"OR_WS_170703010101_05_102266","River/Stream","Year round","Deschutes",2012-08-08,2012-10-05,"Cat2",0,0,54,NA,NA
+"DNF_009","cd2600_WT",44.57537843,-121.6195805,"OR_WS_170703010909_05_102320","River/Stream","Year round","Deschutes",2009-06-12,2009-10-15,"Cat2",0,0,92,NA,NA
+"DNF_010","cd2800_LTWT",44.56716839,-121.6394626,"OR_WS_170703010909_05_102320","River/Stream","Year round","Deschutes",2010-07-05,2015-10-26,"Cat2",0,0,276,NA,NA
+"DNF_011","cd3120_LTWT",44.58307908,-121.6777531,"OR_WS_170703010909_05_102320","River/Stream","Year round","Deschutes",2008-06-06,2008-10-06,"Cat2",0,0,92,NA,NA
+"DNF_012","ck4690_WT",43.8443139,-121.8889294,"OR_WS_170703010105_05_102270","River/Stream","Year round","Deschutes",2012-07-24,2012-10-22,"Cat5",53,53,69,NA,NA
+"DNF_013","ct4460_LTWT",43.81748432,-121.7959974,"OR_WS_170703010107_05_102272","River/Stream","Year round","Deschutes",2009-06-11,2009-10-12,"Cat2",0,0,92,NA,NA
+"DNF_015","cy2926_LTWT",44.50424572,-121.6645858,"OR_WS_170703010907_05_102318","River/Stream","Year round","Deschutes",2009-06-15,2009-10-11,"Cat2",0,0,92,NA,NA
+"DNF_016","cy3200_WT",44.50936182,-121.723001,"OR_WS_170703010907_05_102318","River/Stream","Year round","Deschutes",2008-06-09,2008-10-05,"Cat5",11,11,92,NA,NA
+"DNF_031","dr4165_LTWT",43.81779077,-121.494692,"OR_WS_170703010306_05_102286","River/Stream","Year round","Deschutes",2009-06-11,2014-10-29,"Cat2",0,0,276,NA,NA
+"DNF_032","dr4230_LTWT",43.74074945,-121.6068305,"OR_WS_170703010301_05_102282","River/Stream","Year round","Deschutes",2009-05-12,2015-06-09,"Cat5",7,7,254,NA,NA
+"DNF_034","dr4445_LTWT",43.81631491,-121.7757935,"OR_WS_170703010104_05_102269","River/Stream","Year round","Deschutes",2010-07-06,2015-09-16,"Cat5",625,358,274,NA,NA
+"DNF_036","dr4750_LTWT",43.89634966,-121.7641581,"OR_WS_170703010104_05_102269","River/Stream","Year round","Deschutes",2008-06-16,2015-05-26,"Cat5",501,273,269,NA,NA
+"DNF_038","fr4160_LTWT",43.79435043,-121.5307175,"OR_WS_170703010302_05_102283","River/Stream","Year round","Deschutes",2009-06-11,2014-06-10,"Cat5",339,183,272,NA,NA
+"DNF_041","If_Horse_WT",44.3560262,-121.6181,"OR_WS_170703010705_05_102300","River/Stream","Year round","Deschutes",2012-07-24,2015-11-16,"Cat5",10,10,269,NA,NA
+"DNF_042","If_Us_WT",44.36672323,-121.628691,"OR_WS_170703010705_05_102300","River/Stream","Year round","Deschutes",2012-07-25,2014-11-03,"Cat5",6,6,229,NA,NA
+"DNF_043","if3180_LTWT",44.35083733,-121.5517847,"OR_WS_170703010707_05_102302","River/Stream","Year round","Deschutes",2009-06-16,2015-11-16,"Cat5",16,8,183,NA,NA
+"DNF_044","if3239_LTWT",44.36154761,-121.622726,"OR_WS_170703010705_05_102300","River/Stream","Year round","Deschutes",2008-06-10,2015-11-16,"Cat5",14,13,269,NA,NA
+"DNF_045","if3330_WT",44.37431613,-121.6400359,"OR_WS_170703010705_05_102300","River/Stream","Year round","Deschutes",2014-11-11,2015-11-16,"Cat5",11,11,92,NA,NA
+"DNF_046","jf2700_LTWT",44.57582466,-121.6205635,"OR_WS_170703010910_05_102626","River/Stream","Year round","Deschutes",2008-07-25,2011-10-17,"Cat2",0,0,273,NA,NA
+"DNF_047","jf2800_LTWT",44.56901819,-121.6395441,"OR_WS_170703010910_05_102626","River/Stream","Year round","Deschutes",2009-06-12,2016-05-25,"Cat2",0,0,276,NA,NA
+"DNF_048","jk2897_LTWT",44.4971923,-121.6553938,"OR_WS_170703010906_05_102317","River/Stream","Year round","Deschutes",2008-06-09,2016-05-25,"Cat2",0,0,272,NA,NA
+"DNF_050","ld4410_WT",43.47765215,-121.6892762,"OR_WS_170703020106_05_102338","River/Stream","Year round","Deschutes",2008-05-30,2008-10-20,"Cat5",63,63,92,NA,NA
+"DNF_051","ld4420_LTWT",43.46758401,-121.6935771,"OR_WS_170703020106_05_102338","River/Stream","Year round","Deschutes",2008-05-30,2008-10-20,"Cat5",58,58,92,NA,NA
+"DNF_052","ld4500_LTWT",43.4536731,-121.735915,"OR_WS_170703020105_05_102337","River/Stream","Year round","Deschutes",2008-05-30,2008-10-20,"Cat5",55,55,92,NA,NA
+"DNF_054","lk3000_LTWT",44.43798367,-121.6660483,"OR_WS_170703010904_05_102315","River/Stream","Year round","Deschutes",2008-06-10,2015-10-26,"Cat5",970,389,269,NA,NA
+"DNF_055","ln3441_LTWT",44.41729337,-121.756598,"OR_WS_170703010903_05_102314","River/Stream","Year round","Deschutes",2008-06-09,2016-02-29,"Cat5",586,262,275,NA,NA
+"DNF_056","mc4570_WT",43.56385069,-121.9154496,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2009-10-21,2010-06-09,"Cat3",0,0,0,NA,NA
+"DNF_057","mc4600_LTWT",43.56293785,-121.9191676,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2009-10-21,2015-06-08,"Cat2",0,0,273,NA,NA
+"DNF_059","mt2900_LTWT",44.4845343,-121.6397284,"OR_WS_170703010911_05_102321","River/Stream","Year round","Deschutes",2008-06-06,2010-10-18,"Cat5",148,96,272,NA,NA
+"DNF_060","mt2990_LTWT",44.4473448,-121.6392588,"OR_WS_170703010911_05_102321","River/Stream","Year round","Deschutes",2008-06-06,2009-10-18,"Cat5",94,94,184,NA,NA
+"DNF_061","oc4394_LTWT",43.58727701,-121.8586701,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2009-10-21,2010-06-09,"Cat3",0,0,0,NA,NA
+"DNF_062","oc4440_LTWT",43.57543305,-121.8808518,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2009-10-21,2014-06-10,"Cat5",449,299,272,NA,NA
+"DNF_063","oc4580_LTWT",43.56430921,-121.9139146,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2009-10-21,2010-06-09,"Cat3",0,0,0,NA,NA
+"DNF_064","oc4800_LTWT",43.54833364,-121.9627611,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2009-10-21,2012-10-23,"Cat5",510,360,272,NA,NA
+"DNF_065","pc4290_LTWT",43.72707708,-121.4231753,"OR_WS_170703020703_05_102367","River/Stream","Year round","Deschutes",2010-07-05,2014-06-10,"Cat5",177,124,180,NA,NA
+"DNF_067","pl4121_WT",44.22103228,-121.6253867,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2013-07-16,2013-10-23,"Cat2",0,0,77,NA,NA
+"DNF_068","ro3060_LTWT",44.50896851,-121.6875373,"OR_WS_170703010907_05_102318","River/Stream","Year round","Deschutes",2008-06-09,2011-10-17,"Cat2",0,0,92,NA,NA
+"DNF_069","Rock_WT",44.05526462,-121.5964193,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2014-08-12,2014-10-22,"Cat2",0,0,50,NA,NA
+"DNF_070","sd5436_LTWT",44.0276475,-121.7246688,"OR_WS_170703010101_05_102266","River/Stream","Year round","Deschutes",2011-07-21,2014-10-22,"Cat2",0,0,171,NA,NA
+"DNF_071","sh3149_WT",44.5184741,-121.6995714,"OR_WS_170703010907_05_102318","River/Stream","Year round","Deschutes",2009-06-15,2009-10-07,"Cat2",0,0,92,NA,NA
+"DNF_072","sn4400_LTWT",44.18881291,-121.6556249,"OR_WS_170703010701_05_102297","River/Stream","Year round","Deschutes",2010-07-02,2015-06-28,"Cat2",0,0,183,NA,NA
+"DNF_073","sp2930_WT",44.45644766,-121.6438011,"OR_WS_170703010904_05_102315","River/Stream","Year round","Deschutes",2008-07-01,2008-10-05,"Cat2",0,0,92,NA,NA
+"DNF_081","sq3180_LTWT",44.28841585,-121.541755,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2008-04-25,2012-08-25,"Cat2",0,0,251,NA,NA
+"DNF_082","sq3240_LTWT",44.27362698,-121.5548191,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2009-04-28,2014-10-30,"Cat2",0,0,226,NA,NA
+"DNF_083","sq3510_LTWT",44.23390099,-121.5670371,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2009-04-29,2012-09-08,"Cat2",0,0,254,NA,NA
+"DNF_084","sq4400_LTWT",44.19230911,-121.6639074,"OR_WS_170703010701_05_102297","River/Stream","Year round","Deschutes",2008-06-13,2012-10-17,"Cat2",0,0,184,NA,NA
+"DNF_085","st2000_LTWT",44.59857794,-121.4558739,"OR_WS_170703011003_05_102324","River/Stream","Year round","Deschutes",2009-06-16,2009-10-07,"Cat5",109,109,92,NA,NA
+"DNF_086","su4910_WT",43.47879232,-122.0450592,"OR_WS_170703020203_05_102341","River/Stream","Year round","Deschutes",2008-06-30,2008-10-27,"Cat5",58,58,92,NA,NA
+"DNF_087","sw4445_LTWT",43.81600808,-121.7749655,"OR_WS_170703010104_05_102269","River/Stream","Year round","Deschutes",2010-07-06,2014-06-12,"Cat5",274,186,272,NA,NA
+"DNF_088","sw4520_LTWT",43.86078,-121.76546,"OR_WS_170703010104_05_102269","River/Stream","Year round","Deschutes",2008-06-16,2008-10-07,"Cat2",0,0,92,NA,NA
+"DNF_089","sw4640_LTWT",43.87919,-121.7678,"OR_WS_170703010104_05_102269","River/Stream","Year round","Deschutes",2008-06-16,2008-10-07,"Cat2",0,0,92,NA,NA
+"DNF_090","tb4625_LTWT",43.55712812,-121.9189559,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2008-06-30,2015-11-12,"Cat2",0,0,274,NA,NA
+"DNF_091","tb4680_WT",43.5549298,-121.9362968,"OR_WS_170703010202_05_102276","River/Stream","Year round","Deschutes",2008-06-30,2008-10-08,"Cat5",22,22,92,NA,NA
+"DNF_092","tc4790_LTWT",43.58439752,-122.0438583,"OR_WS_170703010201_05_102275","River/Stream","Year round","Deschutes",2010-02-26,2015-06-08,"Cat2",0,0,273,NA,NA
+"DNF_093","tl4790_WT",44.03118793,-121.5226525,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2012-07-03,2012-10-18,"Cat2",0,0,90,NA,NA
+"DNF_094","tm3560_LTWT",44.08908604,-121.3673107,"OR_WS_170703010502_05_102292","River/Stream","Year round","Deschutes",2008-06-19,2008-10-07,"Cat2",0,0,81,NA,NA
+"DNF_095","tm3880_LTWT",44.05061307,-121.4142736,"OR_WS_170703010502_05_102292","River/Stream","Year round","Deschutes",2012-07-03,2015-11-15,"Cat2",0,0,276,NA,NA
+"DNF_096","tm4780_LTWT",44.03214796,-121.5204779,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2009-05-27,2015-08-04,"Cat2",0,0,276,NA,NA
+"DNF_097","tm4960_LTWT",44.03091,-121.56412,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2008-06-19,2009-10-10,"Cat5",5,5,184,NA,NA
+"DNF_098","tm5100_LTWT",44.03517478,-121.568075,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2008-06-11,2008-10-07,"Cat2",0,0,92,NA,NA
+"DNF_099","tmf5640_WT",44.04633976,-121.5986415,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2012-07-25,2012-10-18,"Cat2",0,0,68,NA,NA
+"DNF_100","tn5600_WT",44.04674343,-121.5993199,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2012-07-25,2012-10-18,"Cat5",18,18,68,NA,NA
+"DNF_101","tr4280_LTWT",44.25273279,-121.6928504,"OR_WS_170703010703_05_102299","River/Stream","Year round","Deschutes",2009-06-16,2015-05-20,"Cat2",0,0,275,NA,NA
+"DNF_104","ts4830_LTWT",44.02775565,-121.5595749,"OR_WS_170703010501_05_102291","River/Stream","Year round","Deschutes",2010-07-06,2010-10-18,"Cat2",0,0,87,NA,NA
+"DNF_107","WsSide_WT",44.27308302,-121.555134,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2012-08-08,2012-10-16,"Cat2",0,0,54,NA,NA
+"DNF_108","wy3282_WT",44.2725855,-121.5559263,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2012-08-08,2014-10-30,"Cat2",0,0,216,NA,NA
+"DNF_109","wy3344_WT",44.26064362,-121.5519697,"OR_WS_170703010702_05_102298","River/Stream","Year round","Deschutes",2012-08-08,2015-06-28,"Cat2",0,0,216,NA,NA
+"FWNF-001","AgencyDitch_AD4180_WT",42.60843179,-121.9344136,"OR_WS_180102030105_05_107092","River/Stream","Year round","Klamath",2009-07-07,2010-10-21,"Cat2",0,0,178,NA,NA
+"FWNF-002","AntelopeCr_AT5870_WT",42.20859231,-120.6001831,"OR_WS_180200010105_05_102682","River/Stream","Year round","Goose & Summer Lakes",2011-06-30,2011-10-30,"Cat2",0,0,92,NA,NA
+"FWNF-004","AugurCr_AU5235_LTWT",42.47748784,-120.6617075,"OR_WS_171200060102_05_106740","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2013-10-27,"Cat5",347,148,221,NA,NA
+"FWNF-006","BauersCr_BS5200_LTWT",42.37736138,-120.4369926,"OR_WS_180200010202_05_102684","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2017-10-04,"Cat5",15,15,253,NA,NA
+"FWNF-007","BearCr_BE4800_LTWT",42.61130347,-120.6051177,"OR_WS_171200060202_05_106746","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2017-10-09,"Cat5",38,26,272,NA,NA
+"FWNF-008","BenYoungCr_BY5040_LTWT",42.49147296,-120.562602,"OR_WS_171200060106_05_106744","River/Stream","Year round","Goose & Summer Lakes",2010-07-08,2013-10-24,"Cat5",46,44,88,NA,NA
+"FWNF-009","BenYoungCr_BY5120_LTWT",42.4807787,-120.5439969,"OR_WS_171200060106_05_106744","River/Stream","Year round","Goose & Summer Lakes",2009-06-24,2017-10-09,"Cat5",339,156,267,NA,NA
+"FWNF-010","BenYoungCr_BY5400_WT",42.4490638,-120.5308434,"OR_WS_171200060105_05_106743","River/Stream","Year round","Goose & Summer Lakes",2013-07-02,2017-08-31,"Cat5",150,119,241,NA,NA
+"FWNF-011","BenYoungCr_BY5560_LTWT",42.43932014,-120.5212899,"OR_WS_171200060105_05_106743","River/Stream","Year round","Goose & Summer Lakes",2010-07-08,2010-10-12,"Cat5",29,29,85,NA,NA
+"FWNF-028","BurntCr_BN5640_WT",42.13329041,-120.1662785,"OR_WS_171200070305_05_106773","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2010-10-04,"Cat5",110,110,184,NA,NA
+"FWNF-029","BurntCr_BN6000_LTWT",42.12001975,-120.202673,"OR_WS_171200070305_05_106773","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2016-07-29,"Cat5",556,186,256,NA,NA
+"FWNF-030","CamasCr_CA5500_LTWT",42.21097853,-120.1498467,"OR_WS_171200070307_05_106775","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2017-10-04,"Cat5",233,115,162,NA,NA
+"FWNF-031","CampCr_CM5400_LTWT",42.32473515,-120.4756807,"OR_WS_180200010204_05_102686","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2017-10-09,"Cat5",69,65,253,NA,NA
+"FWNF-036","CoffeepotCr_CO5080_LTWT",42.54700473,-120.6525052,"OR_WS_171200060201_05_106745","River/Stream","Year round","Goose & Summer Lakes",2011-06-15,2017-07-10,"Cat5",15,15,180,NA,NA
+"FWNF-039","CottonwoodCr_CO5200_WT",42.27293358,-120.5708827,"OR_WS_180200010207_05_102689","River/Stream","Year round","Goose & Summer Lakes",2008-05-08,2008-09-30,"Cat2",0,0,92,NA,NA
+"FWNF-041","CoxCr_CX5280_LTWT",42.38375676,-120.3981139,"OR_WS_180200010201_05_102683","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2017-10-04,"Cat5",41,24,253,NA,NA
+"FWNF-043","CraneCr_CR5200_LTWT",42.12013534,-120.2720414,"OR_WS_180200010301_05_102693","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2008-10-05,"Cat5",48,48,92,NA,NA
+"FWNF-045","CrookedCr_CK5200_LTWT",42.33739607,-120.2706941,"OR_WS_171200060301_05_106747","River/Stream","Year round","Goose & Summer Lakes",2008-05-01,2017-10-04,"Cat2",0,0,161,NA,NA
+"FWNF-046","DairyCr_DY5200_LTWT",42.46802828,-120.6421318,"OR_WS_171200060102_05_106740","River/Stream","Year round","Goose & Summer Lakes",2008-02-20,2009-10-06,"Cat2",0,0,92,NA,NA
+"FWNF-047","DairyCr_DY5270_LTWT",42.47561787,-120.6844868,"OR_WS_171200060102_05_106740","River/Stream","Year round","Goose & Summer Lakes",2010-07-08,2017-10-09,"Cat2",0,0,277,NA,NA
+"FWNF-048","DairyCr_DY5800_LTWT",42.48286067,-120.7459478,"OR_WS_171200060101_05_106739","River/Stream","Year round","Goose & Summer Lakes",2008-01-07,2008-05-12,"Cat3",0,0,0,NA,NA
+"FWNF-049","DeadHorseCr_DH5360_LTWT",42.47653875,-120.7039113,"OR_WS_171200060101_05_106739","River/Stream","Year round","Goose & Summer Lakes",2009-06-24,2017-10-09,"Cat2",0,0,262,NA,NA
+"FWNF-050","DeepCr_DP5700_LTWT",42.06276923,-120.1591809,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2016-07-10,"Cat5",188,96,184,NA,NA
+"FWNF-051","DeerCr_DER5460_LTWT",42.47122573,-120.7262927,"OR_WS_171200060101_05_106739","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2017-10-09,"Cat5",54,42,276,NA,NA
+"FWNF-055","DentCr_DTT5400_WT",42.22404118,-120.7938157,"OR_WS_180200010102_05_102679","River/Stream","Year round","Goose & Summer Lakes",2009-06-16,2009-10-04,"Cat5",29,29,92,NA,NA
+"FWNF-056","DismalCr_DS5720_WT",42.06214377,-120.1520737,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2016-06-27,2017-10-04,"Cat2",0,0,165,NA,NA
+"FWNF-057","DismalCr_DS6900_LTWT",42.0117215,-120.1446893,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2012-07-04,2015-09-29,"Cat5",155,113,268,NA,NA
+"FWNF-058","DogCr_DO5000_WT",42.60138822,-120.6116447,"OR_WS_171200060202_05_106746","River/Stream","Year round","Goose & Summer Lakes",2012-06-25,2017-10-09,"Cat5",170,106,177,NA,NA
+"FWNF-060","DrewsCr_DR5020_LTWT",42.27501487,-120.7550733,"OR_WS_180200010101_05_102678","River/Stream","Year round","Goose & Summer Lakes",2008-05-08,2017-10-10,"Cat5",176,90,257,NA,NA
+"FWNF-061","DrewsCr_DR5720_LTWT",42.32388129,-120.7223598,"OR_WS_180200010101_05_102678","River/Stream","Year round","Goose & Summer Lakes",2008-06-16,2017-10-10,"Cat5",87,49,165,NA,NA
+"FWNF-062","EastWithamCr_EWI6560_LTWT",42.60962036,-120.7392647,"OR_WS_171200060103_05_106741","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2016-07-30,"Cat5",9,6,264,NA,NA
+"FWNF-063","EFCampCr_ECM5320_LTWT",42.32512042,-120.4671212,"OR_WS_180200010204_05_102686","River/Stream","Year round","Goose & Summer Lakes",2008-05-08,2009-10-05,"Cat5",176,91,184,NA,NA
+"FWNF-064","ElderCr_EL5300_LTWT",42.5090346,-120.6659859,"OR_WS_171200060103_05_106741","River/Stream","Year round","Goose & Summer Lakes",2008-02-26,2017-08-07,"Cat5",200,117,272,NA,NA
+"FWNF-065","FishCr_FS5730_WT",42.22640863,-120.6147655,"OR_WS_180200010104_05_102681","River/Stream","Year round","Goose & Summer Lakes",2010-06-16,2010-10-03,"Cat5",37,37,92,NA,NA
+"FWNF-069","FourmileSpring_FR4144_WT",42.63279327,-122.0745539,"OR_WS_180102030301_05_107096","River/Stream","Year round","Klamath",2010-07-19,2017-11-08,"Cat2",0,0,166,NA,NA
+"FWNF-070","GreenCr_GN5360_WT",42.06647544,-120.7349752,"OR_WS_180200010104_05_102681","River/Stream","Year round","Goose & Summer Lakes",2011-06-14,2014-08-07,"Cat5",124,91,173,NA,NA
+"FWNF-071","GuyerCr_GY5360_LTWT",42.94201278,-121.1697443,"OR_WS_171200050205_05_106931","River/Stream","Year round","Goose & Summer Lakes",2008-02-24,2017-10-01,"Cat2",0,0,277,NA,NA
+"FWNF-073","HoneyCr_HO6200_LTWT",42.37166888,-120.194774,"OR_WS_171200070401_05_106779","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2017-08-27,"Cat5",78,57,131,NA,NA
+"FWNF-075","JackCr_JK5300_WT",43.23478637,-121.6122285,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2013-06-24,2014-07-31,"Cat2",0,0,123,NA,NA
+"FWNF-076","JackCr_JK5430_LTWT",43.25839026,-121.614331,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2009-07-24,2015-06-08,"Cat5",152,137,274,NA,NA
+"FWNF-077","JK Group 1A_LT",43.23763739,-121.6107394,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2017-07-10,"Cat5",34,34,277,NA,NA
+"FWNF-080","JK Group 2A_LT",43.23711761,-121.6111525,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2017-10-02,"Cat2",0,0,184,NA,NA
+"FWNF-081","JK Group 2B_LT",43.23675008,-121.6113613,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2014-08-12,"Cat5",34,34,32,NA,NA
+"FWNF-083","JK Group 3B_LT",43.23608335,-121.6126111,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2014-09-08,"Cat5",8,8,70,NA,NA
+"FWNF-085","JK Group 4A_LT",43.23447026,-121.6119382,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2016-06-23,2017-10-02,"Cat5",42,42,184,NA,NA
+"FWNF-087","JK1",43.2250308,-121.5973733,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2014-10-06,"Cat2",0,0,92,NA,NA
+"FWNF-088","JK2",43.22710359,-121.6007004,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2014-10-06,"Cat5",2,2,92,NA,NA
+"FWNF-089","JK3",43.22752779,-121.5996667,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-12,2014-08-31,"Cat2",0,0,62,NA,NA
+"FWNF-090","JK4",43.22752761,-121.599664,"OR_WS_180102010401_05_107026","River/Stream","Year round","Klamath",2014-06-25,2015-10-06,"Cat2",0,0,184,NA,NA
+"FWNF-091","KelleyCr_KE5400_LTWT",42.01655421,-120.2586658,"OR_WS_180200010302_05_102694","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2008-10-05,"Cat2",0,0,92,NA,NA
+"FWNF-095","LarkinCr_LK4191_WT",42.65117612,-121.8565737,"OR_WS_180102010604_05_107038","River/Stream","Year round","Klamath",2014-06-27,2014-10-05,"Cat5",36,36,77,NA,NA
+"FWNF-098","LittleCoffeepotCr_LC5120_WT",42.57214381,-120.6390696,"OR_WS_171200060201_05_106745","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2011-11-02,"Cat5",21,21,172,NA,NA
+"FWNF-099","LittleHoneyCr_LHO5960_WT",42.42474968,-120.1691878,"OR_WS_171200070401_05_106779","River/Stream","Year round","Goose & Summer Lakes",2009-06-17,2017-10-04,"Cat2",0,0,165,NA,NA
+"FWNF-105","MFDeepCr_MDP6060_WT",42.04951203,-120.1843429,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2012-07-04,2012-10-30,"Cat2",0,0,89,NA,NA
+"FWNF-106","MillFlatCr_MI4760_WT",42.43336244,-120.3838637,"OR_WS_171200060404_05_106752","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2008-10-05,"Cat5",13,13,92,NA,NA
+"FWNF-107","MorganCr_MO5350_LTWT",42.42586292,-120.6682346,"OR_WS_171200060104_05_106742","River/Stream","Year round","Goose & Summer Lakes",2009-06-24,2017-10-09,"Cat5",337,187,272,NA,NA
+"FWNF-108","MosquitoCr_MQ6000_WT",42.03780692,-120.2003257,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2016-06-27,2017-10-04,"Cat2",0,0,165,NA,NA
+"FWNF-109","MudCr_MD6460_LTWT",42.28289929,-120.2053794,"OR_WS_171200070301_05_106769","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2010-10-04,"Cat5",251,125,275,NA,NA
+"FWNF-110","MuddyCr_MDY6000_WT",42.23939788,-120.579543,"OR_WS_180200010208_05_102690","River/Stream","Year round","Goose & Summer Lakes",2009-06-18,2011-07-31,"Cat2",0,0,123,NA,NA
+"FWNF-111","NFDeepCr_NDP6000_LTWT",42.05720175,-120.1861957,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2012-07-04,2017-10-04,"Cat5",8,4,172,NA,NA
+"FWNF-112","NFSilverCr_SV5050_LTWT",42.98616908,-121.1586537,"OR_WS_171200050206_05_106661","River/Stream","Year round","Goose & Summer Lakes",2012-06-26,2017-10-01,"Cat2",0,0,277,NA,NA
+"FWNF-119","NFTwelvemileCr_TW6620_WT",42.00149701,-120.1201217,"OR_WS_171200070102_05_106764","River/Stream","Year round","Goose & Summer Lakes",2008-06-24,2010-10-12,"Cat2",0,0,270,NA,NA
+"FWNF-120","NFWillowCr_NFW5200_LTWT",41.99605173,-120.8048633,"OR_WS_180102040201_05_107168","River/Stream","Year round","Klamath",2008-05-28,2016-06-16,"Cat5",463,187,241,NA,NA
+"FWNF-121","NorthCr_NO6680_LTWT",42.60783161,-120.7591341,"OR_WS_171200060103_05_106741","River/Stream","Year round","Goose & Summer Lakes",2016-06-16,2016-10-04,"Cat5",24,24,92,NA,NA
+"FWNF-124","PolanderCr_PL5680_LTWT",42.08085566,-120.1587398,"OR_WS_171200070305_05_106773","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2017-10-04,"Cat2",0,0,184,NA,NA
+"FWNF-125","PorcupineCr_PP6500_WT",42.29522904,-120.2067228,"OR_WS_171200070301_05_106769","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2008-09-29,"Cat5",14,14,91,NA,NA
+"FWNF-126","PorcupineCr_PP6700_LTWT",42.30239826,-120.1894211,"OR_WS_171200070301_05_106769","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2017-10-04,"Cat2",0,0,277,NA,NA
+"FWNF-127","QuartzCr_QU5020_LTWT",42.27421541,-120.7557548,"OR_WS_180200010101_05_102678","River/Stream","Year round","Goose & Summer Lakes",2008-05-08,2009-10-04,"Cat5",81,81,184,NA,NA
+"FWNF-129","SevenmileCr_SM4420_LTWT",42.72555911,-122.1072237,"OR_WS_180102030104_05_107091","River/Stream","Year round","Klamath",2010-06-13,2017-10-01,"Cat2",0,0,277,NA,NA
+"FWNF-130","Sevenmiletrib_SMT4420_LTWT",42.72560027,-122.1072393,"OR_WS_180102030104_05_107091","River/Stream","Year round","Klamath",2011-06-25,2017-10-01,"Cat2",0,0,276,NA,NA
+"FWNF-131","SFDeep Cr_SDP6040_WT",42.04672234,-120.1808469,"OR_WS_171200070304_05_106772","River/Stream","Year round","Goose & Summer Lakes",2012-07-04,2016-07-31,"Cat5",5,4,172,NA,NA
+"FWNF-134","ShingleMillCr_SHM5400_WT",42.29532796,-120.4938129,"OR_WS_180200010204_05_102686","River/Stream","Year round","Goose & Summer Lakes",2009-06-16,2012-09-17,"Cat5",17,17,92,NA,NA
+"FWNF-135","ShoestringCr_SH5300_LTWT",42.40276575,-120.5938138,"OR_WS_171200060104_05_106742","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2015-07-09,"Cat5",112,68,210,NA,NA
+"FWNF-138","SouthCr_SO5220_LTWT",42.40260873,-120.6536157,"OR_WS_171200060104_05_106742","River/Stream","Year round","Goose & Summer Lakes",2008-03-07,2014-08-16,"Cat5",367,154,230,NA,NA
+"FWNF-139","SouthCr_SO5340_WT",42.39655658,-120.6682475,"OR_WS_171200060104_05_106742","River/Stream","Year round","Goose & Summer Lakes",2008-06-24,2008-11-06,"Cat5",36,36,92,NA,NA
+"FWNF-140","SouthCr_SO5400_WT",42.39024226,-120.6716781,"OR_WS_171200060104_05_106742","River/Stream","Year round","Goose & Summer Lakes",2008-06-24,2008-11-06,"Cat2",0,0,92,NA,NA
+"FWNF-144","SpringCr_SPG5600_WT",42.45951209,-120.6963002,"OR_WS_171200060102_05_106740","River/Stream","Year round","Goose & Summer Lakes",2010-07-08,2010-10-11,"Cat2",0,0,85,NA,NA
+"FWNF-145","SwampCr_SW5120_LTWT",42.45458148,-120.5838755,"OR_WS_171200060106_05_106744","River/Stream","Year round","Goose & Summer Lakes",2008-04-02,2008-06-15,"Cat3",0,0,0,NA,NA
+"FWNF-153","TepeeCr_TP5440_WT",42.46761663,-120.7190341,"OR_WS_171200060101_05_106739","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2013-10-27,"Cat2",0,0,164,NA,NA
+"FWNF-154","ThomasCr_TH4894_LTWT",42.27361061,-120.4831108,"OR_WS_180200010205_05_102687","River/Stream","Year round","Goose & Summer Lakes",2008-05-08,2017-10-09,"Cat5",333,125,140,NA,NA
+"FWNF-155","ThomasCr_TH5580_LTWT",42.33372089,-120.5889443,"OR_WS_180200010205_05_102687","River/Stream","Year round","Goose & Summer Lakes",2009-06-16,2011-10-31,"Cat5",283,161,276,NA,NA
+"FWNF-156","ThomasCr_TH5760_WT",42.3496385,-120.6226181,"OR_WS_180200010205_05_102687","River/Stream","Year round","Goose & Summer Lakes",2014-06-17,2014-10-08,"Cat5",46,46,88,NA,NA
+"FWNF-157","ThomasCr_TH5980_LTWT",42.33590029,-120.643511,"OR_WS_180200010205_05_102687","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2013-09-17,"Cat5",66,34,176,NA,NA
+"FWNF-158","ThomasCrtrib_UTH5650_WT",42.34735908,-120.5698924,"OR_WS_180200010205_05_102687","River/Stream","Year round","Goose & Summer Lakes",2010-06-14,2015-08-31,"Cat5",24,24,275,NA,NA
+"FWNF-159","ThreemileCr_TM4240_LTWT",42.64244744,-122.086156,"OR_WS_180102030301_05_107096","River/Stream","Year round","Klamath",2012-06-27,2012-09-26,"Cat5",40,40,88,NA,NA
+"FWNF-160","ThreemileCr_TM4600_LTWT",42.6386189,-122.0971764,"OR_WS_180102030301_05_107096","River/Stream","Year round","Klamath",2008-06-20,2016-07-04,"Cat5",75,66,274,NA,NA
+"FWNF-161","ThreemileCr_TM4900_LTWT",42.63555784,-122.1099901,"OR_WS_180102030301_05_107096","River/Stream","Year round","Klamath",2008-06-20,2017-11-13,"Cat5",11,11,259,NA,NA
+"FWNF-162","ThreemileCr_TM5210_LTWT",42.63893156,-122.1296862,"OR_WS_180102030301_05_107096","River/Stream","Year round","Klamath",2009-07-01,2017-11-13,"Cat2",0,0,259,NA,NA
+"FWNF-163","TomYoungCr_TY5200_WT",42.27299972,-120.5721641,"OR_WS_180200010207_05_102689","River/Stream","Year round","Goose & Summer Lakes",2008-05-08,2008-09-03,"Cat2",0,0,65,NA,NA
+"FWNF-165","WFSilverCr_4740_LTWT",43.01617858,-121.1189747,"OR_WS_171200050206_05_106661","River/Stream","Year round","Goose & Summer Lakes",2012-06-26,2017-10-01,"Cat5",106,94,265,NA,NA
+"FWNF-166","WFSilverCr_WS5050_LTWT",42.98622129,-121.1570875,"OR_WS_171200050206_05_106661","River/Stream","Year round","Goose & Summer Lakes",2012-06-26,2012-10-09,"Cat2",0,0,92,NA,NA
+"FWNF-167","WFSilverCr_WS5580_LTWT",42.95883491,-121.1978867,"OR_WS_171200050206_05_106661","River/Stream","Year round","Goose & Summer Lakes",2008-01-07,2017-10-01,"Cat2",0,0,277,NA,NA
+"FWNF-172","WilliamsonRv_WM4560_LTWT",42.89915801,-121.464955,"OR_WS_180102010104_05_107013","River/Stream","Year round","Klamath",2014-06-27,2014-10-05,"Cat5",42,42,92,NA,NA
+"FWNF-173","WilliamsonRv_WM4565_LTWT",42.85591341,-121.4638083,"OR_WS_180102010104_05_107013","River/Stream","Year round","Klamath",2014-06-27,2014-10-05,"Cat5",18,18,92,NA,NA
+"FWNF-174","WilliamsonRv_WM4566_LTWT",42.8265373,-121.4563147,"OR_WS_180102010103_05_107012","River/Stream","Year round","Klamath",2014-06-27,2014-10-05,"Cat2",0,0,92,NA,NA
+"FWNF-175","WillowCr_WL4680_WT",42.44038324,-120.3924315,"OR_WS_171200060404_05_106752","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2008-10-05,"Cat5",68,68,72,NA,NA
+"FWNF-176","WillowCr_WL4840_WT",42.42787937,-120.3790183,"OR_WS_171200060404_05_106752","River/Stream","Year round","Goose & Summer Lakes",2008-06-17,2008-10-05,"Cat2",0,0,92,NA,NA
+"FWNF-177","WillowCr_WLO5580_WT",42.11026072,-120.1631073,"OR_WS_171200070305_05_106773","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2008-10-06,"Cat5",55,55,92,NA,NA
+"FWNF-178","WillowCr_WLO6020_LTWT",42.10050035,-120.1940644,"OR_WS_171200070305_05_106773","River/Stream","Year round","Goose & Summer Lakes",2009-06-17,2017-10-04,"Cat5",282,125,256,NA,NA
+"FWNF-179","WillowCr_WLO6080_LTWT",42.08896537,-120.2014586,"OR_WS_171200070305_05_106773","River/Stream","Year round","Goose & Summer Lakes",2008-06-18,2016-07-10,"Cat5",312,158,275,NA,NA
+"FWNF-180","WithamCr_WI6560_LTWT",42.60903906,-120.7400139,"OR_WS_171200060103_05_106741","River/Stream","Year round","Goose & Summer Lakes",2009-07-13,2016-10-04,"Cat5",2,2,270,NA,NA
+"FWNF-181","WooleyCr_WO5360_WT",42.71040481,-120.7491451,"OR_WS_171200051405_05_106713","River/Stream","Year round","Goose & Summer Lakes",2012-07-10,2012-10-29,"Cat5",37,37,83,NA,NA
+"FWNF-182","GrizzlyCr_GZ6180_WT",42.478,-120.642,"OR_WS_180200010207_05_102689","River/Stream","Year round","Goose & Summer Lakes",2012-07-09,2012-10-03,"Cat2",0,0,84,NA,NA
+"MHNF-001","0605 Poop Creek Temperature",44.98680421,-121.8387128,"OR_WS_170900110204_02_104526","River/Stream","Year round","Willamette",2015-06-22,2015-09-20,"Cat2",0,0,82,NA,NA
+"MHNF-002","060600001_Unnamed_LTWT",45.20863008,-122.2395802,"OR_WS_170900110406_02_104539","River/Stream","Year round","Willamette",2014-07-23,2014-11-02,"Cat2",0,0,70,NA,NA
+"MHNF-003","060600002_Oscar_Cr_LTWT",45.15422723,-122.2414642,"OR_WS_170900110404_02_104537","River/Stream","Year round","Willamette",2014-08-06,2014-10-27,"Cat2",0,0,56,NA,NA
+"MHNF-004","060600003Unnamed_Cr_LTWT",45.17668929,-122.1711695,"OR_WS_170900110406_02_104539","River/Stream","Year round","Willamette",2014-07-29,2014-11-04,"Cat5",11,11,64,NA,NA
+"MHNF-005","060600004_Clear_Creek",45.15743356,-122.2825572,"OR_WS_170900110601_02_104543","River/Stream","Year round","Willamette",2014-07-23,2014-10-27,"Cat2",0,0,70,NA,NA
+"MHNF-006","060600005_Clear_Creek",45.13809906,-122.2961825,"OR_WS_170900110601_02_104543","River/Stream","Year round","Willamette",2014-07-23,2014-11-05,"Cat2",0,0,70,NA,NA
+"MHNF-007","060600006_Canyon_Creek",45.12879198,-122.3141705,"OR_WS_170900090601_02_104482","River/Stream","Year round","Willamette",2014-07-23,2014-11-05,"Cat2",0,0,70,NA,NA
+"MHNF-008","060600007_Helion Creek",45.15130828,-122.1762537,"OR_WS_170900110406_02_104539","River/Stream","Year round","Willamette",2014-07-23,2014-11-04,"Cat2",0,0,70,NA,NA
+"MHNF-009","060600008_Unnamed_Cr",45.17496699,-122.1847842,"OR_WS_170900110406_02_104539","River/Stream","Year round","Willamette",2014-07-29,2014-11-04,"Cat2",0,0,64,NA,NA
+"MHNF-010","Alder Cr. Water Temp Probe #1",45.3770108,-122.1007549,"OR_WS_170800010401_02_103643","River/Stream","Year round","Sandy",2012-07-03,2012-10-03,"Cat5",5,5,90,NA,NA
+"MHNF-010","Alder Cr. Water Temp Probe #1",45.3770108,-122.1007549,"OR_WS_170800010401_02_103643","River/Stream","Spawn","Sandy",2012-08-15,2012-10-03,"Cat5",NA,NA,NA,34,34
+"MHNF-012","Bear Cr br2040_LTWT",45.49829612,-121.6313783,"OR_WS_170701050505_02_102000","River/Stream","Year round","Hood",2012-07-26,2012-10-23,"Cat2",0,0,67,NA,NA
+"MHNF-013","Berry Cr. R6 Water Temp. Monitor",44.85464401,-121.8963713,"OR_WS_170900110201_02_104523","River/Stream","Year round","Willamette",2011-06-28,2011-10-04,"Cat2",0,0,92,NA,NA
+"MHNF-014","Butte Cr. R6 Water Temp Monitor",45.08112895,-122.0085293,"OR_WS_170900110306_02_104533","River/Stream","Year round","Willamette",2011-06-28,2011-10-04,"Cat2",0,0,92,NA,NA
+"MHNF-015","Camp Creek Temp. Monitor",45.31118292,-121.8959141,"OR_WS_170800010202_02_103638","River/Stream","Year round","Sandy",2011-06-29,2011-10-03,"Cat2",0,0,92,NA,NA
+"MHNF-028","Doe Cr de3195_LTWT",45.43185545,-121.5862889,"OR_WS_170701050502_02_101997","River/Stream","Year round","Hood",2016-05-13,2017-10-02,"Cat2",0,0,144,NA,NA
+"MHNF-029","Dog R dg2120_LTWT",45.46505027,-121.5666886,"OR_WS_170701050503_02_101998","River/Stream","Year round","Hood",2016-05-13,2017-10-02,"Cat2",0,0,144,NA,NA
+"MHNF-029","Dog R dg2120_LTWT",45.46505027,-121.5666886,"OR_WS_170701050503_02_101998","River/Stream","Spawn","Hood",2016-05-13,2016-05-14,"Cat2",NA,NA,NA,0,0
+"MHNF-030","Dry_Creek_R6",45.20920914,-122.1481484,"OR_WS_170900110405_02_104538","River/Stream","Year round","Willamette",2017-05-24,2017-10-23,"Cat2",0,0,92,NA,NA
+"MHNF-031","Eagle Cr at Forest Boundary_LTWT",45.29790205,-122.1272263,"OR_WS_170900110501_02_104540","River/Stream","Year round","Willamette",2008-06-26,2014-09-17,"Cat5",33,23,79,NA,NA
+"MHNF-032","Eagle Cr at Wilderness Boundary_LTWT",45.29838334,-122.0966748,"OR_WS_170900110501_02_104540","River/Stream","Year round","Willamette",2008-06-26,2017-09-25,"Cat5",24,19,87,NA,NA
+"MHNF-033","Eagle Creek HOBO temperature site",45.2987176,-122.111748,"OR_WS_170900110501_02_104540","River/Stream","Year round","Willamette",2015-07-15,2016-08-31,"Cat5",35,35,112,NA,NA
+"MHNF-034","East Fork Hood R Upper ek3000_LTWT",45.3982652,-121.5714066,"OR_WS_170701050501_02_101996","River/Stream","Year round","Hood",2010-06-08,2017-10-02,"Cat2",0,0,151,NA,NA
+"MHNF-034","East Fork Hood R Upper ek3000_LTWT",45.3982652,-121.5714066,"OR_WS_170701050501_02_101996","River/Stream","Spawn","Hood",2010-10-15,2016-05-14,"Cat2",NA,NA,NA,0,0
+"MHNF-035","Eightmile Cr Forest Service Bndry_ee2600_LTWT",45.43341235,-121.3598282,"OR_WS_170701050201_02_101980","River/Stream","Year round","Hood",2009-06-11,2009-10-20,"Cat2",0,0,92,NA,NA
+"MHNF-035","Eightmile Cr Forest Service Bndry_ee2600_LTWT",45.43341235,-121.3598282,"OR_WS_170701050201_02_101980","River/Stream","Spawn","Hood",2009-06-11,2009-06-15,"Cat2",NA,NA,NA,0,0
+"MHNF-036","Eightmile Creek Bottle Prairie ee4490_LTWT",45.39315343,-121.4991826,"OR_WS_170701050201_02_101980","River/Stream","Year round","Hood",2010-06-03,2010-10-04,"Cat2",0,0,85,NA,NA
+"MHNF-037","Eightmile Creek Head ee4490_LTWT",45.40679491,-121.4570958,"OR_WS_170701050201_02_101980","River/Stream","Year round","Hood",2010-06-03,2016-08-29,"Cat2",0,0,254,NA,NA
+"MHNF-038","Fifteenmile Creek, Wilderness Bndry fe4600_WT",45.35052972,-121.4704687,"OR_WS_170701050301_02_101984","River/Stream","Year round","Hood",2009-06-11,2017-10-02,"Cat2",0,0,270,NA,NA
+"MHNF-040","Fivemile Cr Forest Service Bndry_fe2240_LTWT",45.46615553,-121.3614512,"OR_WS_170701050203_02_101982","River/Stream","Year round","Hood",2009-06-11,2016-08-29,"Cat2",0,0,226,NA,NA
+"MHNF-042","Goodfellows outlet WT site",45.42187174,-121.9658349,"OR_WS_170800010505_11_103669","River/Stream","Year round","Sandy",2015-07-27,2017-09-20,"Cat5",128,128,208,NA,NA
+"MHNF-043","Gordon Cr_LTWT",45.5189384,-122.1162458,"OR_WS_170800010701_02_103651","River/Stream","Year round","Sandy",2008-06-23,2017-09-26,"Cat2",0,0,266,NA,NA
+"MHNF-045","Kelley Cr. R6 Temp Monitor",45.06922229,-121.9645425,"OR_WS_170900110306_02_104533","River/Stream","Year round","Willamette",2011-06-28,2011-10-04,"Cat2",0,0,92,NA,NA
+"MHNF-046","Ladd Cr ld2320_WT",45.47211471,-121.7744522,"OR_WS_170701050601_02_102002","River/Stream","Year round","Hood",2012-09-12,2012-10-29,"Cat2",0,0,19,NA,NA
+"MHNF-049","Little Sandy at waterfall WT site",45.41711424,-121.968148,"OR_WS_170800010505_11_103669","River/Stream","Year round","Sandy",2015-07-27,2017-10-03,"Cat5",45,45,221,NA,NA
+"MHNF-051","Little Sandy R at Rd1228_LTWT",45.4186045,-121.9608305,"OR_WS_170800010505_11_103669","River/Stream","Year round","Sandy",2008-07-17,2017-10-03,"Cat5",28,20,244,NA,NA
+"MHNF-052","Little Sandy R Homestead_LTWT",45.40364014,-122.0216954,"OR_WS_170800010505_11_103669","River/Stream","Year round","Sandy",2008-06-10,2015-06-30,"Cat5",21,11,260,NA,NA
+"MHNF-055","Lowe_Cr_R6_Water_Temp",44.95794103,-121.9290011,"OR_WS_170900110203_02_104525","River/Stream","Year round","Willamette",2015-06-24,2015-09-29,"Cat2",0,0,91,NA,NA
+"MHNF-056","McCubbins Temp Monitor",45.11735734,-121.4975079,"OR_WS_170703061106_05_102537","River/Stream","Year round","Deschutes",2009-07-01,2009-10-01,"Cat5",7,7,92,NA,NA
+"MHNF-057","McGee Cr Lower me2310_WT",45.45554888,-121.7802509,"OR_WS_170701050601_02_102002","River/Stream","Year round","Hood",2011-06-29,2016-08-29,"Cat5",14,14,85,NA,NA
+"MHNF-058","McGee Cr Upper me3000_LTWT",45.41686656,-121.7678485,"OR_WS_170701050601_02_102002","River/Stream","Year round","Hood",2011-06-29,2011-10-22,"Cat2",0,0,85,NA,NA
+"MHNF-059","McGee Cr. R6 Water Temp Monitor",45.45651766,-121.7815339,"OR_WS_170701050601_02_102002","River/Stream","Year round","Hood",2011-06-29,2011-10-03,"Cat5",23,23,92,NA,NA
+"MHNF-060","Meadows Cr upper ms4500_WT",45.32234511,-121.6357761,"OR_WS_170701050501_02_101996","River/Stream","Year round","Hood",2016-05-25,2017-10-02,"Cat5",8,8,143,NA,NA
+"MHNF-062","Mud Creek WT site",45.26175602,-121.7510573,"OR_WS_170800010302_02_103640","River/Stream","Year round","Sandy",2015-06-19,2017-09-20,"Cat2",0,0,220,NA,NA
+"MHNF-065","North Fork Eagle Creek HOBO Temperature",45.30892265,-122.0839985,"OR_WS_170900110502_02_104541","River/Stream","Year round","Willamette",2015-07-15,2017-09-25,"Cat2",0,0,199,NA,NA
+"MHNF-066","North Fork Mill Cr ml2900_LTWT",45.49244289,-121.4676771,"OR_WS_170701050403_02_101992","River/Stream","Year round","Hood",2009-06-11,2017-10-02,"Cat2",0,0,276,NA,NA
+"MHNF-066","North Fork Mill Cr ml2900_LTWT",45.49244289,-121.4676771,"OR_WS_170701050403_02_101992","River/Stream","Spawn","Hood",2009-10-15,2012-10-31,"Cat2",NA,NA,NA,0,0
+"MHNF-073","Pnk Cr. Water Temp Monitor",44.97776703,-122.0959527,"OR_WS_170900110103_02_104518","River/Stream","Year round","Willamette",2010-06-29,2010-09-26,"Cat2",0,0,88,NA,NA
+"MHNF-074","Ramona Cr. R6 Water Temp Monitor",45.39190322,-121.8065869,"OR_WS_170800010101_02_103635","River/Stream","Year round","Sandy",2011-06-30,2011-10-03,"Cat2",0,0,92,NA,NA
+"MHNF-075","RedHill Cr. R6 Water Temp. Monitor",45.48140124,-121.7707473,"OR_WS_170701050601_02_102002","River/Stream","Year round","Hood",2011-06-29,2011-10-03,"Cat5",10,10,92,NA,NA
+"MHNF-079","SalmonRatLinneyCr_LTWT",45.2208631,-121.8588931,"OR_WS_170800010302_02_103640","River/Stream","Year round","Sandy",2008-07-15,2017-09-20,"Cat2",0,0,254,NA,NA
+"MHNF-081","SF Gate Water Temperature Monitor",45.19573449,-121.4125082,"OR_WS_170703060904_05_102524","River/Stream","Year round","Deschutes",2014-07-22,2014-10-15,"Cat5",4,4,71,NA,NA
+"MHNF-082","South Fork Mill Cr ml2500_WT",45.47557463,-121.4520589,"OR_WS_170701050403_02_101992","River/Stream","Year round","Hood",2009-06-11,2016-08-24,"Cat2",0,0,275,NA,NA
+"MHNF-083","Souva Cr. Water Temp Probe",45.20636641,-121.4253524,"OR_WS_170703060904_05_102524","River/Stream","Year round","Deschutes",2012-06-20,2014-10-15,"Cat2",0,0,126,NA,NA
+"MHNF-086","Threemile Cr Forest Service Bndry te2500_WT",45.24677183,-121.4054983,"OR_WS_170703060907_05_102592","River/Stream","Year round","Deschutes",2016-05-25,2016-08-23,"Cat2",0,0,54,NA,NA
+"MHNF-088","Unnamed Trib Water temperature Monitor",45.03418873,-121.9611672,"OR_WS_170900110205_02_104527","River/Stream","Year round","Willamette",2015-06-18,2015-09-20,"Cat2",0,0,82,NA,NA
+"MHNF-092","West Fork Neal Cr wn3420_LTWT",45.51957714,-121.5181652,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2010-06-03,2016-08-24,"Cat2",0,0,92,NA,NA
+"MHNF-093","Wolf_Cr_Trib R6 Water Temp",45.00977838,-121.8919727,"OR_WS_170900110205_02_104527","River/Stream","Year round","Willamette",2015-06-18,2015-09-20,"Cat2",0,0,82,NA,NA
+"MHNF-094","Wolf_Cr_Trib R6 Water Temp(A)",45.00931076,-121.8974793,"OR_WS_170900110205_02_104527","River/Stream","Year round","Willamette",2015-06-30,2015-09-20,"Cat2",0,0,82,NA,NA
+"MHNF-097","WT_Exact_Spot_Unk_Rhododendron_Cr",44.9450727,-121.8903776,"OR_WS_170900110203_02_104525","River/Stream","Year round","Willamette",2010-07-20,2010-09-29,"Cat2",0,0,72,NA,NA
+"MHNF-102","WhiskyCr_LTWT",45.212,-122.158,"OR_WS_170900110405_02_104538","River/Stream","Year round","Willamette",2017-05-22,2017-10-23,"Cat2",0,0,92,NA,NA
+"MHNF-103","WinslowCr_LTWT",45.203,-122.149,"OR_WS_170900110405_02_104538","River/Stream","Year round","Willamette",2017-05-24,2017-10-23,"Cat5",10,10,92,NA,NA
+"MNF-001","Bear Creek Lower_LTWT",44.13042359,-118.2919057,"OR_WS_170501161104_05_103022","River/Stream","Year round","Malheur",2016-06-16,2017-10-10,"Cat5",302,129,183,NA,NA
+"MNF-002","Bear Creek Upper_LTWT",44.2001272,-118.3080098,"OR_WS_170501161104_05_103022","River/Stream","Year round","Malheur",2011-07-13,2016-10-03,"Cat5",63,45,175,NA,NA
+"MNF-003","Big CK at 45 BMRD 093314a_LTWT",44.78574856,-118.6973006,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2008-07-18,2008-10-22,"Cat5",47,47,75,NA,NA
+"MNF-005","Big Creek_LTWT",44.24195937,-118.6117561,"OR_WS_170501160101_05_102969","River/Stream","Year round","Malheur",2009-06-29,2017-10-15,"Cat2",0,0,267,NA,NA
+"MNF-006","Bosonberg Creek Temp_H2O",44.18482004,-118.5960144,"OR_WS_170501160103_05_102971","River/Stream","Year round","Malheur",2014-06-20,2017-10-15,"Cat5",340,268,267,NA,NA
+"MNF-007","Bridge Creek ECRD_LTWT",44.04860012,-118.904175,"OR_WS_171200020304_05_106557","River/Stream","Year round","Malheur Lake",2008-06-22,2017-06-21,"Cat5",181,68,156,NA,NA
+"MNF-008","Bridge Creek Lower_LTWT",44.57342274,-118.5069219,"OR_WS_170702030105_05_102155","River/Stream","Year round","John Day",2008-07-03,2013-10-18,"Cat5",364,190,265,NA,NA
+"MNF-008","Bridge Creek Lower_LTWT",44.57342274,-118.5069219,"OR_WS_170702030105_05_102155","River/Stream","Spawn","John Day",2008-09-01,2013-09-22,"Cat5",NA,NA,NA,174,103
+"MNF-009","Bridge Creek Upper_LTWT",44.54172551,-118.5392179,"OR_WS_170702030105_05_102155","River/Stream","Year round","John Day",2008-07-03,2017-10-01,"Cat5",451,169,266,NA,NA
+"MNF-009","Bridge Creek Upper_LTWT",44.54172551,-118.5392179,"OR_WS_170702030105_05_102155","River/Stream","Spawn","John Day",2012-06-07,2017-06-15,"Cat5",NA,NA,NA,51,34
+"MNF-010","Burnt Cabin Creek_Temp_H2O",43.92769923,-119.4818527,"OR_WS_171200020501_05_106567","River/Stream","Year round","Malheur Lake",2008-06-22,2017-10-10,"Cat2",0,0,228,NA,NA
+"MNF-012","Call Creek_Temp_H2O",44.32096265,-118.5558135,"OR_WS_170702010501_05_102038","River/Stream","Year round","John Day",2015-06-16,2017-10-11,"Cat2",0,0,268,NA,NA
+"MNF-013","Camp Creek ECRD Data_Temp_H2O",44.05479322,-119.0129118,"OR_WS_171200020302_05_106555","River/Stream","Year round","Malheur Lake",2009-06-21,2017-09-01,"Cat5",113,50,63,NA,NA
+"MNF-014","Camp Creek1_Temp_H2O",44.24373187,-118.2620867,"OR_WS_170501161201_05_103024","River/Stream","Year round","Malheur",2008-07-06,2017-10-10,"Cat5",728,354,254,NA,NA
+"MNF-015","Camp Creek3 PCRD_Temp_H2O",44.29426739,-118.2672874,"OR_WS_170501161201_05_103024","River/Stream","Year round","Malheur",2008-07-05,2017-10-10,"Cat5",381,303,267,NA,NA
+"MNF-019","Clear Creek Lower_LTWT",44.5629778,-118.4889457,"OR_WS_170702030104_05_102154","River/Stream","Year round","John Day",2008-07-03,2017-10-01,"Cat5",697,268,257,NA,NA
+"MNF-020","Clear Creek Upper_LTWT",44.50648075,-118.4812932,"OR_WS_170702030104_05_102154","River/Stream","Year round","John Day",2008-07-03,2017-10-01,"Cat5",178,140,261,NA,NA
+"MNF-021","Crane Creek Upper",44.14252665,-118.434802,"OR_WS_170501161103_05_103021","River/Stream","Year round","Malheur",2017-05-25,2017-10-11,"Cat5",96,96,72,NA,NA
+"MNF-022","Crane Creek_LTWT",44.16125374,-118.3728902,"OR_WS_170501161103_05_103021","River/Stream","Year round","Malheur",2008-07-05,2017-10-10,"Cat5",715,343,259,NA,NA
+"MNF-023","Crooked Creek ECRD Data_LTWT",44.05471121,-119.0885275,"OR_WS_171200020302_05_106555","River/Stream","Year round","Malheur Lake",2008-06-22,2017-10-01,"Cat5",4,4,180,NA,NA
+"MNF-024","Crooked Creek PCRD_LTWT",44.1523203,-118.6562532,"OR_WS_170501160102_05_102970","River/Stream","Year round","Malheur",2010-07-06,2017-10-04,"Cat5",421,222,161,NA,NA
+"MNF-025","Crowsfoot Creek ECRD_LTWT",43.89724115,-119.4885702,"OR_WS_171200020501_05_106567","River/Stream","Year round","Malheur Lake",2008-06-22,2017-10-23,"Cat2",0,0,183,NA,NA
+"MNF-026","Dairy Creek FSB_Temp_H2O",43.72736561,-119.6498185,"OR_WS_171200040206_05_106614","River/Stream","Year round","Malheur Lake",2008-06-22,2017-09-20,"Cat2",0,0,236,NA,NA
+"MNF-027","Dark Canyon H2O Temp",44.2053843,-118.731361,"OR_WS_171200020201_05_106550","River/Stream","Year round","Malheur Lake",2016-07-20,2016-10-17,"Cat5",9,9,73,NA,NA
+"MNF-028","Deardorff Creek_LTWT",44.3707854,-118.4968634,"OR_WS_170702010502_05_102039","River/Stream","Year round","John Day",2009-06-30,2016-07-28,"Cat5",12,7,265,NA,NA
+"MNF-029","Deer Creek 162709a_LTWT",44.19644089,-119.4779043,"OR_WS_170702010206_05_102026","River/Stream","Year round","John Day",2008-07-09,2008-10-14,"Cat2",0,0,84,NA,NA
+"MNF-030","Dry Fork Clear Creek_LTWT",44.56594083,-118.4650252,"OR_WS_170702030103_05_102153","River/Stream","Year round","John Day",2008-07-03,2011-09-20,"Cat5",532,222,252,NA,NA
+"MNF-031","East Fork Camp H2O Temp",44.55994275,-118.8251352,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2016-06-13,2016-10-03,"Cat5",6,6,92,NA,NA
+"MNF-035","East Fork Wolf Creek_Temp_H2O",44.03081052,-118.7005882,"OR_WS_170501160202_05_102977","River/Stream","Year round","Malheur",2008-06-22,2011-07-02,"Cat5",67,67,137,NA,NA
+"MNF-036","ELK CREEK_LTWT",44.24579064,-118.4000684,"OR_WS_170501161102_05_103020","River/Stream","Year round","Malheur",2008-07-05,2017-10-11,"Cat5",127,72,258,NA,NA
+"MNF-039","John Day River_Cresent_Temp_H2O",44.28195956,-118.544459,"OR_WS_170702010501_05_102038","River/Stream","Year round","John Day",2008-07-04,2017-10-11,"Cat5",6,6,268,NA,NA
+"MNF-040","JOHN DAY RIVER_LTWT",44.34051171,-118.574679,"OR_WS_170702010501_05_102038","River/Stream","Year round","John Day",2008-07-04,2017-10-11,"Cat5",355,160,266,NA,NA
+"MNF-041","Lake Creek_LTWT",44.23370723,-118.6389653,"OR_WS_170501160102_05_102970","River/Stream","Year round","Malheur",2008-07-04,2017-10-15,"Cat5",517,243,266,NA,NA
+"MNF-043","Little Bear H2O Temp",44.17246325,-118.7708678,"OR_WS_171200020201_05_106550","River/Stream","Year round","Malheur Lake",2016-07-20,2016-10-17,"Cat5",38,38,73,NA,NA
+"MNF-044","Little Crane Creek_LTWT",44.19786512,-118.4127826,"OR_WS_170501161103_05_103021","River/Stream","Year round","Malheur",2008-07-05,2017-10-11,"Cat5",35,14,182,NA,NA
+"MNF-045","Little Emigrant Creek_LTWT",43.81845609,-119.4184967,"OR_WS_171200020504_05_106570","River/Stream","Year round","Malheur Lake",2008-06-22,2017-09-20,"Cat2",0,0,254,NA,NA
+"MNF-046","Little Malheur River_LTWT",44.22830589,-118.2438447,"OR_WS_170501161201_05_103024","River/Stream","Year round","Malheur",2015-06-09,2017-10-01,"Cat5",335,220,265,NA,NA
+"MNF-047","Lunch Creek 3 H2O Temp",44.51560538,-118.5388086,"OR_WS_170702030105_05_102155","River/Stream","Year round","John Day",2011-07-13,2017-10-01,"Cat2",0,0,266,NA,NA
+"MNF-048","LUNCH CREEK LOWER_LTWT",44.53826601,-118.5370145,"OR_WS_170702030105_05_102155","River/Stream","Year round","John Day",2008-07-03,2017-10-01,"Cat5",325,136,266,NA,NA
+"MNF-049","Lunch Creek Upper_LTWT",44.53480692,-118.5343493,"OR_WS_170702030105_05_102155","River/Stream","Year round","John Day",2008-07-03,2010-10-05,"Cat5",17,17,261,NA,NA
+"MNF-052","MFJD_River_Below_Phipps113525a_LTWT",44.58851888,-118.4485184,"OR_WS_170702030106_05_102156","River/Stream","Year round","John Day",2008-07-14,2010-10-24,"Cat5",216,216,164,NA,NA
+"MNF-055","Myrtle Creek FSB ECRD_LTWT",43.87370393,-119.1340794,"OR_WS_171200020403_05_106565","River/Stream","Year round","Malheur Lake",2008-06-22,2011-06-26,"Cat5",297,118,145,NA,NA
+"MNF-056","Myrtle Creek Park ECRD_LTWT",43.98567207,-119.0971662,"OR_WS_171200020403_05_106565","River/Stream","Year round","Malheur Lake",2008-06-22,2012-09-26,"Cat5",98,49,156,NA,NA
+"MNF-057","Myrtle Creek Trailhead ECRD_Temp_H2O",43.95694296,-119.0797305,"OR_WS_171200020403_05_106565","River/Stream","Year round","Malheur Lake",2008-06-22,2017-06-21,"Cat5",324,168,207,NA,NA
+"MNF-058","NF MALHEUR RIVER Upper_LTWT",44.24884146,-118.3906932,"OR_WS_170501161102_05_103020","River/Stream","Year round","Malheur",2008-07-05,2017-10-10,"Cat5",791,289,258,NA,NA
+"MNF-060","NF REYNOLDS CREEK_LTWT",44.45190441,-118.5156786,"OR_WS_170702010503_05_102040","River/Stream","Year round","John Day",2009-06-22,2017-10-11,"Cat2",0,0,266,NA,NA
+"MNF-061","Nicoll Creek FSB_Temp_H2O",43.68545157,-119.7167661,"OR_WS_171200040205_05_106613","River/Stream","Year round","Malheur Lake",2009-06-21,2012-09-19,"Cat5",167,106,171,NA,NA
+"MNF-063","Papoose Creek PCRD Temp_H2O",44.55677981,-118.4024844,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2015-05-27,2017-10-01,"Cat5",190,190,160,NA,NA
+"MNF-064","Pine Creek Craft Cabin_Temp_H2O",43.80965419,-118.7242068,"OR_WS_170501160301_05_102981","River/Stream","Year round","Malheur",2008-06-22,2012-07-09,"Cat5",311,198,245,NA,NA
+"MNF-065","Pine Creek Upper_Temp_H2O",43.85538971,-118.7653034,"OR_WS_170501160301_05_102981","River/Stream","Year round","Malheur",2008-06-22,2012-09-18,"Cat5",58,43,80,NA,NA
+"MNF-066","Rattlesnake H2O Temp",43.72905512,-118.8009138,"OR_WS_171200010105_05_106514","River/Stream","Year round","Malheur Lake",2017-06-12,2017-09-25,"Cat5",60,60,76,NA,NA
+"MNF-067","REYNOLDS CREEK LOWER_LTWT",44.41665709,-118.5411759,"OR_WS_170702010503_05_102040","River/Stream","Year round","John Day",2009-06-22,2017-10-11,"Cat5",615,258,266,NA,NA
+"MNF-068","REYNOLDS CREEK UPPER_LTWT",44.42195352,-118.5139235,"OR_WS_170702010503_05_102040","River/Stream","Year round","John Day",2008-07-05,2017-10-11,"Cat2",0,0,266,NA,NA
+"MNF-069","Sawmill Creek_FSB_Temp_H2O",43.7397309,-119.6365563,"OR_WS_171200040204_05_106612","River/Stream","Year round","Malheur Lake",2009-06-21,2017-07-05,"Cat5",73,48,160,NA,NA
+"MNF-070","Sawtooth Creek ECRD_LTWT",43.80967186,-119.3013007,"OR_WS_171200020506_05_106572","River/Stream","Year round","Malheur Lake",2008-06-22,2011-07-01,"Cat5",39,32,229,NA,NA
+"MNF-071","SF Bridge Creek PCRD Temp_H2O",44.53485344,-118.5325367,"OR_WS_170702030105_05_102155","River/Stream","Year round","John Day",2015-06-05,2017-10-01,"Cat5",5,5,266,NA,NA
+"MNF-072","Sheep Creek_LTWT",44.28184186,-118.399662,"OR_WS_170501161101_05_103019","River/Stream","Year round","Malheur",2008-07-05,2017-10-11,"Cat5",223,108,258,NA,NA
+"MNF-076","Snoshoe Creek Temp_H2O",44.24194435,-118.611634,"OR_WS_170501160101_05_102969","River/Stream","Year round","Malheur",2008-07-04,2017-10-15,"Cat5",3,3,261,NA,NA
+"MNF-077","Squaw Creek 3 PCRD Temp_H2O",44.52762112,-118.4097068,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2015-05-05,2017-10-01,"Cat5",321,321,271,NA,NA
+"MNF-078","Squaw Creek MFJD PCRD_LTWT",44.56554725,-118.401976,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2011-07-13,2013-07-19,"Cat5",133,133,99,NA,NA
+"MNF-080","Summit Creek Lower_LTWT",44.1274606,-118.5790067,"OR_WS_170501160104_05_102972","River/Stream","Year round","Malheur",2008-07-05,2013-07-02,"Cat5",971,369,273,NA,NA
+"MNF-081","Summit Creek Mouth Temp_H2O",44.09956319,-118.5882256,"OR_WS_170501160104_05_102972","River/Stream","Year round","Malheur",2012-02-29,2013-07-01,"Cat5",902,429,269,NA,NA
+"MNF-082","Summit Creek ODFW Temp_H2O",44.2002449,-118.5230375,"OR_WS_170501160104_05_102972","River/Stream","Year round","Malheur",2015-05-28,2017-10-15,"Cat5",339,339,266,NA,NA
+"MNF-083","Summit Creek Upper_LTWT",44.18776324,-118.5471735,"OR_WS_170501160104_05_102972","River/Stream","Year round","Malheur",2009-06-29,2017-09-18,"Cat5",952,352,277,NA,NA
+"MNF-084","Vinegar Creek 807 Upper_103533a_Temp_H2O",44.70096606,-118.5508987,"OR_WS_170702030201_05_102157","River/Stream","Year round","John Day",2008-07-23,2008-10-22,"Cat5",31,31,70,NA,NA
+"MNF-088","Whiskey Creek_Temp_H2O",43.89035598,-119.4340158,"OR_WS_171200020502_05_106568","River/Stream","Year round","Malheur Lake",2011-06-21,2017-09-14,"Cat2",0,0,90,NA,NA
+"MNF-089","Wolf Creek Lower_LTWT",44.00930709,-118.6985005,"OR_WS_170501160203_05_102978","River/Stream","Year round","Malheur",2008-06-22,2017-07-06,"Cat5",56,30,158,NA,NA
+"MNF-090","Wolf Creek Upper_LTWT",44.03645535,-118.7059202,"OR_WS_170501160201_05_102976","River/Stream","Year round","Malheur",2009-06-21,2017-07-07,"Cat5",42,26,240,NA,NA
+"MNF-091","BC4646_WT",43.825,-119.421,"OR_WS_171200020503_05_106569","River/Stream","Year round","Malheur Lake",2017-06-15,2017-10-23,"Cat2",0,0,92,NA,NA
+"MNF-092","Bear creek 1_WT",44.722,-118.823,"OR_WS_170702030301_05_102164","River/Stream","Year round","John Day",2013-07-17,2013-10-16,"Cat5",64,64,76,NA,NA
+"MNF-092","Bear creek 1_WT",44.722,-118.823,"OR_WS_170702030301_05_102164","River/Stream","Spawn","John Day",2013-09-01,2013-10-16,"Cat5",NA,NA,NA,22,22
+"MNF-093","Bear creek 3_WT",44.731,-118.834,"OR_WS_170702030301_05_102164","River/Stream","Year round","John Day",2013-07-18,2013-10-16,"Cat5",63,63,75,NA,NA
+"MNF-093","Bear creek 3_WT",44.731,-118.834,"OR_WS_170702030301_05_102164","River/Stream","Spawn","John Day",2013-09-01,2013-10-16,"Cat5",NA,NA,NA,30,30
+"MNF-099","Big2_WT",44.469,-118.788,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2013-07-15,2013-10-16,"Cat5",68,68,78,NA,NA
+"MNF-100","BlackCanyon_Creek_WT",44.084,-118.576,"OR_WS_170501160105_05_102973","River/Stream","Year round","Malheur",2014-07-28,2014-09-22,"Cat2",0,0,57,NA,NA
+"MNF-105","Camp7_WT",44.566,-118.842,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat5",32,32,56,NA,NA
+"MNF-106","CL4098",44.585,-118.503,"OR_WS_170702030104_05_102154","River/Stream","Year round","John Day",2017-06-13,2017-09-26,"Cat5",100,100,88,NA,NA
+"MNF-107","Cliff_Ck_WT",44.053,-118.547,"OR_WS_170501160105_05_102973","River/Stream","Year round","Malheur",2014-07-30,2014-10-21,"Cat2",0,0,63,NA,NA
+"MNF-108","CO5126",44.285,-118.399,"OR_WS_170501161101_05_103019","River/Stream","Year round","Malheur",2017-06-14,2017-10-01,"Cat5",94,94,92,NA,NA
+"MNF-110","Cottonwood1_WT",44.655,-118.846,"OR_WS_170702030207_05_102162","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat5",8,8,56,NA,NA
+"MNF-111","Cougar_WT",44.608,-118.829,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2014-07-25,2014-09-21,"Cat2",0,0,59,NA,NA
+"MNF-112","Coxie1_WT",44.566,-118.843,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2014-07-23,2014-09-21,"Cat5",23,23,61,NA,NA
+"MNF-114","EastBig_WT",44.771,-118.811,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2013-08-12,2013-10-16,"Cat5",39,39,50,NA,NA
+"MNF-115","EFKBig1_2017_WT",44.771,-118.811,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-05-18,2017-11-20,"Cat5",95,95,92,NA,NA
+"MNF-116","EFKBig2_2016_WT",44.774,-118.809,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2016-07-18,2016-11-14,"Cat5",45,45,75,NA,NA
+"MNF-117","EFKBig2_2017_WT",44.774,-118.809,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-06-28,2017-10-01,"Cat5",75,75,92,NA,NA
+"MNF-118","EFKBig3_2016_WT",44.778,-118.802,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2016-07-14,2016-11-14,"Cat5",30,30,79,NA,NA
+"MNF-119","EFKBig3_2017_WT",44.778,-118.802,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-06-28,2017-10-01,"Cat5",64,64,92,NA,NA
+"MNF-120","EFKBig4_2016_WT",44.78,-118.794,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2016-07-18,2016-11-14,"Cat5",20,20,75,NA,NA
+"MNF-121","EFKBig4_2017_WT",44.78,-118.794,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-06-29,2017-10-04,"Cat5",10,10,92,NA,NA
+"MNF-122","EFKBig5_2016_WT",44.787,-118.788,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2016-07-14,2016-11-14,"Cat2",0,0,79,NA,NA
+"MNF-123","EFKBig5_2017_WT",44.787,-118.788,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-06-29,2017-10-04,"Cat2",0,0,92,NA,NA
+"MNF-124","EM4602",43.825,-119.42,"OR_WS_171200020502_05_106568","River/Stream","Year round","Malheur Lake",2017-06-15,2017-10-23,"Cat5",8,8,92,NA,NA
+"MNF-125","FO5024",44.264,-118.394,"OR_WS_170501161101_05_103019","River/Stream","Year round","Malheur",2017-06-14,2017-10-01,"Cat5",97,97,92,NA,NA
+"MNF-126","HS5448",44.323,-118.416,"OR_WS_170501161101_05_103019","River/Stream","Year round","Malheur",2017-06-14,2017-10-01,"Cat5",65,65,92,NA,NA
+"MNF-127","JO3766",44.543,-119.039,"OR_WS_170702010801_05_102055","River/Stream","Year round","John Day",2017-06-13,2017-09-27,"Cat5",83,83,89,NA,NA
+"MNF-128","LA5349",43.932,-119.427,"OR_WS_171200020502_05_106568","River/Stream","Year round","Malheur Lake",2017-06-15,2017-10-23,"Cat2",0,0,92,NA,NA
+"MNF-129","Latigo_Creek_WT",43.935,-119.433,"OR_WS_171200020502_05_106568","River/Stream","Year round","Malheur Lake",2017-07-05,2017-09-20,"Cat5",10,10,78,NA,NA
+"MNF-130","Lee_Creek_WT",44.028,-118.527,"OR_WS_170501160105_05_102973","River/Stream","Year round","Malheur",2014-07-28,2014-09-22,"Cat2",0,0,57,NA,NA
+"MNF-132","Lick2_WT",44.635,-118.783,"OR_WS_170702030206_05_102161","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat5",10,10,56,NA,NA
+"MNF-133","Lick3_WT",44.608,-118.751,"OR_WS_170702030206_05_102161","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat2",0,0,56,NA,NA
+"MNF-134","Little Malheur2_Temp_H2O",44.228,-118.244,"OR_WS_170501161201_05_103024","River/Stream","Year round","Malheur",2015-06-09,2015-09-22,"Cat5",103,103,81,NA,NA
+"MNF-147","NF Malheur R Top",44.322,-118.415,"OR_WS_170501161101_05_103019","River/Stream","Year round","Malheur",2015-06-10,2017-10-11,"Cat5",203,203,258,NA,NA
+"MNF-148","Pizer1_2017_WT",44.775,-118.82,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-05-18,2017-11-18,"Cat5",108,108,92,NA,NA
+"MNF-149","Pizer2_2016_WT",44.779,-118.812,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2016-07-18,2016-11-11,"Cat5",50,50,75,NA,NA
+"MNF-150","Pizer2_2017_WT",44.779,-118.812,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-06-28,2017-10-01,"Cat5",81,81,92,NA,NA
+"MNF-151","Pizer3_2016_WT",44.782,-118.804,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2016-07-14,2016-11-14,"Cat5",54,54,79,NA,NA
+"MNF-152","Pizer3_2017_WT",44.782,-118.804,"OR_WS_170702030302_05_102165","River/Stream","Year round","John Day",2017-06-28,2017-10-01,"Cat5",81,81,92,NA,NA
+"MNF-153","Skookum_Creek_mouth_WT",44.04,-118.539,"OR_WS_170501160105_05_102973","River/Stream","Year round","Malheur",2014-07-28,2016-11-07,"Cat2",0,0,149,NA,NA
+"MNF-154","Squaw Creek 4 PCRD Temp_H2O",44.517,-118.403,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2017-05-22,2017-07-05,"Cat5",14,14,5,NA,NA
+"MNF-155","Squaw Creek 5 PCRD Temp_H2O",44.507,-118.393,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2017-05-22,2017-07-22,"Cat2",0,0,22,NA,NA
+"MNF-156","Squaw_BottomProj15_WT",44.535,-118.406,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2016-06-13,2017-10-01,"Cat5",143,143,135,NA,NA
+"MNF-157","Squaw_Upstream_of_Private_WT",44.572,-118.403,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2017-05-22,2017-10-01,"Cat5",124,124,92,NA,NA
+"MNF-158","SquawCk_ford_WT",44.484,-118.385,"OR_WS_170702030101_05_102151","River/Stream","Year round","John Day",2016-06-14,2017-10-01,"Cat5",30,30,182,NA,NA
+"MNF-159","Sulphur_Top_WT",44.628,-118.886,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat2",0,0,56,NA,NA
+"MNF-160","Sulphur_WT",44.627,-118.859,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2014-07-25,2014-09-21,"Cat5",32,32,59,NA,NA
+"MNF-161","Trail_WT",44.598,-118.844,"OR_WS_170702030205_05_102160","River/Stream","Year round","John Day",2014-07-25,2014-09-21,"Cat5",20,20,59,NA,NA
+"MNF-162","Trout_Creek_H20",43.935,-118.918,"OR_WS_171200020306_05_106559","River/Stream","Year round","Malheur Lake",2017-06-12,2017-09-25,"Cat5",41,41,87,NA,NA
+"MNF-163","US Bear_WT",44.722,-118.825,"OR_WS_170702030301_05_102164","River/Stream","Year round","John Day",2013-07-17,2013-10-16,"Cat5",58,58,76,NA,NA
+"MNF-164","WFLick_WT",44.634,-118.785,"OR_WS_170702030206_05_102161","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat5",44,44,56,NA,NA
+"MNF-165","WFLick1_WT",44.634,-118.785,"OR_WS_170702030206_05_102161","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat5",44,44,56,NA,NA
+"MNF-166","WFLick2_WT",44.587,-118.782,"OR_WS_170702030206_05_102161","River/Stream","Year round","John Day",2014-07-23,2014-09-16,"Cat2",0,0,56,NA,NA
+"ONF-001","AllenCr_al4770_LTWT",44.3995649,-120.1712597,"OR_WS_170703040306_05_102587","River/Stream","Year round","Deschutes",2013-07-16,2016-05-25,"Cat5",66,66,261,NA,NA
+"ONF-002","AllenCr_al4940_WT",44.41123009,-120.168531,"OR_WS_170703040306_05_102587","River/Stream","Year round","Deschutes",2008-07-10,2008-10-07,"Cat5",2,2,83,NA,NA
+"ONF-003","AllenCrEF_al4920_WT",44.41076812,-120.1665807,"OR_WS_170703040306_05_102587","River/Stream","Year round","Deschutes",2008-07-10,2008-10-07,"Cat2",0,0,83,NA,NA
+"ONF-004","AugerCr_au4010_LTWT",44.56286507,-120.575503,"OR_WS_170703070101_05_102544","River/Stream","Year round","Deschutes",2012-06-07,2012-12-16,"Cat5",16,16,92,NA,NA
+"ONF-006","BearCr_bb3406_LTWT",44.54988359,-120.4412655,"OR_WS_170702040304_05_102199","River/Stream","Year round","John Day",2012-07-02,2015-06-08,"Cat5",33,33,275,NA,NA
+"ONF-007","BearCrNF_nb3440_LTWT",44.5482697,-120.4478089,"OR_WS_170702040304_05_102199","River/Stream","Year round","John Day",2012-06-13,2013-06-16,"Cat5",30,30,84,NA,NA
+"ONF-010","CanyonCr_ca4062_LTWT",44.39391793,-120.4200959,"OR_WS_170703050201_05_102453","River/Stream","Year round","Deschutes",2008-06-25,2009-09-08,"Cat5",2,2,154,NA,NA
+"ONF-012","CrazyCr_4203_WT",44.34972006,-120.0363002,"OR_WS_170703040403_05_102432","River/Stream","Year round","Deschutes",2014-07-14,2015-06-23,"Cat2",0,0,79,NA,NA
+"ONF-017","DeepCr_WT",44.38866765,-119.9957245,"OR_WS_170703040403_05_102432","River/Stream","Year round","Deschutes",2016-02-29,2016-06-28,"Cat5",87,87,92,NA,NA
+"ONF-019","DickCr_di3952_WT",44.55033445,-120.5764242,"OR_WS_170703070103_05_102546","River/Stream","Year round","Deschutes",2015-07-10,2016-02-29,"Cat5",68,68,277,NA,NA
+"ONF-020","DoddsCr_do3940_WT",44.54363953,-120.3871256,"OR_WS_170702040305_05_102200","River/Stream","Year round","John Day",2012-06-06,2014-06-10,"Cat2",0,0,184,NA,NA
+"ONF-020","DoddsCr_do3940_WT",44.54363953,-120.3871256,"OR_WS_170702040305_05_102200","River/Stream","Spawn","John Day",2013-01-01,2014-05-15,"Cat2",NA,NA,NA,0,0
+"ONF-021","DoubleCorralCr_4501_LTWT",44.396067,-119.9659154,"OR_WS_170703040401_05_102430","River/Stream","Year round","Deschutes",2013-07-17,2014-06-22,"Cat5",73,73,76,NA,NA
+"ONF-022","Drake_DR4300_WT",44.08898048,-120.3203008,"OR_WS_170703040602_05_102436","River/Stream","Year round","Deschutes",2014-10-09,2016-05-17,"Cat2",0,0,92,NA,NA
+"ONF-023","DrakeCr_dr4470_LTWT",44.07983327,-120.3221449,"OR_WS_170703040602_05_102436","River/Stream","Year round","Deschutes",2008-06-27,2009-10-06,"Cat2",0,0,176,NA,NA
+"ONF-024","DutchmanCr_du3620_LTWT",44.56296336,-120.6706611,"OR_WS_170703070102_05_102545","River/Stream","Year round","Deschutes",2014-06-09,2016-06-26,"Cat5",18,18,184,NA,NA
+"ONF-024","DutchmanCr_du3620_LTWT",44.56296336,-120.6706611,"OR_WS_170703070102_05_102545","River/Stream","Spawn","Deschutes",2015-01-01,2016-05-15,"Cat2",NA,NA,NA,0,0
+"ONF-026","GrantCr_gr3510_LTWT",44.54028683,-120.4515379,"OR_WS_170702040304_05_102199","River/Stream","Year round","John Day",2012-07-02,2014-06-04,"Cat2",0,0,183,NA,NA
+"ONF-027","GrayCr_gr4686_LTWT",44.27992195,-120.2399327,"OR_WS_170703040301_05_102424","River/Stream","Year round","Deschutes",2016-02-29,2016-07-05,"Cat5",297,177,166,NA,NA
+"ONF-028","HappyCampCr_4301_WT",44.39329366,-119.9968492,"OR_WS_170703040401_05_102430","River/Stream","Year round","Deschutes",2014-06-19,2016-06-29,"Cat5",98,98,184,NA,NA
+"ONF-029","HeflinCr_hl4600_WT",44.54432677,-120.386558,"OR_WS_170702040305_05_102200","River/Stream","Year round","John Day",2015-06-29,2016-05-16,"Cat2",0,0,92,NA,NA
+"ONF-030","HowardCr_ho4670_LTWT",44.39442727,-120.2827656,"OR_WS_170703040303_05_102426","River/Stream","Year round","Deschutes",2014-06-18,2016-05-25,"Cat5",101,101,184,NA,NA
+"ONF-032","KlootchmanCr_KL4700_LTWT",44.00290604,-120.4659133,"OR_WS_170703040701_05_102443","River/Stream","Year round","Deschutes",2014-10-09,2016-05-17,"Cat5",33,33,92,NA,NA
+"ONF-033","LittleHayCr_lh4020_WT",44.41343886,-120.4960998,"OR_WS_170703050204_05_102455","River/Stream","Year round","Deschutes",2010-07-06,2010-11-14,"Cat2",0,0,87,NA,NA
+"ONF-034","LittleHayCr_lh4040_LTWT",44.41308242,-120.4956117,"OR_WS_170703050204_05_102455","River/Stream","Year round","Deschutes",2009-07-07,2009-09-21,"Cat5",2,2,77,NA,NA
+"ONF-035","LittleMckayCr_lm3672_LTWT",44.46701299,-120.7142767,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2009-06-26,2015-05-26,"Cat5",193,143,213,NA,NA
+"ONF-036","LittleMcKayCr_lm3777_WT",44.47597063,-120.7114612,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2008-05-20,2009-07-29,"Cat5",95,95,121,NA,NA
+"ONF-037","LittleMcKayCr_lm4093_WT",44.49360471,-120.691595,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2009-06-26,2009-09-21,"Cat5",46,46,83,NA,NA
+"ONF-038","LittleMcKayCr_lm4256_WT",44.50221558,-120.683251,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2008-05-20,2016-02-29,"Cat5",20,17,171,NA,NA
+"ONF-039","LittleSummitCr_4601_WT",44.3560782,-120.006196,"OR_WS_170703040402_05_102431","River/Stream","Year round","Deschutes",2014-06-19,2016-06-06,"Cat5",71,71,184,NA,NA
+"ONF-040","LytleCr_ly4843_LTWT",44.26645488,-120.2665104,"OR_WS_170703040301_05_102424","River/Stream","Year round","Deschutes",2009-07-03,2013-06-11,"Cat5",4,4,92,NA,NA
+"ONF-045","McKayCr_mk3454_LTWT",44.45013809,-120.7455779,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2009-06-26,2009-08-14,"Cat5",47,47,45,NA,NA
+"ONF-046","McKayCr_mk3679_LTWT",44.46565548,-120.7139245,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2008-05-26,2009-07-29,"Cat5",53,38,121,NA,NA
+"ONF-047","McKayCr_mk3851_WT",44.4725606,-120.6922915,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2009-06-26,2009-10-05,"Cat5",14,14,92,NA,NA
+"ONF-048","McKayCr_mk4428_LTWT",44.47362392,-120.6418586,"OR_WS_170703050501_05_102463","River/Stream","Year round","Deschutes",2008-05-20,2012-08-19,"Cat5",21,21,184,NA,NA
+"ONF-049","MillCrEF_me3706_LTWT",44.43911292,-120.5805424,"OR_WS_170703050301_05_102457","River/Stream","Year round","Deschutes",2009-06-26,2016-02-29,"Cat5",239,150,185,NA,NA
+"ONF-050","MillCrWF_mw3699_LTWT",44.44009898,-120.582866,"OR_WS_170703050301_05_102457","River/Stream","Year round","Deschutes",2008-05-28,2009-10-05,"Cat5",232,138,184,NA,NA
+"ONF-051","MillCrWF_mw4230_LTWT",44.4768858,-120.584492,"OR_WS_170703050301_05_102457","River/Stream","Year round","Deschutes",2009-06-26,2009-10-07,"Cat5",16,16,92,NA,NA
+"ONF-056","NFCrookedR_nc4545_LTWT",44.32365718,-120.2365687,"OR_WS_170703040304_05_102427","River/Stream","Year round","Deschutes",2016-02-29,2016-07-05,"Cat5",258,258,260,NA,NA
+"ONF-057","OC4350_WT",44.41269311,-120.3838552,"OR_WS_170703050201_05_102453","River/Stream","Year round","Deschutes",2015-06-29,2016-06-22,"Cat5",4,4,92,NA,NA
+"ONF-059","OchocoCr_oc3955_WT",44.396094,-120.4301537,"OR_WS_170703050205_05_102456","River/Stream","Year round","Deschutes",2009-07-07,2009-10-01,"Cat5",37,27,86,NA,NA
+"ONF-060","OchocoCr_oc4020_LTWT",44.39632409,-120.4177883,"OR_WS_170703050201_05_102453","River/Stream","Year round","Deschutes",2008-06-25,2009-10-01,"Cat5",38,38,176,NA,NA
+"ONF-061","PetersonCr_px3650_WT",44.37219075,-120.5334008,"OR_WS_170703050204_05_102455","River/Stream","Year round","Deschutes",2008-07-12,2008-10-16,"Cat5",43,43,81,NA,NA
+"ONF-065","SearsCr_se3960_WT",44.40422577,-120.5138549,"OR_WS_170703050204_05_102455","River/Stream","Year round","Deschutes",2008-07-12,2009-09-21,"Cat5",64,64,160,NA,NA
+"ONF-066","SherwoodCr_SH4200_LTWT",44.06715251,-120.492121,"OR_WS_170703040604_05_102438","River/Stream","Year round","Deschutes",2014-10-09,2015-06-10,"Cat3",0,0,0,NA,NA
+"ONF-067","ShotgunCrEF_sg5175_WT",44.05988406,-120.3597751,"OR_WS_170703040602_05_102436","River/Stream","Year round","Deschutes",2008-06-27,2009-10-06,"Cat2",0,0,176,NA,NA
+"ONF-068","ShotgunCrEF_sg5195_WT",44.05819896,-120.3595055,"OR_WS_170703040602_05_102436","River/Stream","Year round","Deschutes",2008-06-27,2009-10-06,"Cat2",0,0,176,NA,NA
+"ONF-069","SugarCr_6201_WT",44.23503612,-119.8040434,"OR_WS_170703030703_05_102401","River/Stream","Year round","Deschutes",2013-07-29,2016-05-24,"Cat5",17,17,248,NA,NA
+"ONF-072","TroutCr_tr3630_LTWT",44.56305126,-120.5985343,"OR_WS_170703070103_05_102546","River/Stream","Year round","Deschutes",2009-06-26,2009-09-21,"Cat5",7,7,83,NA,NA
+"ONF-073","TroutCr_tr3695_WT",44.55890528,-120.5947238,"OR_WS_170703070103_05_102546","River/Stream","Year round","Deschutes",2012-06-06,2012-12-30,"Cat3B",1,1,92,NA,NA
+"ONF-074","TroutCr_tr3850_WT",44.55152443,-120.5904722,"OR_WS_170703070103_05_102546","River/Stream","Year round","Deschutes",2014-06-10,2015-05-27,"Cat5",17,17,92,NA,NA
+"ONF-074","TroutCr_tr3850_WT",44.55152443,-120.5904722,"OR_WS_170703070103_05_102546","River/Stream","Spawn","Deschutes",2015-01-01,2015-05-15,"Cat2",NA,NA,NA,0,0
+"ONF-075","TroutCr_tr3860_WT",44.54904472,-120.5878233,"OR_WS_170703070103_05_102546","River/Stream","Year round","Deschutes",2009-06-26,2009-09-21,"Cat5",8,8,83,NA,NA
+"ONF-079","WolfCrN_5301_LTWT",44.24870504,-119.9078812,"OR_WS_170703030901_05_102406","River/Stream","Year round","Deschutes",2015-08-06,2016-05-24,"Cat5",17,17,91,NA,NA
+"ONF-081","WolfECr_6107_WT",44.32468569,-119.8151256,"OR_WS_170703030902_05_102407","River/Stream","Year round","Deschutes",2013-06-19,2016-05-24,"Cat5",10,10,275,NA,NA
+"SNF-003","0079_LTWT",44.52303629,-123.8328657,"OR_WS_171002050301_02_106155","River/Stream","Year round","Mid Coast",2008-06-26,2015-10-20,"Cat2",0,0,272,NA,NA
+"SNF-004","0109_LTWT",44.23339645,-123.8564893,"OR_WS_171002050202_02_106151","River/Stream","Year round","Mid Coast",2008-06-18,2013-11-04,"Cat2",0,0,184,NA,NA
+"SNF-004","0109_LTWT",44.23339645,-123.8564893,"OR_WS_171002050202_02_106151","River/Stream","Spawn","Mid Coast",2009-10-01,2013-11-04,"Cat2",NA,NA,NA,0,0
+"SNF-006","0146",44.46737967,-123.9629059,"OR_WS_171002050303_02_106176","River/Stream","Year round","Mid Coast",2009-07-14,2009-10-07,"Cat5",60,60,79,NA,NA
+"SNF-006","0146",44.46737967,-123.9629059,"OR_WS_171002050303_02_106176","River/Stream","Spawn","Mid Coast",2009-10-01,2009-10-07,"Cat5",NA,NA,NA,2,2
+"SNF-011","0189_LTWT",44.24801919,-123.8304939,"OR_WS_171002050202_02_106151","River/Stream","Year round","Mid Coast",2008-06-19,2015-10-21,"Cat5",239,148,261,NA,NA
+"SNF-011","0189_LTWT",44.24801919,-123.8304939,"OR_WS_171002050202_02_106151","River/Stream","Spawn","Mid Coast",2009-10-01,2015-10-21,"Cat5",NA,NA,NA,48,44
+"SNF-014","0197_LTWT",44.36598041,-123.8648655,"OR_WS_171002050403_02_106159","River/Stream","Year round","Mid Coast",2008-07-10,2008-10-26,"Cat2",0,0,83,NA,NA
+"SNF-014","0197_LTWT",44.36598041,-123.8648655,"OR_WS_171002050403_02_106159","River/Stream","Spawn","Mid Coast",2008-10-01,2008-10-26,"Cat2",NA,NA,NA,0,0
+"SNF-017","0248_LTWT",43.97558527,-123.7408968,"OR_WS_171002060803_02_106438","River/Stream","Year round","Mid Coast",2008-07-16,2008-10-13,"Cat2",0,0,77,NA,NA
+"SNF-019","0367_LTWT",44.9531895,-123.9108063,"OR_WS_171002040708_02_106140","River/Stream","Year round","Mid Coast",2017-06-22,2017-08-31,"Cat2",0,0,62,NA,NA
+"SNF-021","2012_LTWT",44.23423907,-123.8600482,"OR_WS_171002050202_02_106151","River/Stream","Year round","Mid Coast",2008-06-18,2013-11-04,"Cat5",4,4,184,NA,NA
+"SNF-021","2012_LTWT",44.23423907,-123.8600482,"OR_WS_171002050202_02_106151","River/Stream","Spawn","Mid Coast",2009-10-01,2013-11-04,"Cat2",NA,NA,NA,0,0
+"SNF-022","2016_LTWT",44.3706907,-123.8758283,"OR_WS_171002050403_02_106159","River/Stream","Year round","Mid Coast",2008-07-10,2008-10-26,"Cat2",0,0,83,NA,NA
+"SNF-022","2016_LTWT",44.3706907,-123.8758283,"OR_WS_171002050403_02_106159","River/Stream","Spawn","Mid Coast",2008-10-01,2008-10-26,"Cat2",NA,NA,NA,0,0
+"SNF-023","2023-North Fk Cape Ck_LTWT",44.14479007,-124.0543362,"OR_WS_171002050703_02_106165","River/Stream","Year round","Mid Coast",2008-07-03,2008-10-23,"Cat2",0,0,90,NA,NA
+"SNF-025","2039_LTWT",44.24506118,-123.8463978,"OR_WS_171002050202_02_106151","River/Stream","Year round","Mid Coast",2008-06-19,2012-08-17,"Cat5",28,17,171,NA,NA
+"SNF-025","2039_LTWT",44.24506118,-123.8463978,"OR_WS_171002050202_02_106151","River/Stream","Spawn","Mid Coast",2009-10-01,2015-10-21,"Cat5",NA,NA,NA,23,23
+"SNF-026","2040_LTWT",44.24425508,-123.8486542,"OR_WS_171002050202_02_106151","River/Stream","Year round","Mid Coast",2008-06-19,2015-10-21,"Cat5",88,60,261,NA,NA
+"SNF-026","2040_LTWT",44.24425508,-123.8486542,"OR_WS_171002050202_02_106151","River/Stream","Spawn","Mid Coast",2009-10-01,2015-10-21,"Cat5",NA,NA,NA,35,30
+"SNF-028","2079",44.37909033,-123.9280579,"OR_WS_171002050404_02_106175","River/Stream","Year round","Mid Coast",2008-06-24,2008-10-07,"Cat2",0,0,92,NA,NA
+"SNF-030","2081",44.36748668,-123.9289427,"OR_WS_171002050404_02_106175","River/Stream","Year round","Mid Coast",2008-06-24,2008-10-07,"Cat2",0,0,92,NA,NA
+"SNF-034","2085",44.45327903,-123.9018142,"OR_WS_171002050303_02_106176","River/Stream","Year round","Mid Coast",2009-07-15,2009-10-06,"Cat2",0,0,78,NA,NA
+"SNF-034","2085",44.45327903,-123.9018142,"OR_WS_171002050303_02_106176","River/Stream","Spawn","Mid Coast",2009-10-01,2009-10-06,"Cat2",NA,NA,NA,0,0
+"SNF-039","2100_LTWT",44.30713552,-124.0149405,"OR_WS_171002050602_00_106163","River/Stream","Year round","Mid Coast",2008-06-25,2015-10-06,"Cat2",0,0,277,NA,NA
+"SNF-039","2100_LTWT",44.30713552,-124.0149405,"OR_WS_171002050602_00_106163","River/Stream","Spawn","Mid Coast",2008-10-15,2014-10-27,"Cat5",NA,NA,NA,2,2
+"SNF-040","2120",44.51767087,-123.4997918,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-24,2012-10-31,"Cat5",5,5,276,NA,NA
+"SNF-041","2121",44.51844395,-123.5000508,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-10-31,"Cat2",0,0,276,NA,NA
+"SNF-042","2122",44.52082002,-123.4980371,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-11-01,"Cat5",5,5,276,NA,NA
+"SNF-043","2123",44.52491253,-123.4879579,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-11-01,"Cat2",0,0,276,NA,NA
+"SNF-044","2124",44.52500749,-123.481144,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-11-01,"Cat5",14,14,276,NA,NA
+"SNF-045","2125",44.51258193,-123.460317,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-11-01,"Cat5",4,4,276,NA,NA
+"SNF-046","2126",44.51156694,-123.462348,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-10-31,"Cat2",0,0,276,NA,NA
+"SNF-047","2127",44.50235807,-123.4699613,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2012-10-31,"Cat2",0,0,276,NA,NA
+"SNF-048","2128",44.50053147,-123.4402205,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2011-06-14,2012-11-01,"Cat5",19,19,184,NA,NA
+"SNF-049","2129",44.50040398,-123.4818583,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-24,2012-11-13,"Cat2",0,0,276,NA,NA
+"SNF-050","2130",44.50797512,-123.4536938,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-24,2012-11-06,"Cat5",12,12,276,NA,NA
+"SNF-051","2131",44.52105959,-123.4795286,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2011-10-25,"Cat2",0,0,184,NA,NA
+"SNF-052","2132",44.50933223,-123.4553357,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-06-10,2011-10-25,"Cat5",2,2,184,NA,NA
+"SNF-053","2133",44.50528175,-123.5153773,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2010-07-08,2011-10-20,"Cat2",0,0,177,NA,NA
+"SNF-054","2134",44.52525944,-123.4917216,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2012-06-06,2012-08-27,"Cat5",74,74,58,NA,NA
+"SNF-055","2136",44.52476802,-123.4918641,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2011-06-14,2012-10-31,"Cat5",20,20,184,NA,NA
+"SNF-056","2150",44.36831315,-124.0258695,"OR_WS_171002050405_02_106174","River/Stream","Year round","Mid Coast",2011-07-26,2014-11-06,"Cat2",0,0,212,NA,NA
+"SNF-057","2151",44.41581045,-123.9398965,"OR_WS_171002050405_02_106174","River/Stream","Year round","Mid Coast",2011-07-27,2014-11-06,"Cat2",0,0,237,NA,NA
+"SNF-057","2151",44.41581045,-123.9398965,"OR_WS_171002050405_02_106174","River/Stream","Spawn","Mid Coast",2011-10-15,2014-11-06,"Cat5",NA,NA,NA,8,8
+"SNF-058","2152",44.41840706,-123.934651,"OR_WS_171002050405_02_106174","River/Stream","Year round","Mid Coast",2012-08-03,2014-11-06,"Cat2",0,0,199,NA,NA
+"SNF-058","2152",44.41840706,-123.934651,"OR_WS_171002050405_02_106174","River/Stream","Spawn","Mid Coast",2013-10-15,2014-11-06,"Cat2",NA,NA,NA,0,0
+"SNF-059","2153",44.41957021,-123.9336806,"OR_WS_171002050405_02_106174","River/Stream","Year round","Mid Coast",2012-08-03,2014-11-06,"Cat2",0,0,199,NA,NA
+"SNF-059","2153",44.41957021,-123.9336806,"OR_WS_171002050405_02_106174","River/Stream","Spawn","Mid Coast",2013-10-15,2014-11-06,"Cat5",NA,NA,NA,10,10
+"SNF-060","2154",44.35937514,-123.7753724,"OR_WS_171002050205_02_106154","River/Stream","Year round","Mid Coast",2012-07-13,2014-11-11,"Cat2",0,0,227,NA,NA
+"SNF-061","2155",44.35354872,-123.7668968,"OR_WS_171002050205_02_106154","River/Stream","Year round","Mid Coast",2012-07-13,2014-11-11,"Cat2",0,0,227,NA,NA
+"SNF-062","2156",44.36794214,-124.0250182,"OR_WS_171002050405_02_106174","River/Stream","Year round","Mid Coast",2014-07-18,2014-11-06,"Cat2",0,0,75,NA,NA
+"SNF-063","2160",44.52866909,-123.4964328,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2012-06-12,2012-10-31,"Cat2",0,0,92,NA,NA
+"SNF-067","2164",44.52629985,-123.4938263,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2012-06-12,2012-10-31,"Cat5",37,37,92,NA,NA
+"SNF-068","2165",44.52629961,-123.4938813,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2012-06-12,2012-10-31,"Cat2",0,0,92,NA,NA
+"SNF-069","2166",44.50747952,-123.4533595,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2012-06-07,2012-11-01,"Cat2",0,0,92,NA,NA
+"SNF-070","2167",44.50782875,-123.4524638,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2012-06-07,2012-11-02,"Cat5",7,7,92,NA,NA
+"SNF-072","2170",44.51548154,-123.4738437,"OR_WS_170900030204_02_104256","River/Stream","Year round","Willamette",2013-05-27,2013-10-20,"Cat2",0,0,92,NA,NA
+"SNF-076","4048",43.99496214,-123.9880074,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2009-07-22,2009-11-09,"Cat2",0,0,71,NA,NA
+"SNF-076","4048",43.99496214,-123.9880074,"OR_WS_171002060804_02_106406","River/Stream","Spawn","Mid Coast",2009-10-15,2009-11-09,"Cat2",NA,NA,NA,0,0
+"SNF-077","4049-Karnowsky Ck",43.99778615,-123.9889923,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2008-07-15,2008-10-02,"Cat5",4,4,78,NA,NA
+"SNF-080","4067_LTWT",43.8422364,-124.0298222,"OR_WS_171002070104_02_106387","River/Stream","Year round","Mid Coast",2008-07-18,2008-10-14,"Cat2",0,0,75,NA,NA
+"SNF-082","4077",44.21124978,-123.702763,"OR_WS_171002060401_02_106166","River/Stream","Year round","Mid Coast",2015-07-14,2015-10-28,"Cat5",41,41,79,NA,NA
+"SNF-082","4077",44.21124978,-123.702763,"OR_WS_171002060401_02_106166","River/Stream","Spawn","Mid Coast",2015-10-15,2015-10-28,"Cat3B",NA,NA,NA,1,1
+"SNF-083","4084",43.99193748,-123.9828137,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2008-07-15,2009-11-09,"Cat5",7,7,149,NA,NA
+"SNF-083","4084",43.99193748,-123.9828137,"OR_WS_171002060804_02_106406","River/Stream","Spawn","Mid Coast",2009-10-15,2009-11-09,"Cat2",NA,NA,NA,0,0
+"SNF-084","4086",43.99490951,-123.9876858,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2008-07-15,2008-10-02,"Cat5",8,8,78,NA,NA
+"SNF-085","4088-Actual Location-Karnowsky Ck New Channel",43.9959559,-123.9903295,"OR_WS_171002060804_02_106406","River/Stream","Year round","Mid Coast",2008-07-15,2009-11-09,"Cat2",0,0,149,NA,NA
+"SNF-089","4092",43.97544971,-123.7393626,"OR_WS_171002060803_02_106438","River/Stream","Year round","Mid Coast",2009-07-31,2011-10-11,"Cat2",0,0,133,NA,NA
+"SNF-089","4092",43.97544971,-123.7393626,"OR_WS_171002060803_02_106438","River/Stream","Spawn","Mid Coast",2009-10-15,2009-11-05,"Cat2",NA,NA,NA,0,0
+"SNF-092","AndyCr_WT",45.29748909,-123.8872453,"OR_WS_171002030902_05_106219","River/Stream","Year round","North Coast",2017-07-07,2017-09-12,"Cat2",0,0,68,NA,NA
+"SNF-093","LowerHiack_LTWT",45.08393183,-123.7918274,"OR_WS_171002030101_05_106099","River/Stream","Year round","North Coast",2009-07-14,2017-09-13,"Cat5",57,49,269,NA,NA
+"SNF-093","LowerHiack_LTWT",45.08393183,-123.7918274,"OR_WS_171002030101_05_106099","River/Stream","Spawn","North Coast",2010-10-15,2014-11-06,"Cat2",NA,NA,NA,0,0
+"SNF-094","NorthCreek_WT",44.90798714,-123.9075305,"OR_WS_171002040707_02_106179","River/Stream","Year round","Mid Coast",2016-08-12,2017-09-10,"Cat2",0,0,122,NA,NA
+"SNF-094","NorthCreek_WT",44.90798714,-123.9075305,"OR_WS_171002040707_02_106179","River/Stream","Spawn","Mid Coast",2016-10-15,2016-10-17,"Cat2",NA,NA,NA,0,0
+"SNF-095","PowderCk_LTWT_Site0500",45.24320075,-123.6818006,"OR_WS_171002030206_05_106105","River/Stream","Year round","North Coast",2008-07-30,2014-10-09,"Cat5",130,91,178,NA,NA
+"SNF-095","PowderCk_LTWT_Site0500",45.24320075,-123.6818006,"OR_WS_171002030206_05_106105","River/Stream","Spawn","North Coast",2008-10-15,2012-10-23,"Cat2",NA,NA,NA,0,0
+"SNF-096","PowderCk_WT_Site0524",45.24315334,-123.6748224,"OR_WS_171002030206_05_106105","River/Stream","Year round","North Coast",2009-07-14,2017-09-12,"Cat5",73,42,74,NA,NA
+"SNF-096","PowderCk_WT_Site0524",45.24315334,-123.6748224,"OR_WS_171002030206_05_106105","River/Stream","Spawn","North Coast",2009-10-15,2009-11-08,"Cat2",NA,NA,NA,0,0
+"SNF-104","StillwellCk_LTWT",45.08808374,-123.7917718,"OR_WS_171002030101_05_106099","River/Stream","Year round","North Coast",2008-07-07,2017-09-13,"Cat2",0,0,133,NA,NA
+"SNF-104","StillwellCk_LTWT",45.08808374,-123.7917718,"OR_WS_171002030101_05_106099","River/Stream","Spawn","North Coast",2008-10-15,2008-10-26,"Cat2",NA,NA,NA,0,0
+"SNF-105","UpperHiack_WT",45.06617853,-123.8255159,"OR_WS_171002030101_05_106099","River/Stream","Year round","North Coast",2008-08-07,2017-09-10,"Cat2",0,0,238,NA,NA
+"UmatNF-001","3TrougFB_LTWT",44.979594,-119.5141264,"OR_WS_170702020802_05_102133","River/Stream","Year round","John Day",2009-06-09,2015-07-16,"Cat5",424,188,277,NA,NA
+"UmatNF-001","3TrougFB_LTWT",44.979594,-119.5141264,"OR_WS_170702020802_05_102133","River/Stream","Spawn","John Day",2014-05-07,2016-05-15,"Cat5",NA,NA,NA,32,32
+"UmatNF-003","AlderAtMT_LTWT",45.05183936,-119.4528744,"OR_WS_170702020803_05_102134","River/Stream","Year round","John Day",2008-06-24,2011-07-03,"Cat5",107,57,107,NA,NA
+"UmatNF-003","AlderAtMT_LTWT",45.05183936,-119.4528744,"OR_WS_170702020803_05_102134","River/Stream","Spawn","John Day",2014-05-14,2014-05-15,"Cat2",NA,NA,NA,0,0
+"UmatNF-004","BaconAtFB_LTWT",44.98344301,-119.488818,"OR_WS_170702020802_05_102133","River/Stream","Year round","John Day",2008-06-23,2016-10-18,"Cat2",0,0,277,NA,NA
+"UmatNF-004","BaconAtFB_LTWT",44.98344301,-119.488818,"OR_WS_170702020802_05_102133","River/Stream","Spawn","John Day",2014-05-07,2016-05-15,"Cat2",NA,NA,NA,0,0
+"UmatNF-005","BattleMT_LTWT",44.85701309,-118.7609235,"OR_WS_170702020402_05_102104","River/Stream","Year round","John Day",2008-07-03,2016-06-14,"Cat5",548,251,276,NA,NA
+"UmatNF-006","BeemanCr_LTWT",44.86390506,-118.772026,"OR_WS_170702020402_05_102104","River/Stream","Year round","John Day",2008-07-09,2015-08-08,"Cat5",360,172,277,NA,NA
+"UmatNF-007","BurntAMT_LTWT",45.70382923,-117.94592,"OR_WS_170601041104_02_103481","River/Stream","Year round","Grande Ronde",2008-07-24,2008-10-14,"Cat2",0,0,69,NA,NA
+"UmatNF-010","Colvin2_LTWT",44.99338334,-119.6813218,"OR_WS_170702020804_05_102135","River/Stream","Year round","John Day",2008-05-21,2012-07-08,"Cat5",41,23,234,NA,NA
+"UmatNF-010","Colvin2_LTWT",44.99338334,-119.6813218,"OR_WS_170702020804_05_102135","River/Stream","Spawn","John Day",2010-05-10,2015-05-15,"Cat5",NA,NA,NA,6,6
+"UmatNF-015","EPhilMT_LTWT",45.62344778,-118.0710724,"OR_WS_170601041101_02_103478","River/Stream","Year round","Grande Ronde",2008-07-22,2009-10-07,"Cat2",0,0,143,NA,NA
+"UmatNF-016","FrazerMT_LTWT",45.16339436,-118.6438137,"OR_WS_170702020502_05_102108","River/Stream","Year round","John Day",2009-06-22,2010-10-26,"Cat5",107,107,184,NA,NA
+"UmatNF-016","FrazerMT_LTWT",45.16339436,-118.6438137,"OR_WS_170702020502_05_102108","River/Stream","Spawn","John Day",2010-06-03,2010-06-15,"Cat2",NA,NA,NA,0,0
+"UmatNF-017","GordonCr_LTWT",45.66065444,-117.9982085,"OR_WS_170601041102_02_103479","River/Stream","Year round","Grande Ronde",2009-07-22,2010-05-30,"Cat2",0,0,71,NA,NA
+"UmatNF-017","GordonCr_LTWT",45.66065444,-117.9982085,"OR_WS_170601041102_02_103479","River/Stream","Spawn","Grande Ronde",2010-01-04,2010-05-15,"Cat2",NA,NA,NA,0,0
+"UmatNF-018","GranitUp_LTWT",44.85122204,-118.3971166,"OR_WS_170702020201_05_102092","River/Stream","Year round","John Day",2011-07-14,2015-07-12,"Cat5",86,72,257,NA,NA
+"UmatNF-021","HowardMt_LTWT",44.84025523,-118.7188101,"OR_WS_170702020402_05_102104","River/Stream","Year round","John Day",2009-07-07,2016-07-07,"Cat5",452,215,277,NA,NA
+"UmatNF-024","JarboAtFB_LTWT",45.78869853,-117.8571042,"OR_WS_170601041003_02_103476","River/Stream","Year round","Grande Ronde",2009-07-16,2015-10-25,"Cat5",337,179,248,NA,NA
+"UmatNF-025","JarboBEF_LTWT",45.819823,-117.8617476,"OR_WS_170601041003_02_103476","River/Stream","Year round","Grande Ronde",2016-07-29,2016-10-12,"Cat2",0,0,64,NA,NA
+"UmatNF-026","JunknsMT_LTWT",44.8786288,-118.7805996,"OR_WS_170702020402_05_102104","River/Stream","Year round","John Day",2008-07-09,2016-07-09,"Cat5",473,211,277,NA,NA
+"UmatNF-028","KelsyAtFB_LTWT",44.93269835,-118.7827727,"OR_WS_170702020403_05_102105","River/Stream","Year round","John Day",2009-06-22,2011-10-27,"Cat5",563,241,276,NA,NA
+"UmatNF-029","LightApl_LTWT",44.75207015,-118.4977417,"OR_WS_170702020204_05_102095","River/Stream","Year round","John Day",2011-07-14,2015-07-12,"Cat5",273,164,257,NA,NA
+"UmatNF-031","LKelsyMT_LTWT",44.93411833,-118.7685521,"OR_WS_170702020403_05_102105","River/Stream","Year round","John Day",2010-06-30,2010-10-21,"Cat5",44,44,92,NA,NA
+"UmatNF-032","LookAEag_LTWT",45.75526715,-117.9499798,"OR_WS_170601041004_02_103477","River/Stream","Year round","Grande Ronde",2008-07-26,2016-10-27,"Cat2",0,0,249,NA,NA
+"UmatNF-033","LookGASP_LTWT",45.76607661,-117.9951353,"OR_WS_170601041001_02_103474","River/Stream","Year round","Grande Ronde",2008-08-03,2015-09-30,"Cat5",364,183,228,NA,NA
+"UmatNF-038","MalryAtFB_LTWT",45.01085957,-119.2894947,"OR_WS_170702020708_05_102128","River/Stream","Year round","John Day",2009-07-08,2012-10-02,"Cat5",62,62,262,NA,NA
+"UmatNF-041","MottetFB_LTWT",45.76828056,-117.9108959,"OR_WS_170601041002_02_103475","River/Stream","Year round","Grande Ronde",2016-07-01,2016-10-12,"Cat5",67,67,92,NA,NA
+"UmatNF-042","NFDesBEx_LTWT",44.81822218,-118.6376533,"OR_WS_170702020401_05_102103","River/Stream","Year round","John Day",2008-07-09,2008-09-23,"Cat5",55,55,77,NA,NA
+"UmatNF-043","NFDeso45_LTWT",44.82121743,-118.6774397,"OR_WS_170702020401_05_102103","River/Stream","Year round","John Day",2009-07-07,2015-10-27,"Cat5",482,273,276,NA,NA
+"UmatNF-045","NFDesoMT_LTWT",44.81950866,-118.6885721,"OR_WS_170702020401_05_102103","River/Stream","Year round","John Day",2008-07-09,2009-10-28,"Cat5",127,127,163,NA,NA
+"UmatNF-053","Ptams2Rd_LTWT",45.08995857,-119.2199297,"OR_WS_170702020706_05_102126","River/Stream","Year round","John Day",2011-07-05,2011-10-25,"Cat5",52,52,88,NA,NA
+"UmatNF-056","RubyMth_LTWT",44.77510258,-118.4924543,"OR_WS_170702020204_05_102095","River/Stream","Year round","John Day",2012-07-04,2015-11-02,"Cat5",262,173,276,NA,NA
+"UmatNF-057","SFDeso45_LTWT",44.81021972,-118.6830782,"OR_WS_170702020401_05_102103","River/Stream","Year round","John Day",2009-07-07,2013-10-23,"Cat5",490,203,240,NA,NA
+"UmatNF-058","SFDesoMT_LTWT",44.81950167,-118.688564,"OR_WS_170702020401_05_102103","River/Stream","Year round","John Day",2008-07-09,2009-10-01,"Cat5",132,132,163,NA,NA
+"UmatNF-061","Skookum1_LTWT",45.05154391,-119.4540298,"OR_WS_170702020803_05_102134","River/Stream","Year round","John Day",2014-06-10,2016-10-18,"Cat5",18,18,276,NA,NA
+"UmatNF-063","SpongeMT_LTWT",44.84514333,-118.7360125,"OR_WS_170702020402_05_102104","River/Stream","Year round","John Day",2008-07-03,2010-10-21,"Cat5",208,208,261,NA,NA
+"UmatNF-065","TXBarAtFB_LTWT",45.03058283,-118.8058681,"OR_WS_170702020306_05_102102","River/Stream","Year round","John Day",2009-09-05,2013-06-30,"Cat5",138,112,277,NA,NA
+"UmatNF-065","TXBarAtFB_LTWT",45.03058283,-118.8058681,"OR_WS_170702020306_05_102102","River/Stream","Spawn","John Day",2013-06-11,2016-06-13,"Cat5",NA,NA,NA,15,13
+"UmpNF-001","Anderson Creek at the mouth WT",42.86388121,-122.8807224,"OR_WS_171003020402_02_105692","River/Stream","Year round","Umpqua",2012-07-03,2012-10-01,"Cat5",36,36,90,NA,NA
+"UmpNF-002","Bear Creek_LTWT",43.2303614,-122.2599494,"OR_WS_171003010302_02_105638","River/Stream","Year round","Umpqua",2008-06-20,2017-10-04,"Cat2",0,0,276,NA,NA
+"UmpNF-005","Black Canyon Creek at the mouth WT",42.96282903,-122.7030721,"OR_WS_171003020205_02_105684","River/Stream","Year round","Umpqua",2010-06-22,2014-09-08,"Cat5",311,207,260,NA,NA
+"UmpNF-012","Brownie Creek at the mouth LTWT",42.86172364,-122.876402,"OR_WS_171003020402_02_105692","River/Stream","Year round","Umpqua",2008-07-08,2014-09-10,"Cat5",478,202,267,NA,NA
+"UmpNF-012","Brownie Creek at the mouth LTWT",42.86172364,-122.876402,"OR_WS_171003020402_02_105692","River/Stream","Spawn","Umpqua",2013-10-15,2013-10-21,"Cat2",NA,NA,NA,0,0
+"UmpNF-014","Calf Creek base Station_LTWT",43.27253112,-122.6253722,"OR_WS_171003010804_02_105657","River/Stream","Year round","Umpqua",2008-06-30,2016-09-08,"Cat5",724,274,254,NA,NA
+"UmpNF-014","Calf Creek base Station_LTWT",43.27253112,-122.6253722,"OR_WS_171003010804_02_105657","River/Stream","Spawn","Umpqua",2015-06-07,2017-06-14,"Cat5",NA,NA,NA,11,11
+"UmpNF-015","Callahan Creek at the mouth WT",42.89778138,-122.932676,"OR_WS_171003020404_02_105694","River/Stream","Year round","Umpqua",2008-06-15,2014-09-11,"Cat5",537,194,268,NA,NA
+"UmpNF-015","Callahan Creek at the mouth WT",42.89778138,-122.932676,"OR_WS_171003020404_02_105694","River/Stream","Spawn","Umpqua",2013-10-15,2013-10-21,"Cat2",NA,NA,NA,0,0
+"UmpNF-017","Castle Rock Fork at the Mouth_LTWT",43.10711702,-122.5878798,"OR_WS_171003020101_02_105675","River/Stream","Year round","Umpqua",2008-06-16,2016-09-04,"Cat5",672,244,261,NA,NA
+"UmpNF-017","Castle Rock Fork at the Mouth_LTWT",43.10711702,-122.5878798,"OR_WS_171003020101_02_105675","River/Stream","Spawn","Umpqua",2008-09-01,2015-09-29,"Cat5",NA,NA,NA,248,82
+"UmpNF-019","Cedar Creek at the Mouth_LTWT",43.44917226,-122.5921889,"OR_WS_171003010702_02_105651","River/Stream","Year round","Umpqua",2008-06-30,2016-07-08,"Cat5",580,211,254,NA,NA
+"UmpNF-019","Cedar Creek at the Mouth_LTWT",43.44917226,-122.5921889,"OR_WS_171003010702_02_105651","River/Stream","Spawn","Umpqua",2015-06-07,2017-06-15,"Cat5",NA,NA,NA,12,12
+"UmpNF-020","China Creek blw Saddle Camp Creek WT",43.53687907,-122.7270948,"OR_WS_170900020203_02_104229","River/Stream","Year round","Willamette",2008-07-03,2017-09-26,"Cat5",22,13,263,NA,NA
+"UmpNF-021","City Creek at the Mouth_LTWT",43.49974439,-122.5978867,"OR_WS_171003010701_02_105650","River/Stream","Year round","Umpqua",2008-07-05,2017-10-03,"Cat5",590,226,272,NA,NA
+"UmpNF-021","City Creek at the Mouth_LTWT",43.49974439,-122.5978867,"OR_WS_171003010701_02_105650","River/Stream","Spawn","Umpqua",2015-06-07,2017-06-15,"Cat5",NA,NA,NA,9,9
+"UmpNF-022","Clearwater River above Reconnect_LTWT",43.26398247,-122.4186395,"OR_WS_171003010304_02_105639","River/Stream","Year round","Umpqua",2008-06-15,2016-10-10,"Cat2",0,0,262,NA,NA
+"UmpNF-026","Coyote Creek Watershed #1_LTWT",43.01726569,-122.7157031,"OR_WS_171003020104_02_105678","River/Stream","Year round","Umpqua",2008-06-15,2017-09-27,"Cat5",10,6,277,NA,NA
+"UmpNF-027","Coyote Creek Watershed #2 LTWT",43.01430017,-122.7159402,"OR_WS_171003020104_02_105678","River/Stream","Year round","Umpqua",2008-06-15,2017-09-27,"Cat2",0,0,277,NA,NA
+"UmpNF-028","Coyote Creek Watershed #3 LTWT",43.01383855,-122.7123221,"OR_WS_171003020104_02_105678","River/Stream","Year round","Umpqua",2008-06-15,2017-09-27,"Cat5",7,7,277,NA,NA
+"UmpNF-029","Coyote Creek Watershed #4 LTWT",43.01357754,-122.7112564,"OR_WS_171003020104_02_105678","River/Stream","Year round","Umpqua",2008-06-15,2016-02-29,"Cat5",9,5,270,NA,NA
+"UmpNF-032","Deep Cut Creek at the mouth WT",42.9639976,-122.7229511,"OR_WS_171003020205_02_105684","River/Stream","Year round","Umpqua",2008-07-07,2011-07-07,"Cat5",292,148,255,NA,NA
+"UmpNF-033","Deer Creek at the mouth LTWT",43.29363464,-122.3769112,"OR_WS_171003010504_02_105646","River/Stream","Year round","Umpqua",2008-06-27,2017-07-18,"Cat5",13,13,265,NA,NA
+"UmpNF-034","Diamond Creek at the mouth WT",42.81984261,-122.8526296,"OR_WS_171003020401_02_105691","River/Stream","Year round","Umpqua",2008-06-15,2011-06-30,"Cat5",348,177,266,NA,NA
+"UmpNF-034","Diamond Creek at the mouth WT",42.81984261,-122.8526296,"OR_WS_171003020401_02_105691","River/Stream","Spawn","Umpqua",2008-06-15,2008-06-15,"Cat2",NA,NA,NA,0,0
+"UmpNF-037","Elk Creek at Tiller_LTWT",42.9244364,-122.94782,"OR_WS_171003020404_02_105694","River/Stream","Year round","Umpqua",2008-06-17,2015-07-03,"Cat5",839,283,259,NA,NA
+"UmpNF-039","Fish Creek at the mouth LTWT",43.28540437,-122.4710311,"OR_WS_171003010404_02_105643","River/Stream","Year round","Umpqua",2008-06-26,2016-07-26,"Cat5",69,59,255,NA,NA
+"UmpNF-041","Flat Rock Creek at the mouth LTWT",43.19300347,-122.7835141,"OR_WS_171003011001_02_105666","River/Stream","Year round","Umpqua",2008-07-01,2015-08-08,"Cat5",151,110,255,NA,NA
+"UmpNF-042","French Creek at the mouth WT",43.14645201,-122.535954,"OR_WS_171003020102_02_105676","River/Stream","Year round","Umpqua",2008-07-07,2013-09-22,"Cat5",286,195,242,NA,NA
+"UmpNF-044","Horse Heaven at the mouth LTWT",43.51148508,-122.582381,"OR_WS_171003010701_02_105650","River/Stream","Year round","Umpqua",2008-06-30,2016-07-07,"Cat5",515,199,254,NA,NA
+"UmpNF-044","Horse Heaven at the mouth LTWT",43.51148508,-122.582381,"OR_WS_171003010701_02_105650","River/Stream","Spawn","Umpqua",2015-06-07,2017-06-15,"Cat5",NA,NA,NA,9,9
+"UmpNF-051","Joe Hall Creek at the mouth WT",42.86768776,-122.8821331,"OR_WS_171003020404_02_105694","River/Stream","Year round","Umpqua",2008-06-15,2011-09-30,"Cat5",392,183,207,NA,NA
+"UmpNF-051","Joe Hall Creek at the mouth WT",42.86768776,-122.8821331,"OR_WS_171003020404_02_105694","River/Stream","Spawn","Umpqua",2010-10-22,2013-11-06,"Cat5",NA,NA,NA,14,8
+"UmpNF-052","Lake Creek at the mouth LTWT",43.29925014,-122.1835724,"OR_WS_171003010204_02_105809","River/Stream","Year round","Umpqua",2008-06-16,2015-08-16,"Cat5",129,95,261,NA,NA
+"UmpNF-053","Lake Creek below Diamond Lake_LTWT",43.18717587,-122.1659768,"OR_WS_171003010204_02_105809","River/Stream","Year round","Umpqua",2008-06-16,2015-09-06,"Cat5",836,269,255,NA,NA
+"UmpNF-064","Mowich Creek at the mouth_LTWT",43.25172572,-122.3375335,"OR_WS_171003010304_02_105639","River/Stream","Year round","Umpqua",2008-06-20,2017-10-04,"Cat2",0,0,273,NA,NA
+"UmpNF-066","Panther Creek abv Limpy on 4719 LTWT",43.30208255,-122.6812578,"OR_WS_171003010805_02_105658","River/Stream","Year round","Umpqua",2015-06-17,2017-09-27,"Cat5",268,268,262,NA,NA
+"UmpNF-066","Panther Creek abv Limpy on 4719 LTWT",43.30208255,-122.6812578,"OR_WS_171003010805_02_105658","River/Stream","Spawn","Umpqua",2017-06-08,2017-06-15,"Cat5",NA,NA,NA,7,7
+"UmpNF-068","Quartz Creek at the Mouth_LTWT",43.08036427,-122.6502922,"OR_WS_171003020105_02_105679","River/Stream","Year round","Umpqua",2008-06-16,2015-09-07,"Cat5",869,292,260,NA,NA
+"UmpNF-068","Quartz Creek at the Mouth_LTWT",43.08036427,-122.6502922,"OR_WS_171003020105_02_105679","River/Stream","Spawn","Umpqua",2014-06-12,2016-06-14,"Cat5",NA,NA,NA,12,12
+"UmpNF-080","Steelhead Creek at the Mouth_LTWT",43.37617182,-122.6540427,"OR_WS_171003010706_02_105654","River/Stream","Year round","Umpqua",2008-06-30,2017-09-21,"Cat5",653,249,266,NA,NA
+"UmpNF-080","Steelhead Creek at the Mouth_LTWT",43.37617182,-122.6540427,"OR_WS_171003010706_02_105654","River/Stream","Spawn","Umpqua",2008-09-01,2017-09-20,"Cat5",NA,NA,NA,216,92
+"UmpNF-081","Trib to Joe Hall at Singing Falls WT",42.87054895,-122.876604,"OR_WS_171003020404_02_105694","River/Stream","Year round","Umpqua",2008-06-15,2017-08-29,"Cat2",0,0,274,NA,NA
+"UmpNF-083","Williams Creek at the mouth LTWT",43.33845854,-122.7652991,"OR_WS_171003010807_02_105660","River/Stream","Year round","Umpqua",2010-06-24,2017-09-27,"Cat5",570,255,269,NA,NA
+"UmpNF-083","Williams Creek at the mouth LTWT",43.33845854,-122.7652991,"OR_WS_171003010807_02_105660","River/Stream","Spawn","Umpqua",2015-06-07,2017-06-14,"Cat5",NA,NA,NA,16,16
+"UmpNF-084","Wright Creek at the Mouth WT",43.32008512,-122.8090578,"OR_WS_171003010808_02_105661","River/Stream","Year round","Umpqua",2016-06-21,2017-09-27,"Cat5",86,86,179,NA,NA
+"UmpNF-084","Wright Creek at the Mouth WT",43.32008512,-122.8090578,"OR_WS_171003010808_02_105661","River/Stream","Spawn","Umpqua",2017-06-08,2017-06-15,"Cat2",NA,NA,NA,0,0
+"UmpNF-085","Zinc Creek at the mouth WT",43.04458926,-122.7853677,"OR_WS_171003020303_02_105687","River/Stream","Year round","Umpqua",2008-07-07,2013-09-22,"Cat5",125,64,267,NA,NA
+"WNF-001","Anderson_WT",44.26366392,-122.0418306,"OR_WS_170900040206_02_104310","River/Stream","Year round","Willamette",2016-06-13,2016-10-03,"Cat2",0,0,92,NA,NA
+"WNF-002","AndyCreekAtMouth_Temp",43.97088395,-122.5377053,"OR_WS_170900010904_02_104219","River/Stream","Year round","Willamette",2017-06-22,2017-10-15,"Cat5",40,40,92,NA,NA
+"WNF-009","Boulder_WT",44.2042803,-122.0388187,"OR_WS_170900040206_02_104310","River/Stream","Year round","Willamette",2016-06-13,2016-09-06,"Cat5",57,57,68,NA,NA
+"WNF-012","Budworm_WT",44.25915324,-122.0638598,"OR_WS_170900040205_02_104309","River/Stream","Year round","Willamette",2016-06-13,2016-10-03,"Cat5",71,71,92,NA,NA
+"WNF-016","Castle_WT",44.11995617,-122.0368866,"OR_WS_170900040104_02_104303","River/Stream","Year round","Willamette",2008-07-17,2010-09-21,"Cat5",141,141,235,NA,NA
+"WNF-018","ClarkCreek_LTWT",43.97260942,-122.5808419,"OR_WS_170900010904_02_104219","River/Stream","Year round","Willamette",2017-06-22,2017-10-16,"Cat5",38,38,92,NA,NA
+"WNF-019","CoalCreekAtMFTrailBridge_LTWT",43.49997579,-122.4206022,"OR_WS_170900010501_02_104199","River/Stream","Year round","Willamette",2017-07-18,2017-10-16,"Cat5",65,65,75,NA,NA
+"WNF-020","CoalCreekBelow200Bridge_LTWT",43.49473984,-122.422996,"OR_WS_170900010501_02_104199","River/Stream","Year round","Willamette",2017-06-22,2017-10-09,"Cat5",89,89,92,NA,NA
+"WNF-021","Cone_WT",44.16112897,-122.3649255,"OR_WS_170900040502_02_104326","River/Stream","Year round","Willamette",2010-08-23,2016-07-28,"Cat5",110,79,252,NA,NA
+"WNF-023","Cougar_WT",44.13862463,-122.2481972,"OR_WS_170900040308_02_104321","River/Stream","Year round","Willamette",2014-07-25,2014-09-21,"Cat2",0,0,59,NA,NA
+"WNF-024","DeerAbvBudworm_WT",44.25998606,-122.0643162,"OR_WS_170900040205_02_104309","River/Stream","Year round","Willamette",2016-06-13,2016-10-03,"Cat5",77,77,92,NA,NA
+"WNF-025","DeerNearMouth_LTWT",44.2416844,-122.0589259,"OR_WS_170900040205_02_104309","River/Stream","Year round","Willamette",2008-07-15,2011-09-28,"Cat5",242,178,182,NA,NA
+"WNF-026","DeerPowerlines_LTWT",44.24656824,-122.0603672,"OR_WS_170900040205_02_104309","River/Stream","Year round","Willamette",2008-07-15,2009-10-05,"Cat5",158,158,156,NA,NA
+"WNF-027","Divide_Creek-lower_LTWT",44.64466584,-122.1129702,"OR_WS_170900050301_02_104351","River/Stream","Year round","Willamette",2009-06-20,2010-09-30,"Cat5",6,6,179,NA,NA
+"WNF-030","EchoCreek_LTWT",43.49003391,-122.343433,"OR_WS_170900010106_02_104190","River/Stream","Year round","Willamette",2017-07-18,2017-10-09,"Cat5",10,10,75,NA,NA
+"WNF-031","EighthCreek",43.83453174,-122.3993641,"OR_WS_170900010608_02_104210","River/Stream","Year round","Willamette",2008-07-01,2010-09-15,"Cat5",51,51,234,NA,NA
+"WNF-032","EighthCreek_Mouth_LTWT",43.83462219,-122.3991085,"OR_WS_170900010607_02_104209","River/Stream","Year round","Willamette",2008-07-01,2017-08-10,"Cat5",55,51,234,NA,NA
+"WNF-033","ElkNorth_WT",44.15591839,-122.3713693,"OR_WS_170900040502_02_104326","River/Stream","Year round","Willamette",2008-07-18,2016-07-28,"Cat5",52,32,252,NA,NA
+"WNF-033","ElkNorth_WT",44.15591839,-122.3713693,"OR_WS_170900040502_02_104326","River/Stream","Spawn","Willamette",2011-06-10,2016-06-15,"Cat5",NA,NA,NA,5,5
+"WNF-041","FallCreekTrib_1816-178_LTWT",43.96852503,-122.5903452,"OR_WS_170900010904_02_104219","River/Stream","Year round","Willamette",2017-06-22,2017-10-17,"Cat5",15,15,92,NA,NA
+"WNF-042","Florence",44.18787443,-122.1837174,"OR_WS_170900040209_02_104313","River/Stream","Year round","Willamette",2008-07-18,2010-09-21,"Cat5",93,93,235,NA,NA
+"WNF-044","Glen_WT",44.1878944,-122.1508744,"OR_WS_170900040209_02_104313","River/Stream","Year round","Willamette",2008-07-18,2010-09-21,"Cat5",240,240,227,NA,NA
+"WNF-045","Grasshopper_WT",43.93446748,-122.1681403,"OR_WS_170900040303_02_104316","River/Stream","Year round","Willamette",2008-07-16,2011-09-26,"Cat2",0,0,258,NA,NA
+"WNF-046","HardyRd204_WT",44.03546028,-122.20444,"OR_WS_170900040304_02_104317","River/Stream","Year round","Willamette",2010-06-24,2011-09-27,"Cat5",6,6,171,NA,NA
+"WNF-047","HardyRd225_WT",44.01153726,-122.226355,"OR_WS_170900040304_02_104317","River/Stream","Year round","Willamette",2010-06-24,2011-09-27,"Cat2",0,0,171,NA,NA
+"WNF-054","HuckleberryCreek_LTWT",43.81457169,-122.4089065,"OR_WS_170900010608_02_104210","River/Stream","Year round","Willamette",2008-07-01,2017-10-03,"Cat5",18,8,234,NA,NA
+"WNF-055","Ikenick_WT",44.38257577,-122.004807,"OR_WS_170900040202_02_104306","River/Stream","Year round","Willamette",2009-06-24,2011-09-20,"Cat5",134,134,144,NA,NA
+"WNF-057","King_WT",44.16074582,-122.1698947,"OR_WS_170900040105_02_104304","River/Stream","Year round","Willamette",2008-07-15,2010-09-16,"Cat5",213,213,232,NA,NA
+"WNF-058","KinkCreekHeadwaters_WT",44.30633283,-121.9767372,"OR_WS_170900040204_02_104308","River/Stream","Year round","Willamette",2016-06-08,2016-10-03,"Cat2",0,0,92,NA,NA
+"WNF-063","MacCreek_LTWT",43.49774429,-122.3122144,"OR_WS_170900010106_02_104190","River/Stream","Year round","Willamette",2017-06-22,2017-10-04,"Cat5",90,90,92,NA,NA
+"WNF-065","MapleCreek_LTWT",43.4892225,-122.3946182,"OR_WS_170900010106_02_104190","River/Stream","Year round","Willamette",2017-06-22,2017-10-09,"Cat5",89,89,92,NA,NA
+"WNF-072","MiddleForkAtPaddysValley_LTWT",43.44222656,-122.1924028,"OR_WS_170900010101_02_104185","River/Stream","Year round","Willamette",2017-06-28,2017-10-04,"Cat2",0,0,92,NA,NA
+"WNF-073","Mona_WT",44.20858449,-122.2637996,"OR_WS_170900040402_02_104323","River/Stream","Year round","Willamette",2011-06-08,2011-09-25,"Cat2",0,0,87,NA,NA
+"WNF-080","NFQuartz_WT",44.18661573,-122.3121398,"OR_WS_170900040403_02_104324","River/Stream","Year round","Willamette",2011-06-08,2011-08-13,"Cat5",5,5,44,NA,NA
+"WNF-083","Ore_WT",44.23410622,-122.2770234,"OR_WS_170900040402_02_104323","River/Stream","Year round","Willamette",2008-07-18,2010-09-22,"Cat2",0,0,235,NA,NA
+"WNF-084","Owl Ck Upper",44.30579984,-122.3707679,"OR_WS_170900060205_02_104371","River/Stream","Year round","Willamette",2011-08-09,2013-09-10,"Cat2",0,0,156,NA,NA
+"WNF-086","Pasture_WT",44.12213753,-122.0380168,"OR_WS_170900040104_02_104303","River/Stream","Year round","Willamette",2008-07-17,2010-09-21,"Cat5",198,198,235,NA,NA
+"WNF-087","PineCreek_LTWT",43.55439167,-122.4566127,"OR_WS_170900010502_02_104200","River/Stream","Year round","Willamette",2017-06-22,2017-10-04,"Cat5",91,91,92,NA,NA
+"WNF-089","Pothole_WT",44.08783335,-122.0216899,"OR_WS_170900040104_02_104303","River/Stream","Year round","Willamette",2008-07-17,2010-09-21,"Cat5",143,143,235,NA,NA
+"WNF-090","Powers_WT",44.19003166,-122.1420099,"OR_WS_170900040209_02_104313","River/Stream","Year round","Willamette",2008-07-18,2010-09-21,"Cat5",128,128,190,NA,NA
+"WNF-092","Quartz_North_WT",44.18661881,-122.3121376,"OR_WS_170900040403_02_104324","River/Stream","Year round","Willamette",2011-06-08,2011-09-25,"Cat2",0,0,87,NA,NA
+"WNF-097","Ridge_WT",44.05610807,-122.221428,"OR_WS_170900040307_02_104320","River/Stream","Year round","Willamette",2010-06-23,2011-08-13,"Cat2",0,0,122,NA,NA
+"WNF-101","Scott_WT",44.19488578,-122.0427008,"OR_WS_170900040206_02_104310","River/Stream","Year round","Willamette",2016-06-13,2016-09-06,"Cat2",0,0,68,NA,NA
+"WNF-107","SFMcKenzie_Wilderness_WT",43.95271987,-122.0175878,"OR_WS_170900040301_02_104314","River/Stream","Year round","Willamette",2008-07-16,2016-09-05,"Cat2",0,0,258,NA,NA
+"WNF-109","Simmonds_WT",44.16942491,-122.3386225,"OR_WS_170900040403_02_104324","River/Stream","Year round","Willamette",2011-06-08,2011-09-25,"Cat5",44,44,87,NA,NA
+"WNF-109","Simmonds_WT",44.16942491,-122.3386225,"OR_WS_170900040403_02_104324","River/Stream","Spawn","Willamette",2011-06-08,2011-06-15,"Cat2",NA,NA,NA,0,0
+"WNF-110","SimpsonCreek_LTWT",43.495791,-122.3990898,"OR_WS_170900010106_02_104190","River/Stream","Year round","Willamette",2017-06-22,2017-10-04,"Cat5",89,89,92,NA,NA
+"WNF-114","Smith_BlwSmithRes_WT",44.30455395,-122.0479621,"OR_WS_170900040203_02_104307","River/Stream","Year round","Willamette",2009-06-25,2016-10-03,"Cat5",99,51,92,NA,NA
+"WNF-118","StaleyCreekDownstream_LTWT",43.48656897,-122.3855809,"OR_WS_170900010105_02_104189","River/Stream","Year round","Willamette",2017-07-14,2017-10-12,"Cat5",69,69,79,NA,NA
+"WNF-119","StaleyCreekUpstream_LTWT",43.46551686,-122.3691423,"OR_WS_170900010105_02_104189","River/Stream","Year round","Willamette",2017-07-14,2017-10-09,"Cat5",67,67,79,NA,NA
+"WNF-120","Starr_mouth_WT",43.98795477,-122.1758809,"OR_WS_170900040304_02_104317","River/Stream","Year round","Willamette",2010-06-23,2011-09-27,"Cat2",0,0,171,NA,NA
+"WNF-121","Tidbits_WT",44.23334097,-122.2782774,"OR_WS_170900040402_02_104323","River/Stream","Year round","Willamette",2008-07-18,2011-09-25,"Cat5",5,5,263,NA,NA
+"WNF-122","TimberCreek_LTWT",43.97163182,-122.5772137,"OR_WS_170900010904_02_104219","River/Stream","Year round","Willamette",2008-07-03,2017-07-25,"Cat5",238,125,237,NA,NA
+"WNF-124","TumblebugCreek_LTWT",43.48004247,-122.2557268,"OR_WS_170900010102_02_104186","River/Stream","Year round","Willamette",2017-06-28,2017-10-04,"Cat5",83,83,92,NA,NA
+"WNF-125","Two Girls Upper",44.34041324,-122.29479,"OR_WS_170900060204_02_104370","River/Stream","Year round","Willamette",2011-08-09,2011-09-19,"Cat2",0,0,42,NA,NA
+"WNF-127","Walker_WT",44.10272474,-122.2193188,"OR_WS_170900040307_02_104320","River/Stream","Year round","Willamette",2008-07-16,2016-09-05,"Cat5",5,5,247,NA,NA
+"WNF-128","WinberryCreek_Mouth_LTWT",43.90202583,-122.6267553,"OR_WS_170900010905_02_104220","River/Stream","Year round","Willamette",2008-07-04,2017-06-27,"Cat5",273,130,237,NA,NA
+"WNF-129","Wolf_WT",44.2951204,-122.1705207,"OR_WS_170900040402_02_104323","River/Stream","Year round","Willamette",2008-07-18,2011-09-25,"Cat2",0,0,240,NA,NA
+"WNF-130","YoungsCreek_LTWT",43.51126102,-122.4370395,"OR_WS_170900010502_02_104200","River/Stream","Year round","Willamette",2017-06-22,2017-10-04,"Cat5",91,91,92,NA,NA
+"WWNF-001","Anthony.18F.0.25_WT",45.01910745,-118.0741112,"OR_WS_170502030504_05_103179","River/Stream","Year round","Powder",2014-07-16,2014-09-07,"Cat2",0,0,54,NA,NA
+"WWNF-005","Anthony.18H.2_WT",45.01801634,-118.1560647,"OR_WS_170502030503_05_103178","River/Stream","Year round","Powder",2013-06-20,2016-07-06,"Cat5",139,126,270,NA,NA
+"WWNF-006","Anthony.18H.3_WT",45.00457971,-118.2130081,"OR_WS_170502030503_05_103178","River/Stream","Year round","Powder",2014-07-25,2014-09-23,"Cat2",0,0,61,NA,NA
+"WWNF-007","Bear_Creek_L14_LTWT",45.24786601,-118.5263713,"OR_WS_170601040202_02_103432","River/Stream","Year round","Grande Ronde",2012-05-23,2015-08-17,"Cat5",480,262,270,NA,NA
+"WWNF-007","Bear_Creek_L14_LTWT",45.24786601,-118.5263713,"OR_WS_170601040202_02_103432","River/Stream","Spawn","Grande Ronde",2012-05-23,2017-06-15,"Cat5",NA,NA,NA,149,95
+"WWNF-008","Beaver.93M.1_WT",44.77377586,-118.449981,"OR_WS_170702020203_05_102094","River/Stream","Year round","John Day",2008-07-11,2017-10-05,"Cat5",218,161,184,NA,NA
+"WWNF-011","BigElk.15D.1_WT",45.06215947,-117.0231149,"OR_WS_170502010608_05_103109","River/Stream","Year round","Powder",2010-06-30,2010-10-26,"Cat5",96,96,92,NA,NA
+"WWNF-018","Boulder.93C.2_WT",44.82133178,-118.4071332,"OR_WS_170702020201_05_102092","River/Stream","Year round","John Day",2016-06-28,2017-10-05,"Cat5",158,158,184,NA,NA
+"WWNF-019","Boulder.93C.5_WT",44.83200384,-118.37515,"OR_WS_170702020201_05_102092","River/Stream","Year round","John Day",2016-06-28,2016-10-16,"Cat5",4,4,92,NA,NA
+"WWNF-020","Boundary.93N.1.WT",44.78808107,-118.3741413,"OR_WS_170702020202_05_102093","River/Stream","Year round","John Day",2016-06-14,2017-10-04,"Cat5",138,138,184,NA,NA
+"WWNF-021","Broady.02D.3_LTWT",45.88410764,-117.0860851,"OR_WS_170601060604_02_103552","River/Stream","Year round","Grande Ronde",2011-07-13,2017-10-04,"Cat5",6,6,277,NA,NA
+"WWNF-022","Buck.24J.2_LTWT",45.78021932,-117.3352432,"OR_WS_170601060206_02_103525","River/Stream","Year round","Grande Ronde",2010-07-13,2013-07-13,"Cat5",63,32,125,NA,NA
+"WWNF-026","Camp.83F.1_LTWT",44.69446982,-118.3220629,"OR_WS_170502020102_05_103113","River/Stream","Year round","Powder",2008-07-09,2016-10-12,"Cat5",4,4,184,NA,NA
+"WWNF-027","Camp.83F.2_LTWT",44.6836515,-118.3146404,"OR_WS_170502020102_05_103113","River/Stream","Year round","Powder",2014-06-13,2016-10-12,"Cat5",173,173,270,NA,NA
+"WWNF-028","Camp.83F.3_WT",44.70484417,-118.3393242,"OR_WS_170502020102_05_103113","River/Stream","Year round","Powder",2016-05-22,2017-10-06,"Cat5",83,83,184,NA,NA
+"WWNF-033","Chicken_Creek_L27_LTWT",45.05378623,-118.3954597,"OR_WS_170601040104_02_103425","River/Stream","Year round","Grande Ronde",2012-05-22,2017-11-07,"Cat2",0,0,276,NA,NA
+"WWNF-033","Chicken_Creek_L27_LTWT",45.05378623,-118.3954597,"OR_WS_170601040104_02_103425","River/Stream","Spawn","Grande Ronde",2012-05-22,2017-06-15,"Cat3B",NA,NA,NA,1,1
+"WWNF-035","Clark_Creek_L97_LTWT",45.41502456,-117.7322969,"OR_WS_170601040904_02_103472","River/Stream","Year round","Grande Ronde",2012-06-20,2017-10-02,"Cat2",0,0,267,NA,NA
+"WWNF-035","Clark_Creek_L97_LTWT",45.41502456,-117.7322969,"OR_WS_170601040904_02_103472","River/Stream","Spawn","Grande Ronde",2015-05-15,2015-05-15,"Cat2",NA,NA,NA,0,0
+"WWNF-036","Clear.15J.1a_WT",44.94819911,-117.127155,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2009-07-08,2016-10-16,"Cat5",384,210,184,NA,NA
+"WWNF-037","Clear.15J.2_LTWT",44.98872554,-117.1419733,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2015-06-17,2015-09-29,"Cat5",79,79,91,NA,NA
+"WWNF-038","Clear.15J.3_WT",44.99711847,-117.1426174,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2009-07-09,2009-10-26,"Cat5",74,74,84,NA,NA
+"WWNF-039","Clear.93M.1_WT",44.77831025,-118.4519357,"OR_WS_170702020203_05_102094","River/Stream","Year round","John Day",2016-06-14,2017-10-05,"Cat5",198,133,135,NA,NA
+"WWNF-040","Clear_Creek_L24_LTWT",45.06249968,-118.3102743,"OR_WS_170601040103_02_103424","River/Stream","Year round","Grande Ronde",2012-06-14,2017-11-08,"Cat5",386,250,276,NA,NA
+"WWNF-041","Collins_Creek_L105_LTWT",45.10518468,-117.5413469,"OR_WS_170601040502_02_103450","River/Stream","Year round","Grande Ronde",2013-06-24,2015-09-16,"Cat5",155,155,241,NA,NA
+"WWNF-043","Cottonwood.02F.2_WT",45.83187917,-116.9546989,"OR_WS_170601060603_02_103551","River/Stream","Year round","Grande Ronde",2017-06-23,2017-10-04,"Cat5",3,3,92,NA,NA
+"WWNF-044","Cougar.02O.1_WT",45.79171868,-117.1749168,"OR_WS_170601060508_02_103548","River/Stream","Year round","Grande Ronde",2009-07-23,2010-10-03,"Cat2",0,0,162,NA,NA
+"WWNF-048","Crow.26A.3_LTWT",45.67644483,-117.140736,"OR_WS_170601060503_02_103543","River/Stream","Year round","Grande Ronde",2008-07-21,2008-10-07,"Cat5",33,33,72,NA,NA
+"WWNF-049","Davis.02L.2_WT",45.69222443,-117.2617371,"OR_WS_170601060506_02_103546","River/Stream","Year round","Grande Ronde",2010-06-22,2017-08-25,"Cat2",0,0,184,NA,NA
+"WWNF-050","Davis.02L.3_WT",45.66109143,-117.2595686,"OR_WS_170601060506_02_103546","River/Stream","Year round","Grande Ronde",2010-06-22,2011-08-04,"Cat2",0,0,76,NA,NA
+"WWNF-052","Dean.20N.1_WT",44.66939906,-118.059795,"OR_WS_170502030106_05_103156","River/Stream","Year round","Powder",2015-05-15,2017-10-11,"Cat5",44,44,178,NA,NA
+"WWNF-053","Dean.20N.2_WT",44.65472899,-118.0554321,"OR_WS_170502030106_05_103156","River/Stream","Year round","Powder",2015-05-15,2016-10-27,"Cat2",0,0,184,NA,NA
+"WWNF-055","Deep.93O.1.5_WT",44.78573985,-118.3414039,"OR_WS_170702020202_05_102093","River/Stream","Year round","John Day",2016-06-14,2017-10-04,"Cat5",150,150,184,NA,NA
+"WWNF-056","Deer.20D.05_WT",44.69208863,-118.0641252,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2013-07-03,2016-07-09,"Cat5",169,128,185,NA,NA
+"WWNF-057","Deer.20D.1_LTWT",44.73584749,-118.0996172,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2014-07-09,2016-10-23,"Cat2",0,0,268,NA,NA
+"WWNF-064","EastPine.15H.0a_LTWT",44.89265523,-117.088465,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2009-07-22,2010-10-24,"Cat5",87,87,158,NA,NA
+"WWNF-065","EastPine.15H.0b_LTWT",44.91234433,-117.1058466,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2009-07-22,2010-10-24,"Cat5",24,24,157,NA,NA
+"WWNF-066","EastPine.15H.1_LTWT",44.9538396,-117.0835808,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2009-07-15,2009-10-25,"Cat5",20,20,78,NA,NA
+"WWNF-067","EastPine.15H.2B_LTWT",44.97225716,-117.0724424,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2009-07-15,2009-10-25,"Cat5",8,8,78,NA,NA
+"WWNF-068","EastPine.15H.4_LTWT",44.98786978,-117.0646401,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2016-06-23,2016-10-25,"Cat5",77,77,92,NA,NA
+"WWNF-069","EastPine.15H.5_LTWT",44.98810004,-117.0741587,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2016-06-23,2016-10-25,"Cat5",77,77,92,NA,NA
+"WWNF-070","EastPine.15H.5B_LTWT",44.9884873,-117.0970497,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2016-06-23,2016-10-25,"Cat5",70,70,92,NA,NA
+"WWNF-072","EastPine.15H.6_LTWT",45.01085715,-117.1061394,"OR_WS_170502010605_05_103106","River/Stream","Year round","Powder",2009-07-15,2010-10-18,"Cat5",83,83,170,NA,NA
+"WWNF-073","ECamp.27E.1_LTWT",44.324495,-118.1390462,"OR_WS_170502020302_05_103124","River/Stream","Year round","Powder",2008-07-07,2016-10-26,"Cat2",0,0,276,NA,NA
+"WWNF-074","EFBroady.02D.1_WT",45.87460264,-117.0679775,"OR_WS_170601060604_02_103552","River/Stream","Year round","Grande Ronde",2016-06-08,2017-10-04,"Cat2",0,0,184,NA,NA
+"WWNF-075","EFClear.18B.1_WT",45.12896423,-118.0710484,"OR_WS_170502030601_05_103181","River/Stream","Year round","Powder",2013-06-20,2016-09-05,"Cat5",358,287,270,NA,NA
+"WWNF-076","EFEagle.14H.1_WT",44.98744222,-117.3666516,"OR_WS_170502031004_05_103207","River/Stream","Year round","Powder",2011-08-02,2011-10-04,"Cat5",63,63,60,NA,NA
+"WWNF-077","EFEagle.14H.2_WT",45.06212511,-117.3234409,"OR_WS_170502031004_05_103207","River/Stream","Year round","Powder",2011-07-20,2012-10-02,"Cat5",52,52,149,NA,NA
+"WWNF-078","Elk.15D.1_LTWT",45.0219056,-116.9415378,"OR_WS_170502010608_05_103109","River/Stream","Year round","Powder",2009-07-16,2010-10-25,"Cat5",158,158,164,NA,NA
+"WWNF-079","Elk.15D.4_WT",45.06312008,-117.0231298,"OR_WS_170502010608_05_103109","River/Stream","Year round","Powder",2009-07-07,2010-10-26,"Cat5",102,102,178,NA,NA
+"WWNF-080","Elk.26B.2_LTWT",45.67066265,-117.190704,"OR_WS_170601060502_02_103542","River/Stream","Year round","Grande Ronde",2008-07-21,2015-07-11,"Cat5",84,55,272,NA,NA
+"WWNF-085","Geiser.83G.4_WT",44.68759016,-118.3860273,"OR_WS_170502020101_05_103112","River/Stream","Year round","Powder",2008-07-09,2008-10-15,"Cat2",0,0,84,NA,NA
+"WWNF-091","Granite.93C.3_LTWT",44.81988534,-118.4153196,"OR_WS_170702020201_05_102092","River/Stream","Year round","John Day",2016-06-14,2016-10-16,"Cat5",67,67,92,NA,NA
+"WWNF-092","Granite.93C.5_WT",44.85471358,-118.3916187,"OR_WS_170702020201_05_102092","River/Stream","Year round","John Day",2016-06-14,2017-10-04,"Cat2",0,0,184,NA,NA
+"WWNF-093","Green.83G.1_WT",44.68535818,-118.4654239,"OR_WS_170502020101_05_103112","River/Stream","Year round","Powder",2008-07-10,2008-10-15,"Cat2",0,0,83,NA,NA
+"WWNF-096","Grouse.09F.2_WT",45.20302218,-116.9664721,"OR_WS_170601020202_02_103392","River/Stream","Year round","Grande Ronde",2013-05-23,2016-07-08,"Cat5",248,164,229,NA,NA
+"WWNF-096","Grouse.09F.2_WT",45.20302218,-116.9664721,"OR_WS_170601020202_02_103392","River/Stream","Spawn","Grande Ronde",2013-05-23,2016-06-13,"Cat5",NA,NA,NA,23,19
+"WWNF-098","Horse.02G.1_WT",45.97601595,-116.9881372,"OR_WS_170601060605_02_103569","River/Stream","Year round","Grande Ronde",2015-06-15,2017-09-22,"Cat5",53,53,268,NA,NA
+"WWNF-099","Indian.18H.1_LTWT",45.01732711,-118.1551894,"OR_WS_170502030503_05_103178","River/Stream","Year round","Powder",2013-06-20,2016-07-05,"Cat5",156,108,270,NA,NA
+"WWNF-100","Indian.18H.2_WT",45.00810019,-118.1488625,"OR_WS_170502030503_05_103178","River/Stream","Year round","Powder",2015-06-25,2015-10-04,"Cat5",24,24,92,NA,NA
+"WWNF-101","Indian.18H.3_WT",44.99912171,-118.1527903,"OR_WS_170502030503_05_103178","River/Stream","Year round","Powder",2014-07-08,2015-10-02,"Cat5",8,8,163,NA,NA
+"WWNF-102","Indian.18H.4_WT",44.9989796,-118.1636115,"OR_WS_170502030503_05_103178","River/Stream","Year round","Powder",2014-07-09,2015-10-02,"Cat5",5,5,162,NA,NA
+"WWNF-105","Lake.20D.1.5_WT",44.76417701,-118.1031356,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2015-06-16,2015-09-09,"Cat5",80,80,71,NA,NA
+"WWNF-106","Lake.20D.1.75_WT",44.77187458,-118.0997518,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2014-07-09,2015-09-09,"Cat5",114,114,140,NA,NA
+"WWNF-107","Lake.20D.1_LTWT",44.74961177,-118.1077323,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2014-06-23,2016-10-23,"Cat5",211,211,276,NA,NA
+"WWNF-108","Lake.20D.2_WT",44.77811609,-118.0865232,"OR_WS_170502030105_05_103155","River/Stream","Year round","Powder",2014-07-09,2016-10-23,"Cat5",147,147,268,NA,NA
+"WWNF-110","LakeFk.15C.7N_WT",45.04495836,-117.0598079,"OR_WS_170502010608_05_103109","River/Stream","Year round","Powder",2010-07-07,2010-10-25,"Cat5",64,64,86,NA,NA
+"WWNF-111","Lick.07Q.1_LTWT",45.19603377,-117.0272934,"OR_WS_170601020302_02_103398","River/Stream","Year round","Grande Ronde",2011-07-05,2015-10-11,"Cat5",366,202,184,NA,NA
+"WWNF-112","Lick.07Q.2_WT",45.17189916,-117.0354094,"OR_WS_170601020302_02_103398","River/Stream","Year round","Grande Ronde",2017-06-06,2017-10-02,"Cat5",73,73,92,NA,NA
+"WWNF-113","Lick.07Q.3_WT",45.13028304,-117.0847287,"OR_WS_170601020302_02_103398","River/Stream","Year round","Grande Ronde",2017-07-19,2017-10-10,"Cat5",22,22,74,NA,NA
+"WWNF-114","Lick.07Q.4_WT",45.17786053,-117.0377199,"OR_WS_170601020302_02_103398","River/Stream","Year round","Grande Ronde",2017-07-06,2017-10-10,"Cat5",74,74,87,NA,NA
+"WWNF-116","Little_Fly_Creek_L29_LTWT",45.06415228,-118.5024111,"OR_WS_170601040106_02_103427","River/Stream","Year round","Grande Ronde",2012-05-22,2015-07-11,"Cat5",154,138,250,NA,NA
+"WWNF-116","Little_Fly_Creek_L29_LTWT",45.06415228,-118.5024111,"OR_WS_170601040106_02_103427","River/Stream","Spawn","Grande Ronde",2012-05-22,2015-06-15,"Cat5",NA,NA,NA,12,12
+"WWNF-117","Little_Indian_Creek_L103_LTWT",45.39152915,-117.7979478,"OR_WS_170601040901_02_103469","River/Stream","Year round","Grande Ronde",2012-05-29,2015-07-30,"Cat5",139,129,252,NA,NA
+"WWNF-117","Little_Indian_Creek_L103_LTWT",45.39152915,-117.7979478,"OR_WS_170601040901_02_103469","River/Stream","Spawn","Grande Ronde",2012-05-29,2015-06-15,"Cat5",NA,NA,NA,16,16
+"WWNF-118","LittleDean.20N.1_WT",44.65421382,-118.0530741,"OR_WS_170502030106_05_103156","River/Stream","Year round","Powder",2015-05-15,2017-10-11,"Cat2",0,0,270,NA,NA
+"WWNF-120","Lookout_Creek_L47_LTWT",45.09139713,-118.5329022,"OR_WS_170601040106_02_103427","River/Stream","Year round","Grande Ronde",2012-05-22,2015-09-04,"Cat5",258,182,166,NA,NA
+"WWNF-123","Meadow.15J.2_WT",44.9963625,-117.1702204,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2009-07-09,2010-10-24,"Cat5",25,25,176,NA,NA
+"WWNF-124","Meadow.15J.3_LTWT",45.00380972,-117.1710551,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2014-06-18,2016-10-16,"Cat5",46,46,225,NA,NA
+"WWNF-128","MF_Catherine_Creek _L37_LTWT",45.15199492,-117.6169389,"OR_WS_170601040501_02_103449","River/Stream","Year round","Grande Ronde",2012-06-06,2015-11-09,"Cat5",232,186,261,NA,NA
+"WWNF-129","MFBR.21B.1_WT",44.5135815,-118.2852717,"OR_WS_170502020107_05_103118","River/Stream","Year round","Powder",2008-07-08,2008-10-16,"Cat2",0,0,85,NA,NA
+"WWNF-130","MiddleWillow.23C.1_WT",44.28868026,-118.1132764,"OR_WS_170501190101_05_103080","River/Stream","Year round","Malheur",2008-07-07,2008-10-13,"Cat2",0,0,86,NA,NA
+"WWNF-131","Mud.24I.1_WT",45.72134367,-117.3428081,"OR_WS_170601060203_02_103522","River/Stream","Year round","Grande Ronde",2011-07-04,2017-09-10,"Cat2",0,0,277,NA,NA
+"WWNF-132","NF_Catherine_Creek_L92_LTWT",45.21395679,-117.6139525,"OR_WS_170601040501_02_103449","River/Stream","Year round","Grande Ronde",2013-06-24,2015-09-14,"Cat5",211,211,260,NA,NA
+"WWNF-134","NFAnthony.18G.1.5_WT",45.04714162,-118.1447216,"OR_WS_170502030504_05_103179","River/Stream","Year round","Powder",2014-07-09,2015-10-04,"Cat5",111,111,162,NA,NA
+"WWNF-135","NFAnthony.18G.1_WT",45.04509163,-118.1329169,"OR_WS_170502030504_05_103179","River/Stream","Year round","Powder",2013-06-20,2016-07-07,"Cat5",287,199,268,NA,NA
+"WWNF-136","NFAnthony.18G.3_WT",45.04434048,-118.1960046,"OR_WS_170502030504_05_103179","River/Stream","Year round","Powder",2014-07-09,2015-10-04,"Cat5",24,24,162,NA,NA
+"WWNF-140","NFBR.83E.3_LTWT",44.66830579,-118.3766838,"OR_WS_170502020103_05_103114","River/Stream","Year round","Powder",2012-06-27,2016-10-12,"Cat5",248,152,255,NA,NA
+"WWNF-141","NFBR.83G.4_WT",44.68423147,-118.4571213,"OR_WS_170502020101_05_103112","River/Stream","Year round","Powder",2008-07-10,2008-10-13,"Cat2",0,0,83,NA,NA
+"WWNF-142","NFDry.09L.1_WT",45.13781743,-116.8642188,"OR_WS_170601020104_02_103388","River/Stream","Year round","Grande Ronde",2008-06-19,2009-10-05,"Cat5",118,118,161,NA,NA
+"WWNF-144","NFJD.94I.6_LTWT",44.9146798,-118.2973935,"OR_WS_170702020101_05_102087","River/Stream","Year round","John Day",2016-06-21,2016-10-15,"Cat5",58,58,92,NA,NA
+"WWNF-145","NFWolf.18C.1_WT",45.10296351,-118.1056492,"OR_WS_170502030601_05_103181","River/Stream","Year round","Powder",2013-06-20,2016-07-11,"Cat5",418,265,277,NA,NA
+"WWNF-146","NPowder.18L.2_WT",44.98546442,-118.0883943,"OR_WS_170502030502_05_103177","River/Stream","Year round","Powder",2015-06-03,2016-10-31,"Cat2",0,0,184,NA,NA
+"WWNF-147","NPowder.18L.3.5_WT",44.9139095,-118.1405504,"OR_WS_170502030501_05_103176","River/Stream","Year round","Powder",2014-07-16,2014-09-17,"Cat2",0,0,64,NA,NA
+"WWNF-148","NPowder.18L.4.5_WT",44.89672565,-118.184871,"OR_WS_170502030501_05_103176","River/Stream","Year round","Powder",2014-07-16,2014-09-17,"Cat5",30,30,64,NA,NA
+"WWNF-149","NPowder.18L.6_WT",44.89041192,-118.1974428,"OR_WS_170502030501_05_103176","River/Stream","Year round","Powder",2014-07-16,2014-09-17,"Cat5",29,29,64,NA,NA
+"WWNF-150","NPowder.18L.7_WT",44.88527199,-118.2044474,"OR_WS_170502030501_05_103176","River/Stream","Year round","Powder",2014-07-16,2014-09-17,"Cat5",23,23,64,NA,NA
+"WWNF-151","NTrail.94F.1_WT",44.96565124,-118.35633,"OR_WS_170702020102_05_102088","River/Stream","Year round","John Day",2016-06-21,2016-10-16,"Cat5",33,33,92,NA,NA
+"WWNF-152","Olive.93L.1_WT",44.73791766,-118.468313,"OR_WS_170702020203_05_102094","River/Stream","Year round","John Day",2016-06-14,2017-10-05,"Cat5",168,122,184,NA,NA
+"WWNF-153","Olive.93L.2_WT",44.731134,-118.4698816,"OR_WS_170702020203_05_102094","River/Stream","Year round","John Day",2008-07-11,2008-10-15,"Cat5",15,15,82,NA,NA
+"WWNF-154","Onion.94G.1_WT",44.8999655,-118.3963862,"OR_WS_170702020103_05_102089","River/Stream","Year round","John Day",2016-06-21,2017-10-05,"Cat5",96,96,184,NA,NA
+"WWNF-155","Peavine.26M.2_LTWT",45.73641756,-117.0846521,"OR_WS_170601060407_02_103539","River/Stream","Year round","Grande Ronde",2008-07-21,2008-10-07,"Cat5",3,3,72,NA,NA
+"WWNF-158","Pole_Creek_L65b_LTWT",45.10753478,-117.5601922,"OR_WS_170601040502_02_103450","River/Stream","Year round","Grande Ronde",2012-05-30,2015-09-16,"Cat5",270,217,241,NA,NA
+"WWNF-159","Prong_Creek_L106_LTWT",45.10223097,-117.5690189,"OR_WS_170601040502_02_103450","River/Stream","Year round","Grande Ronde",2012-05-30,2015-09-16,"Cat5",340,260,241,NA,NA
+"WWNF-160","Salt.07R.2_LTWT",45.18817197,-117.0476659,"OR_WS_170601020301_02_103397","River/Stream","Year round","Grande Ronde",2010-07-15,2015-07-11,"Cat5",82,79,277,NA,NA
+"WWNF-161","SF_Catherine_Creek_L65a_LTWT",45.10699545,-117.5599098,"OR_WS_170601040502_02_103450","River/Stream","Year round","Grande Ronde",2012-05-30,2015-09-16,"Cat5",241,194,241,NA,NA
+"WWNF-163","SFBeaver.93M.1_WT",44.7642312,-118.4252217,"OR_WS_170702020203_05_102094","River/Stream","Year round","John Day",2008-07-11,2017-06-30,"Cat5",174,90,82,NA,NA
+"WWNF-164","SFBR.21E.1_LTWT",44.40902408,-118.2932266,"OR_WS_170502020202_05_103121","River/Stream","Year round","Powder",2008-07-08,2016-10-26,"Cat2",0,0,276,NA,NA
+"WWNF-165","SFBR.21G.2_WT",44.39119214,-118.335181,"OR_WS_170502020201_05_103120","River/Stream","Year round","Powder",2014-06-12,2016-10-26,"Cat2",0,0,276,NA,NA
+"WWNF-167","Silver.20H.1.25_WT",44.80972203,-118.2131374,"OR_WS_170502030101_05_103151","River/Stream","Year round","Powder",2014-07-09,2015-10-12,"Cat5",137,137,162,NA,NA
+"WWNF-168","Silver.20H.1.5_WT",44.82017176,-118.2360071,"OR_WS_170502030101_05_103151","River/Stream","Year round","Powder",2014-07-09,2015-10-12,"Cat5",77,77,162,NA,NA
+"WWNF-169","Silver.20H.1_LTWT",44.80851061,-118.2101096,"OR_WS_170502030101_05_103151","River/Stream","Year round","Powder",2013-07-26,2016-10-11,"Cat2",0,0,185,NA,NA
+"WWNF-170","Silver.20H.2_WT",44.85275023,-118.2663642,"OR_WS_170502030101_05_103151","River/Stream","Year round","Powder",2014-07-09,2016-10-11,"Cat5",24,24,268,NA,NA
+"WWNF-171","Sled.24I.1_WT",45.74031735,-117.3185923,"OR_WS_170601060203_02_103522","River/Stream","Year round","Grande Ronde",2011-07-04,2017-07-06,"Cat5",66,54,277,NA,NA
+"WWNF-173","Snow.83G.1_LTWT",44.68414107,-118.4573808,"OR_WS_170502020101_05_103112","River/Stream","Year round","Powder",2008-07-10,2016-10-12,"Cat2",0,0,276,NA,NA
+"WWNF-174","STrail.94F.1_WT",44.93574149,-118.3623322,"OR_WS_170702020102_05_102088","River/Stream","Year round","John Day",2016-06-21,2016-10-16,"Cat5",74,74,92,NA,NA
+"WWNF-176","Summit.14C.2_WT",44.88344798,-117.1915822,"OR_WS_170502031007_05_103210","River/Stream","Year round","Powder",2011-07-13,2012-10-11,"Cat2",0,0,163,NA,NA
+"WWNF-177","Summit.14C.4_WT",44.94026844,-117.2233452,"OR_WS_170502031007_05_103210","River/Stream","Year round","Powder",2011-07-13,2012-10-05,"Cat2",0,0,163,NA,NA
+"WWNF-181","Trail.15J.1_WT",44.99314982,-117.1444474,"OR_WS_170502010603_05_103104","River/Stream","Year round","Powder",2009-07-09,2010-10-24,"Cat5",87,87,176,NA,NA
+"WWNF-183","Trout.83D.3_WT",44.65347058,-118.1981696,"OR_WS_170502020104_05_103115","River/Stream","Year round","Powder",2017-07-01,2017-10-09,"Cat5",43,43,92,NA,NA
+"WWNF-187","UnTrib.20N.1_WT",44.64992615,-117.990923,"OR_WS_170502030201_05_103157","River/Stream","Year round","Powder",2015-06-18,2015-10-14,"Cat2",0,0,92,NA,NA
+"WWNF-188","UnTrib.20N.2_WT",44.6473311,-117.9915404,"OR_WS_170502030201_05_103157","River/Stream","Year round","Powder",2015-06-18,2016-10-27,"Cat2",0,0,184,NA,NA
+"WWNF-189","Waucup_Creek_L51_LTWT",45.29195715,-118.6195454,"OR_WS_170601040201_02_103431","River/Stream","Year round","Grande Ronde",2012-05-22,2015-09-24,"Cat5",338,265,241,NA,NA
+"WWNF-189","Waucup_Creek_L51_LTWT",45.29195715,-118.6195454,"OR_WS_170601040201_02_103431","River/Stream","Spawn","Grande Ronde",2012-05-22,2015-06-15,"Cat5",NA,NA,NA,77,65
+"WWNF-190","West_Chicken_Creek_L26_LTWT",45.05478053,-118.4031318,"OR_WS_170601040104_02_103425","River/Stream","Year round","Grande Ronde",2012-05-22,2015-09-01,"Cat5",282,222,252,NA,NA
+"WWNF-190","West_Chicken_Creek_L26_LTWT",45.05478053,-118.4031318,"OR_WS_170601040104_02_103425","River/Stream","Spawn","Grande Ronde",2012-05-22,2015-06-15,"Cat5",NA,NA,NA,26,26
+"WWNF-191","West_Eagle_Creek_L69_WT",45.0222756,-117.4584364,"OR_WS_170502031002_05_103205","River/Stream","Year round","Powder",2017-07-04,2017-09-27,"Cat5",75,75,86,NA,NA
+"WWNF-192","WestCamp.27C.1_WT",44.34638592,-118.1938748,"OR_WS_170502020301_05_103123","River/Stream","Year round","Powder",2008-07-08,2016-10-26,"Cat2",0,0,92,NA,NA
+"WWNF-193","WestEagle.14J.3_WT",45.07153924,-117.4745902,"OR_WS_170502031002_05_103205","River/Stream","Year round","Powder",2017-07-04,2017-09-26,"Cat5",72,72,85,NA,NA
+"WWNF-194","WestEagle.14J.4_WT",45.09240869,-117.4783233,"OR_WS_170502031002_05_103205","River/Stream","Year round","Powder",2011-07-27,2011-10-02,"Cat5",39,39,66,NA,NA
+"WWNF-195","WF_Beaver_Creek_L55_LTWT",45.15307947,-118.218016,"OR_WS_170601040301_02_103437","River/Stream","Year round","Grande Ronde",2012-05-31,2015-09-27,"Cat5",7,7,269,NA,NA
+"WWNF-196","WFBR_83H.1_WT",44.54009584,-118.2470582,"OR_WS_170502020106_05_103117","River/Stream","Year round","Powder",2008-07-08,2008-10-16,"Cat2",0,0,85,NA,NA
+"WWNF-197","WFClear.18B.1_WT",45.10423689,-118.0663683,"OR_WS_170502030601_05_103181","River/Stream","Year round","Powder",2014-06-12,2017-09-26,"Cat5",325,251,272,NA,NA
+"WWNF-198","Wolf.18C.1_LTWT",45.09548308,-118.0748696,"OR_WS_170502030601_05_103181","River/Stream","Year round","Powder",2013-06-13,2016-09-07,"Cat5",279,202,185,NA,NA
+"WWNF-199","Wolf.18C.3_LTWT",45.0776346,-118.1482127,"OR_WS_170502030601_05_103181","River/Stream","Year round","Powder",2013-06-20,2016-07-08,"Cat5",321,210,262,NA,NA
+"WWNF-220","Eagle_14K.8",45.06572,-117.407,"OR_WS_170502031001_05_103204","River/Stream","Year round","Powder",2015-07-07,2015-10-25,"Cat5",68,68,86,NA,NA
+"WWNF-242","NFAnthony_18G.2",45.04611,-118.18067,"OR_WS_170502030504_05_103179","River/Stream","Year round","Powder",2013-07-29,2013-10-21,"Cat5",39,39,64,NA,NA
+"11504115","WOOD RIVER NEAR KLAMATH AGENCY, OR",42.5815556,-121.9417028,"OR_WS_180102030309_05_107104","River/Stream","Year round","Klamath",2013-08-07,2017-05-29,"Cat2",0,0,277,NA,NA
+"14092500","DESCHUTES RIVER NEAR MADRAS, OR",44.7259523,-121.2469939,"OR_WS_170703060304_05_102508","River/Stream","Year round","Deschutes",2008-01-07,2017-12-31,"Cat2",0,0,277,NA,NA
+"14138720","BULL RUN RIVER AT LOWER FLUME NR BRIGHTWOOD, OR",45.4709515,-121.8653567,"OR_WS_170800010502_11_103647","River/Stream","Year round","Sandy",2008-01-07,2017-12-31,"Cat2",0,0,277,NA,NA
+"14138870","FIR CREEK NEAR BRIGHTWOOD, OR",45.4801189,-122.0256385,"OR_WS_170800010503_11_103648","River/Stream","Year round","Sandy",2008-01-07,2017-12-31,"Cat5",10,10,277,NA,NA
+"14145500","MF WILLAMETTE RIVER ABV SALT CRK, NEAR OAKRIDGE,OR",43.7209566,-122.4378256,"OR_WS_170900010505_02_104202","River/Stream","Year round","Willamette",2008-10-09,2017-12-31,"Cat5",144,111,276,NA,NA
+"14158798","SMITH RIVER ABV TRAIL BRDG RESV NR BELKNAP SPRINGS",44.2898889,-122.0485833,"OR_WS_170900040203_02_104307","River/Stream","Year round","Willamette",2017-08-16,2017-12-31,"Cat5",32,32,46,NA,NA
+"14184100","NORTH SANTIAM R AT GREENS BRIDGE, NR JEFFERSON, OR",44.7078998,-122.9728698,"OR_WS_170900050604_02_104362","River/Stream","Year round","Willamette",2009-06-07,2016-06-18,"Cat5",847,344,276,NA,NA
+"14185900","QUARTZVILLE CREEK NEAR CASCADIA, OR",44.5401236,-122.4359155,"OR_WS_170900060305_02_104379","River/Stream","Year round","Willamette",2008-10-29,2016-07-09,"Cat5",564,228,277,NA,NA
+"14211499","KELLEY CREEK AT SE 159TH DRIVE AT PORTLAND, OR",45.4767869,-122.4984239,"OR_WS_170900120101_02_104550","River/Stream","Year round","Willamette",2008-01-07,2017-09-20,"Cat5",411,205,203,NA,NA
+"14211499","KELLEY CREEK AT SE 159TH DRIVE AT PORTLAND, OR",45.4767869,-122.4984239,"OR_WS_170900120101_02_104550","River/Stream","Spawn","Willamette",2008-01-07,2017-05-02,"Cat5",NA,NA,NA,183,125
+"14211542","CRYSTAL SPRINGS CREEK AT BYBEE ST, PORTLAND, OR",45.4740079,-122.6420388,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2008-01-07,2012-02-29,"Cat5",482,257,276,NA,NA
+"14211542","CRYSTAL SPRINGS CREEK AT BYBEE ST, PORTLAND, OR",45.4740079,-122.6420388,"OR_WS_170900120103_02_104552","River/Stream","Spawn","Willamette",2008-01-07,2013-10-16,"Cat5",NA,NA,NA,348,194
+"14211546","CRYSTAL SPRINGS CREEK AT MOUTH AT PORTLAND, OR",45.4606747,-122.642872,"OR_WS_170900120103_02_104552","River/Stream","Year round","Willamette",2008-01-07,2012-05-21,"Cat5",582,359,258,NA,NA
+"14211546","CRYSTAL SPRINGS CREEK AT MOUTH AT PORTLAND, OR",45.4606747,-122.642872,"OR_WS_170900120103_02_104552","River/Stream","Spawn","Willamette",2008-01-07,2012-12-18,"Cat5",NA,NA,NA,288,185
+"14316495","BOULDER CREEK NEAR TOKETEE FALLS, OR",43.3034543,-122.5303237,"OR_WS_171003010801_02_105655","River/Stream","Year round","Umpqua",2008-01-07,2016-09-14,"Cat5",711,301,277,NA,NA
+"14316495","BOULDER CREEK NEAR TOKETEE FALLS, OR",43.3034543,-122.5303237,"OR_WS_171003010801_02_105655","River/Stream","Spawn","Umpqua",2008-01-07,2016-06-15,"Cat5",NA,NA,NA,103,67
+"420524121515200","ADY CANAL 0.25 MI BLW KLAMATH RIVER, NR WORDEN, OR",42.0898917,-121.8643639,"OR_WS_180102041202_05_107133","Canal Drainage","Year round","Klamath",2009-08-12,2010-10-18,"Cat5",89,89,85,NA,NA
+"420732121501100","NORTH CANAL 0.9 MI BLW KLAMATH RIVER, NR WORDEN,OR",42.1255528,-121.8363667,"OR_WS_180102041202_05_107133","Canal Drainage","Year round","Klamath",2009-08-13,2010-10-20,"Cat5",95,95,117,NA,NA
+"420853121505500","KLAMATH RIVER AT MILLER ISLAND BOAT RAMP, OR",42.1480556,-121.848611,"OR_WS_180102041202_05_107133","River/Stream","Year round","Klamath",2008-01-07,2016-07-28,"Cat5",769,261,248,NA,NA
+"420853121505501","KLAMATH RIVER AT MILLER ISLAND BOAT RAMP-BOTTOM",42.1480556,-121.848611,"OR_WS_180102041202_05_107133","River/Stream","Year round","Klamath",2008-01-07,2017-12-31,"Cat5",682,251,274,NA,NA
+"452718122474700","FANNO CREEK AT GREENWAY PARK, NEAR SW PEARSON CT",45.4551222,-122.7963056,"OR_WS_170900100502_02_104513","River/Stream","Year round","Willamette",2016-05-25,2017-11-28,"Cat5",194,194,143,NA,NA
+"452718122474700","FANNO CREEK AT GREENWAY PARK, NEAR SW PEARSON CT",45.4551222,-122.7963056,"OR_WS_170900100502_02_104513","River/Stream","Spawn","Willamette",2017-01-01,2017-05-15,"Cat5",NA,NA,NA,17,17
+"452727122474801","FANNO CREEK AT GREENWAY PARK NEAR TUCKERWOOD CRT",45.4576722,-122.7966556,"OR_WS_170900100502_02_104513","River/Stream","Year round","Willamette",2016-05-25,2017-11-28,"Cat5",183,183,170,NA,NA
+"452727122474801","FANNO CREEK AT GREENWAY PARK NEAR TUCKERWOOD CRT",45.4576722,-122.7966556,"OR_WS_170900100502_02_104513","River/Stream","Spawn","Willamette",2017-01-01,2017-05-15,"Cat5",NA,NA,NA,12,12
+"452738122474100","FANNO CREEK AT GREENWAY PARK, AT SW HALL BLVD",45.4606083,-122.7947806,"OR_WS_170900100502_02_104513","River/Stream","Year round","Willamette",2016-05-26,2017-11-28,"Cat5",189,189,177,NA,NA
+"452738122474100","FANNO CREEK AT GREENWAY PARK, AT SW HALL BLVD",45.4606083,-122.7947806,"OR_WS_170900100502_02_104513","River/Stream","Spawn","Willamette",2017-01-01,2017-05-15,"Cat5",NA,NA,NA,12,12
+"453250122494501","BRONSON CREEK ABOVE NW KAISER RD",45.5473472,-122.8291417,"OR_WS_170900100401_02_104506","River/Stream","Year round","Willamette",2016-05-26,2017-11-28,"Cat5",83,83,170,NA,NA
+"453302122491600","BRONSON CR NEAR NW MEISNER DR AND NW HENNINGER LN",45.5504861,-122.821075,"OR_WS_170900100401_02_104506","River/Stream","Year round","Willamette",2016-07-19,2017-11-28,"Cat5",135,135,166,NA,NA
+"453312122485800","BRONSON CREEK NEAR NW LAKEVIEW DR",45.5533417,-122.8162278,"OR_WS_170900100401_02_104506","River/Stream","Year round","Willamette",2016-05-26,2017-11-28,"Cat5",64,64,170,NA,NA
+"CTWS-DogRiver","Dog River",45.466153,-121.566521,"OR_WS_170701050503_02_101998","River/Stream","Year round","Hood",2016-05-25,2017-12-31,"Cat2",0,0,182,NA,NA
+"CTWS-DogRiver","Dog River",45.466153,-121.566521,"OR_WS_170701050503_02_101998","River/Stream","Spawn","Hood",2016-10-15,2017-12-31,"Cat2",NA,NA,NA,0,0
+"CTWS-LakeBranch","Lake Branch",45.548386,-121.70262,"OR_WS_170701050602_02_102003","River/Stream","Year round","Hood",2008-01-07,2017-12-31,"Cat2",0,0,277,NA,NA
+"CTWS-LakeBranch","Lake Branch",45.548386,-121.70262,"OR_WS_170701050602_02_102003","River/Stream","Spawn","Hood",2008-01-07,2017-12-31,"Cat5",NA,NA,NA,2,2
+"CTWS-NealCreek","Neal Creek",45.662984,-121.525562,"OR_WS_170701050701_02_102005","River/Stream","Year round","Hood",2008-01-07,2017-12-31,"Cat5",14,14,277,NA,NA
+"CTWS-NealCreek","Neal Creek",45.662984,-121.525562,"OR_WS_170701050701_02_102005","River/Stream","Spawn","Hood",2008-01-07,2016-05-13,"Cat5",NA,NA,NA,16,10
+"CTWS-Rogers Creek","Rogers Creek, DS Parkdale Fish Hatchery",45.526228,-121.621161,"OR_WS_170701050505_02_102000","River/Stream","Year round","Hood",2009-07-07,2016-02-29,"Cat5",124,122,277,NA,NA

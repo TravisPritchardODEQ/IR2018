@@ -26,7 +26,8 @@ join_query <- "Select  OrganizationID, [MLocID], Activity_Type, [SampleStartDate
         AND Statistical_Base = '7DADM')"
 
 
-join_table  <- DBI::dbGetQuery(IR.sql, glue_sql(join_query, .con = IR.sql))
+join_table  <- DBI::dbGetQuery(IR.sql, glue_sql(join_query, .con = IR.sql)) %>%
+  mutate(act_depth_height = ifelse(act_depth_height == 'NA', NA, act_depth_height ))
 
 # Pull result_UIDs from the data views. This allows filtering the data to only what is being used for the IR
 View_results <- "SELECT [Result_UID], Char_Name FROM [IntegratedReport].[dbo].[VW_DO]
@@ -46,6 +47,7 @@ view_results_table <- DBI::dbGetQuery(IR.sql, glue_sql(View_results, .con = IR.s
 grouped_no_res_no_time <- IR_res %>%
   filter(Result_UID %in% view_results_table$Result_UID) %>%
   filter(AU_ID != '99') %>%
+  mutate(act_depth_height = ifelse(act_depth_height == 'NA', NA, act_depth_height )) %>%
   group_by(OrganizationID, 
            MLocID,
            Char_Name,
@@ -90,7 +92,9 @@ IR_Res_qry <- "Select  *
 (Char_Name ='Temperature, water'
         AND Statistical_Base = '7DADM')"
 
-all_data  <- DBI::dbGetQuery(IR.sql, glue_sql(IR_Res_qry, .con = IR.sql))
+all_data  <- DBI::dbGetQuery(IR.sql, glue_sql(IR_Res_qry, .con = IR.sql)) %>%
+  mutate(act_depth_height = ifelse(act_depth_height == 'NA', NA, act_depth_height ))
+  
 
 
 

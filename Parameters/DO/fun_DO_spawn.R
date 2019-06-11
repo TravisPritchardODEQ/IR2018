@@ -296,9 +296,30 @@ instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
   select(MLocID, Statistical_Base, IRResultNWQSunit, SampleStartDate, SampleStartTime, act_depth_height) %>%
   rename(Temp_res = IRResultNWQSunit)
 
+#aggregate duplicate data
+load("Other tools/aggregate_data.Rdata")
+data_to_agg <- instant_perc_sat_DO %>%
+  left_join(aggregate_data, by = 'Result_UID') %>%
+  filter(!is.na(group)) %>%
+  arrange(group) %>%
+  group_by(group) %>%
+  mutate(mean_sat = mean(DO_sat, na.rm = TRUE),
+         analysis_comment = paste0(Result_UID, collapse = ", "),
+         keep = ifelse(row_number() == 1, 1, 0 )) %>%
+  mutate(mean_sat = ifelse(is.nan(mean_sat), NA, mean_sat)) %>%
+  mutate(analysis_comment = paste("Result is the average of result_UIDs:",analysis_comment, " - due to multiple results at same date")) %>%
+  ungroup() %>%
+  select(Result_UID, mean_result, mean_sat, keep, analysis_comment)
+
+results_analysis <- instant_perc_sat_DO %>%
+  left_join(data_to_agg, by = "Result_UID") %>%
+  filter(keep == 1 | is.na(keep)) %>%
+  mutate(IRResultNWQSunit = ifelse(!is.na(mean_result), mean_result, IRResultNWQSunit ),
+         DO_sat = ifelse(!is.na(mean_sat), mean_sat, DO_sat )) %>%
+  select(-mean_result, -keep, -mean_sat)
 
 # Join DO and temp tables and calculate DO-Sat
-instant_DO_sat <- instant_perc_sat_DO %>%
+instant_DO_sat <- results_analysis %>%
   mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
          SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
          SpawnStart = mdy(SpawnStart),
@@ -324,8 +345,8 @@ instant_DO_sat_analysis <- instant_DO_sat %>%
 print("Writing instant spawning data tables")
 
 export <- instant_DO_sat_analysis %>%
-  select(-DO_res) %>%
-  rename(IRResultNWQSunit = Result_Numeric)
+  rename(IRResultNWQSunit = DO_res)
+ 
 
 
 export <- DO_Dup_remover(export, filename = "Parameters/DO/DO_Spawn_instant_Duplicated.csv")
@@ -336,7 +357,7 @@ IR_export(export, "Parameters/DO/Data_Review", "DO_Instant_Spawn", "data" )
 
 #write.csv(instant_DO_sat_analysis, file = "Parameters/DO/Data Review/Spawning_instantaneous_data_analysis.csv", row.names = FALSE)
 
-instant_DO_sat_categories <- instant_DO_sat_analysis %>%
+instant_DO_sat_categories <- export %>%
   group_by(AU_ID) %>%
   summarise(OWRD_Basin = first(OWRD_Basin), 
             num_samples = n(),
