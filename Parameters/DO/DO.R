@@ -19,6 +19,10 @@ Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invali
 
 
 
+# load("Parameters/DO/Validated_results.Rdata")
+# load("Parameters/DO/missing_7DADM_results.RData")
+# Validated_results <- bind_rows(data_to_add_missing_7DADM, Validated_results)
+
 Yearround_analysis_list <-  DO_year_round_analysis(Validated_results)
 # Because we can't get two values from function, they are put in list
 # and need to be extracted
@@ -42,5 +46,5 @@ IR_export(DO_Spawning_instantaneous, "Parameters/DO/Data_Review", "DO_Spawning_i
 
 
 estuary_list <- DO_estuary_analysis(Validated_results)
-
+estuary_spawn <- DO_estuary_spawn(Validated_results)
 

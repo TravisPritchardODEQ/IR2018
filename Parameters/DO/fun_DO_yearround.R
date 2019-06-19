@@ -25,7 +25,7 @@ Results_spawndates <- df %>%
          SpawnEnd = mdy(SpawnEnd),
          SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
          in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 ),
-         critstart = mdy(paste0("7/1/",year(SampleStartDate) )),
+         critstart = mdy(paste0("6/1/",year(SampleStartDate) )),
          critend = mdy(paste0("9/30/",year(SampleStartDate) )),
          is.crit = ifelse(SampleStartDate >= critstart & SampleStartDate <= critend, 1, 0 )) %>%
   filter(!is.null(OWRD_Basin) & DO_code %in% c(2,3,4))
