@@ -1,0 +1,421 @@
+ben_use_id,ben_use,WQstd_code,Pollu_ID,Pollutant
+1,Aesthetic Quality,17,40,Chlorophyll-a
+4,Fish and Aquatic Life,17,40,Chlorophyll-a
+4,Fish and Aquatic Life,3,154,Dissolved Oxygen
+4,Fish and Aquatic Life,10,124,pH
+4,Fish and Aquatic Life,12,132,Temperature
+4,Fish and Aquatic Life,13,155,Total Dissolved Gas
+4,Fish and Aquatic Life,14,138,Total Dissolved Solids
+4,Fish and Aquatic Life,15,4,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,123,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,6,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,5,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,9,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,22,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,27,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,28,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,29,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,41,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,45,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,46,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,48,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,49,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,50,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,66,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,78,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,79,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,81,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,89,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,90,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,91,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,99,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,102,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,104,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,105,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,110,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,121,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,126,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,140,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,25,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,101,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,111,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,130,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,150,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,77,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,15,153,Toxic Substanaces - Aquatic Life
+16,Fishing,1,86,Bacteria
+4,Fish and Aquatic Life,15,160,Toxic Substanaces - Aquatic Life
+16,Fishing,15,4,Toxic Substanaces - Aquatic Life
+16,Fishing,15,6,Toxic Substanaces - Aquatic Life
+16,Fishing,15,5,Toxic Substanaces - Aquatic Life
+16,Fishing,15,9,Toxic Substanaces - Aquatic Life
+16,Fishing,15,22,Toxic Substanaces - Aquatic Life
+16,Fishing,15,27,Toxic Substanaces - Aquatic Life
+16,Fishing,15,28,Toxic Substanaces - Aquatic Life
+16,Fishing,15,29,Toxic Substanaces - Aquatic Life
+16,Fishing,15,41,Toxic Substanaces - Aquatic Life
+16,Fishing,15,45,Toxic Substanaces - Aquatic Life
+16,Fishing,15,46,Toxic Substanaces - Aquatic Life
+16,Fishing,15,48,Toxic Substanaces - Aquatic Life
+16,Fishing,15,49,Toxic Substanaces - Aquatic Life
+16,Fishing,15,50,Toxic Substanaces - Aquatic Life
+16,Fishing,15,66,Toxic Substanaces - Aquatic Life
+16,Fishing,15,77,Toxic Substanaces - Aquatic Life
+16,Fishing,15,78,Toxic Substanaces - Aquatic Life
+16,Fishing,15,79,Toxic Substanaces - Aquatic Life
+16,Fishing,15,81,Toxic Substanaces - Aquatic Life
+16,Fishing,15,89,Toxic Substanaces - Aquatic Life
+16,Fishing,15,90,Toxic Substanaces - Aquatic Life
+16,Fishing,15,91,Toxic Substanaces - Aquatic Life
+16,Fishing,15,99,Toxic Substanaces - Aquatic Life
+16,Fishing,15,102,Toxic Substanaces - Aquatic Life
+16,Fishing,15,104,Toxic Substanaces - Aquatic Life
+16,Fishing,15,105,Toxic Substanaces - Aquatic Life
+16,Fishing,15,110,Toxic Substanaces - Aquatic Life
+16,Fishing,15,25,Toxic Substanaces - Aquatic Life
+16,Fishing,15,101,Toxic Substanaces - Aquatic Life
+16,Fishing,15,111,Toxic Substanaces - Aquatic Life
+16,Fishing,15,160,Toxic Substanaces - Aquatic Life
+16,Fishing,15,130,Toxic Substanaces - Aquatic Life
+16,Fishing,15,150,Toxic Substanaces - Aquatic Life
+16,Fishing,15,121,Toxic Substanaces - Aquatic Life
+16,Fishing,15,126,Toxic Substanaces - Aquatic Life
+16,Fishing,15,140,Toxic Substanaces - Aquatic Life
+16,Fishing,15,123,Toxic Substanaces - Aquatic Life
+16,Fishing,15,153,Toxic Substanaces - Aquatic Life
+16,Fishing,16,1,Toxic Substanaces - Human Health
+16,Fishing,16,2,Toxic Substanaces - Human Health
+16,Fishing,16,3,Toxic Substanaces - Human Health
+16,Fishing,16,4,Toxic Substanaces - Human Health
+16,Fishing,16,7,Toxic Substanaces - Human Health
+16,Fishing,16,8,Toxic Substanaces - Human Health
+16,Fishing,16,9,Toxic Substanaces - Human Health
+16,Fishing,16,11,Toxic Substanaces - Human Health
+16,Fishing,16,12,Toxic Substanaces - Human Health
+16,Fishing,16,13,Toxic Substanaces - Human Health
+16,Fishing,16,14,Toxic Substanaces - Human Health
+16,Fishing,16,15,Toxic Substanaces - Human Health
+16,Fishing,16,16,Toxic Substanaces - Human Health
+16,Fishing,16,17,Toxic Substanaces - Human Health
+16,Fishing,16,18,Toxic Substanaces - Human Health
+16,Fishing,16,20,Toxic Substanaces - Human Health
+16,Fishing,16,22,Toxic Substanaces - Human Health
+16,Fishing,16,23,Toxic Substanaces - Human Health
+16,Fishing,16,24,Toxic Substanaces - Human Health
+16,Fishing,16,26,Toxic Substanaces - Human Health
+16,Fishing,16,27,Toxic Substanaces - Human Health
+16,Fishing,16,30,Toxic Substanaces - Human Health
+16,Fishing,16,31,Toxic Substanaces - Human Health
+16,Fishing,16,32,Toxic Substanaces - Human Health
+16,Fishing,16,33,Toxic Substanaces - Human Health
+16,Fishing,16,36,Toxic Substanaces - Human Health
+16,Fishing,16,37,Toxic Substanaces - Human Health
+16,Fishing,16,38,Toxic Substanaces - Human Health
+16,Fishing,16,39,Toxic Substanaces - Human Health
+16,Fishing,16,44,Toxic Substanaces - Human Health
+16,Fishing,16,45,Toxic Substanaces - Human Health
+16,Fishing,16,46,Toxic Substanaces - Human Health
+16,Fishing,16,48,Toxic Substanaces - Human Health
+16,Fishing,16,49,Toxic Substanaces - Human Health
+16,Fishing,16,50,Toxic Substanaces - Human Health
+16,Fishing,16,53,Toxic Substanaces - Human Health
+16,Fishing,16,54,Toxic Substanaces - Human Health
+16,Fishing,16,55,Toxic Substanaces - Human Health
+16,Fishing,16,56,Toxic Substanaces - Human Health
+16,Fishing,16,57,Toxic Substanaces - Human Health
+16,Fishing,16,58,Toxic Substanaces - Human Health
+16,Fishing,16,59,Toxic Substanaces - Human Health
+16,Fishing,16,60,Toxic Substanaces - Human Health
+16,Fishing,16,61,Toxic Substanaces - Human Health
+16,Fishing,16,63,Toxic Substanaces - Human Health
+16,Fishing,16,64,Toxic Substanaces - Human Health
+16,Fishing,16,65,Toxic Substanaces - Human Health
+16,Fishing,16,66,Toxic Substanaces - Human Health
+16,Fishing,16,67,Toxic Substanaces - Human Health
+16,Fishing,16,68,Toxic Substanaces - Human Health
+16,Fishing,16,69,Toxic Substanaces - Human Health
+16,Fishing,16,70,Toxic Substanaces - Human Health
+16,Fishing,16,71,Toxic Substanaces - Human Health
+16,Fishing,16,73,Toxic Substanaces - Human Health
+16,Fishing,16,74,Toxic Substanaces - Human Health
+16,Fishing,16,78,Toxic Substanaces - Human Health
+16,Fishing,16,79,Toxic Substanaces - Human Health
+16,Fishing,16,80,Toxic Substanaces - Human Health
+16,Fishing,16,81,Toxic Substanaces - Human Health
+16,Fishing,16,82,Toxic Substanaces - Human Health
+16,Fishing,16,84,Toxic Substanaces - Human Health
+16,Fishing,16,85,Toxic Substanaces - Human Health
+16,Fishing,16,87,Toxic Substanaces - Human Health
+16,Fishing,16,88,Toxic Substanaces - Human Health
+16,Fishing,16,90,Toxic Substanaces - Human Health
+16,Fishing,16,91,Toxic Substanaces - Human Health
+16,Fishing,16,92,Toxic Substanaces - Human Health
+16,Fishing,16,93,Toxic Substanaces - Human Health
+16,Fishing,16,95,Toxic Substanaces - Human Health
+16,Fishing,16,97,Toxic Substanaces - Human Health
+16,Fishing,16,98,Toxic Substanaces - Human Health
+16,Fishing,16,100,Toxic Substanaces - Human Health
+16,Fishing,16,103,Toxic Substanaces - Human Health
+16,Fishing,16,105,Toxic Substanaces - Human Health
+16,Fishing,16,106,Toxic Substanaces - Human Health
+16,Fishing,16,107,Toxic Substanaces - Human Health
+16,Fishing,16,108,Toxic Substanaces - Human Health
+16,Fishing,16,109,Toxic Substanaces - Human Health
+16,Fishing,16,111,Toxic Substanaces - Human Health
+16,Fishing,16,112,Toxic Substanaces - Human Health
+16,Fishing,16,113,Toxic Substanaces - Human Health
+16,Fishing,16,115,Toxic Substanaces - Human Health
+16,Fishing,16,116,Toxic Substanaces - Human Health
+16,Fishing,16,117,Toxic Substanaces - Human Health
+16,Fishing,16,118,Toxic Substanaces - Human Health
+16,Fishing,16,119,Toxic Substanaces - Human Health
+16,Fishing,16,120,Toxic Substanaces - Human Health
+16,Fishing,16,122,Toxic Substanaces - Human Health
+16,Fishing,16,123,Toxic Substanaces - Human Health
+16,Fishing,16,125,Toxic Substanaces - Human Health
+16,Fishing,16,128,Toxic Substanaces - Human Health
+16,Fishing,16,129,Toxic Substanaces - Human Health
+16,Fishing,16,133,Toxic Substanaces - Human Health
+16,Fishing,16,134,Toxic Substanaces - Human Health
+16,Fishing,16,135,Toxic Substanaces - Human Health
+16,Fishing,16,136,Toxic Substanaces - Human Health
+16,Fishing,16,139,Toxic Substanaces - Human Health
+16,Fishing,16,140,Toxic Substanaces - Human Health
+16,Fishing,16,142,Toxic Substanaces - Human Health
+16,Fishing,16,143,Toxic Substanaces - Human Health
+16,Fishing,16,144,Toxic Substanaces - Human Health
+16,Fishing,16,146,Toxic Substanaces - Human Health
+16,Fishing,16,147,Toxic Substanaces - Human Health
+16,Fishing,16,149,Toxic Substanaces - Human Health
+16,Fishing,16,150,Toxic Substanaces - Human Health
+16,Fishing,16,153,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,1,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,2,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,3,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,4,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,7,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,8,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,9,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,11,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,12,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,13,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,14,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,15,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,16,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,17,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,18,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,20,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,22,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,23,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,24,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,26,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,27,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,30,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,31,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,32,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,33,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,36,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,37,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,38,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,39,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,44,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,45,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,46,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,48,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,49,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,50,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,53,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,54,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,55,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,56,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,57,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,58,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,59,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,60,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,61,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,63,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,64,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,65,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,66,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,67,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,68,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,69,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,70,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,71,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,73,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,74,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,78,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,79,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,80,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,81,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,82,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,84,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,85,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,87,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,88,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,90,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,91,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,92,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,93,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,95,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,97,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,98,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,100,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,103,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,105,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,106,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,107,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,108,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,109,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,111,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,112,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,113,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,115,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,116,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,117,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,118,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,119,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,120,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,122,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,123,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,125,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,128,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,129,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,133,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,134,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,135,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,136,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,139,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,140,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,142,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,143,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,144,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,146,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,147,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,149,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,150,Toxic Substanaces - Human Health
+22,Private Domestic Water Supply,16,153,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,1,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,2,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,3,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,4,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,7,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,8,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,9,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,11,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,12,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,13,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,14,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,15,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,16,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,17,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,18,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,20,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,22,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,23,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,24,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,26,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,27,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,30,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,31,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,32,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,33,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,36,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,37,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,38,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,39,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,44,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,45,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,46,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,48,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,49,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,50,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,53,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,54,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,55,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,56,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,57,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,58,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,59,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,60,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,61,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,63,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,64,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,65,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,66,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,67,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,68,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,69,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,70,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,71,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,73,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,74,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,78,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,79,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,80,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,81,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,82,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,84,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,85,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,87,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,88,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,90,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,91,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,92,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,93,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,95,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,97,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,98,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,100,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,103,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,105,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,106,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,107,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,108,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,109,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,111,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,112,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,113,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,115,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,116,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,117,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,118,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,119,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,120,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,122,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,123,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,125,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,128,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,129,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,133,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,134,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,135,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,136,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,139,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,140,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,142,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,143,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,144,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,146,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,147,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,149,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,150,Toxic Substanaces - Human Health
+23,Public Domestic Water Supply,16,153,Toxic Substanaces - Human Health
+24,Water Contact Recreation,1,76,Bacteria
+24,Water Contact Recreation,1,83,Bacteria
+24,Water Contact Recreation,1,86,Bacteria
+24,Water Contact Recreation,17,40,Chlorophyll-a
+4,Fish and Aquatic Life,5,156,Biocriteria
+2,Boating,,175,NOXIOUS AQUATIC PLANTS
+1,Aesthetic Quality,,175,NOXIOUS AQUATIC PLANTS
+16,Fishing,,175,NOXIOUS AQUATIC PLANTS
+1,Aesthetic Quality,,174,HARMFUL ALGAL BLOOMS
+22,Private Domestic Water Supply,,174,HARMFUL ALGAL BLOOMS
+23,Public Domestic Water Supply,,174,HARMFUL ALGAL BLOOMS
+24,Water Contact Recreation,,174,HARMFUL ALGAL BLOOMS
+22,Private Domestic Water Supply,,148,Turbidity
+23,Public Domestic Water Supply,,148,Turbidity
+24,Water Contact Recreation,,148,Turbidity
+4,Fish and Aquatic Life,,148,Turbidity
+16,Fishing,,148,Turbidity
+1,Aesthetic Quality,,148,Turbidity

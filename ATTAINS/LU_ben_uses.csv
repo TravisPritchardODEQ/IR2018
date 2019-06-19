@@ -1,0 +1,151 @@
+﻿ben_use_code,ben_use_id,ben_use
+1,1,Aesthetic Quality
+1,2,Boating
+1,3,Commercial Navigation and Transportation
+1,4,Fish and Aquatic Life
+1,16,Fishing
+1,19,Industrial Water Supply
+1,24,Water Contact Recreation
+1,25,Wildlife and Hunting
+2,1,Aesthetic Quality
+2,2,Boating
+2,4,Fish and Aquatic Life
+2,16,Fishing
+2,18,Hydro Power
+2,19,Industrial Water Supply
+2,20,Irrigation
+2,21,Livestock Watering
+2,22,Private Domestic Water Supply
+2,23,Public Domestic Water Supply
+2,24,Water Contact Recreation
+2,25,Wildlife and Hunting
+3,1,Aesthetic Quality
+3,2,Boating
+3,3,Commercial Navigation and Transportation
+3,4,Fish and Aquatic Life
+3,16,Fishing
+3,19,Industrial Water Supply
+3,24,Water Contact Recreation
+3,25,Wildlife and Hunting
+4,1,Aesthetic Quality
+4,2,Boating
+4,3,Commercial Navigation and Transportation
+4,4,Fish and Aquatic Life
+4,16,Fishing
+4,19,Industrial Water Supply
+4,20,Irrigation
+4,21,Livestock Watering
+4,22,Private Domestic Water Supply
+4,23,Public Domestic Water Supply
+4,24,Water Contact Recreation
+4,25,Wildlife and Hunting
+5,1,Aesthetic Quality
+5,2,Boating
+5,4,Fish and Aquatic Life
+5,16,Fishing
+5,19,Industrial Water Supply
+5,20,Irrigation
+5,21,Livestock Watering
+5,22,Private Domestic Water Supply
+5,23,Public Domestic Water Supply
+5,24,Water Contact Recreation
+5,25,Wildlife and Hunting
+6,1,Aesthetic Quality
+6,2,Boating
+6,4,Fish and Aquatic Life
+6,16,Fishing
+6,19,Industrial Water Supply
+6,20,Irrigation
+6,21,Livestock Watering
+6,24,Water Contact Recreation
+6,25,Wildlife and Hunting
+7,1,Aesthetic Quality
+7,2,Boating
+7,4,Fish and Aquatic Life
+7,16,Fishing
+7,19,Industrial Water Supply
+7,24,Water Contact Recreation
+7,25,Wildlife and Hunting
+8,1,Aesthetic Quality
+8,2,Boating
+8,4,Fish and Aquatic Life
+8,16,Fishing
+8,21,Livestock Watering
+8,24,Water Contact Recreation
+8,25,Wildlife and Hunting
+9,1,Aesthetic Quality
+9,2,Boating
+9,4,Fish and Aquatic Life
+9,16,Fishing
+9,20,Irrigation
+9,21,Livestock Watering
+9,24,Water Contact Recreation
+9,25,Wildlife and Hunting
+10,1,Aesthetic Quality
+10,4,Fish and Aquatic Life
+10,16,Fishing
+10,21,Livestock Watering
+10,22,Private Domestic Water Supply
+10,23,Public Domestic Water Supply
+10,24,Water Contact Recreation
+10,25,Wildlife and Hunting
+11,1,Aesthetic Quality
+11,4,Fish and Aquatic Life
+11,18,Hydro Power
+11,23,Public Domestic Water Supply
+12,1,Aesthetic Quality
+12,2,Boating
+12,3,Commercial Navigation and Transportation
+12,4,Fish and Aquatic Life
+12,16,Fishing
+12,17,Fishing - Shellfish Harvesting
+12,23,Public Domestic Water Supply
+12,24,Water Contact Recreation
+12,25,Wildlife and Hunting
+13,1,Aesthetic Quality
+13,18,Hydro Power
+13,19,Industrial Water Supply
+13,20,Irrigation
+13,21,Livestock Watering
+13,24,Water Contact Recreation
+13,25,Wildlife and Hunting
+14,1,Aesthetic Quality
+14,4,Fish and Aquatic Life
+14,16,Fishing
+14,18,Hydro Power
+14,19,Industrial Water Supply
+14,20,Irrigation
+14,21,Livestock Watering
+14,24,Water Contact Recreation
+14,25,Wildlife and Hunting
+15,1,Aesthetic Quality
+15,4,Fish and Aquatic Life
+15,16,Fishing
+15,24,Water Contact Recreation
+15,25,Wildlife and Hunting
+16,0,NULL
+16,1,Aesthetic Quality
+16,2,Boating
+16,4,Fish and Aquatic Life
+16,16,Fishing
+16,18,Hydro Power
+16,20,Irrigation
+16,21,Livestock Watering
+16,22,Private Domestic Water Supply
+16,23,Public Domestic Water Supply
+16,24,Water Contact Recreation
+16,25,Wildlife and Hunting
+88,1,Aesthetic Quality
+88,2,Boating
+88,3,Commercial Navigation and Transportation
+88,4,Fish and Aquatic Life
+88,16,Fishing
+88,18,Hydro Power
+88,19,Industrial Water Supply
+88,20,Irrigation
+88,21,Livestock Watering
+88,22,Private Domestic Water Supply
+88,23,Public Domestic Water Supply
+88,24,Water Contact Recreation
+88,25,Wildlife and Hunting
+99,99,NULL

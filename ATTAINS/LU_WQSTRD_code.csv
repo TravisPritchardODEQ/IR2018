@@ -1,0 +1,93 @@
+Char_Name,Pollu_ID,WQstd_code
+Alkalinity,5,15
+Arsenic,9,15
+Mercury,160,15
+Antimony,8,16
+Barium,11,16
+Copper,45,16
+Nickel,111,16
+Selenium,129,16
+Thallium,136,16
+Zinc,150,16
+Aldrin,4,15
+Chlordane,27,15
+Chlorine,29,15
+"DDT 4,4'",50,15
+Endrin,81,15
+Heptachlor,90,15
+Heptachlor epoxide,91,15
+BHC Gamma (Lindane),22,15
+Polychlorinated Biphenyls (PCBs),153,15
+Toxaphene,140,15
+.alpha.-Endosulfan,78,16
+.alpha.-Hexachlorocyclohexane,18,16
+.beta.-Endosulfan,79,16
+.beta.-Hexachlorocyclohexane,20,16
+"1,1,2,2-Tetrachloroethane",134,16
+"1,1,2-Trichloroethane",143,16
+"1,2,4-Trichlorobenzene",142,16
+"1,2-Dichloroethane",59,16
+"1,2-Dichloropropane",64,16
+"2,4,6-Trichlorophenol",146,16
+"2,4-Dichlorophenol",63,16
+"2,4-Dimethylphenol",69,16
+"2,4-Dinitrophenol",71,16
+"2,4-Dinitrotoluene",73,16
+2-Chloronaphthalene,36,16
+"3,3'-Dichlorobenzidine",57,16
+"4,6-Dinitro-o-cresol",107,16
+Acenaphthene,1,16
+Acrolein,2,16
+Acrylonitrile,3,16
+Anthracene,7,16
+Benz[a]anthracene,12,16
+Benzene,13,16
+Benzidine,14,16
+Benzo(b)fluoranthene,16,16
+Benzo[a]pyrene,15,16
+Benzo[k]fluoranthene,17,16
+Bis(2-chloroethyl) ether,32,16
+Butyl benzyl phthalate,24,16
+Carbon tetrachloride,26,16
+Chlorobenzene,30,16
+Chlorodibromomethane,31,16
+Chloroform,33,16
+Chrysene,44,16
+Cyanide,46,16
+Di(2-ethylhexyl) phthalate,85,16
+"Dibenz[a,h]anthracene",53,16
+Dibutyl phthalate,70,16
+Dichlorobromomethane,58,16
+Diethyl phthalate,67,16
+Dimethyl phthalate,68,16
+Endosulfan sulfate,80,16
+Endrin,81,16
+Fluoranthene,87,16
+Fluorene,88,16
+Hexachlorobutadiene,93,16
+Hexachlorocyclopentadiene,95,16
+"Indeno[1,2,3-cd]pyrene",98,16
+Isophorone,100,16
+BHC Gamma (Lindane),22,16
+m-Dichlorobenzene,54,16
+Methylene chloride,108,16
+Nitrobenzene,113,16
+N-Nitrosodimethylamine,117,16
+N-Nitrosodi-n-propylamine,118,16
+N-Nitrosodiphenylamine,119,16
+o-Chlorophenol,37,16
+o-Dichlorobenzene,55,16
+"p,p'-DDD",48,16
+"p,p'-DDE",49,16
+"p,p'-DDT",50,16
+p-Dichlorobenzene,56,16
+Phenol,125,16
+Pyrene,128,16
+Toluene,139,16
+Toxaphene,140,16
+"trans-1,2-Dichloroethylene",61,16
+Tribromomethane,23,16
+Trichloroethene (TCE),144,16
+Vinyl chloride,149,16
+Azinphos-methyl,89,15
+,,
