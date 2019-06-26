@@ -3,6 +3,8 @@ library(tidyverse)
 
 # Setup -------------------------------------------------------------------
 
+# List of basins to use to bring data in
+
 Basins <- c(
   'Columbia River',
   'Deschutes',
@@ -29,33 +31,47 @@ Basins <- c(
 
 #save(Pollu_IDs, file = "ATTAINS/LU_Pollutant.Rdata")
 
+
+# Table to assign Pollu_IDs to pollutants
 load("ATTAINS/LU_Pollutant.Rdata")
+#save(Pollu_IDs, file ="ATTAINS/LU_Pollutant.Rdata" )
 
-
-BUs <- read.csv("ATTAINS/LU Bus.csv") %>%
+# This table connects the Pollu_IDs and WQstrd codes to beneficial uses.
+# This is how we assign uses to assessments
+BUs <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/LU Bus.csv",
+                stringsAsFactors = FALSE) %>%
   mutate(Pollu_ID = as.character(Pollu_ID),
          WQstd_code = as.character(WQstd_code))
 
 
-AU_to_ben_use <- read.csv("ATTAINS/AU_to_ben_use.csv",
-                          stringsAsFactors = FALSE)
+# This table assigns Benuse codes to Assessment units.
+# This is how we know what benefical uses are given for an assessment unit
+AU_to_ben_use <- read.csv("ATTAINS/AU_tbl.csv",
+                          stringsAsFactors = FALSE) %>%
+  select(AU_ID, AU_UseCode) %>%
+  mutate(AU_UseCode = as.character(AU_UseCode))
 
+# Renames the columns to more common names
 names(AU_to_ben_use) <- c("AU_ID", "ben_use_code")
 
 
+
+# This is the list of applicable benefical uses for a given benuse code
 LU_benuses <- read.csv("ATTAINS/LU_ben_uses.csv", stringsAsFactors = FALSE)
 
 names(LU_benuses) <- c("ben_use_code", "ben_use_id", "ben_use")
 
 LU_benuses$ben_use_code <- as.character(LU_benuses$ben_use_code)
 
-
+# This is a long form table of all the benefical uses that apply to a given AU
 all_ben_uses <- AU_to_ben_use %>%
   left_join(LU_benuses) %>%
   filter(!is.na(ben_use),
          ben_use != "NULL")
 
 
+# Before we brought pre 2018 assessments in, I needed to get basins to the biocriteria
+# data. this is a bit obsolete now, but I didn't want ot rewrite it. 
 #Biocriteria OWRD lookup
 
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
@@ -73,25 +89,40 @@ OWRD_lookup <- DBI::dbGetQuery(con, OWRD_query) %>%
 
 DBI::dbDisconnect(con)
 
+# This is the more current way to get what basin each AU is in
+AU_ID_2_basin <- read.csv('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/AU_2012_OWRD.csv',
+                          stringsAsFactors = FALSE)
 
 
+# Create various lists used for combining data from each basin
 put_together_list <- list()
 delist_list <- list()
 BU_rollup_list <- list()
 BU_counts_list <- list()
 
 
-for (i in 1:length(Basins)){
+# loop through each basin folder and get the assessed data. Write some preliminary tables
+
+for (i in 1:length(Basins)) {
   
   basin <- Basins[i]
 
   
   print(paste("Starting basin:",basin ))
 
+
+# The general format of all the parameter tables is the same.
+# If object already exists in environment, remove it
+# If assessment file exists, load it in and do some general formatting
+  # needed to combine everythinng together.
 # Temperature -------------------------------------------------------------
 
 print("Starting Temperature")
 
+ if(exists('temp')){
+   rm(temp)
+ }
+  
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                        basin,
                        "/",
@@ -117,7 +148,7 @@ print("Starting Temperature")
              Rational
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code)) %>%
-      filter(is.na(AU_ID))
+      filter(!is.na(AU_ID))
   }
   
 
@@ -130,6 +161,9 @@ print("Starting Temperature")
   print("Starting fresh_contact")
   
   
+  if(exists('fresh_contact')){
+    rm(fresh_contact)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -163,6 +197,9 @@ print("Starting Temperature")
   
   
   
+  if(exists('coast_contact')){
+    rm(coast_contact)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -196,7 +233,9 @@ print("Starting Temperature")
   
   print("Starting shellfish harvest")
   
-  
+  if(exists('shell_harvesting')){
+    rm(shell_harvesting)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -228,7 +267,9 @@ print("Starting Temperature")
   
   print("Starting chl")
   
-  
+  if(exists('chl')){
+    rm(chl)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -260,7 +301,9 @@ print("Starting Temperature")
 
   print("Starting pH")
   
-  
+  if(exists('pH')){
+    rm(pH)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -296,7 +339,9 @@ print("Starting Temperature")
 
   
   print("Starting tox AL Ammonia")
-  
+  if(exists('tox_al_ammonia')){
+    rm(tox_al_ammonia)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -331,7 +376,9 @@ print("Starting Temperature")
   # all file
   
   
-  
+  if(exists('tox_al_copper')){
+    rm(tox_al_copper)
+  }
   print("Starting tox AL copper")
   tox_al_copper <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_CU_BLM_IR_Categories_ALLDATA.csv", stringsAsFactors = FALSE) %>%
     filter(OWRD_Basin == basin) %>%
@@ -359,7 +406,9 @@ print("Starting Temperature")
 # Biocriteria -------------------------------------------------------------
 
   
-  
+  if(exists('biocriteria')){
+    rm(biocriteria)
+  }
   biocriteria <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Biocriteria/MWCF_Proposed_withnotes_CSV.csv",
                           stringsAsFactors = FALSE)
   
@@ -389,10 +438,10 @@ print("Starting Temperature")
 
 # narrative ---------------------------------------------------------------
 
-   
-  #biocriteria
   print("Starting narrative")
-  
+  if(exists('narrative')){
+    rm(narrative)
+  }
   narrative <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Narrative Standard Assessment/narrative assessment put together.csv",
                         stringsAsFactors = FALSE) %>%
     filter(AU_ID != "") %>%
@@ -404,6 +453,11 @@ print("Starting Temperature")
 # hardness ----------------------------------------------------------------
 
   print("Starting tox AL hardness")
+  
+  if(exists('tox_al_hardness')){
+    rm(tox_al_hardness)
+  }
+  
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -436,7 +490,14 @@ print("Starting Temperature")
 
 # TOX AL penta ------------------------------------------------------------
   
+  
+  
   print("Starting tox AL Penta")
+  
+  
+  if(exists('toxal_penta')){
+    rm(toxal_penta)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -468,6 +529,11 @@ print("Starting Temperature")
 
   
   print("Starting tox AL others")
+  
+  if(exists('toxal')){
+    rm(toxal)
+  }
+  
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -503,6 +569,11 @@ print("Starting Temperature")
 
   print("Starting tox AL HH")
   
+  if(exists('tox_hh')){
+    rm(tox_hh)
+  }
+  
+  
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -531,11 +602,44 @@ print("Starting Temperature")
     
   }
   
-  
 
+# tissue mercury ----------------------------------------------------------
+
+  if(exists('tox_hh_hg_tissue')){
+    rm(tox_hh_hg_tissue)
+  }
+  
+  
+  if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
+                         basin,
+                         "/",
+                         'Tox_HH_hg_tissue_IR_Categories_',basin, '.csv'))) {
+    
+    tox_hh_hg_tissue <- read.csv(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
+                                        basin,
+                                        "/",
+                                        'Tox_HH_hg_tissue_IR_Categories_',basin, '.csv'), 
+                                 stringsAsFactors = FALSE) %>%
+      mutate(Pollu_ID = as.character(Pollu_ID),
+             WQstd_code = "16") %>%
+      select(AU_ID,
+             Char_Name,
+             WQstd_code,
+             OWRD_Basin,
+             Pollu_ID,
+             IR_category,
+             Data_Review_Code,
+             Data_Review_Comment
+      ) %>%
+      mutate(Data_Review_Code = as.character(Data_Review_Code))
+    
+}
 # Dissolved Oxyegn --------------------------------------------------------
 
-
+  
+  if(exists('DO_yrround_cont')){
+    rm(DO_yrround_cont)
+  }
   
   print("Starting DO yearround continuous")
   
@@ -570,6 +674,9 @@ print("Starting Temperature")
   
   print("Starting DO yearround instant")
   
+  if(exists('DO_yrround_inst')){
+    rm(DO_yrround_inst)
+  }
   
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                           basin,
@@ -601,7 +708,9 @@ print("Starting Temperature")
   
   print("Starting DO spawn continuous")
   
-  
+  if(exists('DO_spawn_cont')){
+    rm(DO_spawn_cont)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -632,7 +741,9 @@ print("Starting Temperature")
   
   print("Starting DO spawn instant")
   
-  
+  if(exists('DO_spawn_inst')){
+    rm(DO_spawn_inst)
+  }
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                          basin,
                          "/",
@@ -666,6 +777,34 @@ print("Starting Temperature")
 # put it all together -----------------------------------------------------
 print('Writing tables')
   
+ # Get previous category 5 listings. 
+   
+  listings_2012 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/parameter_12june19 polluID_postQC.csv",
+                            stringsAsFactors = FALSE) %>%
+    select(ASSESSMENT_UNIT_ID, Pollu_ID,WQstrd_code, PARAM_ATTAINMENT_CODE) %>%
+    rename(AU_ID = ASSESSMENT_UNIT_ID,
+           WQstd_code = WQstrd_code) %>%
+    mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+    distinct()%>%
+    mutate(WQstd_code = as.character(WQstd_code)) %>%
+    left_join(AU_ID_2_basin) %>%
+    filter(OWRD_Basin == basin)
+  
+  
+  previous_listings <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/parameter_12june19 polluID_postQC.csv",
+                                stringsAsFactors = FALSE) %>%
+    select(ASSESSMENT_UNIT_ID, Pollu_ID, PARAM_ATTAINMENT_CODE,WQstrd_code, PARAM_YEAR_LISTED, PARAM_NAME) %>%
+    distinct() %>%
+    mutate(previous_IR_category = "Category 5",
+           Pollu_ID = as.character(Pollu_ID)) %>% 
+    rename(AU_ID = ASSESSMENT_UNIT_ID,
+           WQstd_code = WQstrd_code) %>%
+    mutate(WQstd_code = as.character(WQstd_code)) %>%
+    left_join(AU_ID_2_basin) %>%
+    filter(OWRD_Basin == basin)
+    
+      
+  
   put_together_initial <- bind_rows(get0('temp'),  get0('fresh_contact'),
                                     get0('coast_contact'), get0('shell_harvesting'),
                                     get0('chl'), get0('pH'), get0('tox_al_ammonia'), 
@@ -682,9 +821,29 @@ print('Writing tables')
                                    grepl("3C", IR_category) ~ "Category 3C",
                                    grepl("3", IR_category) ~ "Category 3",
                                    IR_category == '-' ~ '-',
+                                   IR_category == "Unassigned" ~ "Unassigned",
                                    TRUE ~ "Error")) 
   
-  IR_category_factor <- factor(put_together_initial$IR_category, levels = c('Unassigned',
+  all_assessments <- put_together_initial %>%
+    mutate(year_assessed = '2018') %>%
+    full_join(previous_listings, by = c('Pollu_ID', 'AU_ID', 'WQstd_code', 'OWRD_Basin')) %>%
+    mutate(Assessed_in_2018 = ifelse(is.na(year_assessed), "NO", 
+                                     ifelse(year_assessed == '2018', "YES", NA )),
+           assessment_result_2018 = ifelse(year_assessed == '2018', IR_category, NA),
+           PARAM_YEAR_LISTED = as.character(PARAM_YEAR_LISTED)) %>%
+    mutate(Char_Name = ifelse(is.na(Char_Name), PARAM_NAME, Char_Name ),
+           PARAM_YEAR_LISTED = case_when(is.na(PARAM_YEAR_LISTED) & IR_category == "Category 5" ~ '2018',
+                                         !is.na(PARAM_YEAR_LISTED) ~ PARAM_YEAR_LISTED )) %>%
+    select(-PARAM_ATTAINMENT_CODE, -PARAM_NAME) %>%
+    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2" ~ "Category 2",
+                                    previous_IR_category == 'Category 5' ~'Category 5',
+                                    TRUE ~ assessment_result_2018)) %>%
+    rename(Year_listed = PARAM_YEAR_LISTED) %>%
+    left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
+    mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
+    select(-LU_Pollutant)
+  
+  IR_category_factor <- factor(all_assessments$IR_category, levels = c('Unassigned',
                                                                             "-",
                                                                             "Category 3C",
                                                                             "Category 3D",
@@ -694,10 +853,10 @@ print('Writing tables')
                                                                             "Category 5"),
                                ordered = TRUE)
   
-  put_together_initial$IR_category <- IR_category_factor
+  all_assessments$IR_category <- IR_category_factor
   
   
-  put_together <- put_together_initial %>%
+  put_together <- all_assessments %>%
     mutate(Char_Name = case_when(Char_Name == "Alkalinity, total" ~ 'Alkalinity',
                                  Char_Name == "Alkalinity, bicarbonate" ~ 'Alkalinity',
                                  Char_Name == "PCBs"  ~ 'Polychlorinated Biphenyls (PCBs)',
@@ -715,15 +874,19 @@ print('Writing tables')
             row.names = FALSE,
             na = "")
   
+ 
   
-  listings_2012 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/parameter_12june19 polluIDcopy.csv",
-                            stringsAsFactors = FALSE) %>%
-    select(ASSESSMENT_UNIT_ID, Pollu_ID, PARAM_ATTAINMENT_CODE) %>%
-    rename(AU_ID = ASSESSMENT_UNIT_ID) %>%
-    mutate(Pollu_ID = as.character(Pollu_ID)) %>%
-    distinct()
-  
-  crosswalked <- put_together %>%
+  crosswalked <- put_together_initial %>%
+    mutate(Char_Name = case_when(Char_Name == "Alkalinity, total" ~ 'Alkalinity',
+                                 Char_Name == "Alkalinity, bicarbonate" ~ 'Alkalinity',
+                                 Char_Name == "PCBs"  ~ 'Polychlorinated Biphenyls (PCBs)',
+                                 Char_Name == 'DDT' ~ "DDT 4,4'",
+                                 Char_Name == 'Lindane' ~ 'BHC Gamma (Lindane)',
+                                 TRUE ~ Char_Name)) %>%
+    left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
+    mutate(Pollu_ID = ifelse(is.na(Pollu_ID) | Pollu_ID == "", LU_Pollu_ID, Pollu_ID )) %>%
+    select(-LU_Pollu_ID) %>%
+    arrange(AU_ID) %>%
     left_join(listings_2012) %>%
     filter(grepl('2', IR_category),
            !is.na(PARAM_ATTAINMENT_CODE)) %>%
@@ -794,7 +957,7 @@ print('Writing tables')
    group_by(AU_ID, ben_use) %>%
    summarise(Category = max(IR_category)) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
-     mutate(Category = as.character(Category),
+   mutate(Category = as.character(Category),
           Category = ifelse(is.na(Category), 'Unassessed', Category )) %>%
    select(-ben_use_id) %>%
    #mutate(Category = ifelse(is.na(Category), "-", Category)) %>%
@@ -802,8 +965,28 @@ print('Writing tables')
    select(-`Commercial Navigation and Transportation`,
           -`Hydro Power`, -`Industrial Water Supply`, -`Irrigation`,
           -`Livestock Watering`, -`Wildlife and Hunting`)
+ 
+ 
+ BU_Summary <- all_BU_rollup %>%
+   mutate(Year_listed = ifelse(is.na(Year_listed), year_assessed, Year_listed ),
+          Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) )) %>%
+   group_by(AU_ID, ben_use) %>%
+   right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
+   summarise(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Not supported",
+                                            max(IR_category, na.rm = TRUE) == "Category 2" ~ "Standards met for all assessed parameters",
+                                            max(IR_category, na.rm = TRUE) == "Category 3B" ~ "Insufficient data to determine use support, but some data indicate non-attainment of a criterion",
+                                            max(IR_category, na.rm = TRUE) == "Category 3" ~ "Insufficient data to determine use support",
+                                            max(IR_category, na.rm = TRUE) == "Category 3D" ~ "Insufficient data to determine use support because numeric criteria are less than quantification limits",
+                                            max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Insufficient data to determine use support, Biocriteria O/E scores deviate from reference condition, but not classified as imparied",
+                                            TRUE ~ "Use not assessed"),
+             Impairment_cause = ifelse(Assessed_condition == "Not supported",str_c(Parameter[IR_category ==  "Category 5"], collapse  = "; "), "" ),
+             Parameters_assessed = ifelse(Assessed_condition != "Use not assessed", str_c(Parameter, collapse  = "; \n "), ""),
+             year_listed = ifelse(Assessed_condition == "Not supported", Year_listed, '' )
+   )
+ 
      
-    
+ all_delist <- all_delist %>%
+   distinct()
     
  write.csv(all_categories, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_categories.csv"),
            row.names = FALSE,
@@ -815,6 +998,10 @@ print('Writing tables')
  
  
  
+ write.csv(BU_Summary, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_BU_summary.csv"),
+           row.names = FALSE,
+           na = "")
+ 
  write.csv(BU_rollup, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_BU_rollup.csv"),
            row.names = FALSE,
            na = "")
@@ -822,4 +1009,6 @@ print('Writing tables')
  write.csv(all_BU_counts, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_BU_counts.csv"),
            row.names = FALSE,
            na = "")
+ 
+
  

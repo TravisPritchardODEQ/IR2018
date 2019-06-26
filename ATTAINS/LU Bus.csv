@@ -25,7 +25,7 @@ ben_use_id,ben_use,WQstd_code,Pollu_ID,Pollutant
 4,Fish and Aquatic Life,15,78,Toxic Substanaces - Aquatic Life
 4,Fish and Aquatic Life,15,79,Toxic Substanaces - Aquatic Life
 4,Fish and Aquatic Life,15,81,Toxic Substanaces - Aquatic Life
-4,Fish and Aquatic Life,15,89,Toxic Substanaces - Aquatic Life
+4,Fish and Aquatic Life,16,89,Toxic Substanaces - Aquatic Life
 4,Fish and Aquatic Life,15,90,Toxic Substanaces - Aquatic Life
 4,Fish and Aquatic Life,15,91,Toxic Substanaces - Aquatic Life
 4,Fish and Aquatic Life,15,99,Toxic Substanaces - Aquatic Life
@@ -64,7 +64,7 @@ ben_use_id,ben_use,WQstd_code,Pollu_ID,Pollutant
 16,Fishing,15,78,Toxic Substanaces - Aquatic Life
 16,Fishing,15,79,Toxic Substanaces - Aquatic Life
 16,Fishing,15,81,Toxic Substanaces - Aquatic Life
-16,Fishing,15,89,Toxic Substanaces - Aquatic Life
+16,Fishing,16,89,Toxic Substanaces - Aquatic Life
 16,Fishing,15,90,Toxic Substanaces - Aquatic Life
 16,Fishing,15,91,Toxic Substanaces - Aquatic Life
 16,Fishing,15,99,Toxic Substanaces - Aquatic Life
@@ -419,3 +419,26 @@ ben_use_id,ben_use,WQstd_code,Pollu_ID,Pollutant
 4,Fish and Aquatic Life,,148,Turbidity
 16,Fishing,,148,Turbidity
 1,Aesthetic Quality,,148,Turbidity
+1,Fish and Aquatic Life,,170,FLOW REGIME MODIFICATION
+4,Fish and Aquatic Life,,171,HABITAT ALTERATIONS
+16,Fishing,,171,HABITAT ALTERATIONS
+4,Fish and Aquatic Life,,172,SEDIMENT
+16,Fishing,,172,SEDIMENT
+1,Aesthetic Quality,9,148,Turbidity
+4,Fish and Aquatic Life,9,148,Turbidity
+24,Water Contact Recreation,9,148,Turbidity
+22,Private Domestic Water Supply,9,148,Turbidity
+23,Public Domestic Water Supply,9,148,Turbidity
+16,Fishing,9,148,Turbidity
+2,Boating,,173,EXCESS ALGAL GROWTH
+1,Aesthetic Quality,,173,EXCESS ALGAL GROWTH
+16,Fishing,,173,EXCESS ALGAL GROWTH
+4,Fish and Aquatic Life,15,169,DIAZINON
+16,Fishing,15,169,DIAZINON
+4,Fish and Aquatic Life,15,43,Chromium VI
+16,Fishing,15,43,Chromium VI
+4,Fish and Aquatic Life,15,80,Endosulfan Sulfate
+16,Fishing,15,80,Endosulfan Sulfate
+4,Private Domestic Water Supply,16,136,Thallium
+16,fishing,16,136,Thallium
+23,Public Domestic Water Supply,16,136,Thallium
