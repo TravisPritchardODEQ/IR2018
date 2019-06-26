@@ -980,8 +980,8 @@ print('Writing tables')
                                             max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Insufficient data to determine use support, Biocriteria O/E scores deviate from reference condition, but not classified as imparied",
                                             TRUE ~ "Use not assessed"),
              Impairment_cause = ifelse(Assessed_condition == "Not supported",str_c(Parameter[IR_category ==  "Category 5"], collapse  = "; "), "" ),
-             Parameters_assessed = ifelse(Assessed_condition != "Use not assessed", str_c(Parameter, collapse  = "; \n "), ""),
-             year_listed = ifelse(Assessed_condition == "Not supported", Year_listed, '' )
+             Parameters_assessed = ifelse(Assessed_condition != "Use not assessed", str_c(Parameter, collapse  = "; "), ""),
+             year_listed = ifelse(Assessed_condition == "Not supported", min(Year_listed), '' )
    )
  
      
