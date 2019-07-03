@@ -863,6 +863,15 @@ print('Writing tables')
                                    IR_category == "Unassigned" ~ "Unassigned",
                                    TRUE ~ "Error")) 
   
+  #read in manually reviewed delistings
+  
+  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/older/ALL BASINS_delistings.csv",
+                              stringsAsFactors = FALSE) %>%
+    mutate(Pollu_ID = as.character(Pollu_ID),
+           WQstd_code = as.character(WQstd_code)) %>%
+    filter(OWRD_Basin == basin) %>%
+    select(AU_ID,Char_Name, Pollu_ID, WQstd_code, Period, Delisting.AGREE.. )
+  
   
   all_assessments <- put_together_initial %>%
     mutate(year_assessed = '2018') %>%
@@ -875,13 +884,14 @@ print('Writing tables')
            PARAM_YEAR_LISTED = case_when(is.na(PARAM_YEAR_LISTED) & IR_category == "Category 5" ~ '2018',
                                          !is.na(PARAM_YEAR_LISTED) ~ PARAM_YEAR_LISTED )) %>%
     select(-PARAM_ATTAINMENT_CODE, -PARAM_NAME) %>%
-    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2" ~ "Category 2",
+    left_join(delist_reviewed, by = c("AU_ID", "Char_Name", "Pollu_ID", "WQstd_code", "Period")) %>%
+    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2" & Delisting.AGREE.. == "YES" ~ "Category 2",
                                     previous_IR_category == 'Category 5' ~'Category 5',
                                     TRUE ~ assessment_result_2018)) %>%
     rename(Year_listed = PARAM_YEAR_LISTED) %>%
     left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
     mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
-    select(-LU_Pollutant)
+    select(-LU_Pollutant, -Delisting.AGREE..)
   
   
   
@@ -926,6 +936,8 @@ print('Writing tables')
             na = "")
   
  
+  
+  
   crosswalked <- cat4_assignments %>%
     ungroup() %>%
     mutate(Char_Name = case_when(Char_Name == "Alkalinity, total" ~ 'Alkalinity',
@@ -934,7 +946,7 @@ print('Writing tables')
                                  Char_Name == 'DDT' ~ "DDT 4,4'",
                                  Char_Name == 'Lindane' ~ 'BHC Gamma (Lindane)',
                                  TRUE ~ Char_Name)) %>%
-    filter(IR_category == "Category 2" & previous_IR_category == "Category 5")
+    filter(IR_category == "Category 2" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A"))
     
   #   
   # 
