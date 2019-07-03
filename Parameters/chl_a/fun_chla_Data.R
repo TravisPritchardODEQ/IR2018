@@ -42,12 +42,30 @@ chla_data <- function(database) {
   
   # Censored data ------------------------------------------------------------
   
+  load("Other tools/chl_aggregate_data.Rdata")
+  
+  data_to_agg <- Results_import %>%
+    left_join(aggregate_data, by = 'Result_UID') %>%
+    filter(!is.na(group)) %>%
+    arrange(group) %>%
+    group_by(group) %>%
+    mutate(analysis_comment = paste0(Result_UID, collapse = ", "),
+           keep = ifelse(row_number() == 1, 1, 0 )) %>%
+    mutate(analysis_comment = paste("Result is the average of result_UIDs:",analysis_comment, " - due to multiple results at same date")) %>%
+    ungroup() %>%
+    select(Result_UID, mean_result, keep, analysis_comment)
+  
+  results_to_validate <- Results_import %>%
+    left_join(data_to_agg) %>%
+    filter(keep == 1 | is.na(keep)) %>%
+    mutate(IRResultNWQSunit = ifelse(!is.na(mean_result), mean_result, IRResultNWQSunit )) %>%
+    select(-mean_result, -keep)
   
   
   print("Modify censored data")
   
   #run the censored data function to set censored data. This will use the lowest crit value from above 
-  Results_censored <- Censored_data(Results_import, crit = `Chla_Criteria` ) %>%
+  Results_censored <- Censored_data(results_to_validate, crit = `Chla_Criteria` ) %>%
     mutate(Result_cen = as.numeric(Result_cen))
   
   print(paste("Removing", sum(is.na(Results_censored$Result_cen)), "null values"))
