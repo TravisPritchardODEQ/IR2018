@@ -86,6 +86,11 @@ OWRD_lookup <- DBI::dbGetQuery(con, OWRD_query) %>%
   group_by(AU_ID) %>%
   summarise(OWRD_Basin = first(OWRD_Basin))
 
+Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
+  mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+  select(-SSMA_TimeStamp) %>%
+  mutate(Pollutant_DEQ.WQS = trimws(Pollutant_DEQ.WQS, which = "right"))
+
 
 DBI::dbDisconnect(con)
 
@@ -93,6 +98,20 @@ DBI::dbDisconnect(con)
 AU_ID_2_basin <- read.csv('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/AU_2012_OWRD.csv',
                           stringsAsFactors = FALSE)
 
+
+
+# Bring in actions for assigning category 4s
+AU_Action <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Actions/AU_Action.csv", 
+                      stringsAsFactors = FALSE) %>%
+  mutate(Action_ID = as.character(Action_ID))
+
+Action_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Actions/Action_Parameter.csv",
+                             stringsAsFactors = FALSE) %>%
+  mutate(ACTION_ID = as.character(ACTION_ID),
+         Pollu_ID = as.character(Pollu_ID) )
+
+DEQ_Actions <- AU_Action %>%
+  left_join(Action_Parameter, by = c('Action_ID' = 'ACTION_ID'))
 
 # Create various lists used for combining data from each basin
 put_together_list <- list()
@@ -147,7 +166,8 @@ print("Starting Temperature")
              Data_Review_Comment,
              Rational
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code)) %>%
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment)) %>%
       filter(!is.na(AU_ID))
   }
   
@@ -174,7 +194,7 @@ print("Starting Temperature")
                                      "/",
                                      'Bacteria_Fresh_Contact_IR_Categories_',basin, '.csv'), stringsAsFactors = FALSE) %>%
       mutate(Pollu_ID = '76',
-             Char_Name = "E coli",
+             Char_Name = "E. coli",
              WQstd_code = "1") %>%
       select(AU_ID,
              Char_Name,
@@ -186,7 +206,8 @@ print("Starting Temperature")
              Data_Review_Comment,
              Rational
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
   }
   
   
@@ -221,7 +242,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
   
   
   }
@@ -257,7 +279,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
   ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
 }
   
   
@@ -292,7 +315,8 @@ print("Starting Temperature")
              Data_Review_Comment
              
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
   }
   
   
@@ -326,7 +350,8 @@ print("Starting Temperature")
              Data_Review_Comment,
              Rational
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
     
   }
   
@@ -366,7 +391,8 @@ print("Starting Temperature")
              Data_Review_Comment
              
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
   }
   
   
@@ -393,7 +419,8 @@ print("Starting Temperature")
            IR_category,
            Data_Review_Code,
            Data_Review_Comment) %>%
-    mutate(Data_Review_Code = as.character(Data_Review_Code))
+    mutate(Data_Review_Code = as.character(Data_Review_Code),
+           Data_Review_Comment = as.character(Data_Review_Comment))
   
   
   
@@ -482,7 +509,8 @@ print("Starting Temperature")
            Data_Review_Comment,
            #Rational
     ) %>%
-    mutate(Data_Review_Code = as.character(Data_Review_Code))
+    mutate(Data_Review_Code = as.character(Data_Review_Code),
+           Data_Review_Comment = as.character(Data_Review_Comment))
   
   }
   
@@ -521,7 +549,8 @@ print("Starting Temperature")
            Data_Review_Comment,
            Rational
     ) %>%
-    mutate(Data_Review_Code = as.character(Data_Review_Code))
+    mutate(Data_Review_Code = as.character(Data_Review_Code),
+           Data_Review_Comment = as.character(Data_Review_Comment))
   }
   
 
@@ -558,7 +587,8 @@ print("Starting Temperature")
              Data_Review_Comment,
              Rational
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
   
   
   }
@@ -598,7 +628,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
     
   }
   
@@ -631,7 +662,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
     
 }
 # Dissolved Oxyegn --------------------------------------------------------
@@ -668,7 +700,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
     
   }
   
@@ -702,7 +735,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
   
   }
   
@@ -735,7 +769,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
     
   }
   
@@ -768,7 +803,8 @@ print("Starting Temperature")
              Data_Review_Code,
              Data_Review_Comment
       ) %>%
-      mutate(Data_Review_Code = as.character(Data_Review_Code))
+      mutate(Data_Review_Code = as.character(Data_Review_Code),
+             Data_Review_Comment = as.character(Data_Review_Comment))
     
   }
   
@@ -797,10 +833,13 @@ print('Writing tables')
     distinct() %>%
     mutate(previous_IR_category = "Category 5",
            Pollu_ID = as.character(Pollu_ID)) %>% 
+    left_join(select(Pollutants, Pollu_ID, Pollutant_DEQ.WQS), by = "Pollu_ID") %>%
+    mutate(PARAM_NAME = Pollutant_DEQ.WQS) %>%
+    select(-Pollutant_DEQ.WQS) %>%
     rename(AU_ID = ASSESSMENT_UNIT_ID,
            WQstd_code = WQstrd_code) %>%
     mutate(WQstd_code = as.character(WQstd_code)) %>%
-    left_join(AU_ID_2_basin) %>%
+    left_join(AU_ID_2_basin, by = "AU_ID") %>%
     filter(OWRD_Basin == basin)
     
       
@@ -824,6 +863,7 @@ print('Writing tables')
                                    IR_category == "Unassigned" ~ "Unassigned",
                                    TRUE ~ "Error")) 
   
+  
   all_assessments <- put_together_initial %>%
     mutate(year_assessed = '2018') %>%
     full_join(previous_listings, by = c('Pollu_ID', 'AU_ID', 'WQstd_code', 'OWRD_Basin')) %>%
@@ -843,6 +883,11 @@ print('Writing tables')
     mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
     select(-LU_Pollutant)
   
+  
+  
+
+    
+  
   IR_category_factor <- factor(all_assessments$IR_category, levels = c('Unassigned',
                                                                             "-",
                                                                             "Category 3C",
@@ -850,6 +895,7 @@ print('Writing tables')
                                                                             "Category 3",
                                                                             "Category 3B",
                                                                             "Category 2",
+                                                                            "Category 4A",
                                                                             "Category 5"),
                                ordered = TRUE)
   
@@ -868,29 +914,45 @@ print('Writing tables')
     select(-LU_Pollu_ID) %>%
     arrange(AU_ID)
   
+  cat4_assignments <- put_together %>%
+    left_join(DEQ_Actions, by = c("AU_ID", "Pollu_ID")) %>%
+    mutate(IR_category = ifelse(IR_category == "Category 5" & !is.na(Action_ID), "Category 4A", as.character(IR_category) )) %>%
+    group_by(AU_ID, Char_Name, Pollu_ID, WQstd_code,
+             Period) %>%
+    ungroup()
   
-  
-  write.csv(put_together, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_categories.csv"),
+  write.csv(cat4_assignments, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_categories.csv"),
             row.names = FALSE,
             na = "")
   
  
-  
-  crosswalked <- put_together_initial %>%
+  crosswalked <- cat4_assignments %>%
+    ungroup() %>%
     mutate(Char_Name = case_when(Char_Name == "Alkalinity, total" ~ 'Alkalinity',
                                  Char_Name == "Alkalinity, bicarbonate" ~ 'Alkalinity',
                                  Char_Name == "PCBs"  ~ 'Polychlorinated Biphenyls (PCBs)',
                                  Char_Name == 'DDT' ~ "DDT 4,4'",
                                  Char_Name == 'Lindane' ~ 'BHC Gamma (Lindane)',
                                  TRUE ~ Char_Name)) %>%
-    left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
-    mutate(Pollu_ID = ifelse(is.na(Pollu_ID) | Pollu_ID == "", LU_Pollu_ID, Pollu_ID )) %>%
-    select(-LU_Pollu_ID) %>%
-    arrange(AU_ID) %>%
-    left_join(listings_2012) %>%
-    filter(grepl('2', IR_category),
-           !is.na(PARAM_ATTAINMENT_CODE)) %>%
-    rename(Previous_PARAM_ATTAINMENT_CODE = PARAM_ATTAINMENT_CODE)
+    filter(IR_category == "Category 2" & previous_IR_category == "Category 5")
+    
+  #   
+  # 
+  # crosswalked <- put_together_initial %>%
+  #   mutate(Char_Name = case_when(Char_Name == "Alkalinity, total" ~ 'Alkalinity',
+  #                                Char_Name == "Alkalinity, bicarbonate" ~ 'Alkalinity',
+  #                                Char_Name == "PCBs"  ~ 'Polychlorinated Biphenyls (PCBs)',
+  #                                Char_Name == 'DDT' ~ "DDT 4,4'",
+  #                                Char_Name == 'Lindane' ~ 'BHC Gamma (Lindane)',
+  #                                TRUE ~ Char_Name)) %>%
+  #   left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
+  #   mutate(Pollu_ID = ifelse(is.na(Pollu_ID) | Pollu_ID == "", LU_Pollu_ID, Pollu_ID )) %>%
+  #   select(-LU_Pollu_ID) %>%
+  #   arrange(AU_ID) %>%
+  #   left_join(listings_2012) %>%
+  #   filter(grepl('2', IR_category),
+  #          !is.na(PARAM_ATTAINMENT_CODE)) %>%
+  #   rename(Previous_PARAM_ATTAINMENT_CODE = PARAM_ATTAINMENT_CODE)
   
   
   write.csv(crosswalked, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_delistings.csv"),
@@ -899,7 +961,7 @@ print('Writing tables')
   
   
   
-  BU_s <- put_together %>%
+  BU_s <- cat4_assignments %>%
     left_join(BUs, by = c("Pollu_ID", "WQstd_code") )
   
   # 
@@ -932,7 +994,7 @@ print('Writing tables')
                                 na = "")
   
   
-  put_together_list[[i]] <- put_together
+  put_together_list[[i]] <- cat4_assignments
   delist_list[[i]] <- crosswalked
   BU_rollup_list[[i]] <- BU_s
   BU_counts_list[[i]] <- BU_counts
@@ -961,10 +1023,10 @@ print('Writing tables')
           Category = ifelse(is.na(Category), 'Unassessed', Category )) %>%
    select(-ben_use_id) %>%
    #mutate(Category = ifelse(is.na(Category), "-", Category)) %>%
-   spread(ben_use, Category, fill = "-") %>%
-   select(-`Commercial Navigation and Transportation`,
-          -`Hydro Power`, -`Industrial Water Supply`, -`Irrigation`,
-          -`Livestock Watering`, -`Wildlife and Hunting`)
+   spread(ben_use, Category, fill = "-") #%>%
+   # select(-`Commercial Navigation and Transportation`,
+   #        -`Hydro Power`, -`Industrial Water Supply`, -`Irrigation`,
+   #        -`Livestock Watering`, -`Wildlife and Hunting`)
  
  
  BU_Summary <- all_BU_rollup %>%
@@ -973,18 +1035,115 @@ print('Writing tables')
    group_by(AU_ID, ben_use) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
    summarise(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Not supported",
+                                            max(IR_category, na.rm = TRUE) == "Category 4A" ~ "Not supported. TMDL in place",
                                             max(IR_category, na.rm = TRUE) == "Category 2" ~ "Standards met for all assessed parameters",
                                             max(IR_category, na.rm = TRUE) == "Category 3B" ~ "Insufficient data to determine use support, but some data indicate non-attainment of a criterion",
                                             max(IR_category, na.rm = TRUE) == "Category 3" ~ "Insufficient data to determine use support",
                                             max(IR_category, na.rm = TRUE) == "Category 3D" ~ "Insufficient data to determine use support because numeric criteria are less than quantification limits",
-                                            max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Insufficient data to determine use support, Biocriteria O/E scores deviate from reference condition, but not classified as imparied",
+                                            max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Insufficient data to determine use support, but data indicated marginal bilogical condition",
                                             TRUE ~ "Use not assessed"),
-             Impairment_cause = ifelse(Assessed_condition == "Not supported",str_c(Parameter[IR_category ==  "Category 5"], collapse  = "; "), "" ),
+             Impairment_cause = ifelse(Assessed_condition == "Not supported" |
+                                         Assessed_condition == "Not supported. TMDL in place",str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category ==  "Category 4A"]), collapse  = "; "), "" ),
              Parameters_assessed = ifelse(Assessed_condition != "Use not assessed", str_c(Parameter, collapse  = "; "), ""),
-             year_listed = ifelse(Assessed_condition == "Not supported", min(Year_listed), '' )
+             year_listed = ifelse(Assessed_condition == "Not supported" |
+                                    Assessed_condition == "Not supported. TMDL in place", min(Year_listed), '' )
    )
  
-     
+ # data display tables -----------------------------------------------------
+ 
+ 
+ Impaired_1orMoreUses_prelim <-  all_BU_rollup %>%
+   mutate(Name = "",
+          Description = "",
+          AU_Size = "") %>%
+   mutate(Pollu_ID = ifelse(Pollu_ID == "160", "104", Pollu_ID )) %>%
+   left_join(Pollutants,by = "Pollu_ID") %>%
+   mutate(Year_listed = ifelse(is.na(Year_listed), year_assessed, Year_listed ),
+          Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) ),
+          year_assessed = ifelse(is.na(year_assessed), Year_listed, Year_listed )) %>%
+   right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
+   group_by(AU_ID, ben_use) %>%
+   mutate(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Category 5",
+                                         max(IR_category, na.rm = TRUE) == "Category 4A" ~ "Category 4A",
+                                max(IR_category, na.rm = TRUE) == "Category 2" ~ "Category 2",
+                                max(IR_category, na.rm = TRUE) == "Category 3B" ~ "Category 3B",
+                                max(IR_category, na.rm = TRUE) == "Category 3" ~ "Category 3",
+                                max(IR_category, na.rm = TRUE) == "Category 3D" ~ "Category 3D",
+                                max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Category 3C",
+                                TRUE ~ "Use not assessed"),
+             Impairment_cause = ifelse(Assessed_condition == "Category 5" | Assessed_condition =="Category 4A", str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category ==  "Category 4A"]), collapse  = "; "), NA ),
+             Year_listed = min(Year_listed, na.rm = TRUE),
+          parameters_assessed = str_c(unique(Pollutant_DEQ.WQS), collapse = "; "),
+          parameter_group_assessed = str_c(unique(Attains_Group), collapse = "; ")) %>%
+   ungroup() 
+ 
+ 
+   
+Impaired_factor <- factor(Impaired_1orMoreUses_prelim$Assessed_condition, levels = c("Use not assessed",
+                                                                      "Category 3C",
+                                                                      "Category 3D",
+                                                                      "Category 3",
+                                                                      "Category 3B",
+                                                                      "Category 2",
+                                                                      "Category 4A",
+                                                                      "Category 5"),
+                              ordered = TRUE)
+
+
+
+ 
+Impaired_1orMoreUses_prelim$Assessed_condition <- Impaired_factor            
+               
+Impaired_1orMoreUses <- Impaired_1orMoreUses_prelim %>%
+  mutate(condition = ifelse(grepl("3", Assessed_condition), 'Category 3', as.character(Assessed_condition))) %>%
+  group_by(AU_ID) %>%
+  summarise(Impaired_Uses = ifelse(length(str_c(unique(ben_use[condition ==  "Category 5" | condition == "Category 4A"]), collapse = "; ")) > 0,  
+                                   str_c(unique(ben_use[condition ==  "Category 5"| condition == "Category 4A"]), collapse = "; "), 
+                                   '-' ),
+            Impairment_cause = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category == "Category 4A"])[!is.na(unique(Parameter[IR_category ==  "Category 5" | IR_category == "Category 4A"]))], 
+                                                   collapse  = "; ")) > 0, 
+                                      str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category == "Category 4A"])[!is.na(unique(Parameter[IR_category ==  "Category 5" | IR_category == "Category 4A"]))],
+                                            collapse  = "; "), 
+                                      "."),
+            year_listed = min(Year_listed, na.rm = TRUE),
+            year_last_assessed = max(year_assessed, na.rm = TRUE),
+            attaining_uses = ifelse(length(str_c(unique(ben_use[condition ==  "Category 2"]), collapse = "; ")) > 0, 
+                                    str_c(unique(ben_use[condition ==  "Category 2"]), collapse = "; "), "-" ),
+            insufficient_data_uses = ifelse(length(str_c(unique(ben_use[condition ==  "Category 3"]), collapse = "; ")) > 0, 
+                                            str_c(unique(ben_use[condition ==  "Category 3"]), collapse = "; "), "-" ),
+            unassessed_uses = str_c(unique(ben_use[condition ==  "Use not assessed"]), collapse = "; "),
+            Parameters_assessed = str_c(unique(Pollutant_DEQ.WQS[!is.na(Pollutant_DEQ.WQS)]), collapse = "; "),
+            parameter_group_assessed = str_c(unique(Attains_Group[!is.na(Attains_Group)]), collapse = "; ")) 
+ 
+
+# parameter group ---------------------------------------------------------
+
+long_BUs <- BUs %>%
+  group_by(WQstd_code, Pollu_ID) %>%
+  mutate(affected_uses = str_c(unique(ben_use), collapse = "; "))
+
+Parameter <- all_categories %>%
+  mutate(Pollu_ID = ifelse(Pollu_ID == "160", "104", Pollu_ID )) %>%
+  left_join(Pollutants,by = "Pollu_ID") %>%
+  mutate(year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
+  left_join(distinct(select(long_BUs, Pollu_ID, WQstd_code, affected_uses)),by = c("Pollu_ID", "WQstd_code")) %>%
+  select(AU_ID, Char_Name,
+         Pollu_ID, WQstd_code, Period,
+         OWRD_Basin, IR_category,
+         analysis_comment, Data_Review_Comment,
+         Rational, year_assessed, Year_listed,
+         previous_IR_category, Assessed_in_2018, 
+         assessment_result_2018, Attains_Group, affected_uses)
+
+
+# Count_impaired_pollutants -----------------------------------------------
+Count_impaired_pollutants <- all_categories %>%
+  group_by(AU_ID) %>%
+  summarise(Count_impaired_pollutants = sum(IR_category == "Category 5" | IR_category == "Category 4A"),
+            assessed_parameters = n_distinct(Char_Name)) %>%
+  filter(AU_ID != "")
+
+
  all_delist <- all_delist %>%
    distinct()
     
@@ -1009,6 +1168,21 @@ print('Writing tables')
  write.csv(all_BU_counts, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_BU_counts.csv"),
            row.names = FALSE,
            na = "")
+ 
+
+# write_display_tables ----------------------------------------------------
+
+ write.csv(Impaired_1orMoreUses, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_Impaired_1orMoreUses.csv"),
+           row.names = FALSE,
+           na = "")
+ write.csv(Parameter, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_Parameters.csv"),
+           row.names = FALSE,
+           na = "")
+ write.csv(Count_impaired_pollutants, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_Count_impaired_pollutants.csv"),
+           row.names = FALSE,
+           na = "")
+ 
+ 
  
 
  
