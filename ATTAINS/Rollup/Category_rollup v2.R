@@ -840,7 +840,9 @@ print('Writing tables')
            WQstd_code = WQstrd_code) %>%
     mutate(WQstd_code = as.character(WQstd_code)) %>%
     left_join(AU_ID_2_basin, by = "AU_ID") %>%
-    filter(OWRD_Basin == basin)
+    filter(OWRD_Basin == basin) %>%
+    group_by(AU_ID, Pollu_ID, WQstd_code) %>%
+    filter(PARAM_YEAR_LISTED == min(PARAM_YEAR_LISTED, na.rm = TRUE))
     
       
   
@@ -1013,6 +1015,21 @@ print('Writing tables')
 
  OWRD_basins <- all_categories %>%
    distinct(AU_ID, OWRD_Basin)
+ 
+cat_factor <- factor(all_BU_rollup$IR_category, levels = c("Use not assessed",
+                                                                                      "Category 3C",
+                                                                                      "Category 3D",
+                                                                                      "Category 3",
+                                                                                      "Category 3B",
+                                                                                      "Category 2",
+                                                                                      "Category 4A",
+                                                                                      "Category 5"),
+                           ordered = TRUE)
+ 
+ 
+ 
+ 
+all_BU_rollup$IR_category <- cat_factor       
  
  
  BU_rollup <- all_BU_rollup %>%
