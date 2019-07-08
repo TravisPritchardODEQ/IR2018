@@ -36,6 +36,7 @@ Basins <- c(
 load("ATTAINS/LU_Pollutant.Rdata")
 #save(Pollu_IDs, file ="ATTAINS/LU_Pollutant.Rdata" )
 
+
 # This table connects the Pollu_IDs and WQstrd codes to beneficial uses.
 # This is how we assign uses to assessments
 BUs <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/LU Bus.csv",
@@ -510,7 +511,10 @@ print("Starting Temperature")
            #Rational
     ) %>%
     mutate(Data_Review_Code = as.character(Data_Review_Code),
-           Data_Review_Comment = as.character(Data_Review_Comment))
+           Data_Review_Comment = as.character(Data_Review_Comment)) %>%
+    left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
+    mutate(Pollu_ID = LU_Pollu_ID) %>%
+    select(-LU_Pollu_ID)
   
   }
   
@@ -840,7 +844,9 @@ print('Writing tables')
            WQstd_code = WQstrd_code) %>%
     mutate(WQstd_code = as.character(WQstd_code)) %>%
     left_join(AU_ID_2_basin, by = "AU_ID") %>%
-    filter(OWRD_Basin == basin)
+    filter(OWRD_Basin == basin) %>%
+    group_by(AU_ID, Pollu_ID, WQstd_code) %>%
+    filter(PARAM_YEAR_LISTED == min(PARAM_YEAR_LISTED, na.rm = TRUE))
     
       
   
@@ -851,7 +857,7 @@ print('Writing tables')
                                     get0('toxal_penta'), get0('toxal'), 
                                     get0('tox_hh'), get0('DO_spawn_inst') ,get0('DO_spawn_cont'),
                                     get0('DO_yrround_inst'), get0('DO_yrround_cont'), 
-                                    get0('biocriteria_joined'), get0('narrative')) %>%
+                                    get0('biocriteria_joined'), get0('narrative'), get0('tox_hh_hg_tissue')) %>%
     filter(Char_Name != "Endrin + cis-Nonachlor") %>%
     mutate(IR_category = case_when(grepl("5", IR_category) ~ "Category 5",
                                    grepl("2", IR_category) ~ "Category 2",
@@ -1025,6 +1031,21 @@ print('Writing tables')
 
  OWRD_basins <- all_categories %>%
    distinct(AU_ID, OWRD_Basin)
+ 
+cat_factor <- factor(all_BU_rollup$IR_category, levels = c("Use not assessed",
+                                                                                      "Category 3C",
+                                                                                      "Category 3D",
+                                                                                      "Category 3",
+                                                                                      "Category 3B",
+                                                                                      "Category 2",
+                                                                                      "Category 4A",
+                                                                                      "Category 5"),
+                           ordered = TRUE)
+ 
+ 
+ 
+ 
+all_BU_rollup$IR_category <- cat_factor       
  
  
  BU_rollup <- all_BU_rollup %>%
