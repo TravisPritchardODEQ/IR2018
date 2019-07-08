@@ -36,6 +36,7 @@ Basins <- c(
 load("ATTAINS/LU_Pollutant.Rdata")
 #save(Pollu_IDs, file ="ATTAINS/LU_Pollutant.Rdata" )
 
+
 # This table connects the Pollu_IDs and WQstrd codes to beneficial uses.
 # This is how we assign uses to assessments
 BUs <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/LU Bus.csv",
@@ -510,7 +511,10 @@ print("Starting Temperature")
            #Rational
     ) %>%
     mutate(Data_Review_Code = as.character(Data_Review_Code),
-           Data_Review_Comment = as.character(Data_Review_Comment))
+           Data_Review_Comment = as.character(Data_Review_Comment)) %>%
+    left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
+    mutate(Pollu_ID = LU_Pollu_ID) %>%
+    select(-LU_Pollu_ID)
   
   }
   
@@ -853,7 +857,7 @@ print('Writing tables')
                                     get0('toxal_penta'), get0('toxal'), 
                                     get0('tox_hh'), get0('DO_spawn_inst') ,get0('DO_spawn_cont'),
                                     get0('DO_yrround_inst'), get0('DO_yrround_cont'), 
-                                    get0('biocriteria_joined'), get0('narrative')) %>%
+                                    get0('biocriteria_joined'), get0('narrative'), get0('tox_hh_hg_tissue')) %>%
     filter(Char_Name != "Endrin + cis-Nonachlor") %>%
     mutate(IR_category = case_when(grepl("5", IR_category) ~ "Category 5",
                                    grepl("2", IR_category) ~ "Category 2",
