@@ -592,7 +592,16 @@ print("Starting Temperature")
              Rational
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
-             Data_Review_Comment = as.character(Data_Review_Comment))
+             Data_Review_Comment = as.character(Data_Review_Comment)) %>%
+      left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
+      mutate(Pollu_ID = LU_Pollu_ID) %>%
+      select(-LU_Pollu_ID) %>%
+      mutate(Pollu_ID = case_when(Char_Name == 'Alkalinity, total' ~ '5', 
+                                  Char_Name == 'PCBs' ~ '153',
+                                  Char_Name == 'DDT' ~ '50',
+                                  Char_Name == "Lindane" ~ '22',
+                                  TRUE ~ Pollu_ID )) %>%
+      filter(Char_Name != 	'Endrin + cis-Nonachlor')
   
   
   }
@@ -633,7 +642,8 @@ print("Starting Temperature")
              Data_Review_Comment
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
-             Data_Review_Comment = as.character(Data_Review_Comment))
+             Data_Review_Comment = as.character(Data_Review_Comment)) %>%
+      distinct()
     
   }
   
@@ -871,12 +881,16 @@ print('Writing tables')
   
   #read in manually reviewed delistings
   
-  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/older/ALL BASINS_delistings.csv",
+  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv4.csv",
                               stringsAsFactors = FALSE) %>%
     mutate(Pollu_ID = as.character(Pollu_ID),
            WQstd_code = as.character(WQstd_code)) %>%
     filter(OWRD_Basin == basin) %>%
-    select(AU_ID,Char_Name, Pollu_ID, WQstd_code, Period, Delisting.AGREE.. )
+    select(AU_ID, Pollu_ID, WQstd_code, Period, Delisting.AGREE.. ) %>%
+    mutate(Period = ifelse(Period == "", NA, Period )) %>%
+    mutate(Period = as.character(Period),
+           Delisting.AGREE.. = trimws(Delisting.AGREE..)) %>%
+    rename(Delist = Delisting.AGREE..)
   
   
   all_assessments <- put_together_initial %>%
@@ -890,14 +904,14 @@ print('Writing tables')
            PARAM_YEAR_LISTED = case_when(is.na(PARAM_YEAR_LISTED) & IR_category == "Category 5" ~ '2018',
                                          !is.na(PARAM_YEAR_LISTED) ~ PARAM_YEAR_LISTED )) %>%
     select(-PARAM_ATTAINMENT_CODE, -PARAM_NAME) %>%
-    left_join(delist_reviewed, by = c("AU_ID", "Char_Name", "Pollu_ID", "WQstd_code", "Period")) %>%
-    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2" & Delisting.AGREE.. == "YES" ~ "Category 2",
+    left_join(delist_reviewed, by = c("AU_ID", "Pollu_ID", "WQstd_code", "Period")) %>%
+    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2" & Delist == "YES" ~ "Category 2",
                                     previous_IR_category == 'Category 5' ~'Category 5',
                                     TRUE ~ assessment_result_2018)) %>%
     rename(Year_listed = PARAM_YEAR_LISTED) %>%
     left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
     mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
-    select(-LU_Pollutant, -Delisting.AGREE..)
+    select(-LU_Pollutant)
   
   
   
