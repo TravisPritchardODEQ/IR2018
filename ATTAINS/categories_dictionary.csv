@@ -1,0 +1,22 @@
+Column,Description
+AU_ID,Assessment Unit Identification
+AU_Name,Assessment Unit Name
+Char_Name,Parameter
+Pollu_ID,Pollutant Identification Number   - use dto identify parameters
+WQstd_code,Water Quality Standard Code - used to identify which water quality standard was assessed
+Period,Time period for parameters with a spawning component
+OWRD_Basin,Oregon Water Resources Department Administrative Basin
+IR_category,Assigned Integrated report category
+analysis_comment_2018,Comments made during data analysis
+Data_Review_Code,Integrated report internal review code. See lookup table
+Data_Review_Comment,Integrated report internal review comment 
+Rational,Integrated report internal rationals
+year_assessed,Year last assessed
+Year_listed,Year first listed for parameter
+previous_IR_category,Assigned Integrated report category before 2018 assessment
+Assessed_in_2018,Flag to mark if assessed in 2018
+assessment_result_2018,Assigned Integrated report category in 2018 assessment
+Action_ID,Code to identify TMDL in ATTAINS
+TMDL_Name,Applicable TMDL name
+Review_Comment,Insert review comment here
+Revised_Category,insert proposed integrated report category here
