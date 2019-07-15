@@ -54,7 +54,8 @@ ben_use_wqstrd_collapsed <- ben_use_wqstrd %>%
             applicable_strds = str_c(str_sort(unique(WQstd_OAR)), collapse = "; "))
 
 
-
+fwrite(ben_use_wqstrd_collapsed, file = "Other tools/Standard_layer_display/ben_use_wqstrd.csv",
+       row.names = FALSE)
 
 standards_ben_use <- standards %>%
   left_join(ben_use_wqstrd_collapsed)
@@ -105,4 +106,4 @@ fwrite(standards_ben_use_all, file = "Other tools/Standard_layer_display/standar
 
 #save(standards_ben_use_all, file = "Other tools/Standard_layer_display/standards_ben_use_all.Rdata")
 
-names(standards_ben_use_all)
+load("Other tools/Standard_layer_display/standards_ben_use_all.Rdata")

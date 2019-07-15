@@ -664,6 +664,11 @@ print("Starting Temperature")
                        stringsAsFactors = FALSE) %>%
       mutate(Pollu_ID = as.character(Pollu_ID),
              WQstd_code = "16") %>%
+      group_by(AU_ID, Char_Name) %>%
+      mutate(match = ifelse(Simplified_sample_fraction == Crit_Fraction, 1, 0 ),
+             keep = ifelse(max(match, na.rm = TRUE) == 1 & match == 1 |
+                             max(match, na.rm = TRUE) == 0 & match == 0, 1, 0)) %>%
+      filter(keep == 1) %>%
       select(AU_ID,
              Char_Name,
              WQstd_code,
@@ -1060,7 +1065,15 @@ print('Writing tables')
            Revised_Category = "")
   
   basin_categories <- cat4_assignments %>%
-    mutate(year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed ))
+    mutate(year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
+    distinct() %>%
+    group_by(AU_ID, AU_Name, Char_Name, Pollu_ID, WQstd_code,
+             Period, OWRD_Basin, IR_category, analysis_comment_2018, 
+             Data_Review_Code,Data_Review_Comment, Rational, year_assessed, Year_listed,
+             previous_IR_category,Assessed_in_2018, assessment_result_2018 ) %>%
+    summarise(Action_ID = ifelse(length(str_c(Action_ID, collapse  = "; ")) > 0, str_c(Action_ID, collapse  = "; "), ""),
+              TMDL_Name = ifelse(length(str_c(TMDL_Name, collapse  = "; ")) > 0, str_c(TMDL_Name, collapse  = "; "), ""))
+    
   
   
   
@@ -1302,6 +1315,7 @@ long_BUs <- BUs %>%
   mutate(affected_uses = str_c(unique(ben_use), collapse = "; "))
 
 Parameter <- all_categories %>%
+  ungroup() %>%
   mutate(Pollu_ID = ifelse(Pollu_ID == "160", "104", Pollu_ID )) %>%
   left_join(Pollutants,by = "Pollu_ID") %>%
   mutate(year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
@@ -1343,6 +1357,10 @@ Count_impaired_pollutants <- all_categories %>%
  # write.csv(all_categories, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_categories.csv"),
  #           row.names = FALSE,
  #           na = "")
+ 
+ write.csv(Impaired_1orMoreUses, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_Impaired_1orMoreUses.csv"),
+           row.names = FALSE,
+           na = "")
 
  write.csv(all_delist, paste0("ATTAINS/Rollup/Basin_categories/", "ALL BASINS","_delistings.csv"),
            row.names = FALSE,
