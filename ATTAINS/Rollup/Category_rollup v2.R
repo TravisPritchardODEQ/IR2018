@@ -137,9 +137,8 @@ Action_names <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Dr
   rename(TMDL_Name = ACTION_NAME)
 
 DEQ_Actions_names <-DEQ_Actions %>%
-  left_join(Action_names, by = c('Action_ID' = 'ACTION_ID'))
+  left_join(Action_names, by = c('Action_ID' = 'ACTION_ID')) 
 
-#table to get AU names
 AU_names <- read.csv("ATTAINS/AU_names.csv", stringsAsFactors = FALSE) %>%
   select(AU_ID, AU_Name)
 
