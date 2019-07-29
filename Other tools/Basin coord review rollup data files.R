@@ -26,7 +26,7 @@ Basins <- c(
 )
 
 # for (i in 1:length(Basins)) {
-#   
+# 
 #   basin <- Basins[i]
 # dir.create(paste0('//deqhq1/WQ-SHARE/2018 IR/Internal Review/Basin Summaries/', basin))
 # }
@@ -145,40 +145,33 @@ for (i in 1:length(Basins)) {
   
   basin <- Basins[i]
   print(paste("Starting Basin-", basin))
+  
+  
   bacteria_coast_contact_basin <-  bacteria_coast_contact %>%
     filter(OWRD_Basin == basin)
   
   
-  if(exists('bacteria_coast_contact_basin')){
-    write.xlsx( bacteria_coast_contact_basin, 
-                file = paste0("//deqhq1/WQ-Share/2018 IR/Internal Review/Basin Summaries/", basin,"/", basin, "_Bacteria_Coast_Contact.xlsx"), 
-                overwrite = TRUE)
-    
-    }
-  
+
   
   bacteria_fresh_contact_basin <-   bacteria_fresh_contact %>%
     filter(OWRD_Basin == basin)
-  
-  if(exists('bacteria_fresh_contact_basin')){
-    write.xlsx( bacteria_fresh_contact_basin, 
-                file = paste0("//deqhq1/WQ-Share/2018 IR/Internal Review/Basin Summaries/", basin,"/", basin, "_Bacteria_Fresh_Contact.xlsx"), 
-                overwrite = TRUE)
-    
-  }
-  
-  
+
   bacteria_Shell_harvest_basin <-   bacteria_Shell_harvest %>%
     filter(OWRD_Basin == basin)
   
   
-  if(exists('bacteria_Shell_harvest_basin')){
-    write.xlsx( bacteria_Shell_harvest_basin, 
-                file = paste0("//deqhq1/WQ-Share/2018 IR/Internal Review/Basin Summaries/", basin,"/", basin, "_Bacteria_Shellfish_Harvest.xlsx"), 
-                overwrite = TRUE)
-    
-  }
+  wb <- createWorkbook()
+  addWorksheet(wb, "E coli")
+  addWorksheet(wb, "Enterococcus")
+  addWorksheet(wb, "Fecal Coliform")
   
+  writeData(wb,"E coli",  bacteria_fresh_contact_basin, rowNames = FALSE)
+  writeData(wb,"Enterococcus", bacteria_coast_contact_basin, rowNames = FALSE)
+  writeData(wb,"Fecal Coliform", bacteria_Shell_harvest_basin, rowNames = FALSE)
+  
+  saveWorkbook(wb, paste0("//deqhq1/WQ-Share/2018 IR/Internal Review/Basin Summaries/", basin,"/", basin, "_Bacteria.xlsx"), 
+               overwrite = TRUE)
+
   
   chl_basin <-   chl %>%
     filter(OWRD_Basin == basin)

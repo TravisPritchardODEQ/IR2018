@@ -8,10 +8,10 @@ options(scipen = 99999999)
 # Copy the oregon standards out of the geodatabase ------------------------
 
 # path <- '//deqhq1/GISLIBRARY/Base_Data/DEQ_Data/Water_Quality/WQ_Standards/GeoRef_Standards.gdb'
-# 
+#
 # subset(ogrDrivers(), grepl("GDB", name))
 # fc_list <- ogrListLayers(path)
-# 
+#
 # oregon_standards <- readOGR(dsn=path,layer="Oregon_Standards")
 # 
 # rm(oregon_standards)
@@ -58,7 +58,9 @@ fwrite(ben_use_wqstrd_collapsed, file = "Other tools/Standard_layer_display/ben_
        row.names = FALSE)
 
 standards_ben_use <- standards %>%
-  left_join(ben_use_wqstrd_collapsed)
+  left_join(ben_use_wqstrd_collapsed) %>%
+  mutate(GNIS_Name = ifelse(is.na(GNIS_Name), "Unnamed Stream", GNIS_Name ))
+
 
 temp_criteria <- read.xlsx("Other tools/Standard_layer_display/BenUse_standards_relation_tables.xlsx", sheet = 'temperature_criteria') %>%
   mutate(TempCode = as.character(TempCode)) %>%
@@ -90,14 +92,24 @@ ALtoxics_criteria <-  read.xlsx("Other tools/Standard_layer_display/BenUse_stand
   rename(WaterTypeCode = WaterType_code) %>%
   mutate(WaterTypeCode = ifelse(nchar(WaterTypeCode) == 1, paste0("0", WaterTypeCode), WaterTypeCode ))
 
+Bacteria_criteria <- read.xlsx("Other tools/Standard_layer_display/BenUse_standards_relation_tables.xlsx", sheet = 'Bacteria_criteria') %>%
+  mutate(bacteria_code = as.character(bacteria_code)) %>%
+  rename(BacteriaCode = bacteria_code) %>%
+  mutate(BacteriaCode = ifelse(nchar(BacteriaCode) == 1, paste0("0", BacteriaCode), BacteriaCode )) %>%
+  rename(Bacteria_criteria = bacteria_criteria,
+         Bacteria_indicator = bacteria_indicator)
+
 standards_ben_use_all <- standards_ben_use %>%
   left_join(temp_criteria, by = "TempCode") %>%
   left_join(temp_spawning_dates, by = "SpawnCode") %>%
   left_join(DO_spawning_dates, by = "DO_SpawnCode") %>%
   left_join(DO_criteria, by = "DO_code") %>%
   left_join(pH_criteria,by = "pH_code") %>%
-  left_join(ALtoxics_criteria,  by = "WaterTypeCode")
-# 
+  left_join(ALtoxics_criteria,  by = "WaterTypeCode") %>%
+  left_join(Bacteria_criteria, by = "BacteriaCode")
+
+
+standards_ben_use_all_smaller <- standards_ben_use_all[,c(4,5,7,15,16,30:41)]
 # write.csv(standards_ben_use_all, file = "Other tools/Standard_layer_display/standards_layer_for_display.csv",
 #           row.names = FALSE)
 

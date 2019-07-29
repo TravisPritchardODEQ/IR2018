@@ -17,6 +17,10 @@ delistings_v4 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/D
   mutate(Period = ifelse(Period == "", NA, Period ))
 
 delistings_v4[] <- lapply(delistings_v4, as.character)
+
+wqstrd_to_datafile <- read.csv("ATTAINS/WQSTRD_to_datafile.csv",
+                               stringsAsFactors = FALSE) %>%
+  mutate(WQstd_code = as.character(WQstd_code))
 # Setup -------------------------------------------------------------------
 
 # List of basins to use to bring data in
@@ -1071,7 +1075,12 @@ print('Writing tables')
              Data_Review_Code,Data_Review_Comment, Rational, year_assessed, Year_listed,
              previous_IR_category,Assessed_in_2018, assessment_result_2018 ) %>%
     summarise(Action_ID = ifelse(length(str_c(Action_ID, collapse  = "; ")) > 0, str_c(Action_ID, collapse  = "; "), ""),
-              TMDL_Name = ifelse(length(str_c(TMDL_Name, collapse  = "; ")) > 0, str_c(TMDL_Name, collapse  = "; "), ""))
+              TMDL_Name = ifelse(length(str_c(TMDL_Name, collapse  = "; ")) > 0, str_c(TMDL_Name, collapse  = "; "), "")) %>%
+    mutate(Review_Comment = "",
+           Revised_Category = "") %>%
+    left_join(wqstrd_to_datafile, by = "WQstd_code")
+  
+  basin_categories <-  basin_categories[,c(1,2,3,4,5,22, 6:21)]
     
   
   
@@ -1417,9 +1426,13 @@ delistings <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draf
   
    basin_delistings <- delistings %>%
      filter(OWRD_Basin == basin,
-            Delist == "YES")
+            Delist == "YES") %>%
+     mutate(WQstd_code = as.character(WQstd_code)) %>%
+     left_join(wqstrd_to_datafile, by = "WQstd_code")
    
-   write.csv(basin_delistings, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_delistings.csv"),
+   basin_delistings <- basin_delistings[,c(1,2,3,4,5,24, 6:23)]
+   
+   write.xlsx(basin_delistings, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_delistings.xlsx"),
              row.names = FALSE,
              na = "")
     
