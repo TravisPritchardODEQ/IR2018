@@ -35,9 +35,11 @@ categories_summary <- categories %>%
          delist = case_when(Delist == "YES" ~ 1,
                             TRUE ~ 0)) %>%
   group_by(Char_Name) %>%
-  summarise(Impaired_AUs = n_distinct(AU_ID[Impaired == 1]),
+  summarise(Assessed_AUs = n_distinct(AU_ID),
+            Impaired_AUs = n_distinct(AU_ID[Impaired == 1]),
             AUs_previous_impared = n_distinct(AU_ID[previous_impared == 1]),
             delist =  n_distinct(AU_ID[delist == 1]),
+            percent_impared = Impaired_AUs/Assessed_AUs * 100,
             percent_increase = (Impaired_AUs - (AUs_previous_impared - delist))/(AUs_previous_impared - delist) * 100
             ) %>%
   arrange(desc(Impaired_AUs))
