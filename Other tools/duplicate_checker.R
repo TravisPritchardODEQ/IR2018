@@ -136,6 +136,8 @@ write.csv(filter(depth,code ==""), "Other tools/dup_check_manual_review.csv")
 
 manual_review <- read.csv("Other tools/dup_check_manual_review.csv", stringsAsFactors = FALSE)
 
+
+
 manual_removed <- manual_review %>%
   filter(!is.na(code) & code != "52") %>%
   select(Result_UID, Char_Name, code, rational) %>%
@@ -193,7 +195,9 @@ aggregate_data <- threshold_calculation %>%
   ungroup() %>%
   group_by(group) %>%
   mutate(H_concentration = ifelse(Char_Name == 'pH', 10^(-IRResultNWQSunit), NA )) %>% 
-  mutate(mean_result = ifelse(Char_Name == 'pH', round(-log10(mean(H_concentration)), 2), mean(IRResultNWQSunit))) %>%
+  mutate(mean_result = case_when(Char_Name == 'pH' ~ round(-log10(mean(H_concentration)), 2),
+                                 Char_Name ==  'Dissolved oxygen (DO)' ~ min(IRResultNWQSunit),
+                                 TRUE ~ mean(IRResultNWQSunit))) %>%
   select(Result_UID, group, mean_result)
 
 save(aggregate_data, file = "Other tools/aggregate_data.Rdata")
