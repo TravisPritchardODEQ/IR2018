@@ -3,7 +3,7 @@ library(openxlsx)
 
 dictionary <- read.csv("ATTAINS/categories_dictionary.csv", stringsAsFactors = FALSE)
 
-delistings_v4 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv4.csv",
+delistings_v4 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv5.csv",
                           stringsAsFactors = FALSE) %>%
   rename(Delist = Delisting.AGREE..) %>%
   select(-Temp...Seasonality) %>%
@@ -13,6 +13,7 @@ delistings_v4 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/D
           WQstd_code,
           Period,
           Delist,
+          Category_Final,
           Rationale) %>%
   mutate(Period = ifelse(Period == "", NA, Period ))
 
@@ -993,12 +994,12 @@ print('Writing tables')
   
   #read in manually reviewed delistings
   
-  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv4.csv",
+  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv5.csv",
                               stringsAsFactors = FALSE) %>%
     mutate(Pollu_ID = as.character(Pollu_ID),
            WQstd_code = as.character(WQstd_code)) %>%
     filter(OWRD_Basin == basin) %>%
-    select(AU_ID, Pollu_ID, WQstd_code, Period, Delisting.AGREE.. ) %>%
+    select(AU_ID, Pollu_ID, WQstd_code, Period, Delisting.AGREE.., Category_Final ) %>%
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     mutate(Period = as.character(Period),
            Delisting.AGREE.. = trimws(Delisting.AGREE..)) %>%
@@ -1016,12 +1017,16 @@ print('Writing tables')
            PARAM_YEAR_LISTED = case_when(is.na(PARAM_YEAR_LISTED) & IR_category == "Category 5" ~ '2018',
                                          !is.na(PARAM_YEAR_LISTED) ~ PARAM_YEAR_LISTED )) %>%
     select(-PARAM_ATTAINMENT_CODE, -PARAM_NAME) %>%
-    #left_join(delist_reviewed, by = c("AU_ID", "Pollu_ID", "WQstd_code", "Period")) %>%
-    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2"  ~ "Category 2",
-                                    previous_IR_category == 'Category 5' ~'Category 5',
-                                    TRUE ~ assessment_result_2018)) %>%
+    left_join(delist_reviewed, by = c("AU_ID", "Pollu_ID", "WQstd_code", "Period")) %>%
+    # mutate(IR_category = case_when(previous_IR_category == 'Category 5' & assessment_result_2018 == "Category 2"  ~ "Category 2",
+    #                                 previous_IR_category == 'Category 5' ~'Category 5',
+    #                                 TRUE ~ assessment_result_2018)) %>%
+    mutate(IR_category = ifelse(is.na(IR_category) & 
+                                  Assessed_in_2018 == 'NO', 'Category 5', IR_category )) %>%
+    mutate(IR_category = case_when(!is.na(Category_Final) ~ Category_Final,
+                                   TRUE ~ IR_category)) %>%
     rename(Year_listed = PARAM_YEAR_LISTED) %>%
-    mutate(Year_listed = ifelse(IR_category == "Category 2", "", Year_listed )) %>%
+    mutate(Year_listed = ifelse(IR_category != "Category 5", NA, Year_listed )) %>%
     left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
     mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
     select(-LU_Pollutant) %>%
@@ -1029,7 +1034,7 @@ print('Writing tables')
   
   
 
-  all_assessments <-  all_assessments[,c(1,17,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)]
+  all_assessments <-  all_assessments[,c(1,19,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)]
     
   
   IR_category_factor <- factor(all_assessments$IR_category, levels = c('Unassigned',
@@ -1114,8 +1119,10 @@ print('Writing tables')
                                  Char_Name == 'DDT' ~ "DDT 4,4'",
                                  Char_Name == 'Lindane' ~ 'BHC Gamma (Lindane)',
                                  TRUE ~ Char_Name)) %>%
-    filter(IR_category == "Category 2" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A")) %>%
-    left_join(delistings_v4)
+    #filter(IR_category != "Category 5" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A")) %>%
+    
+    left_join(delistings_v4) %>%
+    filter(Category_Final != "Category 5") 
     
   #   
   # 
