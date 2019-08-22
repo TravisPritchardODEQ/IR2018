@@ -19,15 +19,21 @@ library(IRlibrary)
 
 # add spawn start and end dates as dates, include indicator if actdate is within spawn
 # add critical period start and end dates, include indicator is actdate is within critperiod
-Results_spawndates <- df %>%
-  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
-         SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
-         SpawnStart = mdy(SpawnStart),
-         SpawnEnd = mdy(SpawnEnd),
-         SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
-         SpawnStart = if_else(SpawnEnd < SpawnStart & SampleStartDate <= SpawnEnd, SpawnStart - years(1), # subtract a year if in spawn period carrying from previous year
-                              SpawnStart),
-         in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 )) %>%
+  Results_spawndates <- df %>%
+    mutate(SampleStartDate = ymd(SampleStartDate),
+           SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
+           SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
+           SpawnStart = mdy(SpawnStart),
+           SpawnEnd=mdy(SpawnEnd),
+           # If Spawn dates span a calendar year, account for year change in spawn end date
+           SpawnEnd = if_else(SpawnEnd < SpawnStart & SampleStartDate >= SpawnEnd, SpawnEnd + years(1), # add a year if in spawn period carrying to next year
+                              SpawnEnd),
+           SpawnStart = if_else(SpawnEnd < SpawnStart & SampleStartDate <= SpawnEnd, SpawnStart - years(1), # subtract a year if in spawn period carrying from previous year
+                                SpawnStart),
+           in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 ),
+           critstart = mdy(paste0("6/1/",year(SampleStartDate) )),
+           critend = mdy(paste0("9/30/",year(SampleStartDate) )),
+           is.crit = ifelse(SampleStartDate >= critstart & SampleStartDate <= critend, 1, 0 )) %>%
   filter(in_spawn == 1, !is.na(AU_ID)) %>%
   filter(!is.null(OWRD_Basin) & DO_code %in% c(2,3,4))
 
@@ -294,7 +300,8 @@ instant_perc_sat_DO <- instant_perc_sat_DO %>%
 # Pare down temp table to be used for joining
 instant_perc_sat_temp_join <- instant_perc_sat_temp %>%
   select(MLocID, Statistical_Base, IRResultNWQSunit, SampleStartDate, SampleStartTime, act_depth_height) %>%
-  rename(Temp_res = IRResultNWQSunit)
+  rename(Temp_res = IRResultNWQSunit) %>%
+  mutate(SampleStartDate = ymd(SampleStartDate))
 
 #aggregate duplicate data
 load("Other tools/aggregate_data.Rdata")
@@ -320,11 +327,16 @@ results_analysis <- instant_perc_sat_DO %>%
 
 # Join DO and temp tables and calculate DO-Sat
 instant_DO_sat <- results_analysis %>%
-  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
+  mutate(SampleStartDate = ymd(SampleStartDate),
+         SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
          SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
          SpawnStart = mdy(SpawnStart),
-         SpawnEnd = mdy(SpawnEnd),
-         SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
+         SpawnEnd=mdy(SpawnEnd),
+         # If Spawn dates span a calendar year, account for year change in spawn end date
+         SpawnEnd = if_else(SpawnEnd < SpawnStart & SampleStartDate >= SpawnEnd, SpawnEnd + years(1), # add a year if in spawn period carrying to next year
+                            SpawnEnd),
+         SpawnStart = if_else(SpawnEnd < SpawnStart & SampleStartDate <= SpawnEnd, SpawnStart - years(1), # subtract a year if in spawn period carrying from previous year
+                              SpawnStart),
          in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 )) %>%
   filter(in_spawn == 1, !is.na(AU_ID)) %>%
   filter(!is.null(OWRD_Basin) & DO_code %in% c(2,3,4)) %>%
@@ -332,6 +344,8 @@ instant_DO_sat <- results_analysis %>%
   left_join(instant_perc_sat_temp_join, by = c('MLocID', 'SampleStartDate', 'SampleStartTime', 'Statistical_Base', 'act_depth_height')) %>%
   mutate(DO_sat = ifelse(is.na(DO_sat),DOSat_calc(DO_res, Temp_res, ELEV_Ft ), DO_sat),
          DO_sat = ifelse(DO_sat > 100, 100, DO_sat )) 
+
+
 
 
 

@@ -19,11 +19,16 @@ print("Beginning continuous analysis")
 # add spawn start and end dates as dates, include indicator if actdate is within spawn
 # add critical period start and end dates, include indicator is actdate is within critperiod
 Results_spawndates <- df %>%
-  mutate(SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
+  mutate(SampleStartDate = ymd(SampleStartDate),
+         SpawnStart = ifelse(!is.na(SpawnStart), paste0(SpawnStart, "/",year(SampleStartDate) ), SpawnStart ),
          SpawnEnd= ifelse(!is.na(SpawnEnd), paste0(SpawnEnd, "/", year(SampleStartDate)), SpawnEnd ),
          SpawnStart = mdy(SpawnStart),
-         SpawnEnd = mdy(SpawnEnd),
-         SpawnEnd = if_else(SpawnEnd < SpawnStart, SpawnEnd + years(1), SpawnEnd ),
+         SpawnEnd=mdy(SpawnEnd),
+         # If Spawn dates span a calendar year, account for year change in spawn end date
+         SpawnEnd = if_else(SpawnEnd < SpawnStart & SampleStartDate >= SpawnEnd, SpawnEnd + years(1), # add a year if in spawn period carrying to next year
+                            SpawnEnd),
+         SpawnStart = if_else(SpawnEnd < SpawnStart & SampleStartDate <= SpawnEnd, SpawnStart - years(1), # subtract a year if in spawn period carrying from previous year
+                              SpawnStart),
          in_spawn = ifelse(SampleStartDate >= SpawnStart & SampleStartDate <= SpawnEnd & !is.na(SpawnStart), 1, 0 ),
          critstart = mdy(paste0("6/1/",year(SampleStartDate) )),
          critend = mdy(paste0("9/30/",year(SampleStartDate) )),
