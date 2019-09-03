@@ -745,6 +745,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Year Round") %>%
+      group_by(AU_ID) %>%
+      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      ungroup() %>%
+      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -769,17 +773,21 @@ print("Starting Temperature")
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                           basin,
                           "/",
-                          'DO_Spawning_instantaneous_IR_categories_',basin, '.csv'))) {
+                          'DO_yearround_instantaneous_IR_categories_',basin, '.csv'))) {
     
     DO_yrround_inst <- read.csv(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                                        basin,
                                        "/",
-                                       'DO_Spawning_instantaneous_IR_categories_',basin, '.csv'),
+                                       'DO_yearround_instantaneous_IR_categories_',basin, '.csv'),
                                 stringsAsFactors = FALSE) %>%
       mutate(Pollu_ID = "154",
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Year Round") %>%
+      group_by(AU_ID) %>%
+      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      ungroup() %>%
+      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -814,6 +822,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
+      group_by(AU_ID) %>%
+      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      ungroup() %>%
+      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -848,6 +860,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
+      group_by(AU_ID) %>%
+      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      ungroup() %>%
+      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -882,6 +898,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
+      group_by(AU_ID) %>%
+      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      ungroup() %>%
+      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -915,6 +935,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Year Round") %>%
+      group_by(AU_ID) %>%
+      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      ungroup() %>%
+      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -1074,7 +1098,7 @@ print('Writing tables')
   
   basin_categories <- cat4_assignments %>%
     mutate(year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
-    distinct() %>%
+    #distinct() %>%
     group_by(AU_ID, AU_Name, Char_Name, Pollu_ID, WQstd_code,
              Period, OWRD_Basin, IR_category, analysis_comment_2018, 
              Data_Review_Code,Data_Review_Comment, Rational, year_assessed, Year_listed,
