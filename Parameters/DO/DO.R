@@ -6,7 +6,7 @@ source("Parameters/DO/fun_DO_estuary.R")
 
 
 
-# DO_results <-  DO_data("IR 2018")
+DO_results <-  DO_data("IR 2018")
 # 
 # #######################################################################################################
 # ###                         Stop here and review the invalid data file.                             ###
@@ -15,11 +15,11 @@ source("Parameters/DO/fun_DO_estuary.R")
 # #######################################################################################################
 # 
 # #Reinput the data after the manual data validation step
-# Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-DO.csv", df = DO_results)
+Validated_results <- IR_Validation_Import(file = "Parameters/Invalid_data/Invalid-DO.csv", df = DO_results)
 
 #save(Validated_results, file = "Parameters/DO/Validated_results.Rdata" )
 #as of 8/12/19
-load("Parameters/DO/Validated_results.Rdata")
+# load("Parameters/DO/Validated_results.Rdata")
 
 Yearround_analysis_list <-  DO_year_round_analysis(Validated_results)
 # Because we can't get two values from function, they are put in list
