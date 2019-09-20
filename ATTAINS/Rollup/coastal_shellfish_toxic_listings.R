@@ -5,7 +5,9 @@ library(openxlsx)
 AU_names <- read.csv("ATTAINS/AU_names.csv", stringsAsFactors = FALSE) %>%
   select(AU_ID, AU_Name)
 
-
+coasta_AUs_to_basin <- read.csv("ATTAINS/Rollup/Coastal_AUs_to_admin_basin.csv",
+                                stringsAsFactors = FALSE) %>%
+  select(AU_ID, Basin)
 
 
 coastal_shellfish_listings <- AU_names %>%
@@ -31,6 +33,10 @@ coastal_shellfish_listings <- AU_names %>%
          Revised_Category =NA
          )
 
-write.xlsx(coastal_shellfish_listings, paste0("ATTAINS/Rollup/Basin_categories/", "shellfish_categories.xlsx"),
+joined <- coastal_shellfish_listings %>%
+  left_join(coasta_AUs_to_basin) %>%
+  rename(OWRD_Basin = Basin)
+
+write.xlsx(joined, paste0("ATTAINS/Rollup/Basin_categories/", "shellfish_categories.xlsx"),
            row.names = FALSE,
            na = "")
