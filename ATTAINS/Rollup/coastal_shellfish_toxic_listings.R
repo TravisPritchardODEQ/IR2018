@@ -13,7 +13,7 @@ coasta_AUs_to_basin <- read.csv("ATTAINS/Rollup/Coastal_AUs_to_admin_basin.csv",
 coastal_shellfish_listings <- AU_names %>%
   filter(grepl("CL", AU_ID)) %>%
   mutate(Char_Name  = "Shellfish Toxins",
-         Pollu_ID = NA,
+         Pollu_ID = 178,
          WQstd_code = 8,
          Data_File = 'HH Toxics',
          Period = NA,
