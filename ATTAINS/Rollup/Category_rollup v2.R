@@ -3,7 +3,7 @@ library(openxlsx)
 
 dictionary <- read.csv("ATTAINS/categories_dictionary.csv", stringsAsFactors = FALSE)
 
-delistings_v4 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv5.csv",
+delistings_v4 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv8.csv",
                           stringsAsFactors = FALSE) %>%
   rename(Delist = Delisting.AGREE..) %>%
   select(-Temp...Seasonality) %>%
@@ -51,6 +51,7 @@ Basins <- c(
 
 
 #save(Pollu_IDs, file = "ATTAINS/LU_Pollutant.Rdata")
+
 
 
 # Table to assign Pollu_IDs to pollutants
@@ -144,6 +145,8 @@ Action_names <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Dr
 DEQ_Actions_names <-DEQ_Actions %>%
   left_join(Action_names, by = c('Action_ID' = 'ACTION_ID')) 
 
+
+#####!!!!!!!!! use new files with descriptions on it###############
 AU_names <- read.csv("ATTAINS/AU_names.csv", stringsAsFactors = FALSE) %>%
   select(AU_ID, AU_Name)
 
@@ -822,10 +825,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
-      group_by(AU_ID) %>%
-      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
-      ungroup() %>%
-      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      # group_by(AU_ID) %>%
+      # mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      # ungroup() %>%
+      # mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -860,10 +863,10 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
-      group_by(AU_ID) %>%
-      mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
-      ungroup() %>%
-      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      # group_by(AU_ID) %>%
+      # mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
+      # ungroup() %>%
+      # mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
       select(AU_ID,
              Period,
              Char_Name,
@@ -954,12 +957,35 @@ print("Starting Temperature")
     
   }
   
+  
+  print("Starting shellfish")
+  if(exists('shellfish_toxins')){
+    rm(shellfish_toxins)
+  }
+  shellfish_toxins <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/shellfish_categories.xlsx") %>%
+    filter(AU_ID != "") %>%
+    filter(OWRD_Basin == basin) %>%
+    mutate(Pollu_ID = as.character(Pollu_ID),
+           WQstd_code = as.character(WQstd_code)) %>%
+    rename(analysis_comment = analysis_comment_2018) %>%
+    select(AU_ID,
+           Period,
+           Char_Name,
+           WQstd_code,
+           OWRD_Basin,
+           Pollu_ID,
+           IR_category,
+           Data_Review_Code,
+           Data_Review_Comment
+    ) 
+  
+  
 # put it all together -----------------------------------------------------
 print('Writing tables')
   
  # Get previous category 5 listings. 
    
-  listings_2012 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/parameter_12june19 polluID_postQC.csv",
+  listings_2012 <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/2012Crosswalk_Final.csv",
                             stringsAsFactors = FALSE) %>%
     select(ASSESSMENT_UNIT_ID, Pollu_ID,WQstrd_code, PARAM_ATTAINMENT_CODE) %>%
     rename(AU_ID = ASSESSMENT_UNIT_ID,
@@ -971,7 +997,7 @@ print('Writing tables')
     filter(OWRD_Basin == basin)
   
   
-  previous_listings <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/parameter_12june19 polluID_postQC.csv",
+  previous_listings <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/2012Crosswalk_Final.csv",
                                 stringsAsFactors = FALSE) %>%
     select(ASSESSMENT_UNIT_ID, Pollu_ID, PARAM_ATTAINMENT_CODE,WQstrd_code, PARAM_YEAR_LISTED, PARAM_NAME) %>%
     distinct() %>%
@@ -999,8 +1025,9 @@ print('Writing tables')
                                     get0('DO_yrround_inst'), get0('DO_yrround_cont'), 
                                     get0('biocriteria_joined'), get0('narrative'), 
                                     get0('tox_hh_hg_tissue'),
-                                    get0('DO_year_estuary'), 
-                                         get0('DO_spawn_estuary')) %>%
+                                    get0('DO_year_estuary'),
+                                    get0('DO_spawn_estuary'),
+                                    get0('shellfish_toxins') ) %>%
     filter(Char_Name != "Endrin + cis-Nonachlor") %>%
     mutate(IR_category = case_when(grepl("5", IR_category) ~ "Category 5",
                                    grepl("2", IR_category) ~ "Category 2",
@@ -1018,7 +1045,7 @@ print('Writing tables')
   
   #read in manually reviewed delistings
   
-  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv5.csv",
+  delist_reviewed <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistingsv6.csv",
                               stringsAsFactors = FALSE) %>%
     mutate(Pollu_ID = as.character(Pollu_ID),
            WQstd_code = as.character(WQstd_code)) %>%
@@ -1029,7 +1056,10 @@ print('Writing tables')
            Delisting.AGREE.. = trimws(Delisting.AGREE..)) %>%
     rename(Delist = Delisting.AGREE..)
   
-  
+  # There is some wonly join here iwth AU name - fix this. 
+  ####################
+  ###################
+  ##################
   all_assessments <- put_together_initial %>%
     mutate(year_assessed = '2018') %>%
     full_join(previous_listings, by = c('Pollu_ID', 'AU_ID', 'WQstd_code', 'OWRD_Basin')) %>%
@@ -1049,16 +1079,16 @@ print('Writing tables')
                                   Assessed_in_2018 == 'NO', 'Category 5', IR_category )) %>%
     mutate(IR_category = case_when(!is.na(Category_Final) ~ Category_Final,
                                    TRUE ~ IR_category)) %>%
-    rename(Year_listed = PARAM_YEAR_LISTED) %>%
-    mutate(Year_listed = ifelse(IR_category != "Category 5", NA, Year_listed )) %>%
-    left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
-    mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
-    select(-LU_Pollutant) %>%
-    left_join(AU_names, by = "AU_ID")
+    #rename(Year_listed = PARAM_YEAR_LISTED) %>%
+    mutate(Year_listed = ifelse(IR_category != "Category 5", NA, PARAM_YEAR_LISTED )) %>%
+    #left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
+    #mutate(Char_Name = ifelse(is.na(assessment_result_2018) & !is.na(LU_Pollutant), LU_Pollutant, Char_Name )) %>%
+    #select(-LU_Pollutant) %>%
+    left_join(AU_names, by = "AU_ID") 
   
   
 
-  all_assessments <-  all_assessments[,c(1,19,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)]
+  all_assessments <-  all_assessments[,c(1,20,2,3,4,5,6,7,8,9,10,11,12,19,14,15,16)]
     
   
   IR_category_factor <- factor(all_assessments$IR_category, levels = c('Unassigned',
@@ -1082,23 +1112,22 @@ print('Writing tables')
                                  Char_Name == 'DDT' ~ "DDT 4,4'",
                                  Char_Name == 'Lindane' ~ 'BHC Gamma (Lindane)',
                                  TRUE ~ Char_Name)) %>%
-    left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
-    mutate(Pollu_ID = ifelse(is.na(Pollu_ID) | Pollu_ID == "", LU_Pollu_ID, Pollu_ID )) %>%
-    select(-LU_Pollu_ID) %>%
+    # left_join(Pollu_IDs, by = c('Char_Name' = 'LU_Pollutant')) %>%
+    # mutate(Pollu_ID = ifelse(is.na(Pollu_ID) | Pollu_ID == "", LU_Pollu_ID, Pollu_ID )) %>%
+    # select(-LU_Pollu_ID) %>%
     arrange(AU_ID)
   
+
   cat4_assignments <- put_together %>%
     left_join(DEQ_Actions_names, by = c("AU_ID", "Pollu_ID")) %>%
     mutate(IR_category = ifelse(IR_category == "Category 5" & !is.na(Action_ID), "Category 4A", as.character(IR_category) )) %>%
-    group_by(AU_ID, Char_Name, Pollu_ID, WQstd_code,
-             Period) %>%
-    ungroup() %>%
+
     mutate(Review_Comment = "",
            Revised_Category = "")
   
   basin_categories <- cat4_assignments %>%
     mutate(year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
-    #distinct() %>%
+    distinct() %>%
     group_by(AU_ID, AU_Name, Char_Name, Pollu_ID, WQstd_code,
              Period, OWRD_Basin, IR_category, analysis_comment_2018, 
              Data_Review_Code,Data_Review_Comment, Rational, year_assessed, Year_listed,
@@ -1146,7 +1175,7 @@ print('Writing tables')
     #filter(IR_category != "Category 5" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A")) %>%
     
     left_join(delistings_v4) %>%
-    filter(Category_Final != "Category 5") 
+    filter(Delist == "YES") 
     
   #   
   # 
@@ -1445,27 +1474,27 @@ delist_rollup <- all_delist %>%
  
  write.csv(delist_rollup, file = "ATTAINS/Rollup/Basin_categories/ALL BASINS_delistings_AU_Rollup.csv")
 
-# Basin delisting files ---------------------------------------------------
-
-delistings <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistings.csv", stringsAsFactors = FALSE)  
- 
- 
- for (i in 1:length(Basins)) {
-   
-   
-   basin <- Basins[i]
-  
-   basin_delistings <- delistings %>%
-     filter(OWRD_Basin == basin,
-            Delist == "YES") %>%
-     mutate(WQstd_code = as.character(WQstd_code)) %>%
-     left_join(wqstrd_to_datafile, by = "WQstd_code")
-   
-   basin_delistings <- basin_delistings[,c(1,2,3,4,5,24, 6:23)]
-   
-   write.xlsx(basin_delistings, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_delistings.xlsx"),
-             row.names = FALSE,
-             na = "")
-    
-   
- }
+# # Basin delisting files ---------------------------------------------------
+# 
+# delistings <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_delistings.csv", stringsAsFactors = FALSE)  
+#  
+#  
+#  for (i in 1:length(Basins)) {
+#    
+#    
+#    basin <- Basins[i]
+#   
+#    basin_delistings <- delistings %>%
+#      filter(OWRD_Basin == basin,
+#             Delist == "YES") %>%
+#      mutate(WQstd_code = as.character(WQstd_code)) %>%
+#      left_join(wqstrd_to_datafile, by = "WQstd_code")
+#    
+#    basin_delistings <- basin_delistings[,c(1,2,3,4,5,24, 6:23)]
+#    
+#    write.xlsx(basin_delistings, paste0("ATTAINS/Rollup/Basin_categories/", basin,"_delistings.xlsx"),
+#              row.names = FALSE,
+#              na = "")
+#     
+#    
+#  }
