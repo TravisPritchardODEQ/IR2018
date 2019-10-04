@@ -2,27 +2,29 @@ library(rgdal)
 library(openxlsx)
 library(tidyverse)
 library(data.table)
+library(sf)
 
 options(scipen = 99999999)
 
 # Copy the oregon standards out of the geodatabase ------------------------
 
-# path <- '//deqhq1/GISLIBRARY/Base_Data/DEQ_Data/Water_Quality/WQ_Standards/GeoRef_Standards.gdb'
-#
-# subset(ogrDrivers(), grepl("GDB", name))
-# fc_list <- ogrListLayers(path)
-#
-# oregon_standards <- readOGR(dsn=path,layer="Oregon_Standards")
-# 
-# rm(oregon_standards)
-# 
-# standards <- as.data.frame(oregon_standards)
-# 
-# standards <- standards %>%
-#   mutate_if(is.factor, as.character)
-# save(standards, file = "Other tools/Standard_layer_display/standards.Rdata")
-# 
-load("Other tools/Standard_layer_display/standards.Rdata")
+path <- '//deqhq1/GISLIBRARY/Base_Data/DEQ_Data/Water_Quality/WQ_Standards/GeoRef_Standards.gdb'
+
+subset(ogrDrivers(), grepl("GDB", name))
+fc_list <- ogrListLayers(path)
+
+#oregon_standards <- readOGR(dsn=path,layer="Oregon_Standards")
+
+
+oregon_standards <- st_read(dsn=path,layer="Oregon_Standards")
+
+standards <- as.data.frame(oregon_standards)
+
+standards <- st_zm(oregon_standards) %>%
+  mutate_if(is.factor, as.character)
+save(standards, file = "Other tools/Standard_layer_display/standards.Rdata")
+
+# load("Other tools/Standard_layer_display/standards.Rdata")
 
 
 # Get relationships -------------------------------------------------------
@@ -109,11 +111,13 @@ standards_ben_use_all <- standards_ben_use %>%
   left_join(Bacteria_criteria, by = "BacteriaCode")
 
 
-standards_ben_use_all_smaller <- standards_ben_use_all[,c(4,5,7,15,16,30:41)]
+standards_ben_use_all_smaller <- standards_ben_use_all %>%
+  st_set_geometry(NULL)
+ 
 # write.csv(standards_ben_use_all, file = "Other tools/Standard_layer_display/standards_layer_for_display.csv",
 #           row.names = FALSE)
 
-fwrite(standards_ben_use_all, file = "Other tools/Standard_layer_display/standards_layer_for_display.csv",
+fwrite(standards_ben_use_all_smaller, file = "Other tools/Standard_layer_display/standards_layer_for_display.csv",
         row.names = FALSE)
 
 #save(standards_ben_use_all, file = "Other tools/Standard_layer_display/standards_ben_use_all.Rdata")
