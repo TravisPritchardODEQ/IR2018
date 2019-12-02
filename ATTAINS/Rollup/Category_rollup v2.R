@@ -191,7 +191,7 @@ print("Starting Temperature")
     temp <- read.csv(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Completed_IR_team_Review/', 
                             basin,
                             "/",
-                            'Temperature_IR_categorization_',basin, '.csv'), stringsAsFactors = FALSE) %>%
+                            'Temperature_IR_categorization_',basin,  '_with_validation_error_fix.csv'), stringsAsFactors = FALSE) %>%
       mutate(Pollu_ID = '132',
              Char_Name = "Temperature",
              WQstd_code = "12") %>%
@@ -752,10 +752,11 @@ print("Starting Temperature")
       group_by(AU_ID) %>%
       mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
       ungroup() %>%
-      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      mutate(assess_type = ifelse(mult_flag == 1, DO_Class, NA )) %>%
       select(AU_ID,
              Period,
              Char_Name,
+             assess_type,
              WQstd_code,
              OWRD_Basin,
              Pollu_ID,
@@ -791,10 +792,11 @@ print("Starting Temperature")
       group_by(AU_ID) %>%
       mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
       ungroup() %>%
-      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      mutate(assess_type = ifelse(mult_flag == 1, DO_Class, NA )) %>%
       select(AU_ID,
              Period,
              Char_Name,
+             assess_type,
              WQstd_code,
              OWRD_Basin,
              Pollu_ID,
@@ -826,13 +828,14 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
-      # group_by(AU_ID) %>%
+      group_by(AU_ID) %>%
       # mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
       # ungroup() %>%
-      # mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      # mutate(assess_type = ifelse(mult_flag == 1, DO_Class, NA )) %>%
       select(AU_ID,
              Period,
              Char_Name,
+            # assess_type,
              WQstd_code,
              OWRD_Basin,
              Pollu_ID,
@@ -864,13 +867,14 @@ print("Starting Temperature")
              WQstd_code = "3",
              Char_Name = "Dissolved Oxygen",
              Period = "Spawning") %>%
-      # group_by(AU_ID) %>%
+      group_by(AU_ID) %>%
       # mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
       # ungroup() %>%
-      # mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      # mutate(assess_type = ifelse(mult_flag == 1, DO_Class, NA )) %>%
       select(AU_ID,
              Period,
              Char_Name,
+             #assess_type,
              WQstd_code,
              OWRD_Basin,
              Pollu_ID,
@@ -905,10 +909,11 @@ print("Starting Temperature")
       group_by(AU_ID) %>%
       mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
       ungroup() %>%
-      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      mutate(assess_type = "Estuary") %>%
       select(AU_ID,
              Period,
              Char_Name,
+             assess_type,
              WQstd_code,
              OWRD_Basin,
              Pollu_ID,
@@ -942,10 +947,11 @@ print("Starting Temperature")
       group_by(AU_ID) %>%
       mutate(mult_flag = ifelse(n() > 1, 1, 0)) %>%
       ungroup() %>%
-      mutate(Char_Name = ifelse(mult_flag == 1, paste0(Char_Name, "- ", DO_Class), Char_Name )) %>%
+      mutate(assess_type = "Estuary") %>%
       select(AU_ID,
              Period,
              Char_Name,
+             assess_type,
              WQstd_code,
              OWRD_Basin,
              Pollu_ID,
@@ -1015,7 +1021,7 @@ print('Writing tables')
            WQstd_code = WQstrd_code,
            Period = Time_Period) %>%
     mutate(Pollu_ID = as.character(Pollu_ID),
-           Period = case_when(Period == "Year_Round" ~ "Year round",
+           Period = case_when(Period == "Year_Round" ~ "Year Round",
                               TRUE ~ Period)) %>%
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     distinct()%>%
@@ -1031,7 +1037,7 @@ print('Writing tables')
     distinct() %>%
     mutate(previous_IR_category = "Category 5",
            Pollu_ID = as.character(Pollu_ID),
-           Period = case_when(Period == "Year_Round" ~ "Year round",
+           Period = case_when(Period == "Year_Round" ~ "Year Round",
                               TRUE ~ Period)) %>% 
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     left_join(select(Pollutants, Pollu_ID, Pollutant_DEQ.WQS), by = "Pollu_ID") %>%
@@ -1070,7 +1076,7 @@ print('Writing tables')
                                    IR_category == '-' ~ '-',
                                    IR_category == "Unassigned" ~ "Unassigned",
                                    TRUE ~ "Error"),
-           Period = case_when(Period == "Year_Round" ~ "Year round",
+           Period = case_when(Period %in% c("Year_Round", "Year round") ~ "Year Round",
                               TRUE ~ Period)) %>%
     rename(analysis_comment_2018 = analysis_comment) %>%
     filter(AU_ID != "")
@@ -1087,7 +1093,9 @@ print('Writing tables')
     select(AU_ID, Pollu_ID, WQstd_code, Period, Delisting.AGREE.., Category_Final ) %>%
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     mutate(Period = as.character(Period),
-           Delisting.AGREE.. = trimws(Delisting.AGREE..)) %>%
+           Delisting.AGREE.. = trimws(Delisting.AGREE..),
+           Period = case_when(Period %in% c("Year_Round", "Year round") ~ "Year Round",
+                              TRUE ~ Period)) %>%
     rename(Delist = Delisting.AGREE..)
   
   # There is some wonly join here iwth AU name - fix this. 
@@ -1111,11 +1119,12 @@ print('Writing tables')
     #                                 TRUE ~ assessment_result_2018)) %>%
     mutate(IR_category = ifelse(is.na(IR_category) & 
                                   Assessed_in_2018 == 'NO', 'Category 5', IR_category )) %>%
+    mutate(IR_category = ifelse(!is.na(previous_IR_category), previous_IR_category, IR_category )) %>%
     mutate(IR_category = case_when(!is.na(Category_Final) ~ Category_Final,
                                    TRUE ~ IR_category)) %>%
-    mutate(IR_category = case_when(previous_IR_category == 'Category 5' & (Delist != 'YES' | is.na(Delist)) ~ "Category 5",
-                                   TRUE ~ IR_category
-                                   )) %>%
+    # mutate(IR_category = case_when(previous_IR_category == 'Category 5' & (Delist != 'YES' | is.na(Delist)) ~ "Category 5",
+    #                                TRUE ~ IR_category
+    #                                )) %>%
     #rename(Year_listed = PARAM_YEAR_LISTED) %>%
     mutate(Year_listed = ifelse(IR_category != "Category 5", NA, PARAM_YEAR_LISTED )) %>%
     #left_join(Pollu_IDs, by = c('Pollu_ID' = 'LU_Pollu_ID')) %>%
@@ -1125,7 +1134,7 @@ print('Writing tables')
   
   
 
-  all_assessments <-  all_assessments[,c(1,20,21,2,3,4,5,6,7,8,9,10,11,12,19,14,15,16)]
+  all_assessments <-  all_assessments[,c(1,21,22,2,3,4,5,6,7,8,9,10,11,12,13,20,19,15,16,17,18)]
     
   
   IR_category_factor <- factor(all_assessments$IR_category, levels = c('Unassigned',
@@ -1154,8 +1163,8 @@ print('Writing tables')
     # select(-LU_Pollu_ID) %>%
     arrange(AU_ID) %>%
     left_join(select(Pollutants, Pollu_ID, Pollutant_DEQ.WQS),by = "Pollu_ID") %>%
-    mutate(Char_Name = Pollutant_DEQ.WQS) %>%
-    select(-Pollutant_DEQ.WQS)
+    mutate(Char_Name = ifelse(!is.na(assess_type), paste(Pollutant_DEQ.WQS, "-",assess_type), Pollutant_DEQ.WQS )) %>%
+    select(-Pollutant_DEQ.WQS, - assess_type)
   
   
   cat4_categories_other_than_B <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Crosswalk_2012List/ATTAINS_uploads/ATTAINS_download/2012Crosswalk_Final.csv",
@@ -1164,7 +1173,8 @@ print('Writing tables')
     filter(DEQ_Cat != "") %>%
     rename(WQstd_code = WQstrd_code,
            AU_ID = ASSESSMENT_UNIT_ID) %>%
-    mutate(WQstd_code = as.character(WQstd_code))
+    mutate(WQstd_code = as.character(WQstd_code),
+           Pollu_ID = as.character(Pollu_ID))
 
   cat4_assignments <- put_together %>%
     left_join(DEQ_Actions_names, by = c("AU_ID", "Pollu_ID")) %>%
@@ -1225,7 +1235,7 @@ print('Writing tables')
     #                              TRUE ~ Char_Name)) %>%
     #filter(IR_category != "Category 5" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A")) %>%
     
-    left_join(delistings_v4) %>%
+    left_join(select(delistings_v4, -Char_Name), by = c("AU_ID", "Pollu_ID", "WQstd_code", "Period", "Category_Final", "Delist")) %>%
     filter(Delist == "YES") 
     
   #   
