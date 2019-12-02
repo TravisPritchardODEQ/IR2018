@@ -7,7 +7,9 @@ library(lubridate)
 temp_asessment <- function(df){
 
 temp_analysis <- df %>%
-  mutate(# Add columns for Critcal period start and end date
+  filter(!FishCode %in% c('10','11','22','23')) %>%
+  mutate(SampleStartDate = mdy(SampleStartDate),
+         # Add columns for Critcal period start and end date
          Crit_period_start = mdy(paste0("7/1/",year(SampleStartDate))),
          Cirt_period_end = mdy(paste0("9/30/",year(SampleStartDate))),
          # Append spawn start and end dates with year
@@ -137,7 +139,8 @@ Temp_IR_categories <- reviewed_data %>%
     group_by(AU_ID) %>%
     # Sum the total violations and spawning violations by AU
     # So we have a record of total violations over the assessment period
-    mutate(total_violations = sum(year_round_Violation)
+    mutate(total_violations = sum(year_round_Violation),
+           total_num_7DADM_values = n()
            #,Spawn_Violation_count = sum(Spawn_Violation)
            ) %>%
     arrange(SampleStartDate) %>%
@@ -159,6 +162,7 @@ Temp_IR_categories <- reviewed_data %>%
               #total_Spawn_Violation_count = first(Spawn_Violation_count),
               max_3yr_results_in_crit_period = max(Samples_in_crit_period),
              # max_3yr_results_in_spawn_period = max(samples_in_spawn_period)
+             total_num_7DADM_values = max(total_num_7DADM_values),
              ) %>%
     # Assign to IR categories. 
     #      If there is any 3 year rolling period with 2 or more violations - Cat 5
@@ -170,8 +174,9 @@ Temp_IR_categories <- reviewed_data %>%
                                     max_violations_3yr < 2 & max_3yr_results_in_crit_period == 0 ~ "Cat3",
                                     max_violations_3yr == 1 ~ "Cat3B",
                                     TRUE ~ 'Cat2'),
+           analysis_comment = paste(total_violations, "out of", total_num_7DADM_values, "7DADM values exceed criteria"),
            Period = "Year round") %>%
-    select(AU_ID,Period, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, max_violations_3yr, max_3yr_results_in_crit_period)
+    select(AU_ID,Period, OWRD_Basin, data_period_start, data_period_end, IR_category, total_violations, max_violations_3yr, max_3yr_results_in_crit_period, analysis_comment)
 
 print(" Year Round Categorization Complete")
 
@@ -189,7 +194,8 @@ Temp_Spawn_IR_categories <- reviewed_data %>%
   group_by(AU_ID) %>%
   # Sum the total violations and spawning violations by AU
   # So we have a record of total violations over the assessment period
-  mutate(total_Spawn_violations = sum(Spawn_Violation)) %>%
+  mutate(total_Spawn_violations = sum(Spawn_Violation),
+         total_num_7DADM_values = n()) %>%
   arrange(SampleStartDate) %>%
   # This bit gives us the all rows that match the maximum (and minimum but we drop that later)
   # number of violations in a 3 year period (Violations_3yr). Since we are looking at cat5
@@ -206,7 +212,8 @@ Temp_Spawn_IR_categories <- reviewed_data %>%
             data_period_end = max(SampleStartDate),
             max_spawn_violations_3yr = max(Violations_Spawning_3yr),
             total_spawn_violations = first(total_Spawn_violations),
-            max_3yr_results_in_spawn_period = max(samples_in_spawn_period)
+            max_3yr_results_in_spawn_period = max(samples_in_spawn_period),
+            total_num_7DADM_values = max(total_num_7DADM_values)
   ) %>%
   # Assign to IR categories. 
   #      If there is any 3 year rolling period with 2 or more violations - Cat 5
@@ -217,8 +224,9 @@ Temp_Spawn_IR_categories <- reviewed_data %>%
   mutate(IR_category =  case_when(max_spawn_violations_3yr >= 2 ~ "Cat5",
                                   max_spawn_violations_3yr == 1 ~ "Cat3B",
                                   max_spawn_violations_3yr < 1 ~ 'Cat2'),
+         analysis_comment = paste(total_spawn_violations, "out of", total_num_7DADM_values, "spawning period 7DADM values exceed criteria"),
          Period = 'Spawn') %>%
-  select(AU_ID, Period,  OWRD_Basin, data_period_start, data_period_end, IR_category, total_spawn_violations, max_spawn_violations_3yr)
+  select(AU_ID, Period,  OWRD_Basin, data_period_start, data_period_end, IR_category, total_spawn_violations, max_spawn_violations_3yr, analysis_comment)
 
 
 
