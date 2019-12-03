@@ -362,3 +362,19 @@ BU_stats <- BU_summary %>%
 write.csv(BU_stats, file = "Other tools/statistics generator/Ben_use_stats-of assessed AUs.csv",
           row.names = FALSE)
 
+
+
+# Additional Stats --------------------------------------------------------
+
+
+
+
+IR_categories <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+
+parameter_status <- IR_categories %>%
+  mutate(status = case_when(IR_category == "Category 2" ~ "Attaining",
+                            IR_category %in%  c("Category 4A", "Category 5", "Category 4C","Category 4","Category 4B") ~ "Impaired",
+                            TRUE ~ "Other"
+                            )) %>%
+  group_by(status) %>%
+  summarise(count = n())
