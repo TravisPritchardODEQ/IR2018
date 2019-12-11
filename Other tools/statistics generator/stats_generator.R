@@ -378,3 +378,50 @@ parameter_status <- IR_categories %>%
                             )) %>%
   group_by(status) %>%
   summarise(count = n())
+
+
+
+# watershed unit stats ----------------------------------------------------
+
+# Create stats that calcuoate the percentage of watershed unit 
+# assessment conclusions
+
+IR_categories <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_categories.xlsx") %>%
+  filter(grepl("WS",AU_ID))
+
+AU_layer <- read.xlsx('Other tools/statistics generator/AU layer.xlsx') %>%
+  filter(grepl("WS",AU_ID))
+
+
+
+IR_category_factor <- factor(IR_categories$IR_category, levels = c('Unassigned',
+                                                                   "-",
+                                                                   "Category 3C",
+                                                                   "Category 3D",
+                                                                   "Category 3",
+                                                                   "Category 3B",
+                                                                   "Category 2",
+                                                                   "Category 4",
+                                                                   "Category 4B",
+                                                                   "Category 4C",
+                                                                   "Category 4A",
+                                                                   "Category 5"),
+                             ordered = TRUE)
+
+IR_categories$IR_category <- IR_category_factor
+
+watershed_units_categories <- IR_categories %>%
+  filter(!IR_category %in% c('Unassigned',
+                             "-") ) %>%
+  group_by(AU_ID) %>%
+  summarise(max_cat = max(IR_category)) %>%
+  mutate(adjusted_cat = case_when(max_cat %in% c("Category 4B","Category 4C","Category 4A", "Category 5") ~ "Impaired",
+                                  max_cat %in% c("Category 3C","Category 3D","Category 3B", "Category 3") ~ "Insufficient",
+                                  max_cat %in% c("Category 2","Category 3D","Category 3B") ~ "Attaining",
+                                  TRUE ~ 'ERROR')) %>%
+  group_by(adjusted_cat) %>%
+  summarise(num_AUs = n()) %>%
+  mutate(Percent_assessed_WS_units = round(num_AUs/length(unique(IR_categories$AU_ID))*100,1),
+         Percent_all_WS_units = round(num_AUs/length(AU_layer$AU_ID) * 100, 1))
+
+write.xlsx(watershed_units_categories, "wastersed_units_stats.xlsx")
