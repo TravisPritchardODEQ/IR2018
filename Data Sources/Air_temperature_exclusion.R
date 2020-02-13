@@ -18,7 +18,7 @@ data_list <- list()
 
 
 # Loop through files and add data to list
-for(i in 1:length(in_fnames)){
+for(i in 1:14){
   
 print(paste("file", i, "of",length(in_fnames)  ))
   
@@ -41,7 +41,7 @@ rm(data_import)
 # # Calculate 7 day average maximum air temps -----------------------------
 
 air_temp_calcs <- oregon_temp_data %>%
-  mutate(DATE = mdy(DATE),
+    mutate(DATE = mdy(DATE),
          YEAR = year(DATE),
          crit_start = mdy(paste0("7/1/", YEAR)),
          crit_end = mdy(paste0("9/30/", YEAR)),
