@@ -1,12 +1,29 @@
 # analysis for removing data where the same sample was analyzed by two different methods
 
+library(tidyverse)
+
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
 # this table was created using the SQL script - \\deqlead-lims\AWQMS\IRDatebase\FindResultswithMultipleMethods.sql
 db_qry <- glue::glue_sql( "SELECT *
                           FROM [IntegratedReport].[dbo].[Duplcate_Method_Analysis]", .con = con)
+db_qry_chlordane <- glue::glue_sql("SELECT *
+                          FROM [IntegratedReport].[dbo].[ResultsRawWater2018] where IRPollutantID = 27", .con = con)
 
 Results_import <-  DBI::dbGetQuery(con, db_qry)
+chlordane <- DBI::dbGetQuery(con, db_qry_chlordane)
+
+chlordane_unused <- chordane %>%
+             mutate(is_HR = ifelse(Analytical_method =='Pesticides in water, soil, sediment, biosolids, and tissue by HRGC/HRMS',1,0)) %>%
+             group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia,OrganizationID) %>%
+             mutate(has_HR = ifelse(max(is_HR) == 1, 1, 0)) %>%
+  ungroup() %>%
+  filter(has_HR == 1, is_HR == 0) %>%
+  select(Result_UID,Char_Name) %>% 
+  mutate(Data_Review_Code = 52) %>% 
+  mutate(Data_Review_Comment = 'same sample analyzed by Pesticides in water, soil, sediment, biosolids, and tissue by HRGC/HRMS')
+
+write.csv(chlordane_unused,"//deqlead-lims/SERVERFOLDERS/AWQMS/IRDatabase/Unused_chlordane_from_R.csv")
 
 
 #filters out temp, pH, turb, cond and DO because these are coming through as dups due to continuous data - first analysis on orgaincs methods
@@ -21,7 +38,7 @@ method_organics <- Results_import %>%
             Vol_CGC_MS = sum(Analytical_method =='Volatile Organics by CGC/MS'),
             Cl_herb = sum(Analytical_method == 'Chlorinated Phenoxy Herbicides in Water'))
 
-write.csv(method_organics,"\\deqlead-lims\\AWQMS\\IRDatabase\\char_method.csv")
+write.csv(method_organics,"//deqlead-lims/AWQMS\\IRDatabase\\char_method.csv")
 
 ## determine method/restuls with lowest available MRL for group of pesticides with two common  methods 
 Pest <- Results_import %>% 
@@ -29,6 +46,7 @@ Pest <- Results_import %>%
 # ensure all MRLs have same units 
 unique(Pest$Analytical_method) 
 unique(Pest$MRLUnit)
+
 # select result with lowest MRL
 Pest <- Results_import %>% 
   filter(chr_uid %in% c(7,8,13,529,821,934,1001,1104,1105,1115,1235,1280,1349,1516,1517,1518,100464)) %>%
