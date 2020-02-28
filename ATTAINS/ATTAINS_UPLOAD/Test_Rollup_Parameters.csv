@@ -1,0 +1,123 @@
+AU_ID,Char_Name,Pollu_ID,WQstd_code,Period,OWRD_Basin,IR_category,analysis_comment_2018,Data_Review_Comment,Rational,year_assessed,Year_listed,previous_IR_category,Assessed_in_2018,assessment_result_2018,Attains_Group,affected_uses,SpawnCode
+OR_SR_1707030603_05_102625,Acenaphthene,1,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Aldrin,4,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Aldrin,4,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Alkalinity,5,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,ALKALINITY,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Ammonia,6,15,,Deschutes,Category 2,,All good,,2018,,,YES,Category 2,AMMONIA,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Anthracene,7,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Antimony,8,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC INORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Arsenic, Inorganic",9,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC INORGANICS
+",Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,"Arsenic, Inorganic",9,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC INORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Barium,11,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,RADIATION,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Benz(a)anthracene,12,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Benzidine,14,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Benzo(a)pyrene,15,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Benzo(b)fluoranthene 3,4",16,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Benzo(k)fluoranthene,17,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,BHC Alpha,18,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,BHC Beta,20,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,BHC Gamma (Lindane),22,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,BHC Gamma (Lindane),22,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Butylbenzyl Phthalate,24,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Cadmium,25,15,,Deschutes,Category 2,,15 of 15 samples < detect (0.1 ug/L),,2018,,,YES,Category 2,HARDNESS BASED METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Chlordane,27,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Chlordane,27,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Chlordane,27,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Chloride,28,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TDS/CHLORIDE,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Chloronaphthalene 2,36,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Chlorophenoxy Herbicide (2,4-D)",39,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Chlorophenoxy Herbicide (2,4,5,TP)",38,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Chlorophyll-a,40,17,,Deschutes,Category 2,,,,2018,,,YES,Category 2,ALGAL GROWTH,Aesthetic Quality,
+OR_SR_1707030603_05_102625,Chlorpyrifos,41,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Chrysene,44,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Copper,45,15,,Deschutes,Category 2,,"15 of 15 samples < detect (8 Cu-D, 7 Cu-Trec) (Tiers 0, 2 and 5)",,2018,,,YES,Category 2,METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Copper,45,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,METALS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"DDD 4,4'",48,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"DDE 4,4'",49,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"DDT 4,4'",50,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,"DDT 4,4'",50,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Dibenz(a,h)anthracene",53,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Dichlorobenzidine 3,3'",57,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Dichlorophenol 2,4",63,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Dieldrin,66,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Dieldrin,66,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Dimethyl Phthalate,68,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Dimethylphenol 2,4",69,16,,Deschutes,Category 3,,,,2018,,,YES,Category 3,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Dinitrotoluene 2,4",73,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Dioxin (2,3,7,8-TCDD)",74,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,"DIOXINS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Dissolved Oxygen,154,3,Spawning,Deschutes,Category 5,,11 exceedances of spawning criteria,,2018,2010,Category 5,YES,Category 5,DISSOLVED OXYGEN,Fish and Aquatic Life,20
+OR_SR_1707030603_05_102625,Dissolved Oxygen,154,3,Year Round,Deschutes,Category 2,,1 violation of absolute minimum out of 444 values,,2018,,Category 5,YES,Category 2,DISSOLVED OXYGEN,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,E. coli,76,1,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PATHOGENS,Water Contact Recreation,
+OR_SR_1707030603_05_102625,Endosulfan,77,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Endosulfan Alpha,78,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Endosulfan Beta,79,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Endosulfan Sulfate,80,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Endrin,81,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Endrin,81,16,,Deschutes,Category 3,,,,2018,,,YES,Category 3,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Endrin Aldehyde,82,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Fluoranthene,87,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Fluorene,88,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Guthion,89,15,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Heptachlor,90,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Heptachlor,90,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Heptachlor Epoxide,91,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Heptachlor Epoxide,91,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Hexachlorobenzene,92,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Iron (total),99,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Isophorone,100,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Lead,101,15,,Deschutes,Category 2,,8 of 8 Pb-D samples < detect (0.2 ug/L),,2018,,,YES,Category 2,HARDNESS BASED METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Malathion,102,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Methoxychlor,105,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Methoxychlor,105,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Mirex,110,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Nickel,111,15,,Deschutes,Category 2,,8 of 8 Ni-D samples < detect (1.0 and 2.5 ug/L),,2018,,,YES,Category 2,HARDNESS BASED METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Nickel,111,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,HARDNESS BASED METALS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Nitrobenzene,113,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Parathion,121,15,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,PESTICIDES,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Pentachlorobenzene,122,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Pentachlorophenol,123,15,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Pentachlorophenol,123,16,,Deschutes,Category 3,,,,2018,,,YES,Category 3,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,pH,124,10,,Deschutes,Category 5,,19 results above range,,2018,2004,Category 5,YES,Category 5,PH,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Polychlorinated Biphenyls (PCBs),153,15,,Deschutes,Category 3,,,,2018,,,YES,Category 3,POLYCHLORINATED BIPHENYLS (PCBS),Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Polychlorinated Biphenyls (PCBs),153,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,POLYCHLORINATED BIPHENYLS (PCBS),Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Pyrene,128,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,TOXIC ORGANICS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Selenium,129,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,METALS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Silver,130,15,,Deschutes,Category 2,,15 of 15 samples < detect (0.1 ug/L),,2018,,,YES,Category 2,HARDNESS BASED METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Temperature,132,12,Spawn,Deschutes,Category 5,,,,2018,2018,,YES,Category 5,TEMPERATURE,Fish and Aquatic Life,20
+OR_SR_1707030603_05_102625,Temperature,132,12,Year Round,Deschutes,Category 2,,,,2018,,Category 5,YES,Category 2,TEMPERATURE,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,"Tetrachlorobenzene, 1,2,4,5-",133,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Thallium,136,16,,Deschutes,Category 3D,,,,2018,,,YES,Category 3D,METALS,Fishing; Public Domestic Water Supply; Private Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Trichlorobenzene 1,2,4",142,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Trichlorophenol 2,4,6",146,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"TOXIC ORGANICS
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,"Trichlorophenol, 2, 4, 5-",147,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,"PESTICIDES
+",Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030603_05_102625,Zinc,150,15,,Deschutes,Category 2,,8 of 8 Zn-D samples < criteria,,2018,,,YES,Category 2,HARDNESS BASED METALS,Fish and Aquatic Life,
+OR_SR_1707030603_05_102625,Zinc,150,16,,Deschutes,Category 2,,,,2018,,,YES,Category 2,HARDNESS BASED METALS,Fishing; Private Domestic Water Supply; Public Domestic Water Supply,
+OR_SR_1707030110_05_102624,Dissolved Oxygen,154,3,Spawning,Deschutes,Category 2,,,,2018,,,YES,Category 2,DISSOLVED OXYGEN,Fish and Aquatic Life,28
+OR_SR_1707030110_05_102624,Dissolved Oxygen,154,3,Year Round,Deschutes,Category 2,,2 out of 122 samples < criteria,,2018,,,YES,Category 2,DISSOLVED OXYGEN,Fish and Aquatic Life,
+OR_SR_1707030110_05_102624,Temperature,132,12,Year Round,Deschutes,Category 5,,,,2018,2018,,YES,Category 5,TEMPERATURE,Fish and Aquatic Life,
