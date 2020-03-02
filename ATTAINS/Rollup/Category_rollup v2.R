@@ -1390,7 +1390,9 @@ all_BU_rollup$IR_category <- cat_factor
    mutate(Pollu_ID = ifelse(Pollu_ID == "160", "104", Pollu_ID )) %>%
    left_join(Pollutants,by = "Pollu_ID") %>%
    mutate(Year_listed = ifelse(is.na(Year_listed) | Year_listed == "", year_assessed, Year_listed ),
-          Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) ),
+          Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period )),
+          Parameter = ifelse(!is.na(Char_Name) & WQstd_code == "15",  paste0(Char_Name, "- ","Aquatic Life"), Parameter),
+          Parameter = ifelse(!is.na(Char_Name) &  WQstd_code == "16",  paste0(Char_Name, "- ","Human Health"), Parameter),
           year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
    group_by(AU_ID, ben_use) %>%
