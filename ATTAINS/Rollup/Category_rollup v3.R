@@ -79,19 +79,6 @@ names(AU_to_ben_use) <- c("AU_ID", "ben_use_code")
 
 
 
-# This is the list of applicable benefical uses for a given benuse code
-LU_benuses <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/LU_ben_uses.csv", stringsAsFactors = FALSE)
-
-names(LU_benuses) <- c("ben_use_code", "ben_use_id", "ben_use")
-
-LU_benuses$ben_use_code <- as.character(LU_benuses$ben_use_code)
-
-# This is a long form table of all the benefical uses that apply to a given AU
-all_ben_uses <- AU_to_ben_use %>%
-  left_join(LU_benuses) %>%
-  filter(!is.na(ben_use),
-         ben_use != "NULL")
-
 
 # Before we brought pre 2018 assessments in, I needed to get basins to the biocriteria
 # data. this is a bit obsolete now, but I didn't want ot rewrite it. 
@@ -113,6 +100,19 @@ Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
   mutate(Pollu_ID = as.character(Pollu_ID)) %>%
   select(-SSMA_TimeStamp) %>%
   mutate(Pollutant_DEQ.WQS = trimws(Pollutant_DEQ.WQS, which = "right"))
+
+LU_benuses <- DBI::dbReadTable(con, 'LU_BenUseCode')
+
+
+names(LU_benuses) <- c("ben_use_code", "ben_use_id", "ben_use")
+
+LU_benuses$ben_use_code <- as.character(LU_benuses$ben_use_code)
+
+# This is a long form table of all the benefical uses that apply to a given AU
+all_ben_uses <- AU_to_ben_use %>%
+  left_join(LU_benuses) %>%
+  filter(!is.na(ben_use),
+         ben_use != "NULL")
 
 
 DBI::dbDisconnect(con)
