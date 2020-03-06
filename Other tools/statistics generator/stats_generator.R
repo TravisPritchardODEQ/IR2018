@@ -565,3 +565,173 @@ put_together <- Columbia_AU_layer %>%
   mutate(adjusted_cat = ifelse(is.na(adjusted_cat), 'Unassessed', adjusted_cat )) %>%
   group_by(adjusted_cat) %>%
   summarise(length = sum(AU_LenMiles))
+
+
+
+# EQC part 2 --------------------------------------------------------------
+
+
+IR_categories <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+
+AU_layer <- read.xlsx('Other tools/statistics generator/AU layer.xlsx')
+
+
+
+con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
+
+
+Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
+  mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+  select(-SSMA_TimeStamp) %>%
+  mutate(Pollutant_DEQ.WQS = trimws(Pollutant_DEQ.WQS, which = "right")) %>%
+  select(Pollu_ID,Pollutant_DEQ.WQS, Attains_PolluName,Attains_Group ) %>%
+  mutate(Attains_Group = case_when(Attains_Group == "TOXIC ORGANICS\r\n" ~ "TOXIC ORGANICS",
+                                   Attains_Group == "TOXIC INORGANICS\r\n" ~ "TOXIC INORGANICS",
+                                   Attains_Group %in% c("HARDNESS BASED METALS","MERCURY", "METALS") ~ "METALS",
+                                   Attains_Group == "PESTICIDES\r\n" ~ "PESTICIDES",
+                                   Attains_Group == 'CAUSE UNKNOWN - IMPAIRED BIOTA' ~ 'BIOCRITERIA',
+                                   TRUE ~ Attains_Group))
+
+
+DBI::dbDisconnect(con)
+
+
+
+IR_category_factor <- factor(IR_categories$IR_category, levels = c('Unassigned',
+                                                                   "-",
+                                                                   "Category 3C",
+                                                                   "Category 3D",
+                                                                   "Category 3",
+                                                                   "Category 3B",
+                                                                   "Category 2",
+                                                                   "Category 4",
+                                                                   "Category 4B",
+                                                                   "Category 4C",
+                                                                   "Category 4A",
+                                                                   "Category 5"),
+                             ordered = TRUE)
+IR_categories$IR_category <- IR_category_factor
+
+
+stats_2018 <- IR_categories %>%
+  group_by(AU_ID, Char_Name) %>%
+  mutate(group_cat = max(IR_category),
+         match = ifelse(IR_category == group_cat, 1, 0 )) %>%
+  filter(match == 1) %>%
+  filter(row_number() == 1) %>%
+  ungroup() %>%
+  select(AU_ID, Char_Name, Pollu_ID, IR_category) %>%
+  mutate(adjusted_cat = case_when(IR_category %in% c("Category 4B","Category 4C","Category 4A", "Category 5") ~ "Impaired",
+                                  IR_category %in% c("Category 3C","Category 3D","Category 3B", "Category 3") ~ "Insufficient",
+                                  IR_category %in% c("Category 2","Category 3D","Category 3B") ~ "Attaining",
+                                  TRUE ~ 'ERROR')) %>%
+  filter(adjusted_cat !='ERROR') %>%
+  left_join(Pollutants) 
+
+pollutant_summary <- stats_2018 %>%
+  group_by(AU_ID, Attains_Group) %>%
+  mutate(group_cat = max(IR_category),
+         match = ifelse(IR_category == group_cat, 1, 0 )) %>%
+  filter(match == 1) %>%
+  filter(row_number() == 1) %>%
+  group_by(Attains_Group, adjusted_cat) %>%
+  summarise(n = n()) %>%
+  filter(Attains_Group %in% c('TEMPERATURE',
+                              'DISSOLVED OXYGEN',
+                              "PH",
+                              "PATHOGENS",
+                              "BIOCRITERIA",
+                              "METALS",
+                              "PESTICIDES",
+                              "TOXIC ORGANICS",
+                              "TOXIC INORGANICS"))
+  
+
+unassessed <- pollutant_summary %>%
+  ungroup() %>%
+  group_by(Attains_Group) %>%
+  summarise(assessed = sum(n)) %>%
+  mutate(n = 6846 - assessed,
+         adjusted_cat = 'Unassessed') %>%
+  select(names(pollutant_summary)) 
+
+pollutant_summary_unassessed <- bind_rows(pollutant_summary, unassessed) %>%
+  arrange(Attains_Group)
+
+
+ggplot(pollutant_summary_unassessed, aes(fill=factor(adjusted_cat, 
+                                          levels =c('Unassessed', "Impaired", "Insufficient", "Attaining")), 
+                              y=n, 
+                              x=factor(Attains_Group,
+                                       levels = c('TEMPERATURE',
+                                                  'DISSOLVED OXYGEN',
+                                                  "PH",
+                                                  "PATHOGENS",
+                                                  "BIOCRITERIA",
+                                                  "METALS",
+                                                  "PESTICIDES",
+                                                  "TOXIC ORGANICS",
+                                                  "TOXIC INORGANICS")))) +
+  geom_bar(position="stack", stat="identity") +
+  scale_fill_manual(values = cbp2) + theme(plot.subtitle = element_text(vjust = 1), 
+    plot.caption = element_text(vjust = 1)) +labs(title = "Assessment Unit Status", x = NULL, 
+    y = "Assessment Units (Count)", fill = NULL, 
+    subtitle = "Count of assessment unit status by selected parameter group") + 
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_bw() 
+
+
+
+
+percent_assessed <- pollutant_summary %>%
+  group_by(Attains_Group) %>%
+  mutate(total_assessed = sum(n))%>%
+  ungroup() %>%
+  mutate(percent = n/total_assessed * 100)
+
+
+
+
+cbp3 <- c("#E69F00", "#56B4E9", "#009E73",
+          "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+
+ggplot(percent_assessed, aes(
+  fill = factor(
+    adjusted_cat,
+    levels = c('Unassessed', "Impaired", "Insufficient", "Attaining")
+  ),
+  y = percent,
+  x = factor(
+    Attains_Group,
+    levels = c(
+      'TEMPERATURE',
+      'DISSOLVED OXYGEN',
+      "PH",
+      "PATHOGENS",
+      "BIOCRITERIA",
+      "METALS",
+      "PESTICIDES",
+      "TOXIC ORGANICS",
+      "TOXIC INORGANICS"
+    )
+  )
+)) +
+  geom_bar(position = "stack", stat = "identity") +
+  scale_fill_manual(values = cbp3) + theme(plot.subtitle = element_text(vjust = 1),
+                                           plot.caption = element_text(vjust = 1)) +
+  labs(
+    title = "Assessment Unit Status",
+    x = NULL,
+    y = "Percent assessed Units",
+    fill = NULL,
+    subtitle = "Percent of assessed units by selected parameter group"
+  ) +
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_bw()
+
+
+library(plotly)
+
+
