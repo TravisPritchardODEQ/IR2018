@@ -186,7 +186,7 @@ print("Starting Temperature")
   if (file.exists(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Assessments/', 
                        basin,
                        "/",
-                       'Temperature_IR_categorization_',basin, '.csv'))) {
+                       'Temperature_IR_categorization_',basin, '_with_validation_error_fix.csv'))) {
     
     temp <- read.csv(paste0('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Assessments/', 
                             basin,
@@ -205,7 +205,7 @@ print("Starting Temperature")
              analysis_comment,
              Data_Review_Code,
              Data_Review_Comment,
-             Rational
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment)) %>%
@@ -245,7 +245,7 @@ print("Starting Temperature")
              IR_category,
              Data_Review_Code,
              Data_Review_Comment,
-             Rational
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -281,7 +281,8 @@ print("Starting Temperature")
              OWRD_Basin,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -318,7 +319,8 @@ print("Starting Temperature")
              OWRD_Basin,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
   ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -353,7 +355,8 @@ print("Starting Temperature")
              OWRD_Basin,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
              
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
@@ -389,7 +392,7 @@ print("Starting Temperature")
              IR_category,
              Data_Review_Code,
              Data_Review_Comment,
-             Rational
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -429,7 +432,8 @@ print("Starting Temperature")
              OWRD_Basin,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
              
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
@@ -447,7 +451,7 @@ print("Starting Temperature")
     rm(tox_al_copper)
   }
   print("Starting tox AL copper")
-  tox_al_copper <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Tox_AL/Data_Review/TOX_AL_CU_BLM_IR_Categories_ALLDATA.csv", stringsAsFactors = FALSE) %>%
+  tox_al_copper <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Assessments/TOX_AL_CU_BLM_IR_Categories_ALLDATA.csv", stringsAsFactors = FALSE) %>%
     filter(OWRD_Basin == basin) %>%
     mutate(Pollu_ID = '45',
            Char_Name = "Copper",
@@ -459,7 +463,8 @@ print("Starting Temperature")
            OWRD_Basin,
            IR_category,
            Data_Review_Code,
-           Data_Review_Comment) %>%
+           Data_Review_Comment,
+           Rationale) %>%
     mutate(Data_Review_Code = as.character(Data_Review_Code),
            Data_Review_Comment = as.character(Data_Review_Comment))
   
@@ -477,7 +482,7 @@ print("Starting Temperature")
   if(exists('biocriteria')){
     rm(biocriteria)
   }
-  biocriteria <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Biocriteria/MWCF_Proposed_withnotes_CSV.csv",
+  biocriteria <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Assessments/MWCF_Proposed_withnotes_CSV.csv",
                           stringsAsFactors = FALSE)
   
   biocriteria_joined <- biocriteria %>%
@@ -510,7 +515,7 @@ print("Starting Temperature")
   if(exists('narrative')){
     rm(narrative)
   }
-  narrative <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Narrative Standard Assessment/narrative assessment put together.csv",
+  narrative <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Assessments/narrative assessment put together.csv",
                         stringsAsFactors = FALSE) %>%
     filter(AU_ID != "") %>%
     filter(OWRD_Basin == basin) %>%
@@ -548,7 +553,7 @@ print("Starting Temperature")
            IR_category,
            Data_Review_Code,
            Data_Review_Comment,
-           #Rational
+           Rationale
     ) %>%
     mutate(Data_Review_Code = as.character(Data_Review_Code),
            Data_Review_Comment = as.character(Data_Review_Comment)) %>%
@@ -591,7 +596,7 @@ print("Starting Temperature")
            IR_category,
            Data_Review_Code,
            Data_Review_Comment,
-           Rational
+           Rationale
     ) %>%
     mutate(Data_Review_Code = as.character(Data_Review_Code),
            Data_Review_Comment = as.character(Data_Review_Comment))
@@ -629,7 +634,7 @@ print("Starting Temperature")
              IR_category,
              Data_Review_Code,
              Data_Review_Comment,
-             Rational
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment)) %>%
@@ -670,6 +675,9 @@ print("Starting Temperature")
                               "/",
                               'Tox_HH_IR_Categories_',basin, '.csv'), 
                        stringsAsFactors = FALSE) %>%
+      mutate(keep = ifelse(Pollu_ID == '50' & Char_Name != "p,p'-DDT", 0, 1 )) %>%
+      filter(keep == 1) %>%
+      select(-keep) %>%
       mutate(Pollu_ID = as.character(Pollu_ID),
              WQstd_code = "16") %>%
       group_by(AU_ID, Char_Name) %>%
@@ -684,7 +692,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment)) %>%
@@ -719,7 +728,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -762,7 +772,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -802,7 +813,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -841,7 +853,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+            Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -880,7 +893,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -919,7 +933,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -957,7 +972,8 @@ print("Starting Temperature")
              Pollu_ID,
              IR_category,
              Data_Review_Code,
-             Data_Review_Comment
+             Data_Review_Comment,
+             Rationale
       ) %>%
       mutate(Data_Review_Code = as.character(Data_Review_Code),
              Data_Review_Comment = as.character(Data_Review_Comment))
@@ -984,7 +1000,8 @@ print("Starting Temperature")
            Pollu_ID,
            IR_category,
            Data_Review_Code,
-           Data_Review_Comment
+           Data_Review_Comment,
+           Rationale
     ) 
   
   
@@ -1006,7 +1023,30 @@ print("Starting Temperature")
            Pollu_ID,
            IR_category,
            Data_Review_Code,
-           Data_Review_Comment
+           Data_Review_Comment,
+           Rationale
+    ) 
+  
+
+# Ocean hypoxia -----------------------------------------------------------
+
+marine_oxygen <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Assessments/Ocean_DO_categories.xlsx") %>%
+    filter(AU_ID != "") %>%
+    filter(OWRD_Basin == basin) %>%
+    mutate(Pollu_ID = as.character(Pollu_ID),
+           WQstd_code = as.character(WQstd_code)) %>%
+    rename(analysis_comment = analysis_comment_2018) %>%
+    select(AU_ID,
+           Period,
+           Char_Name,
+           analysis_comment,
+           WQstd_code,
+           OWRD_Basin,
+           Pollu_ID,
+           IR_category,
+           Data_Review_Code,
+           Data_Review_Comment,
+           Rationale
     ) 
   
 # put it all together -----------------------------------------------------
@@ -1022,6 +1062,7 @@ print('Writing tables')
            Period = Time_Period) %>%
     mutate(Pollu_ID = as.character(Pollu_ID),
            Period = case_when(Period == "Year_Round" ~ "Year Round",
+                              Period == "Spawn" ~ "Spawning",
                               TRUE ~ Period)) %>%
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     distinct()%>%
@@ -1038,6 +1079,7 @@ print('Writing tables')
     mutate(previous_IR_category = "Category 5",
            Pollu_ID = as.character(Pollu_ID),
            Period = case_when(Period == "Year_Round" ~ "Year Round",
+                              Period == "Spawn" ~ "Spawning",
                               TRUE ~ Period)) %>% 
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     left_join(select(Pollutants, Pollu_ID, Pollutant_DEQ.WQS), by = "Pollu_ID") %>%
@@ -1065,7 +1107,8 @@ print('Writing tables')
                                     get0('DO_year_estuary'),
                                     get0('DO_spawn_estuary'),
                                     get0('shellfish_toxins') ,
-                                    get0('ocean_listings')) %>%
+                                    get0('ocean_listings'),
+                                    get0('marine_oxygen')) %>%
     filter(Char_Name != "Endrin + cis-Nonachlor") %>%
     mutate(IR_category = case_when(grepl("5", IR_category) ~ "Category 5",
                                    grepl("2", IR_category) ~ "Category 2",
@@ -1077,6 +1120,7 @@ print('Writing tables')
                                    IR_category == "Unassigned" ~ "Unassigned",
                                    TRUE ~ "Error"),
            Period = case_when(Period %in% c("Year_Round", "Year round") ~ "Year Round",
+                              Period == "Spawn" ~ "Spawning",
                               TRUE ~ Period)) %>%
     rename(analysis_comment_2018 = analysis_comment) %>%
     filter(AU_ID != "")
@@ -1090,13 +1134,15 @@ print('Writing tables')
     mutate(Pollu_ID = as.character(Pollu_ID),
            WQstd_code = as.character(WQstd_code)) %>%
     filter(OWRD_Basin == basin) %>%
-    select(AU_ID, Pollu_ID, WQstd_code, Period, Delisting.AGREE.., Category_Final ) %>%
+    select(AU_ID, Pollu_ID, WQstd_code, Period, Delisting.AGREE.., Category_Final,Rationale ) %>%
     mutate(Period = ifelse(Period == "", NA, Period )) %>%
     mutate(Period = as.character(Period),
            Delisting.AGREE.. = trimws(Delisting.AGREE..),
            Period = case_when(Period %in% c("Year_Round", "Year round") ~ "Year Round",
+                              Period == "Spawn" ~ "Spawning",
                               TRUE ~ Period)) %>%
-    rename(Delist = Delisting.AGREE..)
+    rename(Delist = Delisting.AGREE..,
+           Delist_rationale = Rationale)
   
   # There is some wonly join here iwth AU name - fix this. 
   ####################
@@ -1122,6 +1168,7 @@ print('Writing tables')
     mutate(IR_category = ifelse(!is.na(previous_IR_category), previous_IR_category, IR_category )) %>%
     mutate(IR_category = case_when(!is.na(Category_Final) ~ Category_Final,
                                    TRUE ~ IR_category)) %>%
+    mutate(Rationale = ifelse(grepl("no", Delist, ignore.case = TRUE), Delist_rationale, Rationale )) %>%
     # mutate(IR_category = case_when(previous_IR_category == 'Category 5' & (Delist != 'YES' | is.na(Delist)) ~ "Category 5",
     #                                TRUE ~ IR_category
     #                                )) %>%
@@ -1134,7 +1181,7 @@ print('Writing tables')
   
   
 
-  all_assessments <-  all_assessments[,c(1,21,22,2,3,4,5,6,7,8,9,10,11,12,13,20,19,15,16,17,18)]
+  all_assessments <-  all_assessments[,c(1,22,23,2,3,4,5,6,7,8,9,10,11,12,13,21,19,15,16,17,18)]
     
   
   IR_category_factor <- factor(all_assessments$IR_category, levels = c('Unassigned',
@@ -1176,6 +1223,14 @@ print('Writing tables')
     mutate(WQstd_code = as.character(WQstd_code),
            Pollu_ID = as.character(Pollu_ID))
 
+  # x_walk_impaired <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Crosswalk/x_walk_impaired.csv",
+  #                             stringsAsFactors = FALSE) %>%
+  #   mutate(Period = case_when(Period == 'YearRound' ~ "Year Round",
+  #                             Period == 'Spawning' ~ "Spawning",
+  #                             TRUE ~ Period))
+    
+  
+  
   cat4_assignments <- put_together %>%
     left_join(DEQ_Actions_names, by = c("AU_ID", "Pollu_ID")) %>%
     mutate(IR_category = ifelse(IR_category == "Category 5" & !is.na(Action_ID), "Category 4A", as.character(IR_category) )) %>%
@@ -1191,7 +1246,7 @@ print('Writing tables')
     distinct() %>%
     group_by(AU_ID, AU_Name, AU_Description, Char_Name, Pollu_ID, WQstd_code,
              Period, OWRD_Basin, IR_category, analysis_comment_2018, 
-             Data_Review_Code,Data_Review_Comment, Rational, year_assessed, Year_listed,
+             Data_Review_Code,Data_Review_Comment, Rationale, year_assessed, Year_listed,
              previous_IR_category,Assessed_in_2018, assessment_result_2018 ) %>%
     summarise(Action_ID = ifelse(length(str_c(Action_ID, collapse  = "; ")) > 0, str_c(Action_ID, collapse  = "; "), ""),
               TMDL_Name = ifelse(length(str_c(TMDL_Name, collapse  = "; ")) > 0, str_c(TMDL_Name, collapse  = "; "), "")) %>%
@@ -1199,7 +1254,7 @@ print('Writing tables')
            Revised_Category = "") %>%
     left_join(wqstrd_to_datafile, by = "WQstd_code")
   
-  basin_categories <-  basin_categories[,c(1,2,3,4,5,6,23, 6:22)]
+  basin_categories <-  basin_categories[,c(1,2,3,4,5,6,23, 7:22)]
     
   
   
@@ -1236,7 +1291,7 @@ print('Writing tables')
     #filter(IR_category != "Category 5" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A")) %>%
     
     left_join(select(delistings_v4, -Char_Name), by = c("AU_ID", "Pollu_ID", "WQstd_code", "Period", "Category_Final", "Delist")) %>%
-    filter(Delist == "YES") 
+    filter(IR_category == "Category 2") 
     
   #   
   # 
@@ -1312,6 +1367,12 @@ print('Writing tables')
  all_BU_rollup <- bind_rows(BU_rollup_list) 
  all_BU_counts <- bind_rows(BU_counts_list)
  
+ 
+ all_categories <- all_categories %>%
+   ungroup() %>%
+   mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
+   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
+   mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale ))
  
  AU_to_OWRD <- all_categories %>%
    ungroup() %>%
@@ -1495,7 +1556,7 @@ Parameter <- all_categories %>%
          Pollu_ID, WQstd_code, Period,
          OWRD_Basin, IR_category,
          analysis_comment_2018, Data_Review_Comment,
-         Rational, year_assessed, Year_listed,
+         Rationale, year_assessed, Year_listed,
          previous_IR_category, Assessed_in_2018, 
          assessment_result_2018, Attains_Group, affected_uses)
 
@@ -1578,6 +1639,13 @@ delist_rollup <- all_delist %>%
  
  
  write.csv(delist_rollup, file = "ATTAINS/Rollup/Basin_categories/ALL BASINS_delistings_AU_Rollup.csv")
+ 
+ 
+ 
+ delistings <- delistings_v4 %>%
+   filter(Category_Final == 'Category 2')
+ 
+ write.xlsx(delistings, "ATTAINS/Rollup/Basin_categories/Delistings.xlsx")
 
 # # Basin delisting files ---------------------------------------------------
 # 
@@ -1603,3 +1671,5 @@ delist_rollup <- all_delist %>%
 #     
 #    
 #  }
+ 
+ 

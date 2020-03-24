@@ -623,7 +623,7 @@ stats_2018 <- IR_categories %>%
   ungroup() %>%
   select(AU_ID, Char_Name, Pollu_ID, IR_category) %>%
   mutate(adjusted_cat = case_when(IR_category %in% c("Category 4B","Category 4C","Category 4A", "Category 5") ~ "Impaired",
-                                  IR_category %in% c("Category 3C","Category 3D","Category 3B", "Category 3") ~ "Insufficient",
+                                  IR_category %in% c("Category 3C","Category 3D","Category 3B", "Category 3") ~ "Insufficient Data",
                                   IR_category %in% c("Category 2","Category 3D","Category 3B") ~ "Attaining",
                                   TRUE ~ 'ERROR')) %>%
   filter(adjusted_cat !='ERROR') %>%
@@ -659,9 +659,11 @@ unassessed <- pollutant_summary %>%
 pollutant_summary_unassessed <- bind_rows(pollutant_summary, unassessed) %>%
   arrange(Attains_Group)
 
+cbp2 <- c("#999999", "#ab66cd", "#d5b502", "#00a884",
+          "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 ggplot(pollutant_summary_unassessed, aes(fill=factor(adjusted_cat, 
-                                          levels =c('Unassessed', "Impaired", "Insufficient", "Attaining")), 
+                                          levels =c('Unassessed', "Impaired", "Insufficient Data", "Attaining")), 
                               y=n, 
                               x=factor(Attains_Group,
                                        levels = c('TEMPERATURE',
@@ -674,13 +676,16 @@ ggplot(pollutant_summary_unassessed, aes(fill=factor(adjusted_cat,
                                                   "TOXIC ORGANICS",
                                                   "TOXIC INORGANICS")))) +
   geom_bar(position="stack", stat="identity") +
-  scale_fill_manual(values = cbp2) + theme(plot.subtitle = element_text(vjust = 1), 
-    plot.caption = element_text(vjust = 1)) +labs(title = "Assessment Unit Status", x = NULL, 
+  theme_bw() +
+  scale_fill_manual(values = cbp2) + 
+  theme(plot.subtitle = element_text(vjust = 1), 
+    plot.caption = element_text(vjust = 1),
+    legend.text = element_text(size = 12)) +
+  labs(title = "Assessment Unit Status", x = NULL, 
     y = "Assessment Units (Count)", fill = NULL, 
     subtitle = "Count of assessment unit status by selected parameter group") + 
   scale_y_continuous(expand = c(0, 0)) +
-  theme_bw() 
-
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 
 
 
@@ -693,14 +698,14 @@ percent_assessed <- pollutant_summary %>%
 
 
 
-cbp3 <- c("#E69F00", "#56B4E9", "#009E73",
+cbp3 <- c("#ab66cd", "#d5b502", "#00a884",
           "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 
 ggplot(percent_assessed, aes(
   fill = factor(
     adjusted_cat,
-    levels = c('Unassessed', "Impaired", "Insufficient", "Attaining")
+    levels = c('Unassessed', "Impaired", "Insufficient Data", "Attaining")
   ),
   y = percent,
   x = factor(
@@ -718,18 +723,19 @@ ggplot(percent_assessed, aes(
     )
   )
 )) +
-  geom_bar(position = "stack", stat = "identity") +
-  scale_fill_manual(values = cbp3) + theme(plot.subtitle = element_text(vjust = 1),
-                                           plot.caption = element_text(vjust = 1)) +
-  labs(
-    title = "Assessment Unit Status",
-    x = NULL,
-    y = "Percent assessed Units",
-    fill = NULL,
-    subtitle = "Percent of assessed units by selected parameter group"
-  ) +
+  geom_bar(position="stack", stat="identity") +
+  theme_bw() +
+  scale_fill_manual(values = cbp3) + 
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1),
+        legend.text = element_text(size = 12)) +
+  labs(title = "Assessment Unit Status", x = NULL, 
+       y = "Assessment Units (Count)", fill = NULL, 
+       subtitle = "Count of assessment unit status by selected parameter group") + 
   scale_y_continuous(expand = c(0, 0)) +
-  theme_bw()
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
 
 
 library(plotly)
