@@ -13,7 +13,7 @@ db_qry_chlordane <- glue::glue_sql("SELECT *
 Results_import <-  DBI::dbGetQuery(con, db_qry)
 chlordane <- DBI::dbGetQuery(con, db_qry_chlordane)
 
-chlordane_unused <- chordane %>%
+chlordane_unused <- chlordane %>%
              mutate(is_HR = ifelse(Analytical_method =='Pesticides in water, soil, sediment, biosolids, and tissue by HRGC/HRMS',1,0)) %>%
              group_by(MLocID,SampleStartDate,SampleStartTime,SampleMedia,OrganizationID) %>%
              mutate(has_HR = ifelse(max(is_HR) == 1, 1, 0)) %>%
@@ -23,7 +23,7 @@ chlordane_unused <- chordane %>%
   mutate(Data_Review_Code = 52) %>% 
   mutate(Data_Review_Comment = 'same sample analyzed by Pesticides in water, soil, sediment, biosolids, and tissue by HRGC/HRMS')
 
-write.csv(chlordane_unused,"//deqlead-lims/SERVERFOLDERS/AWQMS/IRDatabase/Unused_chlordane_from_R.csv")
+write.csv(chlordane_unused,"Unused_chlordane_from_R.csv")
 
 
 #filters out temp, pH, turb, cond and DO because these are coming through as dups due to continuous data - first analysis on orgaincs methods
