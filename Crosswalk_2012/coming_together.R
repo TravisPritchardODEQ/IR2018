@@ -130,7 +130,7 @@ write.xlsx(X_walk_methods, file = "Crosswalk_2012/xwalk_method.xlsx")
 x_walk_impaired <- x_walk_all %>% 
   filter(AU_Category %in% c('Category 5','4C')) %>%
   select(RECORD_ID,Pollu_ID,AU_ID) %>%
-  left_join(impaired_2012, by = c("RECORD_ID","Pollu_ID")) %>%
+  left_join(impaired_2012, by = c("RECORD_ID","Pollu_ID", "Period")) %>%
   mutate(Period = case_when(Pollu_ID == 154 & SEASON_ID %in% c(1,2,3,16,71,101) ~ "YearRound",
                             Pollu_ID == 154 & SEASON_ID %in% c(8,23,30,31,38,39,41,42,45,46,49,50,51,100) ~ "Spawning",
                             Pollu_ID == 132 & SEASON_ID %in% c(1,2,3,16,32,71,72,101) ~ "YearRound",
@@ -138,13 +138,17 @@ x_walk_impaired <- x_walk_all %>%
                             !Pollu_ID %in% c(154,132) ~ "YearRound")) %>%
   filter(!is.na(RECORD_ID))
  
+
+save(x_walk_impaired, file = 'ATTAINS/x_walk_impaired.Rdata')
 write.csv(x_walk_impaired, "x_walk_impaired_LLID.csv", row.names = FALSE)
 
 # some parameters have no station data
-xwalk_station <- rbind(DO_S,Hg_S,P_S,pH_S,DDTs_S,fecal_S,entero_S,ecoli_S,chla_S,bio_s,toxics_S,metals_S,temp_S)
+xwalk_station <- bind_rows(DO_S,Hg_S,P_S,pH_S,DDTs_S,fecal_S,entero_S,ecoli_S,chla_S,bio_s,toxics_S,metals_S,temp_S)
 x_walk_impaired_station <- xwalk_station %>% 
   left_join(x_walk_impaired, by = c("RECORD_ID","Pollu_ID"))
 
+
+write.xlsx(xwalk_station, file = "Crosswalk_2012/xwalk_stations.xlsx")
 write.csv(x_walk_impaired_station, "x_walk_impaired_station.csv", row.names = FALSE)
 
 ### crosswalk vision file from Dwane Young 1/15/2020

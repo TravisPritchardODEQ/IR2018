@@ -1361,6 +1361,21 @@ print('Writing tables')
   }
     
   
+load('ATTAINS/x_walk_impaired.Rdata')
+
+
+xwalk_rationales <- x_walk_impaired %>%
+  ungroup() %>%
+  select(Pollu_ID, AU_ID, Period, SUMMARY) %>%
+  mutate(Period = ifelse(Pollu_ID %in% c(154, 132), Period, NA)) %>%
+  mutate(Period = case_when(Period == "YearRound" ~ "Year Round",
+                            TRUE ~ Period),
+         Pollu_ID = as.character(Pollu_ID), 
+         SUMMARY = as.character(SUMMARY)) %>%
+  rename(previous_rationale = SUMMARY) %>%
+  group_by(Pollu_ID, AU_ID, Period) %>%
+  filter(row_number() == 1) %>%
+  ungroup()
     
  all_categories <-bind_rows(put_together_list)   
  all_delist <- bind_rows(delist_list)  
@@ -1370,10 +1385,12 @@ print('Writing tables')
  
  all_categories <- all_categories %>%
    ungroup() %>%
+   left_join(xwalk_rationales) %>%
+   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', previous_rationale, Rationale )) %>%
    mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
-   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
-   mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale ))
- 
+   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO' & Rationale == "", "Carried forward from previous listing", Rationale )) #%>%
+   # mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale ))
+   # 
  AU_to_OWRD <- all_categories %>%
    ungroup() %>%
    select(AU_ID, OWRD_Basin) %>%
