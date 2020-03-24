@@ -2,9 +2,33 @@ library(lubridate)
 
 fun_Tox_HH_analysis <- function(df){ 
 
-
-# Need to do chlordane
-#   
+#Need to add componant to check for total chlordane. 
+    Chlordane_data <- df %>%
+      filter(Pollu_ID == '27') %>%
+      # Identofy chlordane
+      mutate(is_chlordane = ifelse(chr_uid %in% c('767'), 1, 0 )) %>%
+      group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+      # Check to see if group has chlordane
+      mutate(has_chlordane = ifelse(max(is_chlordane) == 1, 1, 0 )) %>%
+      # Get percentage of non detects
+      ungroup() %>%
+      filter((has_chlordane == 1 & is_chlordane == 1) | has_chlordane == 0) %>%
+      group_by(OrganizationID, MLocID, SampleStartDate, act_depth_height) %>%
+      mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100)) %>%
+      mutate(summing_censored_value = ifelse(Result_Operator == "<", 0, Result_cen )) %>%
+      mutate(summed_percent_nondetect = round(sum(Result_Operator == "<")/n()*100),
+             # Do the summing
+             Summed_values = sum(summing_censored_value),
+             # Create note on what the summing is based on
+             IR_note = ifelse(has_chlordane == 1, "", paste("result is sum of ", str_c(Char_Name, collapse  = "; ")) ) )  %>%
+  # Keep only the first row. This preserves all the metadata
+  filter(row_number() == 1) %>%
+  # Change the Char_Name to Endosulfan and the Result_cen column to the summed value
+  mutate(Char_Name = "Chlordane",
+         Result_cen = Summed_values) %>%
+  # get rid of extra columns that were created
+  select(-Summed_values,  -summing_censored_value, -has_chlordane,is_chlordane)
+             
 
 
 # PCBs --------------------------------------------------------------------
@@ -54,8 +78,10 @@ fun_Tox_HH_analysis <- function(df){
 
 # Put summed data together
 results_analysis <- df %>%
-  filter(Pollu_ID != 153) %>%
-  bind_rows(PCB_data)
+  filter(Pollu_ID != 153,
+         Pollu_ID != 27) %>%
+  bind_rows(#PCB_data, 
+    Chlordane_data)
 
 
 
@@ -84,7 +110,7 @@ tox_HH_assesment <- results_analysis %>%
   mutate(violation = ifelse(evaluation_result > crit, 1, 0 ))
 
 
-IR_export(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/", "Tox_HH", "data")
+IR_export(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/", "Tox_HH_chlordane", "data")
 #write.csv(tox_HH_assesment, "Parameters/Tox_HH/Data_Review/HH_tox_analysis.csv")
   
 tox_HH_categories <- tox_HH_assesment %>%
@@ -93,13 +119,11 @@ tox_HH_categories <- tox_HH_assesment %>%
             Pollu_ID = first(Pollu_ID),
             crit = max(crit),
             num_samples = n(),
-            PCB_summed_percent_nondetect = sum(PCB_summed_percent_nondetect)/n(),
-            num_3d = ifelse(is.na(PCB_summed_percent_nondetect), sum(Result_Operator == "<" & IRResultNWQSunit > crit ), 
-                            sum(PCB_summed_percent_nondetect)/100 * num_samples),
+            summed_percent_nondetect = sum(Result_Operator == "<")/n(),
+            num_3d = ifelse(is.na(summed_percent_nondetect), sum(Result_Operator == "<" & IRResultNWQSunit > crit ), 
+                            sum(Result_Operator == "<" & Result_cen == 0)),
             num_not_3d = num_samples - num_3d,
-            percent_3d = ifelse(is.na(PCB_summed_percent_nondetect),  
-                                round(sum(Result_Operator == "<" & IRResultNWQSunit > crit )/num_samples * 100), 
-                                sum(PCB_summed_percent_nondetect)),
+            percent_3d = num_3d/num_samples * 100,
             num_violations = sum(violation),
             geomean = ifelse(num_not_3d >= 3, geo_mean(Result_cen[!(Result_Operator == "<" & IRResultNWQSunit > crit)]), 
                              NA))  %>%
@@ -113,11 +137,57 @@ tox_HH_categories <- tox_HH_assesment %>%
                                   num_not_3d < 3 ~ "Cat3",
                                   geomean <= crit ~ "Cat 2",
                                   TRUE ~ "ERROR"), 
-        geomean = ifelse(PCB_summed_percent_nondetect == 100 & !is.na(PCB_summed_percent_nondetect), NA, geomean ))  %>%
+         Rationale =  case_when(percent_3d == 100 ~ "All results have detection limits above criteria",
+                                num_samples >= 3 & geomean > crit ~ paste("Geometric mean of", round(geomean, 7), "above criteria of", crit),
+                                num_samples < 3 & num_violations >= 1 ~ paste('Only', num_samples, " samples", 'and', num_violations, "excursions"), 
+                                num_samples < 3 & num_violations == 0 ~ paste('Only', num_samples, " samples", 'and', "0", "excursions"),
+                                num_not_3d < 3 ~ paste("Only", num_not_3d, 'samples have QL above criteria'),
+                                geomean <= crit ~ "Geometric mean < criteria",
+                                TRUE ~ "ERROR"),
+        geomean = ifelse(summed_percent_nondetect == 100 & !is.na(summed_percent_nondetect), NA, geomean ))  %>%
   arrange(AU_ID, Char_Name)
  
+
+# 
+# tox_HH_categories <- tox_HH_assesment %>%
+#   group_by(AU_ID, Char_Name, Simplified_sample_fraction,Crit_Fraction) %>%
+#   summarise(OWRD_Basin = first(OWRD_Basin),
+#             Pollu_ID = first(Pollu_ID),
+#             crit = max(crit),
+#             num_samples = n(),
+#             num_non3d_results = sum(percent_3)/n(),
+#             num_3d = ifelse(is.na(summed_percent_nondetect), sum(Result_Operator == "<" & IRResultNWQSunit > crit ), 
+#                             sum(summed_percent_nondetect)/100 * num_samples),
+#             num_not_3d = num_samples - num_3d,
+#             percent_3d = ifelse(is.na(summed_percent_nondetect),  
+#                                 round(sum(Result_Operator == "<" & IRResultNWQSunit > crit )/num_samples * 100), 
+#                                 sum(summed_percent_nondetect)),
+#             num_violations = sum(violation),
+#             geomean = ifelse(num_not_3d >= 3, geo_mean(Result_cen[!(Result_Operator == "<" & IRResultNWQSunit > crit)]), 
+#                              NA))  %>%
+#   ungroup() %>%
+#   group_by(AU_ID, Char_Name) %>%
+#   mutate(num_fraction_types =  n(),
+#          IR_category =  case_when(percent_3d == 100 ~ "Cat3D",
+#                                   num_samples >= 3 & geomean > crit ~ "Cat5",
+#                                   num_samples < 3 & num_violations >= 1 ~ "Cat3B",
+#                                   num_samples < 3 & num_violations == 0 ~ "Cat3",
+#                                   num_not_3d < 3 ~ "Cat3",
+#                                   geomean <= crit ~ "Cat 2",
+#                                   TRUE ~ "ERROR"), 
+#          Rationale =  case_when(percent_3d == 100 ~ "All results have detection limits above criteria",
+#                                 num_samples >= 3 & geomean > crit ~ paste("Geometric mean of", geomean, "above criteria of", crit),
+#                                 num_samples < 3 & num_violations >= 1 ~ paste('Only', num_samples, " samples", 'and', num_violations, "excursions"), 
+#                                 num_samples < 3 & num_violations == 0 ~ paste('Only', num_samples, " samples", 'and', "0", "excursions"),
+#                                 num_not_3d < 3 ~ paste("Only", num_not_3d, 'samples have QL above criteria'),
+#                                 geomean <= crit ~ "Geometric mean < criteria",
+#                                 TRUE ~ "ERROR"),
+#          geomean = ifelse(summed_percent_nondetect == 100 & !is.na(summed_percent_nondetect), NA, geomean ))  %>%
+#   arrange(AU_ID, Char_Name)
+
+
 #write tablehere
-IR_export(tox_HH_categories, "Parameters/Tox_HH/Data_Review/", "Tox_HH", "Categories")
+IR_export(tox_HH_categories, "Parameters/Tox_HH/Data_Review/", "Tox_HH_chlordane", "Categories")
 }
 
 # To do - 
