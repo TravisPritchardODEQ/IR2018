@@ -142,6 +142,8 @@ x_walk_impaired <- x_walk_all %>%
 save(x_walk_impaired, file = 'ATTAINS/x_walk_impaired.Rdata')
 write.csv(x_walk_impaired, "x_walk_impaired_LLID.csv", row.names = FALSE)
 
+save(x_walk_impaired, file = 'ATTAINS/x_walk_impaired.Rdata')
+
 # some parameters have no station data
 xwalk_station <- bind_rows(DO_S,Hg_S,P_S,pH_S,DDTs_S,fecal_S,entero_S,ecoli_S,chla_S,bio_s,toxics_S,metals_S,temp_S)
 x_walk_impaired_station <- xwalk_station %>% 
@@ -150,6 +152,8 @@ x_walk_impaired_station <- xwalk_station %>%
 
 write.xlsx(xwalk_station, file = "Crosswalk_2012/xwalk_stations.xlsx")
 write.csv(x_walk_impaired_station, "x_walk_impaired_station.csv", row.names = FALSE)
+
+write.xlsx(xwalk_station, file = "Crosswalk_2012/xwalk_stations.xlsx")
 
 ### crosswalk vision file from Dwane Young 1/15/2020
 
