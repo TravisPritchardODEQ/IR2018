@@ -1291,7 +1291,8 @@ print('Writing tables')
     #filter(IR_category != "Category 5" & (previous_IR_category == "Category 5" | previous_IR_category == "Category 4A")) %>%
     
     left_join(select(delistings_v4, -Char_Name), by = c("AU_ID", "Pollu_ID", "WQstd_code", "Period", "Category_Final", "Delist")) %>%
-    filter(IR_category == "Category 2") 
+    filter(Delist == "YES") %>%
+    rename(Deslist_Rationale = Rationale.y)
     
   #   
   # 
@@ -1388,9 +1389,19 @@ xwalk_rationales <- x_walk_impaired %>%
    left_join(xwalk_rationales) %>%
    mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', previous_rationale, Rationale )) %>%
    mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
-   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO' & Rationale == "", "Carried forward from previous listing", Rationale )) #%>%
-   # mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale ))
-   # 
+   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO' & Rationale == "", "Carried forward from previous listing", Rationale )) %>%
+   mutate(Rationale = ifelse(Rationale == "" & 
+                               !is.na(previous_rationale) & 
+                               previous_rationale != "" & 
+                               IR_category %in% c("Category 4A",
+                                                                                               "Category 5",
+                                                                                               "Category 4C",
+                                                                                               "Category 4",
+                                                                                               "Category 4B"), previous_rationale, Rationale )) %>%
+   arrange(AU_ID) %>%
+   select(-previous_rationale)
+ 
+ 
  AU_to_OWRD <- all_categories %>%
    ungroup() %>%
    select(AU_ID, OWRD_Basin) %>%
@@ -1460,7 +1471,6 @@ all_BU_rollup$IR_category <- cat_factor
  
  # data display tables -----------------------------------------------------
  
- 
  Impaired_1orMoreUses_prelim <-  all_BU_rollup %>%
    mutate(Name = "",
           Description = "",
@@ -1469,8 +1479,8 @@ all_BU_rollup$IR_category <- cat_factor
    left_join(Pollutants,by = "Pollu_ID") %>%
    mutate(Year_listed = ifelse(is.na(Year_listed) | Year_listed == "", year_assessed, Year_listed ),
           Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period )),
-          Parameter = ifelse(!is.na(Char_Name) & WQstd_code == "15",  paste0(Char_Name, "- ","Aquatic Life"), Parameter),
-          Parameter = ifelse(!is.na(Char_Name) &  WQstd_code == "16",  paste0(Char_Name, "- ","Human Health"), Parameter),
+          Parameter = ifelse(!is.na(Char_Name) & (WQstd_code == "15" & !is.na(WQstd_code)),  paste0(Char_Name, "- ","Aquatic Life"), Parameter),
+          Parameter = ifelse(!is.na(Char_Name) &  (WQstd_code == "16"& !is.na(WQstd_code)),  paste0(Char_Name, "- ","Human Health"), Parameter),
           year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
    group_by(AU_ID, ben_use) %>%
@@ -1479,14 +1489,14 @@ all_BU_rollup$IR_category <- cat_factor
                                          max(IR_category, na.rm = TRUE) == "Category 4B" ~ "Category 4B",
                                          max(IR_category, na.rm = TRUE) == "Category 4C" ~ "Category 4C",
                                          max(IR_category, na.rm = TRUE) == "Category 4A" ~ "Category 4A",
-                                max(IR_category, na.rm = TRUE) == "Category 2" ~ "Category 2",
-                                max(IR_category, na.rm = TRUE) == "Category 3B" ~ "Category 3B",
-                                max(IR_category, na.rm = TRUE) == "Category 3" ~ "Category 3",
-                                max(IR_category, na.rm = TRUE) == "Category 3D" ~ "Category 3D",
-                                max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Category 3C",
-                                TRUE ~ "Use not assessed"),
-             Impairment_cause = ifelse(Assessed_condition == "Category 5" | Assessed_condition =="Category 4A", str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category ==  "Category 4A"]), collapse  = "; "), NA ),
-             Year_listed = min(Year_listed, na.rm = TRUE),
+                                         max(IR_category, na.rm = TRUE) == "Category 2" ~ "Category 2",
+                                         max(IR_category, na.rm = TRUE) == "Category 3B" ~ "Category 3B",
+                                         max(IR_category, na.rm = TRUE) == "Category 3" ~ "Category 3",
+                                         max(IR_category, na.rm = TRUE) == "Category 3D" ~ "Category 3D",
+                                         max(IR_category, na.rm = TRUE) == "Category 3C" ~ "Category 3C",
+                                         TRUE ~ "Use not assessed"),
+          Impairment_cause = ifelse(Assessed_condition == "Category 5" | Assessed_condition =="Category 4A", str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category ==  "Category 4A"]), collapse  = "; "), NA ),
+          Year_listed = min(Year_listed, na.rm = TRUE),
           parameters_assessed = str_c(unique(Pollutant_DEQ.WQS), collapse = "; "),
           parameter_group_assessed = str_c(unique(Attains_Group), collapse = "; ")) %>%
    ungroup() 
@@ -1553,7 +1563,60 @@ Impaired_1orMoreUses <- Impaired_1orMoreUses_prelim %>%
             Parameters_assessed = str_c(unique(Pollutant_DEQ.WQS[!is.na(Pollutant_DEQ.WQS)]), collapse = "; "),
             parameter_group_assessed = str_c(unique(Attains_Group[!is.na(Attains_Group)]), collapse = "; "),
             TMDLs = ifelse(length(str_c(unique(TMDL_Name[!is.na(TMDL_Name)]), collapse = "; ")) > 0, 
-                           str_c(unique(TMDL_Name[!is.na(TMDL_Name)]), collapse = "; "), "" ) 
+                           str_c(unique(TMDL_Name[!is.na(TMDL_Name)]), collapse = "; "), "" ) ,
+            AU_status =  case_when(max(IR_category, na.rm = TRUE) %in% c("Category 4B","Category 4C","Category 4A", "Category 5","Category 4" ) ~ "Impaired",
+                                   max(IR_category, na.rm = TRUE) %in% c("Category 3C","Category 3D","Category 3B", "Category 3") ~ "Insufficient Data",
+                                   max(IR_category, na.rm = TRUE) %in% c("Category 2","Category 3D","Category 3B") ~ "Attaining",
+                                   TRUE ~ 'ERROR'),
+            Category_2_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 2" ])[!is.na(unique(Parameter[IR_category ==  "Category 2" ]))], 
+                                                    collapse  = "; ")) > 0, 
+                                       str_c(unique(Parameter[IR_category ==  "Category 2"])[!is.na(unique(Parameter[IR_category ==  "Category 2"]))],
+                                             collapse  = "; "),
+                                       "."),
+            Category_5_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 5" ])[!is.na(unique(Parameter[IR_category ==  "Category 5" ]))], 
+                                                    collapse  = "; ")) > 0, 
+                                       str_c(unique(Parameter[IR_category ==  "Category 5"])[!is.na(unique(Parameter[IR_category ==  "Category 5"]))],
+                                             collapse  = "; "),
+                                       ".") ,
+            Category_4_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4" ])[!is.na(unique(Parameter[IR_category ==  "Category 4" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 4"])[!is.na(unique(Parameter[IR_category ==  "Category 4"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            Category_4A_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4A" ])[!is.na(unique(Parameter[IR_category ==  "Category 4A" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 4A"])[!is.na(unique(Parameter[IR_category ==  "Category 4A"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            Category_4B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4B" ])[!is.na(unique(Parameter[IR_category ==  "Category 4B" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 4B"])[!is.na(unique(Parameter[IR_category ==  "Category 4B"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            Category_4C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4C" ])[!is.na(unique(Parameter[IR_category ==  "Category 4C" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 4C"])[!is.na(unique(Parameter[IR_category ==  "Category 4C"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            
+            Category_3B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3B" ])[!is.na(unique(Parameter[IR_category ==  "Category 3B" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 3B"])[!is.na(unique(Parameter[IR_category ==  "Category 3B"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            Category_3C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3C" ])[!is.na(unique(Parameter[IR_category ==  "Category 3C" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 3C"])[!is.na(unique(Parameter[IR_category ==  "Category 3C"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            Category_3D_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3D" ])[!is.na(unique(Parameter[IR_category ==  "Category 3D" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 3D"])[!is.na(unique(Parameter[IR_category ==  "Category 3D"]))],
+                                                 collapse  = "; "),
+                                           ".")
+            
+            
+            
             
   ) 
 
@@ -1663,6 +1726,25 @@ delist_rollup <- all_delist %>%
    filter(Category_Final == 'Category 2')
  
  write.xlsx(delistings, "ATTAINS/Rollup/Basin_categories/Delistings.xlsx")
+ 
+ 
+ 
+ 
+ all_bains_categories <- read.xlsx("ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+ 
+ 
+ list_303d <- all_bains_categories %>%
+   filter(IR_category == "Category 5") %>%
+   mutate(Rationale = ifelse(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
+                               IR_category == "Category 4"  | 
+                               IR_category == "Category 4b" |  
+                               IR_category == "Category 4C", Rationale, '' )) %>%
+   select(-Data_Review_Comment, -analysis_comment_2018, -Data_Review_Code, 
+          -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category)
+ 
+ 
+ write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/303d_list.xlsx")
+ 
 
 # # Basin delisting files ---------------------------------------------------
 # 
