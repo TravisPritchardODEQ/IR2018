@@ -503,6 +503,7 @@ print("Starting Temperature")
            OWRD_Basin,
            Pollu_ID,
            IR_category,
+           Rationale,
            Data_Review_Comment
     ) %>%
     filter(OWRD_Basin == basin)
@@ -1398,7 +1399,13 @@ xwalk_rationales <- x_walk_impaired %>%
                                                                                                "Category 4C",
                                                                                                "Category 4",
                                                                                                "Category 4B"), previous_rationale, Rationale )) %>%
-   arrange(AU_ID) %>%
+   mutate(Rationale = ifelse(Rationale == "" &
+                             IR_category %in% c("Category 4A",
+                                                "Category 5",
+                                                "Category 4C",
+                                                "Category 4",
+                                                "Category 4B") &
+                             grepl("5",previous_IR_category ), "Carried forward from previous listing", Rationale )) %>%
    select(-previous_rationale)
  
  
@@ -1743,7 +1750,7 @@ delist_rollup <- all_delist %>%
           -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category)
  
  
- write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/303d_list.xlsx")
+ write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/2018-2020_303d_list.xlsx")
  
 
 # # Basin delisting files ---------------------------------------------------

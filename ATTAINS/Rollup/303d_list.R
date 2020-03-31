@@ -10,9 +10,6 @@ list_303d <- all_bains_categories %>%
                               IR_category == "Category 4"  | 
                               IR_category == "Category 4b" |  
                               IR_category == "Category 4C", Rationale, '' )) %>%
-  mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
-  mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
-  mutate(Rationale = ifelse(Rationale == '', "Carried forward from previous listing", Rationale )) %>%
   select(-Data_Review_Comment, -analysis_comment_2018, -Data_Review_Code, 
          -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category)
 
