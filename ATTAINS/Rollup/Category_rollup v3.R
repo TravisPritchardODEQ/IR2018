@@ -1456,6 +1456,9 @@ all_BU_rollup$IR_category <- cat_factor
  BU_Summary <- all_BU_rollup %>%
    mutate(Year_listed = ifelse(is.na(Year_listed), year_assessed, Year_listed ),
           Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) )) %>%
+   mutate(Parameter = case_when(WQstd_code == '15' ~ paste(Parameter, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Parameter, ("- Human Health")),
+                                TRUE ~Parameter )) %>%
    group_by(AU_ID, ben_use) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
    summarise(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Not supported",
@@ -1473,7 +1476,53 @@ all_BU_rollup$IR_category <- cat_factor
                                          Assessed_condition == "Not supported. TMDL in place",str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category ==  "Category 4A"]), collapse  = "; "), "" ),
              Parameters_assessed = ifelse(Assessed_condition != "Use not assessed", str_c(Parameter, collapse  = "; "), ""),
              year_listed = ifelse(Assessed_condition == "Not supported" |
-                                    Assessed_condition == "Not supported. TMDL in place", min(Year_listed), '' )
+                                    Assessed_condition == "Not supported. TMDL in place", min(Year_listed), '' ),
+             Category_2_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 2" ])[!is.na(unique(Parameter[IR_category ==  "Category 2" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 2"])[!is.na(unique(Parameter[IR_category ==  "Category 2"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_5_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 5" ])[!is.na(unique(Parameter[IR_category ==  "Category 5" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 5"])[!is.na(unique(Parameter[IR_category ==  "Category 5"]))],
+                                                  collapse  = "; "),
+                                            "") ,
+             Category_4_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4" ])[!is.na(unique(Parameter[IR_category ==  "Category 4" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 4"])[!is.na(unique(Parameter[IR_category ==  "Category 4"]))],
+                                                 collapse  = "; "),
+                                           ""),
+             Category_4A_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4A" ])[!is.na(unique(Parameter[IR_category ==  "Category 4A" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 4A"])[!is.na(unique(Parameter[IR_category ==  "Category 4A"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_4B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4B" ])[!is.na(unique(Parameter[IR_category ==  "Category 4B" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 4B"])[!is.na(unique(Parameter[IR_category ==  "Category 4B"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_4C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4C" ])[!is.na(unique(Parameter[IR_category ==  "Category 4C" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 4C"])[!is.na(unique(Parameter[IR_category ==  "Category 4C"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             
+             Category_3B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3B" ])[!is.na(unique(Parameter[IR_category ==  "Category 3B" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3B"])[!is.na(unique(Parameter[IR_category ==  "Category 3B"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_3C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3C" ])[!is.na(unique(Parameter[IR_category ==  "Category 3C" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3C"])[!is.na(unique(Parameter[IR_category ==  "Category 3C"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_3D_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3D" ])[!is.na(unique(Parameter[IR_category ==  "Category 3D" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3D"])[!is.na(unique(Parameter[IR_category ==  "Category 3D"]))],
+                                                  collapse  = "; "),
+                                            "")
    )
  
  # data display tables -----------------------------------------------------
@@ -1717,8 +1766,8 @@ Count_impaired_pollutants <- all_categories %>%
 # Delist rollup -----------------------------------------------------------
 
 delist_rollup <- all_delist %>%
-   mutate(Char_Name = case_when(WQstd_code == '15' ~ paste(Char_Name, ("(AL)")), 
-                                WQstd_code == '16' ~ paste(Char_Name, ("(HH)")),
+   mutate(Char_Name = case_when(WQstd_code == '15' ~ paste(Char_Name, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Char_Name, ("- Human Health")),
                                 TRUE ~Char_Name )) %>%
    mutate( Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) )) %>%
    group_by(AU_ID, AU_Name) %>%
