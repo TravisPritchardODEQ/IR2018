@@ -1368,15 +1368,20 @@ load('ATTAINS/x_walk_impaired.Rdata')
 
 xwalk_rationales <- x_walk_impaired %>%
   ungroup() %>%
-  select(Pollu_ID, AU_ID, Period, SUMMARY) %>%
+  select(Pollu_ID, AU_ID, Period, SUMMARY, RECORD_ID) %>%
   mutate(Period = ifelse(Pollu_ID %in% c(154, 132), Period, NA)) %>%
   mutate(Period = case_when(Period == "YearRound" ~ "Year Round",
                             TRUE ~ Period),
          Pollu_ID = as.character(Pollu_ID), 
          SUMMARY = as.character(SUMMARY)) %>%
-  rename(previous_rationale = SUMMARY) %>%
+  rename(previous_rationale_pre = SUMMARY) %>%
+  mutate(previous_rationale = ifelse(is.na(previous_rationale_pre) | previous_rationale_pre =="", 
+                                     paste0("Record ID: ", RECORD_ID), 
+                                     paste0("Record ID: ", RECORD_ID, "- ", previous_rationale_pre))) %>%
   group_by(Pollu_ID, AU_ID, Period) %>%
+  mutate(previous_rationale = str_c(previous_rationale, collapse = "; ") ) %>%
   filter(row_number() == 1) %>%
+  select(-RECORD_ID) %>%
   ungroup()
     
  all_categories <-bind_rows(put_together_list)   
