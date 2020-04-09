@@ -123,18 +123,18 @@ AU_ID_2_basin <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/F
 
 
 
-# Bring in actions for assigning category 4s
-AU_Action <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_Action.csv", 
-                      stringsAsFactors = FALSE) %>%
-  mutate(Action_ID = as.character(Action_ID))
+#Bring in actions for assigning category 4s
+# AU_Action <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_Action.csv",
+#                       stringsAsFactors = FALSE) %>%
+#   mutate(Action_ID = as.character(Action_ID))
+# 
+# Action_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_Parameter.csv",
+#                              stringsAsFactors = FALSE) %>%
+#   mutate(ACTION_ID = as.character(ACTION_ID),
+#          Pollu_ID = as.character(Pollu_ID) )
 
-Action_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_Parameter.csv",
-                             stringsAsFactors = FALSE) %>%
-  mutate(ACTION_ID = as.character(ACTION_ID),
-         Pollu_ID = as.character(Pollu_ID) )
-
-DEQ_Actions <- AU_Action %>%
-  left_join(Action_Parameter, by = c('Action_ID' = 'ACTION_ID'))
+# DEQ_Actions <- AU_Action %>%
+#    left_join(Action_Parameter, by = c('Action_ID' = 'ACTION_ID'))
 
 Action_names <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/actions.csv",
                          stringsAsFactors = FALSE) %>%
@@ -142,14 +142,21 @@ Action_names <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Fi
   select(ACTION_ID, ACTION_NAME) %>%
   rename(TMDL_Name = ACTION_NAME)
 
-DEQ_Actions_names <-DEQ_Actions %>%
-  left_join(Action_names, by = c('Action_ID' = 'ACTION_ID')) 
+Action_AU_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_AU_Parameter.csv",
+                                stringsAsFactors = FALSE)
+
+
+DEQ_Actions_names <-Action_AU_Parameter %>%
+  left_join(Action_names)  %>%
+  mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+  select(-Pollutant_DEQ.WQS) %>%
+  rename(Action_ID = ACTION_ID)
 
 
 
 AU_names <-read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_names.csv",
                                      stringsAsFactors = FALSE) %>%
-  select(AU_ID, AU_Name, AU_Description) 
+  select(AU_ID, AU_Name, AU_Description)
 
 
 # Create various lists used for combining data from each basin
