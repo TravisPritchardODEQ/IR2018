@@ -143,7 +143,7 @@ Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
   mutate(Pollu_ID = as.character(Pollu_ID)) %>%
   select(-SSMA_TimeStamp) %>%
   mutate(Pollutant_DEQ.WQS = trimws(Pollutant_DEQ.WQS, which = "right")) %>%
-  select(Pollu_ID,Attains_PolluName )
+  select(Pollu_ID,Attains_PolluName , -Pollutant_DEQ.WQS)
 
 
 
@@ -152,13 +152,18 @@ actions <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final L
   select(ACTION_ID, ACTION_NAME, ACTION_TYPE)
 
 
-associated_actions <- Action_Parameter %>%
+Action_AU_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_AU_Parameter.csv",
+                               stringsAsFactors = FALSE) %>%
+  mutate(Pollu_ID = as.character(Pollu_ID))
+
+
+
+associated_actions <- Action_AU_Parameter %>%
   left_join(Pollutants,by = "Pollu_ID") %>%
-  right_join(AU_Actions) %>%
   left_join(actions) %>%
   select(AU_ID, Attains_PolluName,ACTION_ID,  ACTION_TYPE)
 
-write.xlsx(associated_actions, file = "associated_actions.xlsx")
+write.xlsx(associated_actions, file = "//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/2018_associated_actions.xlsx")
 
 
 
