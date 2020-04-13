@@ -1386,7 +1386,7 @@ xwalk_rationales <- x_walk_impaired %>%
                                      paste0("Record ID: ", RECORD_ID), 
                                      paste0("Record ID: ", RECORD_ID, "- ", previous_rationale_pre))) %>%
   group_by(Pollu_ID, AU_ID, Period) %>%
-  mutate(previous_rationale = str_c(previous_rationale, collapse = "; ") ) %>%
+  mutate(previous_rationale = str_c(unique(previous_rationale), collapse = "; ") ) %>%
   filter(row_number() == 1) %>%
   select(-RECORD_ID) %>%
   ungroup()
@@ -1802,16 +1802,23 @@ delist_rollup <- all_delist %>%
  
  
  list_303d <- all_bains_categories %>%
-   filter(IR_category == "Category 5") %>%
+   filter(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
+            IR_category == "Category 4"  | 
+            IR_category == "Category 4b" |  
+            IR_category == "Category 4C") %>%
    mutate(Rationale = ifelse(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
                                IR_category == "Category 4"  | 
                                IR_category == "Category 4b" |  
                                IR_category == "Category 4C", Rationale, '' )) %>%
+   mutate(Char_Name = case_when(WQstd_code == '15' ~ paste(Char_Name, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Char_Name, ("- Human Health")),
+                                TRUE ~Char_Name )) %>%
    select(-Data_Review_Comment, -analysis_comment_2018, -Data_Review_Code, 
-          -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category)
+          -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category, -previous_IR_category, previous_rationale_pre, -Data_File,
+          -Pollu_ID, -WQstd_code)
  
  
- write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/2018-2020_303d_list.xlsx")
+ write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/2018-2020_303d_and_impaired_list.xlsx")
  
 
 # # Basin delisting files ---------------------------------------------------
