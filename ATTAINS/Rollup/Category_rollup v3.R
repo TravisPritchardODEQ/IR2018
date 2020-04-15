@@ -1550,7 +1550,7 @@ all_BU_rollup$IR_category <- cat_factor
           Parameter = ifelse(!is.na(Char_Name) & (WQstd_code == "15" & !is.na(WQstd_code)),  paste0(Char_Name, "- ","Aquatic Life"), Parameter),
           Parameter = ifelse(!is.na(Char_Name) &  (WQstd_code == "16"& !is.na(WQstd_code)),  paste0(Char_Name, "- ","Human Health"), Parameter),
           year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
-   right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
+   right_join(filter(select(all_ben_uses, -ben_use), AU_ID %in% all_categories$AU_ID), Joining, by = c("AU_ID", "ben_use_id")) %>%
    group_by(AU_ID, ben_use) %>%
    mutate(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Category 5",
                                          max(IR_category, na.rm = TRUE) == "Category 4" ~ "Category 4",
