@@ -571,7 +571,7 @@ put_together <- Columbia_AU_layer %>%
 # EQC part 2 --------------------------------------------------------------
 
 
-IR_categories <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Draft List/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+IR_categories <- read.xlsx("ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
 
 AU_layer <- read.xlsx('Other tools/statistics generator/AU layer.xlsx')
 
@@ -741,3 +741,15 @@ ggplot(percent_assessed, aes(
 library(plotly)
 
 
+
+# Percent AUs assessed ----------------------------------------------------
+
+
+IR_categories <- read.xlsx("ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx") %>%
+  group_by(AU_ID) %>%
+  summarise(Count = n())
+
+AU_layer <- read.xlsx('Other tools/statistics generator/AU layer.xlsx')
+
+
+percent_assessed = nrow(IR_categories)/nrow(AU_layer)*100

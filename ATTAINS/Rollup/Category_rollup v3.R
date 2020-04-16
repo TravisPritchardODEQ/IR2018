@@ -123,18 +123,18 @@ AU_ID_2_basin <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/F
 
 
 
-# Bring in actions for assigning category 4s
-AU_Action <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_Action.csv", 
-                      stringsAsFactors = FALSE) %>%
-  mutate(Action_ID = as.character(Action_ID))
+#Bring in actions for assigning category 4s
+# AU_Action <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_Action.csv",
+#                       stringsAsFactors = FALSE) %>%
+#   mutate(Action_ID = as.character(Action_ID))
+# 
+# Action_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_Parameter.csv",
+#                              stringsAsFactors = FALSE) %>%
+#   mutate(ACTION_ID = as.character(ACTION_ID),
+#          Pollu_ID = as.character(Pollu_ID) )
 
-Action_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_Parameter.csv",
-                             stringsAsFactors = FALSE) %>%
-  mutate(ACTION_ID = as.character(ACTION_ID),
-         Pollu_ID = as.character(Pollu_ID) )
-
-DEQ_Actions <- AU_Action %>%
-  left_join(Action_Parameter, by = c('Action_ID' = 'ACTION_ID'))
+# DEQ_Actions <- AU_Action %>%
+#    left_join(Action_Parameter, by = c('Action_ID' = 'ACTION_ID'))
 
 Action_names <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/actions.csv",
                          stringsAsFactors = FALSE) %>%
@@ -142,14 +142,21 @@ Action_names <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Fi
   select(ACTION_ID, ACTION_NAME) %>%
   rename(TMDL_Name = ACTION_NAME)
 
-DEQ_Actions_names <-DEQ_Actions %>%
-  left_join(Action_names, by = c('Action_ID' = 'ACTION_ID')) 
+Action_AU_Parameter <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/Action_AU_Parameter.csv",
+                                stringsAsFactors = FALSE)
+
+
+DEQ_Actions_names <-Action_AU_Parameter %>%
+  left_join(Action_names)  %>%
+  mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+  select(-Pollutant_DEQ.WQS) %>%
+  rename(Action_ID = ACTION_ID)
 
 
 
 AU_names <-read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_names.csv",
                                      stringsAsFactors = FALSE) %>%
-  select(AU_ID, AU_Name, AU_Description) 
+  select(AU_ID, AU_Name, AU_Description)
 
 
 # Create various lists used for combining data from each basin
@@ -503,6 +510,7 @@ print("Starting Temperature")
            OWRD_Basin,
            Pollu_ID,
            IR_category,
+           Rationale,
            Data_Review_Comment
     ) %>%
     filter(OWRD_Basin == basin)
@@ -1367,15 +1375,20 @@ load('ATTAINS/x_walk_impaired.Rdata')
 
 xwalk_rationales <- x_walk_impaired %>%
   ungroup() %>%
-  select(Pollu_ID, AU_ID, Period, SUMMARY) %>%
+  select(Pollu_ID, AU_ID, Period, SUMMARY, RECORD_ID) %>%
   mutate(Period = ifelse(Pollu_ID %in% c(154, 132), Period, NA)) %>%
   mutate(Period = case_when(Period == "YearRound" ~ "Year Round",
                             TRUE ~ Period),
          Pollu_ID = as.character(Pollu_ID), 
          SUMMARY = as.character(SUMMARY)) %>%
-  rename(previous_rationale = SUMMARY) %>%
+  rename(previous_rationale_pre = SUMMARY) %>%
+  mutate(previous_rationale = ifelse(is.na(previous_rationale_pre) | previous_rationale_pre =="", 
+                                     paste0("Record ID: ", RECORD_ID), 
+                                     paste0("Record ID: ", RECORD_ID, "- ", previous_rationale_pre))) %>%
   group_by(Pollu_ID, AU_ID, Period) %>%
+  mutate(previous_rationale = str_c(unique(previous_rationale), collapse = "; ") ) %>%
   filter(row_number() == 1) %>%
+  select(-RECORD_ID) %>%
   ungroup()
     
  all_categories <-bind_rows(put_together_list)   
@@ -1398,7 +1411,13 @@ xwalk_rationales <- x_walk_impaired %>%
                                                                                                "Category 4C",
                                                                                                "Category 4",
                                                                                                "Category 4B"), previous_rationale, Rationale )) %>%
-   arrange(AU_ID) %>%
+   mutate(Rationale = ifelse(Rationale == "" &
+                             IR_category %in% c("Category 4A",
+                                                "Category 5",
+                                                "Category 4C",
+                                                "Category 4",
+                                                "Category 4B") &
+                             grepl("5",previous_IR_category ), "Carried forward from previous listing", Rationale )) %>%
    select(-previous_rationale)
  
  
@@ -1449,6 +1468,9 @@ all_BU_rollup$IR_category <- cat_factor
  BU_Summary <- all_BU_rollup %>%
    mutate(Year_listed = ifelse(is.na(Year_listed), year_assessed, Year_listed ),
           Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) )) %>%
+   mutate(Parameter = case_when(WQstd_code == '15' ~ paste(Parameter, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Parameter, ("- Human Health")),
+                                TRUE ~Parameter )) %>%
    group_by(AU_ID, ben_use) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
    summarise(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Not supported",
@@ -1466,7 +1488,53 @@ all_BU_rollup$IR_category <- cat_factor
                                          Assessed_condition == "Not supported. TMDL in place",str_c(unique(Parameter[IR_category ==  "Category 5" | IR_category ==  "Category 4A"]), collapse  = "; "), "" ),
              Parameters_assessed = ifelse(Assessed_condition != "Use not assessed", str_c(Parameter, collapse  = "; "), ""),
              year_listed = ifelse(Assessed_condition == "Not supported" |
-                                    Assessed_condition == "Not supported. TMDL in place", min(Year_listed), '' )
+                                    Assessed_condition == "Not supported. TMDL in place", min(Year_listed), '' ),
+             Category_2_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 2" ])[!is.na(unique(Parameter[IR_category ==  "Category 2" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 2"])[!is.na(unique(Parameter[IR_category ==  "Category 2"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_5_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 5" ])[!is.na(unique(Parameter[IR_category ==  "Category 5" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 5"])[!is.na(unique(Parameter[IR_category ==  "Category 5"]))],
+                                                  collapse  = "; "),
+                                            "") ,
+             Category_4_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4" ])[!is.na(unique(Parameter[IR_category ==  "Category 4" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 4"])[!is.na(unique(Parameter[IR_category ==  "Category 4"]))],
+                                                 collapse  = "; "),
+                                           ""),
+             Category_4A_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4A" ])[!is.na(unique(Parameter[IR_category ==  "Category 4A" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 4A"])[!is.na(unique(Parameter[IR_category ==  "Category 4A"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_4B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4B" ])[!is.na(unique(Parameter[IR_category ==  "Category 4B" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 4B"])[!is.na(unique(Parameter[IR_category ==  "Category 4B"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_4C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4C" ])[!is.na(unique(Parameter[IR_category ==  "Category 4C" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 4C"])[!is.na(unique(Parameter[IR_category ==  "Category 4C"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             
+             Category_3B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3B" ])[!is.na(unique(Parameter[IR_category ==  "Category 3B" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3B"])[!is.na(unique(Parameter[IR_category ==  "Category 3B"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_3C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3C" ])[!is.na(unique(Parameter[IR_category ==  "Category 3C" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3C"])[!is.na(unique(Parameter[IR_category ==  "Category 3C"]))],
+                                                  collapse  = "; "),
+                                            ""),
+             Category_3D_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3D" ])[!is.na(unique(Parameter[IR_category ==  "Category 3D" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3D"])[!is.na(unique(Parameter[IR_category ==  "Category 3D"]))],
+                                                  collapse  = "; "),
+                                            "")
    )
  
  # data display tables -----------------------------------------------------
@@ -1482,7 +1550,7 @@ all_BU_rollup$IR_category <- cat_factor
           Parameter = ifelse(!is.na(Char_Name) & (WQstd_code == "15" & !is.na(WQstd_code)),  paste0(Char_Name, "- ","Aquatic Life"), Parameter),
           Parameter = ifelse(!is.na(Char_Name) &  (WQstd_code == "16"& !is.na(WQstd_code)),  paste0(Char_Name, "- ","Human Health"), Parameter),
           year_assessed = ifelse(is.na(year_assessed), Year_listed, year_assessed )) %>%
-   right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
+   right_join(filter(select(all_ben_uses, -ben_use), AU_ID %in% all_categories$AU_ID), Joining, by = c("AU_ID", "ben_use_id")) %>%
    group_by(AU_ID, ben_use) %>%
    mutate(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Category 5",
                                          max(IR_category, na.rm = TRUE) == "Category 4" ~ "Category 4",
@@ -1710,8 +1778,8 @@ Count_impaired_pollutants <- all_categories %>%
 # Delist rollup -----------------------------------------------------------
 
 delist_rollup <- all_delist %>%
-   mutate(Char_Name = case_when(WQstd_code == '15' ~ paste(Char_Name, ("(AL)")), 
-                                WQstd_code == '16' ~ paste(Char_Name, ("(HH)")),
+   mutate(Char_Name = case_when(WQstd_code == '15' ~ paste(Char_Name, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Char_Name, ("- Human Health")),
                                 TRUE ~Char_Name )) %>%
    mutate( Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) )) %>%
    group_by(AU_ID, AU_Name) %>%
@@ -1734,16 +1802,23 @@ delist_rollup <- all_delist %>%
  
  
  list_303d <- all_bains_categories %>%
-   filter(IR_category == "Category 5") %>%
+   filter(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
+            IR_category == "Category 4"  | 
+            IR_category == "Category 4b" |  
+            IR_category == "Category 4C") %>%
    mutate(Rationale = ifelse(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
                                IR_category == "Category 4"  | 
                                IR_category == "Category 4b" |  
                                IR_category == "Category 4C", Rationale, '' )) %>%
+   mutate(Char_Name = case_when(WQstd_code == '15' ~ paste(Char_Name, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Char_Name, ("- Human Health")),
+                                TRUE ~Char_Name )) %>%
    select(-Data_Review_Comment, -analysis_comment_2018, -Data_Review_Code, 
-          -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category)
+          -Action_ID, -TMDL_Name, -Review_Comment, -Revised_Category, -previous_IR_category, previous_rationale_pre, -Data_File,
+          -Pollu_ID, -WQstd_code)
  
  
- write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/303d_list.xlsx")
+ write.xlsx(list_303d, "ATTAINS/Rollup/Basin_categories/2018-2020_303d_and_impaired_list.xlsx")
  
 
 # # Basin delisting files ---------------------------------------------------

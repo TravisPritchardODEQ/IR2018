@@ -111,8 +111,8 @@ x_walk_all <- rbind(DO,algae,Hg,P,pH,DDTs,fecal, sediment,entero,tub_TDG,ecoli,c
   filter(!is.na(Pollutant))
 
 impaired_2012_2 <- impaired_2012 %>%
-  mutate(Period = case_when(Pollu_ID == 154 & SEASON_ID %in% c(1,2,3,16,71,101) ~ "YearRound",
-                            Pollu_ID == 154 & SEASON_ID %in% c(8,23,30,31,38,39,41,42,45,46,49,50,51,100) ~ "Spawning",
+  mutate(Period = case_when(Pollu_ID == 154 & SEASON_ID %in% c(1,2,3,16,71,101, 30, 38) ~ "YearRound",
+                            Pollu_ID == 154 & SEASON_ID %in% c(8,23,31,39,41,42,45,46,49,50,51,100) ~ "Spawning",
                             Pollu_ID == 132 & SEASON_ID %in% c(1,2,3,16,32,71,72,101) ~ "YearRound",
                             Pollu_ID == 132 & SEASON_ID %in% c(6,8,9,15,27,30,31,39,40,41,42,45,46,48,49,50,51,64,100) ~ "Spawning",
                             !Pollu_ID %in% c(154,132) ~ "YearRound"))
@@ -129,8 +129,8 @@ write.xlsx(X_walk_methods, file = "Crosswalk_2012/xwalk_method.xlsx")
 
 x_walk_impaired <- x_walk_all %>% 
   filter(AU_Category %in% c('Category 5','4C')) %>%
-  select(RECORD_ID,Pollu_ID,AU_ID) %>%
-  left_join(impaired_2012, by = c("RECORD_ID","Pollu_ID", "Period")) %>%
+  select(RECORD_ID,Pollu_ID,AU_ID, Period) %>%
+  left_join(impaired_2012_2, by = c("RECORD_ID","Pollu_ID", "Period")) %>%
   mutate(Period = case_when(Pollu_ID == 154 & SEASON_ID %in% c(1,2,3,16,71,101) ~ "YearRound",
                             Pollu_ID == 154 & SEASON_ID %in% c(8,23,30,31,38,39,41,42,45,46,49,50,51,100) ~ "Spawning",
                             Pollu_ID == 132 & SEASON_ID %in% c(1,2,3,16,32,71,72,101) ~ "YearRound",
@@ -140,6 +140,7 @@ x_walk_impaired <- x_walk_all %>%
  
 
 save(x_walk_impaired, file = 'ATTAINS/x_walk_impaired.Rdata')
+write.xlsx(x_walk_impaired, file = 'ATTAINS/x_walk_impaired.xlsx')
 write.csv(x_walk_impaired, "x_walk_impaired_LLID.csv", row.names = FALSE)
 
 save(x_walk_impaired, file = 'ATTAINS/x_walk_impaired.Rdata')
