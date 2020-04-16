@@ -1,0 +1,471 @@
+AU_ID,Pollu_ID,WQstd_code,Period,Delisting AGREE??,Rationale,Reason_Code
+OR_CL_1710020102_106279,83,1,,YES,Meets delisting requirements,2
+OR_CL_1710020310_106236,83,1,,YES,Meets delistings requirement,2
+OR_CL_1710020410_106249,83,1,,YES ,Meets delisting requirements,2
+OR_CL_1710020410_106252,83,1,,YES ,Meets delisting requirements,2
+OR_CL_1710020410_106257,83,1,,YES ,Meets delisting requirements,2
+OR_CL_1710020508_105040,83,1,,YES ,Meets delisting requirements,2
+OR_CL_1710020508_106260,83,1,,YES ,Meets delisting requirements,2
+OR_CL_1710030405_105050,83,1,,YES,Meets delisting requirements,2
+OR_CL_1710030605_104716,83,1,,YES,Meets delisting requirements,2
+OR_CL_1710031206_104714,83,1,,YES,,2
+OR_EB_1710020206_01_107214,154,3,Year Round,YES,Meets delisting requirements,2
+OR_EB_1710020206_01_107214,76,1,,YES,,2
+OR_EB_1710020302_01_107216,76,1,,YES,Meets delisting requirements,2
+OR_EB_1710020308_01_100298,154,3,Year Round,YES,Meets 2018 category 2 requrements,2
+OR_EB_1710020308_01_107225,124,10,,YES,Meets delisting requirements,2
+OR_EB_1710020403_01_100318,86,1,,YES ,Meets delisting requirements,2
+OR_EB_1710020403_01_107231,154,3,Year Round,YES,Meets 2018 category 2 requrements,2
+OR_EB_1710020407_01_107218,154,3,Year Round,YES,Meets delisting requirements,2
+OR_EB_1710020407_01_107219,124,10,,YES ,Meets delisting requirements,2
+OR_EB_1710020408_01_107217,124,10,,YES ,Meets delisting requirements,2
+OR_EB_1710020408_01_107217,154,3,Year Round,YES,Meets delisting requirements,2
+OR_EB_1710020607_01_107223,154,3,Year Round,YES,Meets delisting requirements,2
+OR_EB_1710030403_01_107198,76,1,,YES ,Meets delisting requirements,2
+OR_EB_1710030403_01_107198,154,3,Year Round,YES,Meets delisting requirements,2
+OR_LK_1707010401_02_100012,154,3,Year Round,YES,Meets delisting requirements,2
+OR_LK_1707010511_88_100135,124,10,,YES,Meets delisting criteria,2
+OR_LK_1707010511_88_100136,124,10,,YES,Meets delisting criteria,2
+OR_LK_1707010512_88_100134,124,10,,YES,Meets delisting requirements,2
+OR_LK_1707030511_02_100117,132,12,Year round,YES,No exceedances of criteria ,2
+OR_LK_1708000105_11_100637,132,12,Year round,YES,Doesn't meet minimum delisting requirements,2
+OR_LK_1709001202_02_100854,6,15,,YES,Meets delisting requirements,2
+OR_LK_1709001202_02_100854,154,3,Year Round,YES,meets delist requirements,2
+OR_LK_1710020409_02_100164,124,10,,YES,Meets delisting requirements,2
+OR_LK_1710030404_02_100222,124,10,,YES,Meets delisting requirements,2
+OR_SR_1705010311_02_102702,154,3,Year Round,YES,Meets delisting requirements,3
+OR_SR_1705011007_05_102744,101,15,,YES,All dissolved samples at or near DL,2
+OR_SR_1705011607_05_102752,154,3,Spawning,YES,Was never listed for spawning; meets Cat 2 requirements,2
+OR_SR_1705011607_05_102752,154,3,Year Round,YES,Meets delisitng requirements,2
+OR_SR_1705011613_05_102759,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1705011704_05_102767,40,17,,YES,Meets delisting requirements,2
+OR_SR_1705011704_05_102767,101,15,,YES,"0 out of 9 Pb-D samples > criteria, 0 out of 15 samples total > criteria",2
+OR_SR_1705011706_05_102769,40,17,,YES,Meets delisting requirements,2
+OR_SR_1705011706_05_102769,101,15,,YES,"0 out of 7 Pb-D samples > criteria, 0 out of 13 samples total > criteria",2
+OR_SR_1705011803_05_102777,40,17,,YES,Meets delisting requirements,2
+OR_SR_1705020106_05_102790,154,3,Spawning,YES,Meets delisting requirements,3
+OR_SR_1705020106_05_102790,154,3,Year Round,YES,Meets delisting requirements,3
+OR_SR_1705020106_05_102793,76,1,,YES,Meets delisting requirements,3
+OR_SR_1705020204_05_102803,40,17,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1705020208_05_102810,76,1,,YES ,Meets delisting requirements,3
+OR_SR_1705020208_05_102810,101,15,,YES,Artifact of old listing - 9 out of 9 samples at or below DL,3
+OR_SR_1705020208_05_102810,154,3,Spawning,YES,Meets delisting requirements,3
+OR_SR_1705020208_05_102810,154,3,Year Round,YES,Meets delisting requirements,3
+OR_SR_1705020301_05_102812,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1705020301_05_102812,154,3,Year Round,YES,Meets delisting requirements,3
+OR_SR_1705020301_05_102814,154,3,Spawning,YES,Meets 2018 category 2 requrements,3
+OR_SR_1705020301_05_102814,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1705020302_05_102815,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1705020303_05_102816,154,3,Spawning,YES,,2
+OR_SR_1705020303_05_102816,101,15,,YES,,2
+OR_SR_1705020308_05_102826,76,1,,YES,Meets delisting requirements,3
+OR_SR_1705020309_05_102829,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1705020309_05_102829,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1706010204_02_103295,132,12,Year round,YES,,2
+OR_SR_1706010403_02_103318,124,10,,YES,Meets delisting requirements,2
+OR_SR_1706010404_02_103553,124,10,,YES,Meets delisting requirements,2
+OR_SR_1706010405_02_103325,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1706010405_02_103325,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1706010405_02_103325,124,10,,YES,Meets delisting requirements,2
+OR_SR_1706010411_02_103339,124,10,,YES,"All samples less than criteria (including Trec), not likely to exceed",2
+OR_SR_1706010411_02_103339,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1706010411_02_103339,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1706010501_02_103344,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1706010505_02_103361,45,15,,YES,Criteria change - now meets BLM (same data assessed),2
+OR_SR_1706010506_02_103362,76,1,,YES,No samples > criteria (order of magnitude lower),2
+OR_SR_1706010506_02_103362,124,10,,YES,Meets delisting requirements,2
+OR_SR_1706010506_02_103362,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1706010506_02_103362,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1707010207_16_101462,41,15,,YES,,2
+OR_SR_1707010304_02_102606,101,15,,YES,Artifact of old listing - 10 of 10 dissolved samples < 0.2 ug/L,2
+OR_SR_1707010305_02_101480,45,15,,YES,Artifact of old listing - 7 out of 7 samples < criteria,3
+OR_SR_1707010307_02_102616,124,10,,YES,Meets delisting requirements,3
+OR_SR_1707010307_02_102616,6,15,,YES,Meets delisting requirements,2
+OR_SR_1707010307_02_102616,154,3,Spawning,YES,Meets delisting requirements,3
+OR_SR_1707010307_02_102616,154,3,Year Round,YES,Meets delisting requirements,3
+OR_SR_1707010313_02_101492,124,10,,YES,Meets delisting requirements,3
+OR_SR_1707010313_02_101492,6,15,,YES,Meets delisting requirements,3
+OR_SR_1707010313_02_101492,101,15,,YES,Artifact of old listing - 11 of 11 dissolved samples < 0.1 ug/L,2
+OR_SR_1707010313_02_101492,154,3,Spawning,YES,,2
+OR_SR_1707010402_02_101494,76,1,,YES,Meets delisting requirements,3
+OR_SR_1707010402_02_101494,124,10,,YES,Meets delisting requirements,3
+OR_SR_1707010402_02_101494,154,3,Spawning,YES,,2
+OR_SR_1707010502_02_101504,132,12,Spawn,YES,Meets delisting requirements,2
+OR_SR_1707010506_02_101511,124,10,,YES,Meets delisting requirements,2
+OR_SR_1707010507_02_101512,45,15,,YES,All samples are less than detect,2
+OR_SR_1707010507_02_101512,101,15,,YES,All results < detect,2
+OR_SR_1707020104_05_101527,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1707020104_05_101527,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1707020110_05_101552,76,1,,YES,Meets delisting requirements,2
+OR_SR_1707020110_05_101552,101,15,,YES,"All samples less than criteria (including Trec), not likely to exceed",2
+OR_SR_1707020110_05_101552,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1707020110_05_101552,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1707020207_05_101598,132,12,Year round,YES,,2
+OR_SR_1707020410_05_101700,124,10,,YES,Meets delisting requirements,2
+OR_SR_1707020410_05_101700,45,15,,YES,No samples > criteria (order of magnitude lower),2
+OR_SR_1707030103_05_101713,40,17,,YES,No exceedances of criteria ,2
+OR_SR_1707030103_05_101713,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1707030104_05_102628,40,17,,YES,No exceedances of criteria ,2
+OR_SR_1707030104_05_102628,124,10,,YES,Meets delisting requirement,2
+OR_SR_1707030104_05_102628,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1707030104_05_102628,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1707030109_05_101716,132,12,Year round,YES,Meets delisting requirement,2
+OR_SR_1707030309_05_101746,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1707030310_05_101749,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1707030401_05_101759,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1707030401_05_101759,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1707030405_05_101770,124,10,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1707030406_02_101771,124,10,,YES,Meets delisting requirement,2
+OR_SR_1707030406_02_101771,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1707030406_02_101771,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1707030501_02_101787,124,10,,YES,Meets delisting requirement,3
+OR_SR_1707030504_05_101794,124,10,,YES,Meets delisting requirement,3
+OR_SR_1707030505_05_102589,76,1,,YES,Meets delisting requirements,3
+OR_SR_1707030505_05_102589,124,10,,YES,Meets delisting requirement,2
+OR_SR_1707030510_02_101806,124,10,,YES,Meets delisting requirement,3
+OR_SR_1707030511_02_101810,76,1,,YES,Meets delisting requirement,3
+OR_SR_1707030603_05_102625,132,12,Year round,YES,Meets delisting requirements,3
+OR_SR_1707030603_05_102625,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1707030705_05_101842,124,10,,YES,Meets 2018 category 2 requrements,3
+OR_SR_1708000102_02_103600,132,12,Year round,YES,Meets delisting requirements,2
+OR_SR_1708000302_88_100670,124,10,,YES,Meets delisting criteria,2
+OR_SR_1708000305_05_103619,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1708000305_05_103619,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1708000309_04_100664,9,16,,YES,"Highly unlikely would exceed AL numbers, all values < 1.0 ug/L",2
+OR_SR_1708000602_05_103678,76,1,,YES,Meets delisting requirements,2
+OR_SR_1709000107_02_103727,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000203_02_104585,124,10,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000204_02_103787,124,10,,YES,Meets delisting requirements,2
+OR_SR_1709000204_02_103787,45,15,,YES,Artifact of old listing - new criteria - All 18 samples < criteria (including total),3
+OR_SR_1709000204_02_103787,101,15,,YES,"Artifact of old listing, based on site data, dissolved samples either at DL or estimated between DL and MRL",3
+OR_SR_1709000204_02_103787,99,15,,YES,Meets delisting requirements,2
+OR_SR_1709000301_02_103791,76,1,,YES,Meets delisting requirements,3
+OR_SR_1709000301_02_103791,101,15,,YES,"Artifact of old listing, based on site data, dissolved samples either at DL or estimated between DL and MRL",3
+OR_SR_1709000301_02_103791,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000303_02_103816,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000304_02_103821,76,1,,YES,Meets delisting requirements,3
+OR_SR_1709000304_02_103821,101,15,,YES,"Artifact of old listing, based on site data, dissolved samples either at DL or estimated between DL and MRL",3
+OR_SR_1709000306_02_103838,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000306_05_103854,45,15,,YES,Meets delisting requirements,2
+OR_SR_1709000306_05_103854,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000402_02_104588,132,12,Year round,YES,No excursions of criteria,3
+OR_SR_1709000406_02_103871,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000406_02_103871,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000407_02_103884,101,15,,YES,"Artifact of old listing, based on site data, dissolved samples either at DL or estimated between DL and MRL",2
+OR_SR_1709000407_02_103884,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000503_02_103906,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1709000503_02_103906,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000506_02_103927,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000506_02_103930,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000604_02_103969,132,12,Year round,YES,,2
+OR_SR_1709000701_02_104591,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000701_05_104005,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000702_02_104007,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000703_02_104008,154,3,Spawning,YES,,2
+OR_SR_1709000703_02_104012,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000703_04_104013,99,15,,YES,No exceedances of criteria ,2
+OR_SR_1709000703_04_104013,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000703_05_104014,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000704_02_104018,76,1,,YES,Meets delisting requirements,2
+OR_SR_1709000704_02_104018,6,15,,YES,Meets delisting requirements,2
+OR_SR_1709000704_02_104018,101,15,,YES ,Meets delisting requirements,2
+OR_SR_1709000704_02_104018,150,15,,YES ,Meets delisting requirements,2
+OR_SR_1709000704_02_104018,45,15,,YES,Favor measured BLM inputs and dissolved data - 0 of 160 exceedances for Measured inputs and dissolved Cu; 3 out of 37 exceedances defaults inputs and TR Cu; 31 out of 278 exceedances Defaults inputs and dissolved Cu,1
+OR_SR_1709000704_02_104597,76,1,,YES,Meets delisting requirements,2
+OR_SR_1709000704_02_104597,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709000704_02_104597,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709000704_88_104020,40,17,,YES,Meets delisting requirements,2
+OR_SR_1709000704_88_104020,101,15,,YES,"Artifact of old listing, based on site data, dissolved samples either at DL or estimated between DL and MRL",2
+OR_SR_1709000801_02_104028,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000804_02_104047,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000806_02_104052,76,1,,YES,Meets delisting requirements,2
+OR_SR_1709000806_02_104052,45,15,,YES,Artifact of old standard - - 12 valid samples attain criteria - not near criteria value,2
+OR_SR_1709000807_02_104060,45,15,,YES,Artifact of old standard - - 12 valid samples attain criteria - not near criteria value,2
+OR_SR_1709000807_02_104060,101,15,,YES,Artifact of old standard - - 13 valid samples attain criteria - no excursions of dissolved fraction,2
+OR_SR_1709000807_02_104061,76,1,,YES,Meets delisting requirements,2
+OR_SR_1709000807_02_104061,40,17,,YES,Could we move to 3B??,2
+OR_SR_1709000807_02_104061,124,10,,YES,Could we move to 3B??,2
+OR_SR_1709000807_02_104061,45,15,,YES,Artifact of old standard - - 18 valid samples attain criteria - no excursions of dissolved fraction,2
+OR_SR_1709000807_02_104061,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709000901_02_104062,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000901_02_104068,41,15,,YES,Meets delisting requirements,2
+OR_SR_1709000901_02_104068,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709000901_02_104069,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000902_02_104072,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000902_02_104072,154,3,Year Round,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000902_02_104072,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000902_02_104073,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709000905_02_104088,101,15,,YES,"Artifact of old listing, based on site data, dissolved samples either at DL or estimated between DL and MRL",2
+OR_SR_1709000905_02_104088,89,15,,YES,Meets delising requirements,2
+OR_SR_1709000906_02_104093,76,1,,YES,Meets delisting requirements,2
+OR_SR_1709000906_02_104093,101,15,,YES,Artifact of old standard - - 11 valid samples attain criteria - no excursions of dissolved fraction,2
+OR_SR_1709000906_02_104093,154,3,Spawning,YES,,2
+OR_SR_1709001001_02_104096,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709001001_02_104096,45,15,,YES,Meets delisting requirements,2
+OR_SR_1709001001_02_104096,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001002_02_104104,132,12,Year round,YES,No excursions of criteria,2
+OR_SR_1709001002_02_104104,45,15,,YES,Meets delisting requirements,2
+OR_SR_1709001002_02_104104,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001002_02_104109,99,15,,YES,Meets delisting requirements,2
+OR_SR_1709001002_02_104109,154,3,Spawning,YES,,2
+OR_SR_1709001003_02_104112,9,16,,YES,,2
+OR_SR_1709001003_02_104114,124,10,,YES,Meets delisting requirements,2
+OR_SR_1709001003_02_104120,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104133,40,17,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104133,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104133,9,16,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104134,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104134,9,16,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104139,40,17,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104139,6,15,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104139,45,15,,YES,Meets delisting requirements,2
+OR_SR_1709001004_02_104139,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1709001005_02_104140,40,17,,YES,Meets delisting requirements,2
+OR_SR_1709001005_02_104141,150,15,,YES,Meets delisting requirements,2
+OR_SR_1709001005_02_104141,9,16,,YES,Meets delisting requirements,2
+OR_SR_1709001005_02_104141,136,16,,YES,Meets delisting requirements,2
+OR_SR_1709001201_02_104170,124,10,,YES,Meets delisting requirements,2
+OR_SR_1709001201_02_104170,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001201_02_104170,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1709001201_02_104170,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1709001202_88_104175,124,10,,YES,Meets delisting requirements,2
+OR_SR_1709001202_88_104175,45,15,,YES,Meets delisting requirements,2
+OR_SR_1709001202_88_104175,101,15,,YES,Meets delisting requirements,2
+OR_SR_1709001203_88_104184,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1709001203_88_104184,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710020101_05_105827,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710020203_05_105834,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710020203_05_105834,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710020302_05_105874,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710020304_05_105899,132,12,Spawn,YES,Artifact of old listing - 10 of 10 dissolved samples < 0.2 ug/L,2
+OR_SR_1710020305_05_106214,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710020306_05_105924,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710020306_05_105925,156,5,,YES,Meets delisting requirements,2
+OR_SR_1710020307_05_105939,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710020307_05_105939,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710020307_05_105939,132,12,Year round,YES,,2
+OR_SR_1710020401_02_105951,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710020401_02_105953,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710020402_02_105954,124,10,,YES ,Meets delisting requirements,2
+OR_SR_1710020407_02_105991,124,10,,YES ,Meets delisting requirements,2
+OR_SR_1710020407_02_106213,124,10,,YES ,Meets delisting requirements,2
+OR_SR_1710020407_02_106452,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710020408_02_105995,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710020408_02_105995,124,10,,YES ,Meets delisting requirements,2
+OR_SR_1710020408_02_105996,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710020502_02_106029,154,3,Spawning,YES,,2
+OR_SR_1710020504_02_106034,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710020504_02_106044,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710020504_02_106044,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710020505_02_106050,132,12,Year round,YES,Meets delisting requirements,2
+OR_SR_1710020505_02_106050,132,12,Spawn,YES,0 of 32 7-DADM values > spawning criteria - not full spawning period,2
+OR_SR_1710020505_02_106050,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710020505_02_106051,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710020506_02_106052,76,1,,YES,Meets delisting requirements - artifact of old lisitng,2
+OR_SR_1710020506_02_106053,76,1,,YES ,Meets delisting requirements - artifact of old lisitng,2
+OR_SR_1710020506_02_106054,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710020602_02_105057,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710020602_02_105057,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710020607_02_106413,156,5,,YES ,Meets delisting requirements,2
+OR_SR_1710030203_02_105389,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030204_02_105393,132,12,Spawn,YES,Meets delisting requirements,3
+OR_SR_1710030205_02_106333,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030205_02_106333,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030205_02_106333,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030205_02_106333,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030205_02_106333,40,17,,YES,,2
+OR_SR_1710030207_02_106335,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030207_02_106335,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030209_02_106367,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030209_02_106367,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030209_02_106367,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030210_02_105429,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030210_02_105429,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030210_02_105432,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030210_02_105432,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030210_02_106416,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030210_02_106416,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030211_02_105320,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030211_02_105320,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030211_02_105320,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030213_02_105102,25,15,,YES,Meets delisting requirements,2
+OR_SR_1710030213_02_105102,9,16,,YES,Meets delisting requirements,2
+OR_SR_1710030213_02_105102,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030213_02_105102,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030213_02_105102,40,17,,YES,,2
+OR_SR_1710030301_02_105442,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030301_02_105442,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030301_02_105442,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030301_02_105442,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030301_02_106418,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030301_02_106418,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030302_05_105126,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030302_05_105126,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030302_05_105126,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030302_05_105126,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030303_02_106420,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030303_02_106420,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030303_02_106420,154,3,Spawning,YES,Meets delisting requirements,2
+OR_SR_1710030303_02_106420,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_SR_1710030304_02_105151,156,5,,YES,Meets listing requirements,2
+OR_SR_1710030401_02_105207,156,5,,YES,Meets delisting requirements,2
+OR_SR_1710030501_02_104959,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030501_02_104959,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030501_02_104959,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710030501_02_105238,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030501_02_106376,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030502_02_104970,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030502_02_104973,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030502_02_104973,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710030502_02_106302,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030504_02_104981,76,1,,YES,,2
+OR_SR_1710030504_02_104981,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030504_02_106380,156,5,,YES,Meets delisting requirements,2
+OR_SR_1710030504_02_106381,156,5,,YES,Meets delisting requirements,2
+OR_SR_1710030505_02_104992,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030505_02_104992,40,17,,YES,Meets delisting requirements,2
+OR_SR_1710030505_02_104992,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030601_02_106304,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030601_02_106304,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030601_02_106304,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710030602_02_104622,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030701_02_105462,132,12,Year round,YES,Meets delisting requirements,2
+OR_SR_1710030703_04_105475,132,12,Year round,YES,Meets delisting requirements,2
+OR_SR_1710030703_04_105475,132,12,Spawn,YES,Meets delisting requirements,2
+OR_SR_1710030707_04_105507,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030708_02_105511,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030708_02_105522,76,1,,YES,Meets delisting requirements,2
+OR_SR_1710030801_02_105532,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030801_02_105534,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030801_02_105538,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030801_02_105544,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030801_02_105548,6,15,,YES,Meets delisting requirements,2
+OR_SR_1710030801_02_105548,154,3,Year Round,YES,meets delist requirements,2
+OR_SR_1710030801_05_105552,101,15,,YES,Meets delisting requirements - artifact of old lisitng,2
+OR_SR_1710030801_05_105552,9,16,,YES ,Meets delisting requirements - artifact of old lisitng,2
+OR_SR_1710030906_02_106343,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710030906_02_106343,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710030906_02_106343,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710031002_04_104794,124,10,,YES,Meets delisting requirements,2
+OR_SR_1710031002_04_104794,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_SR_1710031002_04_104794,154,3,Year Round,YES,Meets delisting requirements,2
+OR_SR_1710031202_02_104654,156,5,,YES,Meets delisting requirements,2
+OR_SR_1710031204_02_104660,124,10,,YES,Meets delisting requirements,2
+OR_SR_1712000704_05_106502,76,1,,YES,All results < detect,3
+OR_SR_1712000704_05_106502,124,10,,YES,Meets delisting requirements,3
+OR_SR_1801020207_05_106978,124,10,,YES,Meets delisting requirements,2
+OR_SR_1801020207_05_106978,154,3,Year Round,YES,Meets delistings requirement,2
+OR_SR_1801020407_05_107185,40,17,,YES,Meets delisting requirements,2
+OR_SR_1801020409_05_107184,76,1,,YES,Meets delisting requirements,2
+OR_SR_1801020409_05_107184,6,15,,YES,Meets delisting requirements,2
+OR_SR_1801020412_05_106990,124,10,,YES,Meets delisting requirements,2
+OR_SR_1801020412_88_106991,6,15,,YES,Meets delisting requirements,2
+OR_WS_170501160101_05_102969 ,132,12,Year round,YES,3 of 1638 7-DADM values > criteria - air temp exclusion applies to the excursions,2
+OR_WS_170501161201_05_103024,156,5,,YES,Meets delisting requirements,2
+OR_WS_170502020103_05_103114,124,10,,YES,Meets 2018 category 2 requrements,2
+OR_WS_170502020106_05_103117,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170502020302_05_103124,132,12,Year round,YES,,2
+OR_WS_170502030201_05_103157,132,12,Year round,YES,,2
+OR_WS_170502030204_05_103160,132,12,Year round,YES ,Meets delisting requirements,2
+OR_WS_170701020903_16_101875,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_WS_170701040103_02_101953,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170701050201_02_101980,132,12,Year round,YES,"0 out of 9 Pb-D samples > criteria, 0 out of 15 samples total > criteria",2
+OR_WS_170701050203_02_101982,132,12,Year round,YES,"0 out of 7 Pb-D samples > criteria, 0 out of 13 samples total > criteria",2
+OR_WS_170701050403_02_101992,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_170701050404_02_101993,41,15,,YES,Meets delisting requirements,2
+OR_WS_170701050501_02_101996,132,12,Spawn,YES ,Meets delisting requirements,2
+OR_WS_170701050602_02_102003,132,12,Year round,YES ,Meets delisting requirements,2
+OR_WS_170701050701_02_102005,124,10,,YES,Meets delisting requirements,2
+OR_WS_170701050701_02_102005,130,15,,YES,"Doesn't meet minimum delisting requirements, but all results < detect",2
+OR_WS_170701050701_02_102005,154,3,Spawning,YES,Meets delisting requirements,2
+OR_WS_170701050701_02_102005,154,3,Year Round,YES,Meets delisting requirements,2
+OR_WS_170701050701_02_102005,156,5,,YES,Meets delisting requirements,2
+OR_WS_170701050701_02_102005,89,15,,YES,Meets delisting requirements,2
+OR_WS_170701050701_02_102005,41,15,,YES,Meets delisting requirements,2
+OR_WS_170701050702_02_102006,41,15,,YES,Meets delisting requirements,2
+OR_WS_170701050703_02_102007,41,15,,YES,Meets delisting requirements,2
+OR_WS_170703010109_05_102274,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_WS_170703010301_05_102282,154,3,Spawning,YES,Meets delisting requirements,3
+OR_WS_170703010301_05_102282,154,3,Year Round,YES,Meets delisting requirements,3
+OR_WS_170703010306_05_102286,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_170703010701_05_102297,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_170703010702_05_102298,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_170703040602_05_102436,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_170703051003_05_102496,124,10,,YES,Meets delisting requirement,3
+OR_WS_170703070403_05_102565,124,10,,YES,Meets delisting requirement,2
+OR_WS_170800010202_02_103638,156,5,,YES,Meets delisting requiremetns,2
+OR_WS_170800010302_02_103640,132,12,Year Round,YES,,2
+OR_WS_170800010502_11_103647,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_170800010703_02_103703,101,15,,YES,Meets delising requirements,2
+OR_WS_170900010101_02_104185,132,12,Year round,YES,No excursions of criteria,2
+OR_WS_170900030106_02_104248,101,15,,YES,Meets delisting requirements. ,2
+OR_WS_170900030106_02_104248,104,15,,YES,Meets delisting requirements,2
+OR_WS_170900030106_02_104248,9,16,,YES,Meets delisting requirements,2
+OR_WS_170900030108_02_104250,124,10,,YES,Meets delisting requirements,2
+OR_WS_170900030108_02_104250,101,15,,YES,Meets delisting requirements,2
+OR_WS_170900030108_02_104250,60,16,,YES,Meets delisting requirements,2
+OR_WS_170900030108_02_104250,9,16,,YES,Meets delisting requirements,2
+OR_WS_170900030109_02_104251,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170900030110_02_104252,132,12,Year round,YES,No excursions of criteria,2
+OR_WS_170900030609_02_104297,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170900070301_02_104413,101,15,,YES,Meets delisting requirements,2
+OR_WS_170900070301_02_104413,150,15,,YES,Meets delisting requirements,2
+OR_WS_170900070305_02_104416,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170900080701_02_104451,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170900090204_02_104467,89,15,,YES,Meets delisting requirements - 0 of 24 measurable samples < criteria,2
+OR_WS_170900090204_02_104467,77,15,,YES,Meets delisting requirements,2
+OR_WS_170900090204_02_104467,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170900100204_02_104495,132,12,Year round,YES,No excursions of criteria,2
+OR_WS_170900100401_02_104506,101,15,,YES,Meets delisting requirements,2
+OR_WS_170900100501_02_104512,101,15,,YES,Meets delisting requirements,2
+OR_WS_170900100502_02_104513,45,15,,YES,"When pooled together, 12 of 231 values exceed chronic criterion using BLM default parameters.  Meets 2018 delisting methodology requirements.",2
+OR_WS_170900100502_02_104513,101,15,,YES,Meets delisting requirements,2
+OR_WS_170900100502_02_104513,130,15,,YES,Meets delisting requirements,2
+OR_WS_170900100502_02_104513,150,15,,YES,Meets delisting requirements,2
+OR_WS_170900110502_02_104541,132,12,Year round,YES,,2
+OR_WS_170900110605_02_104547,154,3,Year Round,YES,Meets 2018 category 2 requrements,2
+OR_WS_170900110605_02_104547,89,15,,YES,Meets delisting requirements,2
+OR_WS_170900110607_02_104549,76,1,,YES,Meets 2018 category 2 requrements,2
+OR_WS_170900120101_02_104550,124,10,,YES,Meets delisting requirements,2
+OR_WS_170900120201_02_104554,101,15,,YES,Meets delisting requirements,2
+OR_WS_170900120201_02_104554.1,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_170900120201_02_104554.1,124,10,,YES,Meets delisting requirements - 20 results above pH criteria of 8.5 out of 187 samples.,2
+OR_WS_170900120201_02_104554.1,101,15,,YES,Meets delisting requirements. 2 excursions out of 153 samples,2
+OR_WS_170900120201_02_104554.1,76,1,,YES,Meets delisting requirements. Geomean < criteria. No single sample exceedances ,2
+OR_WS_170900120201_02_104554.1,154,3,Year Round,YES,Meets delisting requirements. 3 excursions of criteria out of 153 samples ,2
+OR_WS_170900120201_02_104554.2,101,15,,YES,Meets delisting requirements. 0 excursions out of 282 samples,2
+OR_WS_170900120201_02_104554.2,124,10,,YES,"Meets delisting requirements -  7 results above pH criteria of 8.5, 2 results below pH criteria of 6.5, out of 257 samples",2
+OR_WS_171002030205_05_106104,156,5,,YES," Sample collected at monitoring location dfw_20240, Moon Creek on 8/14/2008 has a PREDATOR O/E score of 1.03 which is enough to delist this assessment unit",3
+OR_WS_171002030504_05_106117,156,5,,YES,Meets delisting requirements,3
+OR_WS_171002040202_02_106129,76,1,,YES,Meets delisting requirements,2
+OR_WS_171002040901_02_106144,124,10,,YES ,Meets delisting requirements,2
+OR_WS_171002050205_02_106154,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_171002050301_02_106155,132,12,Year round,YES,,2
+OR_WS_171002050403_02_106159,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_171002050501_02_106160,156,5,,YES ,Meets delisting requirements,2
+OR_WS_171002050602_00_106163,132,12,Year round,YES,,2
+OR_WS_171002060202_02_106422,156,5,,YES,Meets delisting requirements,2
+OR_WS_171003010304_02_105639,132,12,Year round,YES,No excursions of criteria,2
+OR_WS_171003021001_02_105703,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_WS_171003021001_02_105703,154,3,Year Round,YES ,Meets delisting requirements,2
+OR_WS_171003030601_02_105295,156,5,,YES,Meets delisting requirements,2
+OR_WS_171003050101_02_105309,154,3,Year Round,YES,Meets 2018 category 2 requrements,2
+OR_WS_171003080104_02_105762,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_171003080110_02_105768,154,3,Spawning,YES,Meets 2018 category 2 requrements,2
+OR_WS_171003080110_02_105768,154,3,Year Round,YES,Meets delisting requirements,2
+OR_WS_171003080112_02_105770,154,3,Year Round,YES,meets delist requirements,2
+OR_WS_171003100803_02_104698,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_171003120111_02_104697                          ,132,12,Year round,YES,Air Temperature exclusions cancel out water temp excursions,2
+OR_WS_171200050205_05_106931,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_171200070102_05_106764,132,12,Year round,YES,"Doesn't meet minimum delisting requirements, but all results < detect",2
+OR_WS_180102010103_05_107012,132,12,Year round,YES,Meets delisting requirements,2
+OR_WS_180102041202_05_107133,124,10,,YES,Meets delisting requirements,2
+OR_WS_180102041403_05_107134,76,1,,YES,Meets delisting requirements,2
+OR_WS_180102041403_05_107134,6,15,,YES,Meets delisting requirements,2
+OR_WS_180200010206_05_102688,154,3,Spawning,YES,Was never listed for spawning; meets Cat 2 requirements,2
+OR_WS_180200010206_05_102688,154,3,Year Round,YES,Meets 2018 category 2 requrements,3
+OR_EB_1710020308_01_100298,154,3,Year Round,YES,Meets 2018 category 2 requrements,2
+OR_EB_1710020607_01_107223,154,3,Spawning,YES,Criteria applied in error- no spawning,4
+OR_EB_1710030403_01_100285,154,3,Spawning,YES,Criteria applied in error- no spawning,4
+OR_EB_1710030403_01_107198,154,3,Spawning,YES,Criteria applied in error- no spawning,4
+OR_WS_171003010304_02_105639,132,12,Year round,YES,No excursions of criteria,2

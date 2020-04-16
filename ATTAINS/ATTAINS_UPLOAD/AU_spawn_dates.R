@@ -58,4 +58,18 @@ AU_DO_Spawn <-  AU_DO_Spawn %>%
                                             DO_SpawnEnd == '6/15' ~ 3,
                                             DO_SpawnEnd == '7/15' ~ 4))
 
+AU_spawning_DO <- AU_DO_Spawn %>%
+                   group_by(AU_ID) %>%
+                   summarise(total_samples = n(),
+                             n_nospawn = sum(DO_Spawn_dates =="X (No Spawning)"),
+                             n_spawn = sum(!DO_Spawn_dates =="X (No Spawning)")) %>%
+                   filter(n_spawn > 0)
 
+AU_spawning_Temp <- AU_Temp_Spawn %>%
+  group_by(AU_ID) %>%
+  summarise(total_samples = n(),
+            n_nospawn = sum(Temp_Spawn_dates =="X (No Spawning)"),
+            n_spawn = sum(!Temp_Spawn_dates =="X (No Spawning)")) %>%
+  filter(n_spawn > 0)
+
+AU_Spawn_use <- rbind(AU_spawning_DO,AU_spawning_Temp) %>% distinct()
