@@ -1098,7 +1098,7 @@ print('Writing tables')
     mutate(WQstd_code = as.character(WQstd_code)) %>%
     left_join(AU_ID_2_basin, by = "AU_ID") %>%
     filter(OWRD_Basin == basin) %>%
-    group_by(AU_ID, Pollu_ID, WQstd_code) %>%
+    group_by(AU_ID, Pollu_ID, WQstd_code, Period) %>%
     filter(PARAM_YEAR_LISTED == min(PARAM_YEAR_LISTED, na.rm = TRUE))
     
       
@@ -1328,7 +1328,8 @@ print('Writing tables')
   
   
   BU_s <- cat4_assignments %>%
-    left_join(BUs, by = c("Pollu_ID", "WQstd_code") )
+    left_join(BUs, by = c("Pollu_ID", "WQstd_code") ) %>%
+    mutate(ben_use = ifelse(!grepl("EB|CL", AU_ID) & Pollu_ID == 86 & Assessed_in_2018 == 'NO', 'Water Contact Recreation', ben_use ))
   
   # 
   # BU_rollup_setup <- BU_s %>%
@@ -1418,7 +1419,21 @@ xwalk_rationales <- x_walk_impaired %>%
                                                 "Category 4",
                                                 "Category 4B") &
                              grepl("5",previous_IR_category ), "Carried forward from previous listing", Rationale )) %>%
-   select(-previous_rationale)
+   select(-previous_rationale) %>%
+   mutate(Rationale = ifelse (AU_ID %in% c('OR_EB_1710020607_01_107223',
+                                           'OR_EB_1710030403_01_100285',
+                                           'OR_EB_1710030403_01_107198') &
+                                Pollu_ID == '154' &
+                                Period == 'Spawning', 
+                              "Delist - Criteria applied in Error",
+                              Rationale)) %>%
+   mutate(IR_category = ifelse (AU_ID %in% c('OR_EB_1710020607_01_107223',
+                                          'OR_EB_1710030403_01_100285',
+                                          'OR_EB_1710030403_01_107198') &
+                               Pollu_ID == '154' &
+                               Period == 'Spawning', 
+                             "Unassessed",
+                             IR_category))
  
  
  AU_to_OWRD <- all_categories %>%
@@ -1452,6 +1467,16 @@ all_BU_rollup$IR_category <- cat_factor
  
  
  BU_rollup <- all_BU_rollup %>%
+   mutate(ben_use = case_when(ben_use == "Fishing" ~ "fishing",
+                             ben_use == "Private Domestic Water Supply" ~ "Private domestic water supply",
+                             ben_use == "Public Domestic Water Supply" ~ "Public domestic water supply",
+                             ben_use == "Fish and Aquatic Life" ~ "fish and aquatic life",
+                             ben_use == "Water Contact Recreation" ~ "water contact recreation",
+                             ben_use == "Aesthetic Quality" ~ "aesthetic quality",
+                             ben_use == "Livestock Watering" ~ "livestock watering",
+                             ben_use == "Boating" ~ "boating",
+                             TRUE ~ "ERROR"
+   )) %>%
    group_by(AU_ID, ben_use) %>%
    summarise(Category = max(IR_category)) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
@@ -1471,6 +1496,16 @@ all_BU_rollup$IR_category <- cat_factor
    mutate(Parameter = case_when(WQstd_code == '15' ~ paste(Parameter, ("- Aquatic Life")), 
                                 WQstd_code == '16' ~ paste(Parameter, ("- Human Health")),
                                 TRUE ~Parameter )) %>%
+   mutate(ben_use = case_when(ben_use == "Fishing" ~ "fishing",
+                                     ben_use == "Private Domestic Water Supply" ~ "Private domestic water supply",
+                                     ben_use == "Public Domestic Water Supply" ~ "Public domestic water supply",
+                                     ben_use == "Fish and Aquatic Life" ~ "fish and aquatic life",
+                                     ben_use == "Water Contact Recreation" ~ "water contact recreation",
+                                     ben_use == "Aesthetic Quality" ~ "aesthetic quality",
+                                     ben_use == "Livestock Watering" ~ "livestock watering",
+                                     ben_use == "Boating" ~ "boating",
+                                     TRUE ~ "ERROR"
+   )) %>%
    group_by(AU_ID, ben_use) %>%
    right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) %>%
    summarise(Assessed_condition = case_when(max(IR_category, na.rm = TRUE) == "Category 5" ~ "Not supported",
@@ -1519,7 +1554,11 @@ all_BU_rollup$IR_category <- cat_factor
                                             str_c(unique(Parameter[IR_category ==  "Category 4C"])[!is.na(unique(Parameter[IR_category ==  "Category 4C"]))],
                                                   collapse  = "; "),
                                             ""),
-             
+             Category_3_parameters = ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3" ])[!is.na(unique(Parameter[IR_category ==  "Category 3" ]))], 
+                                                         collapse  = "; ")) > 0, 
+                                            str_c(unique(Parameter[IR_category ==  "Category 3"])[!is.na(unique(Parameter[IR_category ==  "Category 3"]))],
+                                                  collapse  = "; "),
+                                            ""),
              Category_3B_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3B" ])[!is.na(unique(Parameter[IR_category ==  "Category 3B" ]))], 
                                                          collapse  = "; ")) > 0, 
                                             str_c(unique(Parameter[IR_category ==  "Category 3B"])[!is.na(unique(Parameter[IR_category ==  "Category 3B"]))],
@@ -1664,6 +1703,11 @@ Impaired_1orMoreUses <- Impaired_1orMoreUses_prelim %>%
             Category_4C_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 4C" ])[!is.na(unique(Parameter[IR_category ==  "Category 4C" ]))], 
                                                         collapse  = "; ")) > 0, 
                                            str_c(unique(Parameter[IR_category ==  "Category 4C"])[!is.na(unique(Parameter[IR_category ==  "Category 4C"]))],
+                                                 collapse  = "; "),
+                                           "."),
+            Category_3_parameters= ifelse(length(str_c(unique(Parameter[IR_category ==  "Category 3" ])[!is.na(unique(Parameter[IR_category ==  "Category 3" ]))], 
+                                                        collapse  = "; ")) > 0, 
+                                           str_c(unique(Parameter[IR_category ==  "Category 3"])[!is.na(unique(Parameter[IR_category ==  "Category 3"]))],
                                                  collapse  = "; "),
                                            "."),
             
@@ -1845,5 +1889,29 @@ delist_rollup <- all_delist %>%
 #     
 #    
 #  }
+ 
+ 
+ BU_Summary_4_QC <- all_BU_rollup %>%
+   # left_join(select(Pollutants, Pollu_ID,Attains_PolluName )) %>%
+   # mutate(Char_Name = Attains_PolluName) %>%
+   # select(-Attains_PolluName) %>%
+   mutate(Year_listed = ifelse(is.na(Year_listed), year_assessed, Year_listed ),
+          Parameter = ifelse(is.na(Period), Char_Name, paste0(Char_Name, "- ",Period ) )) %>%
+   mutate(Parameter = case_when(WQstd_code == '15' ~ paste(Parameter, ("- Aquatic Life")), 
+                                WQstd_code == '16' ~ paste(Parameter, ("- Human Health")),
+                                TRUE ~Parameter )) %>%
+   mutate(ben_use = case_when(ben_use == "Fishing" ~ "fishing",
+                              ben_use == "Private Domestic Water Supply" ~ "Private domestic water supply",
+                              ben_use == "Public Domestic Water Supply" ~ "Public domestic water supply",
+                              ben_use == "Fish and Aquatic Life" ~ "fish and aquatic life",
+                              ben_use == "Water Contact Recreation" ~ "water contact recreation",
+                              ben_use == "Aesthetic Quality" ~ "aesthetic quality",
+                              ben_use == "Livestock Watering" ~ "livestock watering",
+                              ben_use == "Boating" ~ "boating",
+                              TRUE ~ "ERROR"
+   )) %>%
+   group_by(AU_ID, ben_use) %>%
+   right_join(filter(all_ben_uses, AU_ID %in% all_categories$AU_ID)) 
+ save(BU_Summary_4_QC, Pollutants, file = "ATTAINS/ATTAINS QC/rollup_data_for_QC.Rdata")
  
  
