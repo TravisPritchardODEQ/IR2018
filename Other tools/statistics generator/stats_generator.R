@@ -753,3 +753,258 @@ AU_layer <- read.xlsx('Other tools/statistics generator/AU layer.xlsx')
 
 
 percent_assessed = nrow(IR_categories)/nrow(AU_layer)*100
+
+
+
+# AU status ---------------------------------------------------------------
+
+impaired_1_or_more <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Rollup/ALL BASINS_Impaired_1orMoreUses.xlsx")
+
+AU_layer <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_names.csv",
+                     stringsAsFactors = FALSE) %>%
+  select(AU_ID, AU_Name)
+
+cbp2 <- c("#999999", "#ab66cd", "#00a884", "#d5b502", 
+          "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+all_AUs_status <- impaired_1_or_more %>%
+  full_join(AU_layer, by = "AU_ID") %>%
+  select(AU_ID, AU_status) %>%
+  mutate(AU_status = ifelse(is.na(AU_status), "Unassessed", AU_status)) %>%
+  group_by(AU_status) %>%
+  summarise(num = n())
+
+
+
+ggplot(all_AUs_status, aes(
+  y = num,
+  x = factor(AU_status,
+             levels = c("Unassessed", "Impaired", "Attaining", "Insufficient Data" )),
+  fill =  factor(AU_status,
+                 levels =  c("Unassessed", "Impaired", "Attaining", "Insufficient Data" ))  
+)) +
+  geom_bar(position="stack", stat="identity" ) +
+  theme_bw() +
+  scale_fill_manual(values = cbp2) + 
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1),
+        legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12),
+        legend.position = "none") +
+  labs(title = "Assessment Unit Status", x = NULL, 
+       y = "Assessment Units (Count)", fill = NULL, 
+       subtitle = "Count of assessment unit status") + 
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+
+
+# without_temperature -----------------------------------------------------
+
+
+IR_categories <- read.xlsx("ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+
+AU_layer <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_names.csv",
+                     stringsAsFactors = FALSE) %>%
+  select(AU_ID, AU_Name)
+
+
+con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
+
+
+Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
+  mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+  select(-SSMA_TimeStamp) %>%
+  mutate(Pollutant_DEQ.WQS = trimws(Pollutant_DEQ.WQS, which = "right")) %>%
+  select(Pollu_ID,Pollutant_DEQ.WQS, Attains_PolluName,Attains_Group ) %>%
+  mutate(Attains_Group = case_when(Attains_Group == "TOXIC ORGANICS\r\n" ~ "TOXIC ORGANICS",
+                                   Attains_Group == "TOXIC INORGANICS\r\n" ~ "TOXIC INORGANICS",
+                                   Attains_Group %in% c("HARDNESS BASED METALS","MERCURY", "METALS") ~ "METALS",
+                                   Attains_Group == "PESTICIDES\r\n" ~ "PESTICIDES",
+                                   Attains_Group == 'CAUSE UNKNOWN - IMPAIRED BIOTA' ~ 'BIOCRITERIA',
+                                   TRUE ~ Attains_Group))
+
+
+DBI::dbDisconnect(con)
+
+
+
+IR_category_factor <- factor(IR_categories$IR_category, levels = c('Unassigned',
+                                                                   "-",
+                                                                   "Category 3C",
+                                                                   "Category 3D",
+                                                                   "Category 3",
+                                                                   "Category 3B",
+                                                                   "Category 2",
+                                                                   "Category 4",
+                                                                   "Category 4B",
+                                                                   "Category 4C",
+                                                                   "Category 4A",
+                                                                   "Category 5"),
+                             ordered = TRUE)
+IR_categories$IR_category <- IR_category_factor
+
+
+stats_2018 <- IR_categories %>%
+  filter(Char_Name != "Temperature") %>%
+  group_by(AU_ID) %>%
+  summarise(group_cat = max(IR_category)) %>%
+  mutate(adjusted_cat = case_when(group_cat %in% c("Category 4B","Category 4C","Category 4A", "Category 5", "Category 4") ~ "Impaired",
+                                  group_cat %in% c("Category 3C","Category 3D","Category 3B", "Category 3") ~ "Insufficient Data",
+                                  group_cat %in% c("Category 2","Category 3D","Category 3B") ~ "Attaining",
+                                  TRUE ~ 'ERROR')) %>%
+  filter(adjusted_cat !='ERROR') %>%
+  ungroup() %>%
+  full_join(AU_layer, by = "AU_ID") %>%
+  mutate(adjusted_cat = ifelse(is.na(adjusted_cat), "Unassessed", adjusted_cat)) %>%
+  group_by(adjusted_cat) %>%
+  summarise(num = n())
+
+
+ggplot(stats_2018, aes(
+  y = num,
+  x = factor(adjusted_cat,
+             levels = c("Unassessed", "Impaired", "Attaining", "Insufficient Data" )),
+  fill =  factor(adjusted_cat,
+                 levels =  c("Unassessed", "Impaired", "Attaining", "Insufficient Data" ))  
+)) +
+  geom_bar(position="stack", stat="identity" ) +
+  theme_bw() +
+  scale_fill_manual(values = cbp2) + 
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1),
+        legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12),
+        legend.position = "none") +
+  labs(title = "Assessment Unit Status", x = NULL, 
+       y = "Assessment Units (Count)", fill = NULL, 
+       subtitle = "Count of assessment unit status without temperature assessments") + 
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+
+# AU_s by type ------------------------------------------------------------
+
+
+impaired_1_or_more <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Rollup/ALL BASINS_Impaired_1orMoreUses.xlsx")
+
+AU_layer <- read.csv("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/Misc/AU_names.csv",
+                     stringsAsFactors = FALSE) %>%
+  select(AU_ID, AU_Name)
+
+cbp2 <- c("#999999", "#ab66cd", "#00a884", "#d5b502", 
+          "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+all_AUs_status <- impaired_1_or_more %>%
+  full_join(AU_layer, by = "AU_ID") %>%
+  select(AU_ID, AU_status) %>%
+  mutate(AU_status = ifelse(is.na(AU_status), "Unassessed", AU_status)) 
+
+
+Percent_Assessed <- all_AUs_status %>%
+  filter(AU_ID != '99') %>%
+  mutate(type = case_when(grepl("SR", AU_ID) ~ "Rivers & Streams",
+                          grepl("WS", AU_ID) ~ "Watersheds",
+                          grepl("LK", AU_ID) ~ "Lakes",
+                          grepl("SR", AU_ID) ~ "Rivers & Streams",
+                          grepl("ES|EB", AU_ID) ~ "Estuaries",
+                          grepl("CL", AU_ID) ~ "Coastal",
+                          grepl("OC", AU_ID) ~ "Marine",
+                          TRUE ~ 'ERROR'
+    
+  ) ) %>%
+  group_by(type) %>%
+  summarise(num_assessed = sum(AU_status != "Unassessed"),
+            num_unassessed = sum(AU_status == "Unassessed")) %>%
+  mutate(percent_assessed = round(num_assessed / (num_assessed + num_unassessed)*100, 0))
+
+write.xlsx(Percent_Assessed, file = 'AUS_pecrcent_assessed.xlsx')
+
+
+long_percent_assessed <- Percent_Assessed %>%
+  mutate(percent_unassessed = round(num_unassessed / (num_assessed + num_unassessed)*100, 0)) %>%
+  select(-num_assessed, -num_unassessed) %>%
+  pivot_longer(-type, names_to = "stat", values_to = "num")
+
+color_pal <- c("#18b0b0" ,'#116979')
+
+ggplot(long_percent_assessed, aes(
+  y = num,
+  x = type,
+  fill =  factor(stat,levels =  c( "percent_unassessed", "percent_assessed" ))
+)) +
+  geom_bar(position="stack", stat="identity" )+
+  theme_bw() +
+  scale_fill_manual(values = color_pal,
+                    labels = c("Unassessed", "Assessed"),
+                    guide = guide_legend(reverse=TRUE)
+                    )+
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1),
+        legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12)) +
+  labs(title = "Assessment Unit Assessment Status", x = NULL, 
+       y = "Assessment Units (%)", fill = NULL, 
+       subtitle = "Percent of assessment units assessed") + 
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+# Delistings --------------------------------------------------------------
+
+
+con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
+
+
+
+Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
+  mutate(Pollu_ID = as.character(Pollu_ID)) %>%
+  select(-SSMA_TimeStamp) %>%
+  mutate(Pollutant_DEQ.WQS = trimws(Pollutant_DEQ.WQS, which = "right")) %>%
+  select(Pollu_ID,Pollutant_DEQ.WQS, Attains_PolluName,Attains_Group ) %>%
+  mutate(Attains_Group = case_when(Attains_Group == "TOXIC ORGANICS\r\n" ~ "TOXIC ORGANICS",
+                                   Attains_Group == "TOXIC INORGANICS\r\n" ~ "TOXIC INORGANICS",
+                                   Attains_Group %in% c("HARDNESS BASED METALS","MERCURY", "METALS") ~ "METALS",
+                                   Attains_Group == "PESTICIDES\r\n" ~ "PESTICIDES",
+                                   Attains_Group == 'CAUSE UNKNOWN - IMPAIRED BIOTA' ~ 'BIOCRITERIA',
+                                   TRUE ~ Attains_Group))
+
+
+DBI::dbDisconnect(con)
+
+
+delistings_final <- read.xlsx('//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/Final List/ATTAINS_Uploads/Documents/Delisting_ATTAINSandDEQ.xlsx') %>%
+  select(ASSESSMENT_UNIT_ID, PARAMETER_CODE_NAME) %>%
+  left_join(Pollutants, by = c( "PARAMETER_CODE_NAME" = "Attains_PolluName")) %>%
+  select("ASSESSMENT_UNIT_ID", "Pollutant_DEQ.WQS") %>%
+  distinct() %>%
+  group_by(Pollutant_DEQ.WQS) %>%
+  summarise(num = n()) %>%
+  arrange(desc( num))
+
+
+ggplot(head(delistings_final, n=5), aes(
+  y = num,
+  x =  factor(Pollutant_DEQ.WQS, levels = c('Dissolved Oxygen',
+                                            'pH',
+                                            'E. coli',
+                                            'Temperature',
+                                            'Lead'))
+)) +
+  geom_bar(position="stack", stat="identity", ,
+           fill = '#116979' )+
+  theme_bw() +
+  scale_color_manual(values = color_pal) +
+                    
+  theme(plot.subtitle = element_text(vjust = 1), 
+        plot.caption = element_text(vjust = 1),
+        legend.text = element_text(size = 12),
+        axis.text = element_text(size = 12)) +
+  labs(title = "Delistings", x = NULL, 
+       y = "Number of Assessment Units", fill = NULL, 
+       subtitle = "Number of delistings for top 5 parameters") + 
+  scale_y_continuous(expand = c(0, 0)) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
