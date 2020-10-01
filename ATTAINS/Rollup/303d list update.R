@@ -14,7 +14,7 @@ options(scipen = 9999999)
 con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
 # Load assessment result data
-all_bains_categories <- read.xlsx("E:/Documents/IR2018/ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
+all_bains_categories <- read.xlsx("ATTAINS/Rollup/Basin_categories/ALL BASINS_categories.xlsx")
 
 # This table connects the Pollu_IDs and WQstrd codes to beneficial uses.
 # This is how we assign uses to assessments
@@ -42,13 +42,17 @@ Pollutants <- DBI::dbReadTable(con, 'LU_Pollutant') %>%
 
 
 all_bains_categories <- all_bains_categories %>%
-  left_join(Pollutants)
+  left_join(Pollutants) %>%
+  mutate(Attains_PolluName = case_when(Attains_PolluName == "SEDIMENT\r\n" ~ "SEDIMENT",
+                                       Attains_PolluName == "4,4'-DDT\r" ~ "4,4'-DDT",
+                                       TRUE ~Attains_PolluName ))
 
 #read in parameters.csv file from Lesley's email
 parameters <- read.csv("ATTAINS/priority ranking for attains/parameters.csv",
                        stringsAsFactors = FALSE) %>%
   select(ASSESSMENT_UNIT_ID, PARAM_NAME, PARAM_PRIORITY_RANKING) %>%
   distinct()
+  
 
 all_bains_categories <- all_bains_categories %>%
   left_join(parameters, by = c("AU_ID" = "ASSESSMENT_UNIT_ID","Attains_PolluName" = "PARAM_NAME"  )) 
@@ -359,8 +363,9 @@ list_303d <- all_bains_categories %>%
   mutate(Rationale = ifelse(is.na(Rationale), '', Rationale )) %>%
   mutate(Rationale = ifelse(Assessed_in_2018 == 'NO', "Carried forward from previous listing", Rationale )) %>%
   mutate(Monitoring_locations = ifelse(AU_ID == 'OR_SR_1710020608_02_105080' & is.na(Monitoring_locations), '33642-ORDEQ', Monitoring_locations )) %>%
-  filter(grepl("4", IR_category) | grepl("5", IR_category))
+  filter(grepl("4", IR_category) | grepl("5", IR_category)) %>%
+  mutate(PARAM_PRIORITY_RANKING = ifelse(grepl("4", IR_category), "",PARAM_PRIORITY_RANKING ))
 
 
-write.xlsx(list_303d, file = paste0("C:/Users/tpritch/Desktop/new_303d_list_with_priorities-",Sys.Date(), ".xlsx"))
+write.xlsx(list_303d, file = paste0("ATTAINS/Rollup/Basin_categories/303d_list_with_priorities-",Sys.Date(), ".xlsx"))
 
