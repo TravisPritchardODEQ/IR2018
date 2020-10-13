@@ -342,7 +342,8 @@ data_to_join <- data_together %>%
   group_by(AU_ID,  Pollu_ID, wqstd_code, Period) %>%
   summarise(Monitoring_locations = str_c(unique(MLocID), collapse  = "; ")) %>%
   rename(WQstd_code = wqstd_code) %>%
-  bind_rows(temp_to_join)
+  bind_rows(temp_to_join) %>%
+  distinct()
 
 
 list_303d <- all_bains_categories %>%
@@ -354,7 +355,7 @@ list_303d <- all_bains_categories %>%
                                 WQstd_code == "16" ~ paste0(Char_Name, "- Human Health Criteria"),
                                 TRUE ~ Char_Name)) %>%
   select(AU_ID, AU_Name, AU_Description, OWRD_Basin, Char_Name,  
-         Assessment,IR_category, Monitoring_locations, Rationale, 
+         Assessment,Period, IR_category, Monitoring_locations, Rationale, 
          Year_listed, Assessed_in_2018, Beneficial_uses, PARAM_PRIORITY_RANKING ) %>%
   mutate(Rationale = ifelse(IR_category ==  "Category 5" |  IR_category == "Category 4A" | 
                               IR_category == "Category 4"  | 
