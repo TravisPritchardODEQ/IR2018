@@ -88,9 +88,7 @@ con <- DBI::dbConnect(odbc::odbc(), "IR 2018")
 
 
 OWRD_query <- glue::glue_sql("SELECT DISTINCT [AU_ID]
-      ,[OWRD_Basin]
-     
-  FROM [IntegratedReport].[dbo].[BioCriteria]", .con = con)
+      ,[OWRD_Basin] FROM [IntegratedReport].[dbo].[BioCriteria]", .con = con)
 
 OWRD_lookup <- DBI::dbGetQuery(con, OWRD_query) %>%
   group_by(AU_ID) %>%
@@ -997,7 +995,10 @@ print("Starting Temperature")
     filter(AU_ID != "") %>%
     filter(OWRD_Basin == basin) %>%
     mutate(Pollu_ID = as.character(Pollu_ID),
-           WQstd_code = as.character(WQstd_code)) %>%
+           WQstd_code = as.character(WQstd_code),
+           Period = as.character(Period),
+           Data_Review_Code = as.character(Data_Review_Code),
+           Data_Review_Comment = as.character(Data_Review_Comment)) %>%
     rename(analysis_comment = analysis_comment_2018) %>%
     select(AU_ID,
            Period,
@@ -1033,7 +1034,8 @@ print("Starting Temperature")
            Data_Review_Code,
            Data_Review_Comment,
            Rationale
-    ) 
+    ) %>%
+    mutate_all(as.character)
   
 
 # Ocean hypoxia -----------------------------------------------------------
@@ -1055,8 +1057,8 @@ marine_oxygen <- read.xlsx("//deqhq1/WQASSESSMENT/2018IRFiles/2018_WQAssessment/
            Data_Review_Code,
            Data_Review_Comment,
            Rationale
-    ) 
-  
+    ) %>%
+    mutate_all(as.character)
 # put it all together -----------------------------------------------------
 print('Writing tables')
   
