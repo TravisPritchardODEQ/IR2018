@@ -1917,3 +1917,12 @@ delist_rollup <- all_delist %>%
  save(BU_Summary_4_QC, Pollutants, file = "ATTAINS/ATTAINS QC/rollup_data_for_QC.Rdata")
  
  
+
+# Remove all environment opbjects and create the 303(d) list --------------
+
+ rm(list=ls())
+ 
+ source('ATTAINS/Rollup/303d list update.R')
+ 
+ 
+ 
